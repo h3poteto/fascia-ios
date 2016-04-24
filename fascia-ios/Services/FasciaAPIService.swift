@@ -49,13 +49,13 @@ class FasciaAPIService: NSObject {
         path: String,
         method: Alamofire.Method,
         params: [String: AnyObject]?,
-        success: (AnyObject) -> Void,
+        success: (Response<AnyObject, NSError>) -> Void,
         failure: (NSError) -> Void
         ) {
 
         configureManager()?.request(method, APIHost + path, parameters: params, encoding: .JSON, headers: nil).responseJSON(completionHandler: { (response) in
             if response.response?.statusCode == 200 || response.response?.statusCode == 201 {
-                success((response as? AnyObject)!)
+                success(response)
             } else {
                 failure(response.result.error!)
             }
@@ -65,15 +65,13 @@ class FasciaAPIService: NSObject {
 
     func updateSession() {
         callBasicAPI("/session", method: .POST, params: nil, success: { (response) in
-            if let res = response as? Response<AnyObject, NSError> {
-                let cookies = NSHTTPCookie.cookiesWithResponseHeaderFields(res.response?.allHeaderFields as! [String:String], forURL: (res.response?.URL)!)
-                for i in 0 ..< cookies.count {
-                    NSHTTPCookieStorage.sharedHTTPCookieStorage().setCookie(cookies[i])
-                }
-                let cookiesData: NSData = NSKeyedArchiver.archivedDataWithRootObject(NSHTTPCookieStorage.sharedHTTPCookieStorage().cookies!)
-                NSUserDefaults.standardUserDefaults().setObject(cookiesData, forKey: self.CookieKey)
+            let cookies = NSHTTPCookie.cookiesWithResponseHeaderFields(response.response?.allHeaderFields as! [String:String], forURL: (response.response?.URL)!)
+            for i in 0 ..< cookies.count {
+                NSHTTPCookieStorage.sharedHTTPCookieStorage().setCookie(cookies[i])
             }
-            }) { (error) in
+            let cookiesData: NSData = NSKeyedArchiver.archivedDataWithRootObject(NSHTTPCookieStorage.sharedHTTPCookieStorage().cookies!)
+            NSUserDefaults.standardUserDefaults().setObject(cookiesData, forKey: self.CookieKey)
+        }) { (error) in
         }
     }
 
