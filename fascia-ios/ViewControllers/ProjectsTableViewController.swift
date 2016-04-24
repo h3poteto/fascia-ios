@@ -9,9 +9,15 @@
 import UIKit
 
 class ProjectsTableViewController: UITableViewController {
+    private var viewModel = ProjectsViewModel()
 
     override func viewDidLoad() {
         super.viewDidLoad()
+
+        if !viewModel.existSession() {
+            let signIn = UIStoryboard.instantiateViewController("SignInViewController", storyboardName: "Main") as! UIViewController
+            self.presentViewController(signIn, animated: true, completion: nil)
+        }
 
         // Uncomment the following line to preserve selection between presentations
         // self.clearsSelectionOnViewWillAppear = false

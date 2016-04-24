@@ -8,6 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		5F8671B19F4521C1BB30C10E /* Pods_fascia_ios.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 16D2F05040D44D1E1FE11135 /* Pods_fascia_ios.framework */; };
+		E9749C951CCBC6BD00335B53 /* ProjectsViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = E9749C941CCBC6BD00335B53 /* ProjectsViewModel.swift */; };
 		E9E4FEF81CC53D3100517729 /* Launch Screen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = E9E4FEF71CC53D3100517729 /* Launch Screen.storyboard */; };
 		E9E4FEFA1CC53D6B00517729 /* Settings.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = E9E4FEF91CC53D6B00517729 /* Settings.storyboard */; };
 		E9E4FEFC1CC53DC400517729 /* Projects.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = E9E4FEFB1CC53DC400517729 /* Projects.storyboard */; };
@@ -37,6 +38,7 @@
 		16D2F05040D44D1E1FE11135 /* Pods_fascia_ios.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_fascia_ios.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		500F9BE1C0E6F2F088F98868 /* Pods-fascia-ios.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-fascia-ios.release.xcconfig"; path = "Pods/Target Support Files/Pods-fascia-ios/Pods-fascia-ios.release.xcconfig"; sourceTree = "<group>"; };
 		67AD5B1E44C7EB47CEA7BB03 /* Pods-fascia-ios.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-fascia-ios.debug.xcconfig"; path = "Pods/Target Support Files/Pods-fascia-ios/Pods-fascia-ios.debug.xcconfig"; sourceTree = "<group>"; };
+		E9749C941CCBC6BD00335B53 /* ProjectsViewModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = ProjectsViewModel.swift; path = ViewModels/ProjectsViewModel.swift; sourceTree = "<group>"; };
 		E9E4FEF71CC53D3100517729 /* Launch Screen.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; name = "Launch Screen.storyboard"; path = "Resources/Launch Screen.storyboard"; sourceTree = "<group>"; };
 		E9E4FEF91CC53D6B00517729 /* Settings.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; name = Settings.storyboard; path = Resources/Settings.storyboard; sourceTree = "<group>"; };
 		E9E4FEFB1CC53DC400517729 /* Projects.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; name = Projects.storyboard; path = Resources/Projects.storyboard; sourceTree = "<group>"; };
@@ -132,6 +134,7 @@
 		E9E4FEF61CC53C3700517729 /* ViewModels */ = {
 			isa = PBXGroup;
 			children = (
+				E9749C941CCBC6BD00335B53 /* ProjectsViewModel.swift */,
 			);
 			name = ViewModels;
 			sourceTree = "<group>";
@@ -352,6 +355,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				E9E4FF041CC7C51700517729 /* SignInViewController.swift in Sources */,
+				E9749C951CCBC6BD00335B53 /* ProjectsViewModel.swift in Sources */,
 				E9F4C6651CC52C19003DD8DC /* AppDelegate.swift in Sources */,
 				E9E4FF101CC7E06200517729 /* UIStoryboard+Fascia.swift in Sources */,
 				E9E4FF0B1CC7DE1B00517729 /* MainTabBarController.swift in Sources */,
