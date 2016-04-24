@@ -7,11 +7,14 @@
 //
 
 import Alamofire
+import RxSwift
+import RxCocoa
 
 class FasciaAPIService: NSObject {
     static let sharedInstance = FasciaAPIService()
     private var manager: Alamofire.Manager?
     private let CookieKey = "fascia-session"
+    private let disposeBag = DisposeBag()
 
 #if DEBUG
     let APIHost = "http://fascia.localdomain:9090"
@@ -24,7 +27,7 @@ class FasciaAPIService: NSObject {
         super.init()
     }
 
-    private func configureManager() -> Alamofire.Manager? {
+    private func configureManager() -> Alamofire.Manager {
         if manager == nil {
             if let cookiesData = NSUserDefaults.standardUserDefaults().objectForKey(CookieKey) as? NSData {
                 for cookie: NSHTTPCookie in NSKeyedUnarchiver.unarchiveObjectWithData(cookiesData) as! [NSHTTPCookie] {
@@ -35,7 +38,7 @@ class FasciaAPIService: NSObject {
             cfg.HTTPCookieStorage = NSHTTPCookieStorage.sharedHTTPCookieStorage()
             manager = Alamofire.Manager(configuration: cfg)
         }
-        return manager
+        return manager!
     }
 
     func hasCookie() -> Bool {
@@ -48,31 +51,30 @@ class FasciaAPIService: NSObject {
     func callBasicAPI(
         path: String,
         method: Alamofire.Method,
-        params: [String: AnyObject]?,
-        success: (Response<AnyObject, NSError>) -> Void,
-        failure: (NSError) -> Void
-        ) {
+        params: [String: AnyObject]?) -> Observable<(NSData, NSHTTPURLResponse)> {
 
-        configureManager()?.request(method, APIHost + path, parameters: params, encoding: .JSON, headers: nil).responseJSON(completionHandler: { (response) in
-            if response.response?.statusCode == 200 || response.response?.statusCode == 201 {
-                success(response)
-            } else {
-                failure(response.result.error!)
-            }
-        })
+        let request = configureManager().request(method, APIHost + path, parameters: params, encoding: .JSON, headers: nil).request
+        if let request = request {
+            return configureManager().session.rx_response(request)
+        } else {
+            fatalError("Invalid Request")
+        }
 
     }
 
     func updateSession() {
-        callBasicAPI("/session", method: .POST, params: nil, success: { (response) in
-            let cookies = NSHTTPCookie.cookiesWithResponseHeaderFields(response.response?.allHeaderFields as! [String:String], forURL: (response.response?.URL)!)
-            for i in 0 ..< cookies.count {
-                NSHTTPCookieStorage.sharedHTTPCookieStorage().setCookie(cookies[i])
-            }
-            let cookiesData: NSData = NSKeyedArchiver.archivedDataWithRootObject(NSHTTPCookieStorage.sharedHTTPCookieStorage().cookies!)
-            NSUserDefaults.standardUserDefaults().setObject(cookiesData, forKey: self.CookieKey)
-        }) { (error) in
-        }
+        callBasicAPI("/session", method: .POST, params: nil)
+            .subscribeOn(Scheduler.sharedInstance.backgroundScheduler)
+            .observeOn(Scheduler.sharedInstance.mainScheduler)
+            .subscribeNext({ (data, response) -> Void in
+                let cookies = NSHTTPCookie.cookiesWithResponseHeaderFields(response.allHeaderFields as! [String:String], forURL: (response.URL)!)
+                for i in 0 ..< cookies.count {
+                    NSHTTPCookieStorage.sharedHTTPCookieStorage().setCookie(cookies[i])
+                }
+                let cookiesData: NSData = NSKeyedArchiver.archivedDataWithRootObject(NSHTTPCookieStorage.sharedHTTPCookieStorage().cookies!)
+                NSUserDefaults.standardUserDefaults().setObject(cookiesData, forKey: self.CookieKey)
+            })
+        .addDisposableTo(disposeBag)
     }
 
 }
