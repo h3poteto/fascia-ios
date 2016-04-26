@@ -15,6 +15,7 @@ class ProjectsTableViewController: UITableViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
+        bindViewModel()
 
         if !viewModel.existSession() {
             let signIn = UIStoryboard.instantiateViewController("SignInViewController", storyboardName: "Main") as! UIViewController
@@ -99,5 +100,9 @@ class ProjectsTableViewController: UITableViewController {
         // Pass the selected object to the new view controller.
     }
     */
+
+    func bindViewModel() {
+
+    }
 
 }
