@@ -9,13 +9,13 @@
 import ObjectMapper
 
 class Project: Mappable {
-    var ID: Int64?
-    var UserID: Int64?
-    var Title: String?
-    var Description: String?
-    var ShowIssues: Bool?
-    var ShowPullRequests: Bool?
-    var RepositoryID: Int64?
+    var id: Int64?
+    var userID: Int64?
+    var title: String?
+    var description: String?
+    var showIssues: Bool?
+    var showPullRequests: Bool?
+    var repositoryID: Int64?
 
     class func buildWithArray(projects: [[String: AnyObject]]) -> [Project] {
         var arr: [Project] = []
@@ -32,12 +32,12 @@ class Project: Mappable {
     }
 
     func mapping(map: Map) {
-        ID                  <- map["ID"]
-        UserID              <- map["UserID"]
-        Title               <- map["Title"]
-        Description         <- map["Description"]
-        ShowIssues          <- map["ShowIssues"]
-        ShowPullRequests    <- map["ShowPullRequests"]
-        RepositoryID        <- map["RepositoryID"]
+        id                  <- map["ID"]
+        userID              <- map["UserID"]
+        title               <- map["Title"]
+        description         <- map["Description"]
+        showIssues          <- map["ShowIssues"]
+        showPullRequests    <- map["ShowPullRequests"]
+        repositoryID        <- map["RepositoryID"]
     }
 }
