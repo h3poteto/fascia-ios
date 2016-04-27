@@ -21,7 +21,6 @@ class FasciaAPIService: NSObject {
 #else
     let APIHost = "https://fascia.io"
 #endif
-    
 
     private override init() {
         super.init()
