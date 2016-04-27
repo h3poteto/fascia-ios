@@ -26,5 +26,4 @@ class Scheduler {
     // MARK: - Initializers
 
     private init() {}
-    
 }
