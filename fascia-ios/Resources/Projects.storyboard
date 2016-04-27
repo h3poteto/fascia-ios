@@ -3,6 +3,7 @@
     <dependencies>
         <deployment identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="10085"/>
+        <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
     </dependencies>
     <scenes>
         <!--ProjectsTableViewController-->
@@ -14,13 +15,28 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <prototypes>
-                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" id="nIW-dV-ubS">
+                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" restorationIdentifier="ProjectTableViewCell" selectionStyle="default" indentationWidth="10" reuseIdentifier="ProjectTableViewCell" id="nIW-dV-ubS" customClass="ProjectTableViewCell" customModule="fascia_ios" customModuleProvider="target">
                                 <rect key="frame" x="0.0" y="92" width="600" height="44"/>
                                 <autoresizingMask key="autoresizingMask"/>
                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="nIW-dV-ubS" id="Q4m-PW-8x7">
                                     <rect key="frame" x="0.0" y="0.0" width="600" height="43.5"/>
                                     <autoresizingMask key="autoresizingMask"/>
+                                    <subviews>
+                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="TBa-Wn-C5S">
+                                            <rect key="frame" x="16" y="11.5" width="42" height="21"/>
+                                            <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                            <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                            <nil key="highlightedColor"/>
+                                        </label>
+                                    </subviews>
+                                    <constraints>
+                                        <constraint firstItem="TBa-Wn-C5S" firstAttribute="centerY" secondItem="Q4m-PW-8x7" secondAttribute="centerY" id="Xc2-kc-V7N"/>
+                                        <constraint firstItem="TBa-Wn-C5S" firstAttribute="leading" secondItem="Q4m-PW-8x7" secondAttribute="leadingMargin" constant="8" id="iQs-gh-P1F"/>
+                                    </constraints>
                                 </tableViewCellContentView>
+                                <connections>
+                                    <outlet property="tilteLabel" destination="TBa-Wn-C5S" id="FhH-q8-RX2"/>
+                                </connections>
                             </tableViewCell>
                         </prototypes>
                         <connections>
@@ -29,6 +45,9 @@
                         </connections>
                     </tableView>
                     <navigationItem key="navigationItem" title="Projects" id="aCm-P4-Ibc"/>
+                    <refreshControl key="refreshControl" opaque="NO" multipleTouchEnabled="YES" contentMode="center" enabled="NO" contentHorizontalAlignment="center" contentVerticalAlignment="center" id="0fV-55-kkB">
+                        <autoresizingMask key="autoresizingMask"/>
+                    </refreshControl>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="FgE-L4-7cA" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>

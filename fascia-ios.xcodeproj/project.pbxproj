@@ -9,6 +9,8 @@
 /* Begin PBXBuildFile section */
 		5F8671B19F4521C1BB30C10E /* Pods_fascia_ios.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 16D2F05040D44D1E1FE11135 /* Pods_fascia_ios.framework */; };
 		E96975A21CCE78F000DC5852 /* Project.swift in Sources */ = {isa = PBXBuildFile; fileRef = E96975A11CCE78F000DC5852 /* Project.swift */; };
+		E96975A51CD1039B00DC5852 /* ProjectViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = E96975A41CD1039B00DC5852 /* ProjectViewModel.swift */; };
+		E96975A71CD1073000DC5852 /* ProjectTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = E96975A61CD1073000DC5852 /* ProjectTableViewCell.swift */; };
 		E9749C951CCBC6BD00335B53 /* ProjectsViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = E9749C941CCBC6BD00335B53 /* ProjectsViewModel.swift */; };
 		E9749C971CCD075F00335B53 /* Scheduler.swift in Sources */ = {isa = PBXBuildFile; fileRef = E9749C961CCD075F00335B53 /* Scheduler.swift */; };
 		E9E4FEF81CC53D3100517729 /* Launch Screen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = E9E4FEF71CC53D3100517729 /* Launch Screen.storyboard */; };
@@ -41,6 +43,8 @@
 		500F9BE1C0E6F2F088F98868 /* Pods-fascia-ios.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-fascia-ios.release.xcconfig"; path = "Pods/Target Support Files/Pods-fascia-ios/Pods-fascia-ios.release.xcconfig"; sourceTree = "<group>"; };
 		67AD5B1E44C7EB47CEA7BB03 /* Pods-fascia-ios.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-fascia-ios.debug.xcconfig"; path = "Pods/Target Support Files/Pods-fascia-ios/Pods-fascia-ios.debug.xcconfig"; sourceTree = "<group>"; };
 		E96975A11CCE78F000DC5852 /* Project.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = Project.swift; path = Models/Project.swift; sourceTree = "<group>"; };
+		E96975A41CD1039B00DC5852 /* ProjectViewModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = ProjectViewModel.swift; path = ViewModels/ProjectViewModel.swift; sourceTree = "<group>"; };
+		E96975A61CD1073000DC5852 /* ProjectTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = ProjectTableViewCell.swift; path = Views/ProjectTableViewCell.swift; sourceTree = "<group>"; };
 		E9749C941CCBC6BD00335B53 /* ProjectsViewModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = ProjectsViewModel.swift; path = ViewModels/ProjectsViewModel.swift; sourceTree = "<group>"; };
 		E9749C961CCD075F00335B53 /* Scheduler.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = Scheduler.swift; path = Services/Scheduler.swift; sourceTree = "<group>"; };
 		E9E4FEF71CC53D3100517729 /* Launch Screen.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; name = "Launch Screen.storyboard"; path = "Resources/Launch Screen.storyboard"; sourceTree = "<group>"; };
@@ -121,6 +125,7 @@
 		E9E4FEF31CC53C2100517729 /* Views */ = {
 			isa = PBXGroup;
 			children = (
+				E96975A61CD1073000DC5852 /* ProjectTableViewCell.swift */,
 			);
 			name = Views;
 			sourceTree = "<group>";
@@ -140,6 +145,7 @@
 			isa = PBXGroup;
 			children = (
 				E9749C941CCBC6BD00335B53 /* ProjectsViewModel.swift */,
+				E96975A41CD1039B00DC5852 /* ProjectViewModel.swift */,
 			);
 			name = ViewModels;
 			sourceTree = "<group>";
@@ -381,9 +387,11 @@
 				E9F4C6651CC52C19003DD8DC /* AppDelegate.swift in Sources */,
 				E9E4FF101CC7E06200517729 /* UIStoryboard+Fascia.swift in Sources */,
 				E9E4FF0B1CC7DE1B00517729 /* MainTabBarController.swift in Sources */,
+				E96975A71CD1073000DC5852 /* ProjectTableViewCell.swift in Sources */,
 				E9E4FF001CC68ED600517729 /* ProjectsTableViewController.swift in Sources */,
 				E9E4FF021CC68FE300517729 /* SettingsTableViewController.swift in Sources */,
 				E9E4FF071CC7DC2E00517729 /* FasciaAPIService.swift in Sources */,
+				E96975A51CD1039B00DC5852 /* ProjectViewModel.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

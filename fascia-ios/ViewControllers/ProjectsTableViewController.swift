@@ -12,6 +12,7 @@ import RxCocoa
 
 class ProjectsTableViewController: UITableViewController {
     private var viewModel = ProjectsViewModel()
+    private var disposeBag = DisposeBag()
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -22,11 +23,20 @@ class ProjectsTableViewController: UITableViewController {
             self.presentViewController(signIn, animated: true, completion: nil)
         }
 
-        // Uncomment the following line to preserve selection between presentations
-        // self.clearsSelectionOnViewWillAppear = false
+        // TODO: startWithをつけて初回もロードさせる
+        self.refreshControl?.rx_controlEvent(UIControlEvents.ValueChanged)
+            .flatMap({
+                return self.viewModel.fetch()
+            })
+            .doOnError({ (errorType) in
+                print(errorType)
+                self.refreshControl?.endRefreshing()
+            })
+            .subscribeNext({ projects in
+                self.tableView.reloadData()
+                self.refreshControl?.endRefreshing()
+            }).addDisposableTo(self.disposeBag)
 
-        // Uncomment the following line to display an Edit button in the navigation bar for this view controller.
-        // self.navigationItem.rightBarButtonItem = self.editButtonItem()
     }
 
     override func didReceiveMemoryWarning() {
@@ -38,12 +48,21 @@ class ProjectsTableViewController: UITableViewController {
 
     override func numberOfSectionsInTableView(tableView: UITableView) -> Int {
         // #warning Incomplete implementation, return the number of sections
-        return 0
+        return 1
     }
 
     override func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         // #warning Incomplete implementation, return the number of rows
-        return 0
+        return viewModel.projects.count
+    }
+
+    override func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
+        guard let cell = tableView.dequeueReusableCellWithIdentifier("ProjectTableViewCell", forIndexPath: indexPath) as? ProjectTableViewCell else {
+            return tableView.dequeueReusableCellWithIdentifier("Cell", forIndexPath: indexPath)
+        }
+        let project = viewModel.projects[indexPath.row]
+        cell.viewModel = ProjectViewModel(model: project)
+        return cell
     }
 
     func bindViewModel() {
