@@ -24,11 +24,6 @@ class ProjectsViewModel: NSObject {
         }
         fetching = true
         return FasciaAPIService.sharedInstance.callBasicAPI("/projects", method: .GET, params: nil)
-            .doOnNext({ (data, response) in
-                if response.statusCode == 401 {
-                    print("authenticate error")
-                }
-            })
             .map({ (data, response) -> [Project] in
                 guard let json = try NSJSONSerialization.JSONObjectWithData(data, options: NSJSONReadingOptions.AllowFragments) as? [[String: AnyObject]] else {
                     fatalError("parse error")

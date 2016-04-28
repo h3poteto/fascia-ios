@@ -19,8 +19,7 @@ class ProjectsTableViewController: UITableViewController {
         bindViewModel()
 
         if !viewModel.existSession() {
-            let signIn = UIStoryboard.instantiateViewController("SignInViewController", storyboardName: "Main") as! UIViewController
-            self.presentViewController(signIn, animated: true, completion: nil)
+            showSignInView()
         }
 
         // TODO: startWithをつけて初回もロードさせる
@@ -29,8 +28,15 @@ class ProjectsTableViewController: UITableViewController {
                 return self.viewModel.fetch()
             })
             .doOnError({ (errorType) in
-                print(errorType)
                 self.refreshControl?.endRefreshing()
+                switch errorType {
+                case FasciaAPIError.AuthenticateError:
+                    self.showSignInView()
+                    break
+                default:
+                    print("unexpected error")
+                    break
+                }
             })
             .subscribeNext({ projects in
                 self.tableView.reloadData()
@@ -67,6 +73,11 @@ class ProjectsTableViewController: UITableViewController {
 
     func bindViewModel() {
 
+    }
+
+    func showSignInView() {
+        let signIn = UIStoryboard.instantiateViewController("SignInViewController", storyboardName: "Main") as! UIViewController
+        self.presentViewController(signIn, animated: true, completion: nil)
     }
 
 }

@@ -10,6 +10,12 @@ import Alamofire
 import RxSwift
 import RxCocoa
 
+enum FasciaAPIError: ErrorType {
+    case AuthenticateError
+    case ClientError
+    case ServerError
+}
+
 class FasciaAPIService: NSObject {
     static let sharedInstance = FasciaAPIService()
     private var manager: Alamofire.Manager?
@@ -55,6 +61,18 @@ class FasciaAPIService: NSObject {
         let request = configureManager().request(method, APIHost + path, parameters: params, encoding: .JSON, headers: nil).request
         if let request = request {
             return configureManager().session.rx_response(request)
+                .doOnNext({ (data, response) throws -> Void in
+                    if response.statusCode == 401 {
+                        print("authenticate error")
+                        throw FasciaAPIError.AuthenticateError
+                    } else if response.statusCode >= 400 && response.statusCode < 500 {
+                        print("client error")
+                        throw FasciaAPIError.ClientError
+                    } else if response.statusCode >= 500 {
+                        print("server error")
+                        throw FasciaAPIError.ServerError
+                    }
+                })
         } else {
             fatalError("Invalid Request")
         }
