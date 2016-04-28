@@ -50,11 +50,11 @@ class FasciaAPIService: NSObject {
     func callBasicAPI(
         path: String,
         method: Alamofire.Method,
-        params: [String: AnyObject]?) -> Observable<AnyObject> {
+        params: [String: AnyObject]?) -> Observable<(NSData, NSHTTPURLResponse)> {
 
         let request = configureManager().request(method, APIHost + path, parameters: params, encoding: .JSON, headers: nil).request
         if let request = request {
-            return configureManager().session.rx_JSON(request)
+            return configureManager().session.rx_response(request)
         } else {
             fatalError("Invalid Request")
         }
@@ -62,21 +62,19 @@ class FasciaAPIService: NSObject {
     }
 
     func updateSession() {
-        let request = configureManager().request(.POST, APIHost + "/session", parameters: nil, encoding: .JSON, headers: nil).request
-        if let request = request {
-            configureManager().session.rx_response(request)
-                .subscribeOn(Scheduler.sharedInstance.backgroundScheduler)
-                .observeOn(Scheduler.sharedInstance.mainScheduler)
-                .subscribeNext({ (data, response) -> Void in
-                    let cookies = NSHTTPCookie.cookiesWithResponseHeaderFields(response.allHeaderFields as! [String:String], forURL: (response.URL)!)
-                    for i in 0 ..< cookies.count {
-                        NSHTTPCookieStorage.sharedHTTPCookieStorage().setCookie(cookies[i])
-                    }
-                    let cookiesData: NSData = NSKeyedArchiver.archivedDataWithRootObject(NSHTTPCookieStorage.sharedHTTPCookieStorage().cookies!)
+        callBasicAPI("/session", method: .POST, params: nil)
+            .subscribeOn(Scheduler.sharedInstance.backgroundScheduler)
+            .observeOn(Scheduler.sharedInstance.mainScheduler)
+            .subscribeNext({ (data, response) -> Void in
+                let cookies = NSHTTPCookie.cookiesWithResponseHeaderFields(response.allHeaderFields as! [String:String], forURL: (response.URL)!)
+                for i in 0 ..< cookies.count {
+                    NSHTTPCookieStorage.sharedHTTPCookieStorage().setCookie(cookies[i])
+                }
+                let cookiesData: NSData = NSKeyedArchiver.archivedDataWithRootObject(NSHTTPCookieStorage.sharedHTTPCookieStorage().cookies!)
                     NSUserDefaults.standardUserDefaults().setObject(cookiesData, forKey: self.CookieKey)
-                })
-                .addDisposableTo(disposeBag)
-        }
+            })
+            .addDisposableTo(disposeBag)
+
     }
 
 }
