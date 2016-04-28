@@ -20,7 +20,7 @@ class ProjectsViewModel: NSObject {
 
     func fetch() -> Observable<[Project]> {
         if fetching {
-            return Observable.never()
+            return Observable.error(FasciaAPIError.DoubleRequestError)
         }
         fetching = true
         return FasciaAPIService.sharedInstance.callBasicAPI("/projects", method: .GET, params: nil)
@@ -30,6 +30,8 @@ class ProjectsViewModel: NSObject {
                 }
                 self.projects = Project.buildWithArray(json)
                 return self.projects
+            }).doOn({ (event) in
+                self.fetching = false
             })
             .subscribeOn(Scheduler.sharedInstance.backgroundScheduler)
             .observeOn(Scheduler.sharedInstance.mainScheduler)

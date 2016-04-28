@@ -14,6 +14,7 @@ enum FasciaAPIError: ErrorType {
     case AuthenticateError
     case ClientError
     case ServerError
+    case DoubleRequestError
 }
 
 class FasciaAPIService: NSObject {

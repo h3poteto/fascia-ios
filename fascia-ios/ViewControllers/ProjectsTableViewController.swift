@@ -24,7 +24,7 @@ class ProjectsTableViewController: UITableViewController {
 
         // TODO: startWithをつけて初回もロードさせる
         self.refreshControl?.rx_controlEvent(UIControlEvents.ValueChanged)
-            .flatMap({
+            .flatMap({ () -> Observable<[Project]> in
                 return self.viewModel.fetch()
             })
             .doOnError({ (errorType) in
@@ -32,6 +32,8 @@ class ProjectsTableViewController: UITableViewController {
                 switch errorType {
                 case FasciaAPIError.AuthenticateError:
                     self.showSignInView()
+                    break
+                case FasciaAPIError.DoubleRequestError:
                     break
                 default:
                     print("unexpected error")
@@ -41,7 +43,8 @@ class ProjectsTableViewController: UITableViewController {
             .subscribeNext({ projects in
                 self.tableView.reloadData()
                 self.refreshControl?.endRefreshing()
-            }).addDisposableTo(self.disposeBag)
+            })
+            .addDisposableTo(self.disposeBag)
 
     }
 
