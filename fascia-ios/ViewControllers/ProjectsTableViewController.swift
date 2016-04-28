@@ -16,14 +16,8 @@ class ProjectsTableViewController: UITableViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
-        bindViewModel()
 
-        if !viewModel.existSession() {
-            showSignInView()
-        }
-
-        // TODO: startWithをつけて初回もロードさせる
-        self.refreshControl?.rx_controlEvent(UIControlEvents.ValueChanged)
+        self.refreshControl?.rx_controlEvent(UIControlEvents.ValueChanged).startWith({ print("start first loading") }())
             .flatMap({ () -> Observable<[Project]> in
                 return self.viewModel.fetch()
             })
@@ -72,10 +66,6 @@ class ProjectsTableViewController: UITableViewController {
         let project = viewModel.projects[indexPath.row]
         cell.viewModel = ProjectViewModel(model: project)
         return cell
-    }
-
-    func bindViewModel() {
-
     }
 
     func showSignInView() {

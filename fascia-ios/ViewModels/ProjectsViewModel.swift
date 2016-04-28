@@ -14,9 +14,6 @@ class ProjectsViewModel: NSObject {
     private let disposeBag = DisposeBag()
     private var fetching = false
 
-    func existSession() -> Bool {
-        return FasciaAPIService.sharedInstance.hasCookie()
-    }
 
     func fetch() -> Observable<[Project]> {
         if fetching {
