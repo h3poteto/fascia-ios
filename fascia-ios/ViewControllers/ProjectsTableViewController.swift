@@ -9,6 +9,7 @@
 import UIKit
 import RxSwift
 import RxCocoa
+import TSMessages
 
 class ProjectsTableViewController: UITableViewController {
     private var viewModel = ProjectsViewModel()
@@ -29,8 +30,14 @@ class ProjectsTableViewController: UITableViewController {
                     break
                 case FasciaAPIError.DoubleRequestError:
                     break
+                case FasciaAPIError.ClientError:
+                    TSMessage.showNotificationWithTitle("Network Error", subtitle: "The request is invalid.", type: TSMessageNotificationType.Error)
+                    break
+                case FasciaAPIError.ServerError:
+                    TSMessage.showNotificationWithTitle("Server Error", subtitle: "We're sorry, but something went wrong.", type: TSMessageNotificationType.Error)
+                    break
                 default:
-                    print("unexpected error")
+                    TSMessage.showNotificationWithTitle("Error", subtitle: (errorType as NSError).localizedDescription, type: TSMessageNotificationType.Error)
                     break
                 }
             })

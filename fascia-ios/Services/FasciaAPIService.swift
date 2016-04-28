@@ -42,6 +42,8 @@ class FasciaAPIService: NSObject {
             }
             let cfg = NSURLSessionConfiguration.defaultSessionConfiguration()
             cfg.HTTPCookieStorage = NSHTTPCookieStorage.sharedHTTPCookieStorage()
+            cfg.timeoutIntervalForResource = 30
+            cfg.timeoutIntervalForRequest = 10
             manager = Alamofire.Manager(configuration: cfg)
         }
         return manager!

@@ -1,22 +1,37 @@
 PODS:
   - Alamofire (3.3.1)
+  - HexColors (2.3.0)
   - ObjectMapper (1.2.0)
   - RxCocoa (2.4):
     - RxSwift (~> 2.4)
   - RxSwift (2.4)
+  - TSMessages (0.9.13):
+    - HexColors (~> 2.3.0)
 
 DEPENDENCIES:
   - Alamofire (~> 3.3)
   - ObjectMapper (~> 1.2)
   - RxCocoa (~> 2.0)
   - RxSwift (~> 2.0)
+  - TSMessages (from `https://github.com/KrauseFx/TSMessages.git`)
+
+EXTERNAL SOURCES:
+  TSMessages:
+    :git: https://github.com/KrauseFx/TSMessages.git
+
+CHECKOUT OPTIONS:
+  TSMessages:
+    :commit: e63f23304f781dcadbac31e6d338f3105fb3cd78
+    :git: https://github.com/KrauseFx/TSMessages.git
 
 SPEC CHECKSUMS:
   Alamofire: 369bc67b6f5ac33ded3648d7bd21c5bfb91c2ecc
+  HexColors: 6ad3947c3447a055a3aa8efa859def096351fe5f
   ObjectMapper: b1e9c7c8a9f6400b72690c80072c131504caa66f
   RxCocoa: 7d6cd877de99f5640306b3d6cf87f580c1d91b61
   RxSwift: 67b9ef4e8b34fb394e200e754c6a09cc16559f94
+  TSMessages: 6e403b790139636c15ab4f51946537095e03e79c
 
-PODFILE CHECKSUM: 23128f5b4e19a812e8238d2c7fdde03ba616274d
+PODFILE CHECKSUM: 58a1eb77b3d8664aa43410f2b4fc7851e14c0b8c
 
 COCOAPODS: 1.0.0.beta.8
