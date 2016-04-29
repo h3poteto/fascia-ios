@@ -1,0 +1,116 @@
+//
+//  NewProjectTableViewController.swift
+//  fascia-ios
+//
+//  Created by akirafukushima on 2016/04/29.
+//  Copyright © 2016年 h3poteto. All rights reserved.
+//
+
+import UIKit
+import RxSwift
+import RxCocoa
+import TSMessages
+
+class NewProjectTableViewController: UITableViewController {
+    @IBOutlet private weak var saveButton: UIBarButtonItem!
+    @IBOutlet private weak var cancelButton: UIBarButtonItem!
+    private let disposeBag = DisposeBag()
+    private var viewModel = NewProjectViewModel(model: Project())
+
+    override func viewDidLoad() {
+        super.viewDidLoad()
+
+        bindViewModel()
+
+
+        // Uncomment the following line to preserve selection between presentations
+        // self.clearsSelectionOnViewWillAppear = false
+
+        // Uncomment the following line to display an Edit button in the navigation bar for this view controller.
+        // self.navigationItem.rightBarButtonItem = self.editButtonItem()
+    }
+
+/*    override func viewWillAppear(animated: Bool) {
+        super.viewWillAppear(animated)
+        tableView.tableFooterView = UIView(frame: CGRect.zero)
+    }
+*/
+    override func didReceiveMemoryWarning() {
+        super.didReceiveMemoryWarning()
+        // Dispose of any resources that can be recreated.
+    }
+
+    // MARK: - Table view data source
+
+    override func numberOfSectionsInTableView(tableView: UITableView) -> Int {
+        // #warning Incomplete implementation, return the number of sections
+        return 2
+    }
+
+    override func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+        // #warning Incomplete implementation, return the number of rows
+        switch section {
+        case 0:
+            return 1
+        case 1:
+            return 1
+        default:
+            return 0
+        }
+    }
+
+    override func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
+        switch indexPath.section {
+        case 0:
+            guard let cell = tableView.dequeueReusableCellWithIdentifier("NewProjectTitleTableViewCell", forIndexPath: indexPath) as? NewProjectTitleTableViewCell else {
+                return tableView.dequeueReusableCellWithIdentifier("Cell", forIndexPath: indexPath)
+            }
+            cell.parentViewModel = viewModel
+            return cell
+        case 1:
+            guard let cell = tableView.dequeueReusableCellWithIdentifier("NewProjectDescriptionTableViewCell", forIndexPath: indexPath) as? NewProjectDescriptionTableViewCell else {
+                return tableView.dequeueReusableCellWithIdentifier("Cell", forIndexPath: indexPath)
+            }
+            cell.parentViewModel = viewModel
+            return cell
+        default:
+            return tableView.dequeueReusableCellWithIdentifier("Cell", forIndexPath: indexPath)
+        }
+    }
+
+
+    override func tableView(tableView: UITableView, willSelectRowAtIndexPath indexPath: NSIndexPath) -> NSIndexPath? {
+        return nil
+    }
+
+    func bindViewModel() {
+        cancelButton.rx_tap
+            .subscribeNext { () in
+                self.dismissViewControllerAnimated(true, completion: nil)
+            }
+            .addDisposableTo(disposeBag)
+
+        saveButton.rx_tap
+            .subscribeNext { () in
+                self.viewModel.save()
+                    .doOnError({ (errorType) in
+                        switch errorType {
+                        case NewProjectValidationError.TitleError:
+                            TSMessage.showNotificationInViewController(self.navigationController, title: "Validation Error", subtitle: "title is invalid", type: .Error)
+                            break
+                        default:
+                            TSMessage.showNotificationInViewController(self.navigationController, title: "Validation Error", subtitle: "some items are invalid", type: .Error)
+                            break
+                        }
+                    })
+                    .subscribeNext({ (result) in
+                        if result {
+                            self.dismissViewControllerAnimated(true, completion: nil)
+                        }
+                    })
+                    .addDisposableTo(self.disposeBag)
+            }
+            .addDisposableTo(disposeBag)
+    }
+
+}

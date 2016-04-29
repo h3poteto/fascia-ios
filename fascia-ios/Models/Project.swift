@@ -31,6 +31,10 @@ class Project: Mappable {
         mapping(map)
     }
 
+    init() {
+        
+    }
+
     func mapping(map: Map) {
         id                  <- map["ID"]
         userID              <- map["UserID"]

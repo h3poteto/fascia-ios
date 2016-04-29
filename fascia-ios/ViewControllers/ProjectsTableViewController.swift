@@ -14,6 +14,7 @@ import TSMessages
 
 class ProjectsTableViewController: UITableViewController {
     @IBOutlet private weak var refresh: UIRefreshControl!
+    @IBOutlet private weak var newProjectButton: UIBarButtonItem!
     private var viewModel = ProjectsViewModel()
     private var disposeBag = DisposeBag()
 
@@ -22,6 +23,11 @@ class ProjectsTableViewController: UITableViewController {
 
         bindViewModel()
 
+    }
+
+    override func viewWillAppear(animated: Bool) {
+        super.viewWillAppear(animated)
+        tableView.tableFooterView = UIView(frame: CGRect.zero)
     }
 
     override func didReceiveMemoryWarning() {
@@ -46,7 +52,7 @@ class ProjectsTableViewController: UITableViewController {
             return tableView.dequeueReusableCellWithIdentifier("Cell", forIndexPath: indexPath)
         }
         let project = viewModel.projects[indexPath.row]
-        cell.viewModel = ProjectViewModel(model: project)
+        cell.viewModel = ProjectCellViewModel(model: project)
         return cell
     }
 
@@ -95,6 +101,13 @@ class ProjectsTableViewController: UITableViewController {
         refresh.rx_controlEvent(.ValueChanged).startWith({ print("start init loading") }())
             .subscribeNext { () in
                 self.viewModel.fetch()
+            }
+            .addDisposableTo(disposeBag)
+
+        newProjectButton.rx_tap
+            .subscribeNext { () in
+                let newProjectView = UIStoryboard.instantiateViewController("NewProjectNavigationViewController", storyboardName: "Projects") as! UINavigationController
+                self.presentViewController(newProjectView, animated: true, completion: nil)
             }
             .addDisposableTo(disposeBag)
     }

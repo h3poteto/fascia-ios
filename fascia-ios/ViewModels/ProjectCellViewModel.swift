@@ -1,5 +1,5 @@
 //
-//  ProjectViewModel.swift
+//  ProjectCellViewModel.swift
 //  fascia-ios
 //
 //  Created by akirafukushima on 2016/04/27.
@@ -8,7 +8,7 @@
 import RxSwift
 import RxCocoa
 
-class ProjectViewModel {
+class ProjectCellViewModel {
     let model: Variable<Project>
     let title: Observable<String>
 

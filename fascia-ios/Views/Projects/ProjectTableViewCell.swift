@@ -15,7 +15,7 @@ class ProjectTableViewCell: UITableViewCell {
 
     let disposeBag = DisposeBag()
 
-    var viewModel: ProjectViewModel? {
+    var viewModel: ProjectCellViewModel? {
         didSet {
             guard let vModel = self.viewModel else { return }
             vModel.title.bindTo(self.tilteLabel.rx_text).addDisposableTo(disposeBag)
