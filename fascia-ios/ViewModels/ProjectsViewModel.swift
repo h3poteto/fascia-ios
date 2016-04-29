@@ -10,28 +10,30 @@ import RxSwift
 import RxCocoa
 
 class ProjectsViewModel: NSObject {
-    var projects: [Project] = []
-    private let disposeBag = DisposeBag()
-    private var fetching = false
+    private final let request = ProjectsRequest()
+    final var projects = [Project]()
+    final private(set) var dataUpdated: Driver<[Project]> = Driver.never()
+    final private(set) var isLoading: Driver<Bool> = Driver.never()
+    final private(set) var error: Driver<ErrorType?> = Driver.never()
 
+    override init() {
+        super.init()
 
-    func fetch() -> Observable<[Project]> {
-        if fetching {
-            return Observable.error(FasciaAPIError.DoubleRequestError)
-        }
-        fetching = true
-        return FasciaAPIService.sharedInstance.callBasicAPI("/projects", method: .GET, params: nil)
-            .map({ (data, response) -> [Project] in
-                guard let json = try NSJSONSerialization.JSONObjectWithData(data, options: NSJSONReadingOptions.AllowFragments) as? [[String: AnyObject]] else {
-                    fatalError("parse error")
-                }
-                self.projects = Project.buildWithArray(json)
-                return self.projects
-            }).doOn({ (event) in
-                self.fetching = false
+        dataUpdated = Driver
+            .combineLatest(
+                request.projects.asDriver(),
+                request.error.asDriver().map({
+                    $0 != nil
+                }),
+                resultSelector: {
+                    ($1) ? [] : $0
             })
-            .subscribeOn(Scheduler.sharedInstance.backgroundScheduler)
-            .observeOn(Scheduler.sharedInstance.mainScheduler)
 
+        isLoading = request.isLoading.asDriver()
+        error = request.error.asDriver()
+    }
+
+    func fetch() {
+        request.request()
     }
 }
