@@ -9,7 +9,7 @@
 import UIKit
 import RxSwift
 import RxCocoa
-import TSMessages
+import CSNotificationView
 
 
 class ProjectsTableViewController: UITableViewController {
@@ -86,13 +86,13 @@ class ProjectsTableViewController: UITableViewController {
                 case FasciaAPIError.DoubleRequestError:
                     break
                 case FasciaAPIError.ClientError:
-                    TSMessage.showNotificationWithTitle("Network Error", subtitle: "The request is invalid.", type: TSMessageNotificationType.Error)
+                    CSNotificationView.showInViewController(self, style: CSNotificationViewStyle.Error, message: "The request is invalid")
                     break
                 case FasciaAPIError.ServerError:
-                    TSMessage.showNotificationWithTitle("Server Error", subtitle: "We're sorry, but something went wrong.", type: TSMessageNotificationType.Error)
+                    CSNotificationView.showInViewController(self, style: .Error, message: "We're sorry, but something went wrong.")
                     break
                 default:
-                    TSMessage.showNotificationWithTitle("Error", subtitle: (errorType as NSError).localizedDescription, type: TSMessageNotificationType.Error)
+                    CSNotificationView.showInViewController(self, style: .Error, message: (errorType as NSError).localizedDescription)
                     break
                 }
             }

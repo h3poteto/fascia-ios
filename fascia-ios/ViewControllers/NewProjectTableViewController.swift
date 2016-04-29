@@ -9,7 +9,7 @@
 import UIKit
 import RxSwift
 import RxCocoa
-import TSMessages
+import CSNotificationView
 
 class NewProjectTableViewController: UITableViewController {
     @IBOutlet private weak var saveButton: UIBarButtonItem!
@@ -96,10 +96,10 @@ class NewProjectTableViewController: UITableViewController {
                     .doOnError({ (errorType) in
                         switch errorType {
                         case NewProjectValidationError.TitleError:
-                            TSMessage.showNotificationInViewController(self.navigationController, title: "Validation Error", subtitle: "title is invalid", type: .Error)
+                            CSNotificationView.showInViewController(self, style: .Error, message: "Title is invalid")
                             break
                         default:
-                            TSMessage.showNotificationInViewController(self.navigationController, title: "Validation Error", subtitle: "some items are invalid", type: .Error)
+                            CSNotificationView.showInViewController(self, style: .Error, message: "Some items are invalid")
                             break
                         }
                     })
