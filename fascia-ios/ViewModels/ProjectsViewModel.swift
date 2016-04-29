@@ -14,22 +14,21 @@ class ProjectsViewModel: NSObject {
     private let disposeBag = DisposeBag()
     private var fetching = false
 
-    func existSession() -> Bool {
-        return FasciaAPIService.sharedInstance.hasCookie()
-    }
 
     func fetch() -> Observable<[Project]> {
         if fetching {
-            return Observable.never()
+            return Observable.error(FasciaAPIError.DoubleRequestError)
         }
         fetching = true
         return FasciaAPIService.sharedInstance.callBasicAPI("/projects", method: .GET, params: nil)
-            .map({ (jsonResult) -> [Project] in
-                guard let json = jsonResult as? [[String: AnyObject]] else {
+            .map({ (data, response) -> [Project] in
+                guard let json = try NSJSONSerialization.JSONObjectWithData(data, options: NSJSONReadingOptions.AllowFragments) as? [[String: AnyObject]] else {
                     fatalError("parse error")
                 }
                 self.projects = Project.buildWithArray(json)
                 return self.projects
+            }).doOn({ (event) in
+                self.fetching = false
             })
             .subscribeOn(Scheduler.sharedInstance.backgroundScheduler)
             .observeOn(Scheduler.sharedInstance.mainScheduler)

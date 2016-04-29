@@ -8,6 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		5F8671B19F4521C1BB30C10E /* Pods_fascia_ios.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 16D2F05040D44D1E1FE11135 /* Pods_fascia_ios.framework */; };
+		E9571AD71CD2893E007A819F /* QuartzCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E9571AD61CD2893E007A819F /* QuartzCore.framework */; };
 		E96975A21CCE78F000DC5852 /* Project.swift in Sources */ = {isa = PBXBuildFile; fileRef = E96975A11CCE78F000DC5852 /* Project.swift */; };
 		E96975A51CD1039B00DC5852 /* ProjectViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = E96975A41CD1039B00DC5852 /* ProjectViewModel.swift */; };
 		E96975A71CD1073000DC5852 /* ProjectTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = E96975A61CD1073000DC5852 /* ProjectTableViewCell.swift */; };
@@ -42,6 +43,7 @@
 		16D2F05040D44D1E1FE11135 /* Pods_fascia_ios.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_fascia_ios.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		500F9BE1C0E6F2F088F98868 /* Pods-fascia-ios.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-fascia-ios.release.xcconfig"; path = "Pods/Target Support Files/Pods-fascia-ios/Pods-fascia-ios.release.xcconfig"; sourceTree = "<group>"; };
 		67AD5B1E44C7EB47CEA7BB03 /* Pods-fascia-ios.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-fascia-ios.debug.xcconfig"; path = "Pods/Target Support Files/Pods-fascia-ios/Pods-fascia-ios.debug.xcconfig"; sourceTree = "<group>"; };
+		E9571AD61CD2893E007A819F /* QuartzCore.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = QuartzCore.framework; path = System/Library/Frameworks/QuartzCore.framework; sourceTree = SDKROOT; };
 		E96975A11CCE78F000DC5852 /* Project.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = Project.swift; path = Models/Project.swift; sourceTree = "<group>"; };
 		E96975A41CD1039B00DC5852 /* ProjectViewModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = ProjectViewModel.swift; path = ViewModels/ProjectViewModel.swift; sourceTree = "<group>"; };
 		E96975A61CD1073000DC5852 /* ProjectTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = ProjectTableViewCell.swift; path = Views/ProjectTableViewCell.swift; sourceTree = "<group>"; };
@@ -71,6 +73,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				E9571AD71CD2893E007A819F /* QuartzCore.framework in Frameworks */,
 				5F8671B19F4521C1BB30C10E /* Pods_fascia_ios.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -97,6 +100,7 @@
 		BD131DD34410301564E82118 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				E9571AD61CD2893E007A819F /* QuartzCore.framework */,
 				16D2F05040D44D1E1FE11135 /* Pods_fascia_ios.framework */,
 			);
 			name = Frameworks;

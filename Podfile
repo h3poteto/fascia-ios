@@ -4,8 +4,9 @@ use_frameworks!
 
 target "fascia-ios" do
   pod 'Alamofire', '~> 3.3'
-  pod 'RxSwift', '~> 2.0'
-  pod 'RxCocoa', '~> 2.0'
+  pod 'RxSwift', '~> 2.4'
+  pod 'RxCocoa', '~> 2.4'
   pod 'ObjectMapper', '~> 1.2'
+  pod 'TSMessages', :git => 'https://github.com/KrauseFx/TSMessages.git'
 end
 
