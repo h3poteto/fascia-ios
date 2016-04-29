@@ -11,8 +11,8 @@ PODS:
 DEPENDENCIES:
   - Alamofire (~> 3.3)
   - ObjectMapper (~> 1.2)
-  - RxCocoa (~> 2.0)
-  - RxSwift (~> 2.0)
+  - RxCocoa (~> 2.4)
+  - RxSwift (~> 2.4)
   - TSMessages (from `https://github.com/KrauseFx/TSMessages.git`)
 
 EXTERNAL SOURCES:
@@ -32,6 +32,6 @@ SPEC CHECKSUMS:
   RxSwift: 67b9ef4e8b34fb394e200e754c6a09cc16559f94
   TSMessages: 6e403b790139636c15ab4f51946537095e03e79c
 
-PODFILE CHECKSUM: 58a1eb77b3d8664aa43410f2b4fc7851e14c0b8c
+PODFILE CHECKSUM: dc57d03cb84a3c1e4bdc0e3648ae9d9edc2fd594
 
 COCOAPODS: 1.0.0.beta.8

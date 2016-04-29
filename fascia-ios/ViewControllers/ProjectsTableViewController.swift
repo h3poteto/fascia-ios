@@ -11,39 +11,43 @@ import RxSwift
 import RxCocoa
 import TSMessages
 
+
 class ProjectsTableViewController: UITableViewController {
+    @IBOutlet private weak var refresh: UIRefreshControl!
     private var viewModel = ProjectsViewModel()
     private var disposeBag = DisposeBag()
 
     override func viewDidLoad() {
         super.viewDidLoad()
 
-        self.refreshControl?.rx_controlEvent(UIControlEvents.ValueChanged).startWith({ print("start first loading") }())
+        self.refresh.rx_controlEvent(UIControlEvents.ValueChanged).startWith({ print("start first loading") }())
             .flatMap({ () -> Observable<[Project]> in
                 return self.viewModel.fetch()
+                    .doOn({ (event) in
+                        self.refresh.endRefreshing()
+                    })
+                    .catchError({ (errorType) -> Observable<[Project]> in
+                        switch errorType {
+                        case FasciaAPIError.AuthenticateError:
+                            self.showSignInView()
+                            break
+                        case FasciaAPIError.DoubleRequestError:
+                            break
+                        case FasciaAPIError.ClientError:
+                            TSMessage.showNotificationWithTitle("Network Error", subtitle: "The request is invalid.", type: TSMessageNotificationType.Error)
+                            break
+                        case FasciaAPIError.ServerError:
+                            TSMessage.showNotificationWithTitle("Server Error", subtitle: "We're sorry, but something went wrong.", type: TSMessageNotificationType.Error)
+                            break
+                        default:
+                            TSMessage.showNotificationWithTitle("Error", subtitle: (errorType as NSError).localizedDescription, type: TSMessageNotificationType.Error)
+                            break
+                        }
+                        return Observable.empty()
+                    })
             })
-            .doOnError({ (errorType) in
-                self.refreshControl?.endRefreshing()
-                switch errorType {
-                case FasciaAPIError.AuthenticateError:
-                    self.showSignInView()
-                    break
-                case FasciaAPIError.DoubleRequestError:
-                    break
-                case FasciaAPIError.ClientError:
-                    TSMessage.showNotificationWithTitle("Network Error", subtitle: "The request is invalid.", type: TSMessageNotificationType.Error)
-                    break
-                case FasciaAPIError.ServerError:
-                    TSMessage.showNotificationWithTitle("Server Error", subtitle: "We're sorry, but something went wrong.", type: TSMessageNotificationType.Error)
-                    break
-                default:
-                    TSMessage.showNotificationWithTitle("Error", subtitle: (errorType as NSError).localizedDescription, type: TSMessageNotificationType.Error)
-                    break
-                }
-            })
-            .subscribeNext({ projects in
+            .subscribeNext({ (projects) in
                 self.tableView.reloadData()
-                self.refreshControl?.endRefreshing()
             })
             .addDisposableTo(self.disposeBag)
 
