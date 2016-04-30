@@ -15,7 +15,7 @@ class NewProjectTableViewController: UITableViewController {
     @IBOutlet private weak var saveButton: UIBarButtonItem!
     @IBOutlet private weak var cancelButton: UIBarButtonItem!
     private let disposeBag = DisposeBag()
-    private var viewModel = NewProjectViewModel(model: Project())
+    private var viewModel = NewProjectViewModel(model: NewProject())
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -83,6 +83,11 @@ class NewProjectTableViewController: UITableViewController {
         return nil
     }
 
+    func showSignInView() {
+        let signIn = UIStoryboard.instantiateViewController("SignInViewController", storyboardName: "Main") as! UIViewController
+        self.presentViewController(signIn, animated: true, completion: nil)
+    }
+
     func bindViewModel() {
         cancelButton.rx_tap
             .subscribeNext { () in
@@ -105,12 +110,46 @@ class NewProjectTableViewController: UITableViewController {
                     })
                     .subscribeNext({ (result) in
                         if result {
-                            self.dismissViewControllerAnimated(true, completion: nil)
+                            //self.dismissViewControllerAnimated(true, completion: nil)
                         }
                     })
                     .addDisposableTo(self.disposeBag)
             }
             .addDisposableTo(disposeBag)
+
+        viewModel.dataUpdated
+            .driveNext { (project) in
+                if let project = project {
+                    // todo: dissmiss
+                    print(project)
+                }
+            }
+            .addDisposableTo(disposeBag)
+
+        viewModel.error
+            .driveNext { (errorType) in
+                guard let errorType = errorType else {
+                    return
+                }
+                switch errorType {
+                case FasciaAPIError.AuthenticateError:
+                    self.showSignInView()
+                    break
+                case FasciaAPIError.DoubleRequestError:
+                    break
+                case FasciaAPIError.ClientError:
+                    CSNotificationView.showInViewController(self, style: CSNotificationViewStyle.Error, message: "The request is invalid")
+                    break
+                case FasciaAPIError.ServerError, ProjectError.PaserError, ProjectError.MappingError:
+                    CSNotificationView.showInViewController(self, style: .Error, message: "We're sorry, but something went wrong.")
+                    break
+                default:
+                    CSNotificationView.showInViewController(self, style: .Error, message: (errorType as NSError).localizedDescription)
+                    break
+                }
+            }
+            .addDisposableTo(disposeBag)
+        
     }
 
 }

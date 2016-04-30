@@ -8,6 +8,11 @@
 
 import ObjectMapper
 
+enum ProjectError: ErrorType {
+    case MappingError
+    case PaserError
+}
+
 class Project: Mappable {
     var id: Int64?
     var userID: Int64?
@@ -32,7 +37,6 @@ class Project: Mappable {
     }
 
     init() {
-        
     }
 
     func mapping(map: Map) {

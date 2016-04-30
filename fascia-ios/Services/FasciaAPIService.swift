@@ -61,7 +61,7 @@ class FasciaAPIService: NSObject {
         method: Alamofire.Method,
         params: [String: AnyObject]?) -> Observable<(NSData, NSHTTPURLResponse)> {
 
-        let request = configureManager().request(method, APIHost + path, parameters: params, encoding: .JSON, headers: nil).request
+        let request = configureManager().request(method, APIHost + path, parameters: params, encoding: ParameterEncoding.URL, headers: nil).request
         if let request = request {
             return configureManager().session.rx_response(request)
                 .doOnNext({ (data, response) throws -> Void in
