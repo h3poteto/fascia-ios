@@ -21,17 +21,11 @@ class ProjectsRequest {
         }
         isLoading.value = true
         error.value = nil
-        FasciaAPIService.sharedInstance.callBasicAPI("/projects", method: .GET, params: nil)
+        FasciaAPIService().call("/projects", method: .GET, params: nil)
             .subscribeOn(Scheduler.sharedInstance.backgroundScheduler)
             .observeOn(Scheduler.sharedInstance.mainScheduler)
-            .map({ (data, response) -> [Project] in
-                guard let json = try NSJSONSerialization.JSONObjectWithData(data, options: NSJSONReadingOptions.AllowFragments) as? [[String: AnyObject]] else {
-                    fatalError("parse error")
-                }
-                return Project.buildWithArray(json)
-            })
-            .subscribe(onNext: { (projects) in
-                self.projects.value = projects
+            .subscribe(onNext: { (projects) -> Void in
+                print(projects)
             }, onError: { (errorType) in
                 self.error.value = errorType
                 self.isLoading.value = false

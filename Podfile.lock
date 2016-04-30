@@ -2,6 +2,11 @@ PODS:
   - Alamofire (3.3.1)
   - CSNotificationView (0.5.4)
   - ObjectMapper (1.2.0)
+  - RxAlamofire (2.2):
+    - RxAlamofire/Core (= 2.2)
+  - RxAlamofire/Core (2.2):
+    - Alamofire (~> 3.1)
+    - RxSwift (~> 2.1)
   - RxCocoa (2.4):
     - RxSwift (~> 2.4)
   - RxSwift (2.4)
@@ -10,6 +15,7 @@ DEPENDENCIES:
   - Alamofire (~> 3.3)
   - CSNotificationView
   - ObjectMapper (~> 1.2)
+  - RxAlamofire
   - RxCocoa (~> 2.4)
   - RxSwift (~> 2.4)
 
@@ -17,9 +23,10 @@ SPEC CHECKSUMS:
   Alamofire: 369bc67b6f5ac33ded3648d7bd21c5bfb91c2ecc
   CSNotificationView: 0792f5220163c2befaf1a9716aa3d5a7d6bd4fb1
   ObjectMapper: b1e9c7c8a9f6400b72690c80072c131504caa66f
+  RxAlamofire: 250b7846cedbd189d6190e4f83caa01ee1f1eceb
   RxCocoa: 7d6cd877de99f5640306b3d6cf87f580c1d91b61
   RxSwift: 67b9ef4e8b34fb394e200e754c6a09cc16559f94
 
-PODFILE CHECKSUM: 4976645b76addb335a1adef1ccaf34aa95aca777
+PODFILE CHECKSUM: 2a10b5a4c2cebdf9ab5a01558d2d76552c39c67f
 
 COCOAPODS: 1.0.0.beta.8
