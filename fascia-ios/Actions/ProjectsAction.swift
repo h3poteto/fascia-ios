@@ -9,7 +9,7 @@
 import RxSwift
 import RxCocoa
 
-class ProjectsRequest {
+class ProjectsAction {
     final let isLoading = Variable(false)
     final let projects = Variable([Project]())
     final let error: Variable<ErrorType?> = Variable(nil)

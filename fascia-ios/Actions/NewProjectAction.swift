@@ -10,7 +10,7 @@ import RxSwift
 import RxCocoa
 import ObjectMapper
 
-class NewProjectRequest {
+class NewProjectAction {
     final let isLoading = Variable(false)
     final let project = Variable(Project())
     final let error: Variable<ErrorType?> = Variable(nil)

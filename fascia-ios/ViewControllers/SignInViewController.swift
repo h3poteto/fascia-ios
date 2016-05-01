@@ -9,6 +9,7 @@
 import UIKit
 
 class SignInViewController: UIViewController, UIWebViewDelegate {
+    private let viewModel = SignInViewModel()
 
 #if DEBUG
     let SIGN_IN_URL = "http://fascia.localdomain:9090/webviews/sign_in"
@@ -34,7 +35,8 @@ class SignInViewController: UIViewController, UIWebViewDelegate {
 
     func webView(webView: UIWebView, shouldStartLoadWithRequest request: NSURLRequest, navigationType: UIWebViewNavigationType) -> Bool {
         if request.URL?.host == NSURL(string: SIGN_IN_URL)?.host && request.URL?.path == "/webviews/callback" {
-            FasciaAPIService().updateSession()
+            // todo: call
+            viewModel.update()
             self.dismissViewControllerAnimated(true, completion: nil)
             return false
         }

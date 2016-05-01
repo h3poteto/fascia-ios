@@ -20,7 +20,7 @@ class ProjectsTableViewController: UITableViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
-        FasciaAPIService().updateSession()
+        showSignInView()
         bindViewModel()
 
     }

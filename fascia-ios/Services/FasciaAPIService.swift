@@ -31,17 +31,4 @@ class FasciaAPIService {
         return manager.rx_JSON(method, NSURL(string: APIHost + path)!, parameters: params, encoding: .URL, headers: nil)
             .observeOn(MainScheduler.instance)
     }
-
-    func updateSession() {
-        call("/session", method: .POST, params: nil)
-            .subscribe(onNext: { (response) in
-                    print(response)
-                }, onError: { (error) in
-                    print(error)
-                }, onCompleted: { 
-
-                }, onDisposed: nil)
-            .addDisposableTo(disposeBag)
-
-    }
 }
