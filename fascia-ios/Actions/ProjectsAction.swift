@@ -24,7 +24,7 @@ class ProjectsAction {
         FasciaAPIService().call("/projects", method: .GET, params: nil)
             .subscribeOn(Scheduler.sharedInstance.backgroundScheduler)
             .observeOn(Scheduler.sharedInstance.mainScheduler)
-            .subscribe(onNext: { (projects) -> Void in
+            .subscribe(onNext: { (response, projects) -> Void in
                 print(projects)
             }, onError: { (errorType) in
                 self.error.value = errorType

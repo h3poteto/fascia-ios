@@ -27,8 +27,21 @@ class FasciaAPIService {
     let manager = Manager.sharedInstance
     let disposeBag = DisposeBag()
 
-    func call(path: String, method: Alamofire.Method, params: [String: AnyObject]?) -> Observable<AnyObject> {
-        return manager.rx_JSON(method, NSURL(string: APIHost + path)!, parameters: params, encoding: .URL, headers: nil)
+    func call(path: String, method: Alamofire.Method, params: [String: AnyObject]?) -> Observable<(NSHTTPURLResponse, NSData)> {
+        return manager.rx_responseData(method, NSURL(string: APIHost + path)!, parameters: params, encoding: .URL, headers: nil)
             .observeOn(MainScheduler.instance)
+            .map({ (response, json) -> (NSHTTPURLResponse, NSData) in
+                switch response.statusCode {
+                case 401:
+                    throw FasciaAPIError.AuthenticateError
+                case 401..<500:
+                    throw FasciaAPIError.ClientError
+                case 500..<600:
+                    throw FasciaAPIError.ServerError
+                default:
+                    break
+                }
+                return (response, json)
+            })
     }
 }

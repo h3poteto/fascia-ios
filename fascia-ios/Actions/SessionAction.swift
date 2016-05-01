@@ -16,7 +16,7 @@ class SessionAction {
         FasciaAPIService().call("/session", method: .POST, params: nil)
             .subscribeOn(Scheduler.sharedInstance.backgroundScheduler)
             .observeOn(Scheduler.sharedInstance.mainScheduler)
-            .subscribe(onNext: { (response) in
+            .subscribe(onNext: { (response, json) in
                 print(response)
                 }, onError: { (errorType) in
                     print(errorType)
