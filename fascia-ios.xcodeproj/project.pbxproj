@@ -9,10 +9,17 @@
 /* Begin PBXBuildFile section */
 		5F8671B19F4521C1BB30C10E /* Pods_fascia_ios.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 16D2F05040D44D1E1FE11135 /* Pods_fascia_ios.framework */; };
 		E9571AD71CD2893E007A819F /* QuartzCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E9571AD61CD2893E007A819F /* QuartzCore.framework */; };
-		E9571ADA1CD332FC007A819F /* ProjectsRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = E9571AD91CD332FC007A819F /* ProjectsRequest.swift */; };
+		E9571ADA1CD332FC007A819F /* ProjectsAction.swift in Sources */ = {isa = PBXBuildFile; fileRef = E9571AD91CD332FC007A819F /* ProjectsAction.swift */; };
+		E9571ADC1CD35E86007A819F /* NewProjectTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E9571ADB1CD35E86007A819F /* NewProjectTableViewController.swift */; };
+		E9571ADE1CD36781007A819F /* NewProjectViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = E9571ADD1CD36781007A819F /* NewProjectViewModel.swift */; };
+		E9571AE11CD36B88007A819F /* ProjectTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = E9571AE01CD36B88007A819F /* ProjectTableViewCell.swift */; };
+		E9571AE31CD36BA8007A819F /* NewProjectTitleTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = E9571AE21CD36BA7007A819F /* NewProjectTitleTableViewCell.swift */; };
+		E9571AE71CD3AB92007A819F /* NewProjectDescriptionTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = E9571AE61CD3AB92007A819F /* NewProjectDescriptionTableViewCell.swift */; };
+		E9571AE91CD3C4FD007A819F /* NewProjectAction.swift in Sources */ = {isa = PBXBuildFile; fileRef = E9571AE81CD3C4FD007A819F /* NewProjectAction.swift */; };
 		E96975A21CCE78F000DC5852 /* Project.swift in Sources */ = {isa = PBXBuildFile; fileRef = E96975A11CCE78F000DC5852 /* Project.swift */; };
-		E96975A51CD1039B00DC5852 /* ProjectViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = E96975A41CD1039B00DC5852 /* ProjectViewModel.swift */; };
-		E96975A71CD1073000DC5852 /* ProjectTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = E96975A61CD1073000DC5852 /* ProjectTableViewCell.swift */; };
+		E96975A51CD1039B00DC5852 /* ProjectCellViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = E96975A41CD1039B00DC5852 /* ProjectCellViewModel.swift */; };
+		E96CC3CA1CD58E50007DDB65 /* SessionAction.swift in Sources */ = {isa = PBXBuildFile; fileRef = E96CC3C91CD58E50007DDB65 /* SessionAction.swift */; };
+		E96CC3CC1CD58F1F007DDB65 /* SignInViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = E96CC3CB1CD58F1F007DDB65 /* SignInViewModel.swift */; };
 		E9749C951CCBC6BD00335B53 /* ProjectsViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = E9749C941CCBC6BD00335B53 /* ProjectsViewModel.swift */; };
 		E9749C971CCD075F00335B53 /* Scheduler.swift in Sources */ = {isa = PBXBuildFile; fileRef = E9749C961CCD075F00335B53 /* Scheduler.swift */; };
 		E9E4FEF81CC53D3100517729 /* Launch Screen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = E9E4FEF71CC53D3100517729 /* Launch Screen.storyboard */; };
@@ -25,6 +32,7 @@
 		E9E4FF071CC7DC2E00517729 /* FasciaAPIService.swift in Sources */ = {isa = PBXBuildFile; fileRef = E9E4FF061CC7DC2E00517729 /* FasciaAPIService.swift */; };
 		E9E4FF0B1CC7DE1B00517729 /* MainTabBarController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E9E4FF0A1CC7DE1B00517729 /* MainTabBarController.swift */; };
 		E9E4FF101CC7E06200517729 /* UIStoryboard+Fascia.swift in Sources */ = {isa = PBXBuildFile; fileRef = E9E4FF0F1CC7E06200517729 /* UIStoryboard+Fascia.swift */; };
+		E9EA958B1CD4718F008F5535 /* NewProject.swift in Sources */ = {isa = PBXBuildFile; fileRef = E9EA958A1CD4718F008F5535 /* NewProject.swift */; };
 		E9F4C6651CC52C19003DD8DC /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = E9F4C6641CC52C19003DD8DC /* AppDelegate.swift */; };
 		E9F4C66C1CC52C19003DD8DC /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = E9F4C66B1CC52C19003DD8DC /* Assets.xcassets */; };
 		E9F4C67A1CC52C19003DD8DC /* fascia_iosTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = E9F4C6791CC52C19003DD8DC /* fascia_iosTests.swift */; };
@@ -45,10 +53,17 @@
 		500F9BE1C0E6F2F088F98868 /* Pods-fascia-ios.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-fascia-ios.release.xcconfig"; path = "Pods/Target Support Files/Pods-fascia-ios/Pods-fascia-ios.release.xcconfig"; sourceTree = "<group>"; };
 		67AD5B1E44C7EB47CEA7BB03 /* Pods-fascia-ios.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-fascia-ios.debug.xcconfig"; path = "Pods/Target Support Files/Pods-fascia-ios/Pods-fascia-ios.debug.xcconfig"; sourceTree = "<group>"; };
 		E9571AD61CD2893E007A819F /* QuartzCore.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = QuartzCore.framework; path = System/Library/Frameworks/QuartzCore.framework; sourceTree = SDKROOT; };
-		E9571AD91CD332FC007A819F /* ProjectsRequest.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = ProjectsRequest.swift; path = Actions/ProjectsRequest.swift; sourceTree = "<group>"; };
+		E9571AD91CD332FC007A819F /* ProjectsAction.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = ProjectsAction.swift; path = Actions/ProjectsAction.swift; sourceTree = "<group>"; };
+		E9571ADB1CD35E86007A819F /* NewProjectTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = NewProjectTableViewController.swift; path = ViewControllers/NewProjectTableViewController.swift; sourceTree = "<group>"; };
+		E9571ADD1CD36781007A819F /* NewProjectViewModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = NewProjectViewModel.swift; path = ViewModels/NewProjectViewModel.swift; sourceTree = "<group>"; };
+		E9571AE01CD36B88007A819F /* ProjectTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = ProjectTableViewCell.swift; path = Views/Projects/ProjectTableViewCell.swift; sourceTree = "<group>"; };
+		E9571AE21CD36BA7007A819F /* NewProjectTitleTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = NewProjectTitleTableViewCell.swift; path = Views/Projects/NewProjectTitleTableViewCell.swift; sourceTree = "<group>"; };
+		E9571AE61CD3AB92007A819F /* NewProjectDescriptionTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = NewProjectDescriptionTableViewCell.swift; path = Views/Projects/NewProjectDescriptionTableViewCell.swift; sourceTree = "<group>"; };
+		E9571AE81CD3C4FD007A819F /* NewProjectAction.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = NewProjectAction.swift; path = Actions/NewProjectAction.swift; sourceTree = "<group>"; };
 		E96975A11CCE78F000DC5852 /* Project.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = Project.swift; path = Models/Project.swift; sourceTree = "<group>"; };
-		E96975A41CD1039B00DC5852 /* ProjectViewModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = ProjectViewModel.swift; path = ViewModels/ProjectViewModel.swift; sourceTree = "<group>"; };
-		E96975A61CD1073000DC5852 /* ProjectTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = ProjectTableViewCell.swift; path = Views/ProjectTableViewCell.swift; sourceTree = "<group>"; };
+		E96975A41CD1039B00DC5852 /* ProjectCellViewModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = ProjectCellViewModel.swift; path = ViewModels/ProjectCellViewModel.swift; sourceTree = "<group>"; };
+		E96CC3C91CD58E50007DDB65 /* SessionAction.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = SessionAction.swift; path = Actions/SessionAction.swift; sourceTree = "<group>"; };
+		E96CC3CB1CD58F1F007DDB65 /* SignInViewModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = SignInViewModel.swift; path = ViewModels/SignInViewModel.swift; sourceTree = "<group>"; };
 		E9749C941CCBC6BD00335B53 /* ProjectsViewModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = ProjectsViewModel.swift; path = ViewModels/ProjectsViewModel.swift; sourceTree = "<group>"; };
 		E9749C961CCD075F00335B53 /* Scheduler.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = Scheduler.swift; path = Services/Scheduler.swift; sourceTree = "<group>"; };
 		E9E4FEF71CC53D3100517729 /* Launch Screen.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; name = "Launch Screen.storyboard"; path = "Resources/Launch Screen.storyboard"; sourceTree = "<group>"; };
@@ -61,6 +76,7 @@
 		E9E4FF061CC7DC2E00517729 /* FasciaAPIService.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = FasciaAPIService.swift; path = Services/FasciaAPIService.swift; sourceTree = "<group>"; };
 		E9E4FF0A1CC7DE1B00517729 /* MainTabBarController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = MainTabBarController.swift; path = ViewControllers/MainTabBarController.swift; sourceTree = "<group>"; };
 		E9E4FF0F1CC7E06200517729 /* UIStoryboard+Fascia.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = "UIStoryboard+Fascia.swift"; path = "Utils/UIStoryboard+Fascia.swift"; sourceTree = "<group>"; };
+		E9EA958A1CD4718F008F5535 /* NewProject.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = NewProject.swift; path = Models/NewProject.swift; sourceTree = "<group>"; };
 		E9F4C6611CC52C19003DD8DC /* fascia-ios.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "fascia-ios.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		E9F4C6641CC52C19003DD8DC /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		E9F4C66B1CC52C19003DD8DC /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
@@ -111,15 +127,28 @@
 		E9571AD81CD332BB007A819F /* Actions */ = {
 			isa = PBXGroup;
 			children = (
-				E9571AD91CD332FC007A819F /* ProjectsRequest.swift */,
+				E9571AD91CD332FC007A819F /* ProjectsAction.swift */,
+				E96CC3C91CD58E50007DDB65 /* SessionAction.swift */,
+				E9571AE81CD3C4FD007A819F /* NewProjectAction.swift */,
 			);
 			name = Actions;
+			sourceTree = "<group>";
+		};
+		E9571ADF1CD36B2E007A819F /* Projects */ = {
+			isa = PBXGroup;
+			children = (
+				E9571AE01CD36B88007A819F /* ProjectTableViewCell.swift */,
+				E9571AE21CD36BA7007A819F /* NewProjectTitleTableViewCell.swift */,
+				E9571AE61CD3AB92007A819F /* NewProjectDescriptionTableViewCell.swift */,
+			);
+			name = Projects;
 			sourceTree = "<group>";
 		};
 		E9E4FEF11CC53B0D00517729 /* Models */ = {
 			isa = PBXGroup;
 			children = (
 				E96975A11CCE78F000DC5852 /* Project.swift */,
+				E9EA958A1CD4718F008F5535 /* NewProject.swift */,
 			);
 			name = Models;
 			sourceTree = "<group>";
@@ -139,7 +168,7 @@
 		E9E4FEF31CC53C2100517729 /* Views */ = {
 			isa = PBXGroup;
 			children = (
-				E96975A61CD1073000DC5852 /* ProjectTableViewCell.swift */,
+				E9571ADF1CD36B2E007A819F /* Projects */,
 			);
 			name = Views;
 			sourceTree = "<group>";
@@ -147,10 +176,11 @@
 		E9E4FEF51CC53C3000517729 /* ViewControllers */ = {
 			isa = PBXGroup;
 			children = (
-				E9E4FEFF1CC68ED500517729 /* ProjectsTableViewController.swift */,
-				E9E4FF011CC68FE300517729 /* SettingsTableViewController.swift */,
-				E9E4FF031CC7C51700517729 /* SignInViewController.swift */,
 				E9E4FF0A1CC7DE1B00517729 /* MainTabBarController.swift */,
+				E9E4FF031CC7C51700517729 /* SignInViewController.swift */,
+				E9E4FEFF1CC68ED500517729 /* ProjectsTableViewController.swift */,
+				E9571ADB1CD35E86007A819F /* NewProjectTableViewController.swift */,
+				E9E4FF011CC68FE300517729 /* SettingsTableViewController.swift */,
 			);
 			name = ViewControllers;
 			sourceTree = "<group>";
@@ -159,7 +189,9 @@
 			isa = PBXGroup;
 			children = (
 				E9749C941CCBC6BD00335B53 /* ProjectsViewModel.swift */,
-				E96975A41CD1039B00DC5852 /* ProjectViewModel.swift */,
+				E96975A41CD1039B00DC5852 /* ProjectCellViewModel.swift */,
+				E9571ADD1CD36781007A819F /* NewProjectViewModel.swift */,
+				E96CC3CB1CD58F1F007DDB65 /* SignInViewModel.swift */,
 			);
 			name = ViewModels;
 			sourceTree = "<group>";
@@ -395,19 +427,27 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				E9EA958B1CD4718F008F5535 /* NewProject.swift in Sources */,
 				E9749C971CCD075F00335B53 /* Scheduler.swift in Sources */,
 				E9E4FF041CC7C51700517729 /* SignInViewController.swift in Sources */,
 				E9749C951CCBC6BD00335B53 /* ProjectsViewModel.swift in Sources */,
-				E9571ADA1CD332FC007A819F /* ProjectsRequest.swift in Sources */,
+				E9571ADA1CD332FC007A819F /* ProjectsAction.swift in Sources */,
 				E96975A21CCE78F000DC5852 /* Project.swift in Sources */,
 				E9F4C6651CC52C19003DD8DC /* AppDelegate.swift in Sources */,
+				E9571ADC1CD35E86007A819F /* NewProjectTableViewController.swift in Sources */,
+				E96CC3CC1CD58F1F007DDB65 /* SignInViewModel.swift in Sources */,
+				E9571AE71CD3AB92007A819F /* NewProjectDescriptionTableViewCell.swift in Sources */,
+				E9571AE91CD3C4FD007A819F /* NewProjectAction.swift in Sources */,
 				E9E4FF101CC7E06200517729 /* UIStoryboard+Fascia.swift in Sources */,
 				E9E4FF0B1CC7DE1B00517729 /* MainTabBarController.swift in Sources */,
-				E96975A71CD1073000DC5852 /* ProjectTableViewCell.swift in Sources */,
+				E96CC3CA1CD58E50007DDB65 /* SessionAction.swift in Sources */,
+				E9571ADE1CD36781007A819F /* NewProjectViewModel.swift in Sources */,
+				E9571AE11CD36B88007A819F /* ProjectTableViewCell.swift in Sources */,
 				E9E4FF001CC68ED600517729 /* ProjectsTableViewController.swift in Sources */,
 				E9E4FF021CC68FE300517729 /* SettingsTableViewController.swift in Sources */,
 				E9E4FF071CC7DC2E00517729 /* FasciaAPIService.swift in Sources */,
-				E96975A51CD1039B00DC5852 /* ProjectViewModel.swift in Sources */,
+				E96975A51CD1039B00DC5852 /* ProjectCellViewModel.swift in Sources */,
+				E9571AE31CD36BA8007A819F /* NewProjectTitleTableViewCell.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

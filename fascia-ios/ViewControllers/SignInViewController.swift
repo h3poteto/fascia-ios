@@ -9,6 +9,7 @@
 import UIKit
 
 class SignInViewController: UIViewController, UIWebViewDelegate {
+    private let viewModel = SignInViewModel()
 
 #if DEBUG
     let SIGN_IN_URL = "http://fascia.localdomain:9090/webviews/sign_in"
@@ -24,7 +25,6 @@ class SignInViewController: UIViewController, UIWebViewDelegate {
         let url = NSURL(string: SIGN_IN_URL)
         let request = NSURLRequest(URL: url!)
         webView.loadRequest(request)
-        // Do any additional setup after loading the view.
     }
 
     override func didReceiveMemoryWarning() {
@@ -34,7 +34,7 @@ class SignInViewController: UIViewController, UIWebViewDelegate {
 
     func webView(webView: UIWebView, shouldStartLoadWithRequest request: NSURLRequest, navigationType: UIWebViewNavigationType) -> Bool {
         if request.URL?.host == NSURL(string: SIGN_IN_URL)?.host && request.URL?.path == "/webviews/callback" {
-            FasciaAPIService.sharedInstance.updateSession()
+            viewModel.update()
             self.dismissViewControllerAnimated(true, completion: nil)
             return false
         }

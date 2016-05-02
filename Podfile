@@ -7,6 +7,7 @@ target "fascia-ios" do
   pod 'RxSwift', '~> 2.4'
   pod 'RxCocoa', '~> 2.4'
   pod 'ObjectMapper', '~> 1.2'
-  pod 'TSMessages', :git => 'https://github.com/KrauseFx/TSMessages.git'
+  pod 'CSNotificationView'
+  pod 'RxAlamofire'
 end
 

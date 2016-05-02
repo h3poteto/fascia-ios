@@ -9,11 +9,12 @@
 import UIKit
 import RxSwift
 import RxCocoa
-import TSMessages
+import CSNotificationView
 
 
 class ProjectsTableViewController: UITableViewController {
     @IBOutlet private weak var refresh: UIRefreshControl!
+    @IBOutlet private weak var newProjectButton: UIBarButtonItem!
     private var viewModel = ProjectsViewModel()
     private var disposeBag = DisposeBag()
 
@@ -22,6 +23,11 @@ class ProjectsTableViewController: UITableViewController {
 
         bindViewModel()
 
+    }
+
+    override func viewWillAppear(animated: Bool) {
+        super.viewWillAppear(animated)
+        tableView.tableFooterView = UIView(frame: CGRect.zero)
     }
 
     override func didReceiveMemoryWarning() {
@@ -46,16 +52,16 @@ class ProjectsTableViewController: UITableViewController {
             return tableView.dequeueReusableCellWithIdentifier("Cell", forIndexPath: indexPath)
         }
         let project = viewModel.projects[indexPath.row]
-        cell.viewModel = ProjectViewModel(model: project)
+        cell.viewModel = ProjectCellViewModel(model: project)
         return cell
     }
 
-    func showSignInView() {
+    private func showSignInView() {
         let signIn = UIStoryboard.instantiateViewController("SignInViewController", storyboardName: "Main") as! UIViewController
         self.presentViewController(signIn, animated: true, completion: nil)
     }
 
-    func bindViewModel() {
+    private func bindViewModel() {
         viewModel.dataUpdated
             .driveNext { (projects) in
                 self.viewModel.projects = projects
@@ -80,13 +86,13 @@ class ProjectsTableViewController: UITableViewController {
                 case FasciaAPIError.DoubleRequestError:
                     break
                 case FasciaAPIError.ClientError:
-                    TSMessage.showNotificationWithTitle("Network Error", subtitle: "The request is invalid.", type: TSMessageNotificationType.Error)
+                    CSNotificationView.showInViewController(self, style: CSNotificationViewStyle.Error, message: "The request is invalid")
                     break
                 case FasciaAPIError.ServerError:
-                    TSMessage.showNotificationWithTitle("Server Error", subtitle: "We're sorry, but something went wrong.", type: TSMessageNotificationType.Error)
+                    CSNotificationView.showInViewController(self, style: .Error, message: "We're sorry, but something went wrong.")
                     break
                 default:
-                    TSMessage.showNotificationWithTitle("Error", subtitle: (errorType as NSError).localizedDescription, type: TSMessageNotificationType.Error)
+                    CSNotificationView.showInViewController(self, style: .Error, message: (errorType as NSError).localizedDescription)
                     break
                 }
             }
@@ -95,6 +101,58 @@ class ProjectsTableViewController: UITableViewController {
         refresh.rx_controlEvent(.ValueChanged).startWith({ print("start init loading") }())
             .subscribeNext { () in
                 self.viewModel.fetch()
+            }
+            .addDisposableTo(disposeBag)
+
+        newProjectButton.rx_tap
+            .subscribeNext { () in
+                self.showNewProject()
+            }
+            .addDisposableTo(disposeBag)
+    }
+
+    private func showNewProject() {
+        let newProjectNavigation = UIStoryboard.instantiateViewController("NewProjectNavigationViewController", storyboardName: "Projects") as! UINavigationController
+        let newProjectView = newProjectNavigation.viewControllers.first as? NewProjectTableViewController
+        let vm = NewProjectViewModel(model: NewProject())
+        newProjectView?.viewModel = vm
+        bindNewProjectViewModel(vm)
+        self.presentViewController(newProjectNavigation, animated: true, completion: nil)
+    }
+
+    // 新規プロジェクト作成のViewModelとのつなぎ込みで，このviewに関係あるものをここで設定
+    // 管理的にはここに居ないほうがわかりやすかもしれない
+    private func bindNewProjectViewModel(vm: NewProjectViewModel) {
+        vm.dataUpdated
+            .driveNext { (project) in
+                if project != nil {
+                    CSNotificationView.showInViewController(self, style: .Success, message: "Save complete")
+                    self.viewModel.fetch()
+                }
+            }
+            .addDisposableTo(disposeBag)
+
+        vm.error
+            .driveNext { (errorType) in
+                guard let errorType = errorType else {
+                    return
+                }
+                switch errorType {
+                case FasciaAPIError.AuthenticateError:
+                    self.showSignInView()
+                    break
+                case FasciaAPIError.DoubleRequestError:
+                    break
+                case FasciaAPIError.ClientError:
+                    CSNotificationView.showInViewController(self, style: .Error, message: "The request is invalid")
+                    break
+                case FasciaAPIError.ServerError, ProjectError.PaserError, ProjectError.MappingError:
+                    CSNotificationView.showInViewController(self, style: .Error, message: "We're sorry, but something went wrong.")
+                    break
+                default:
+                    CSNotificationView.showInViewController(self, style: .Error, message: (errorType as NSError).localizedDescription)
+                    break
+                }
             }
             .addDisposableTo(disposeBag)
     }
