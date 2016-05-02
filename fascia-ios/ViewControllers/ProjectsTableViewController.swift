@@ -56,12 +56,12 @@ class ProjectsTableViewController: UITableViewController {
         return cell
     }
 
-    func showSignInView() {
+    private func showSignInView() {
         let signIn = UIStoryboard.instantiateViewController("SignInViewController", storyboardName: "Main") as! UIViewController
         self.presentViewController(signIn, animated: true, completion: nil)
     }
 
-    func bindViewModel() {
+    private func bindViewModel() {
         viewModel.dataUpdated
             .driveNext { (projects) in
                 self.viewModel.projects = projects
@@ -106,8 +106,51 @@ class ProjectsTableViewController: UITableViewController {
 
         newProjectButton.rx_tap
             .subscribeNext { () in
-                let newProjectView = UIStoryboard.instantiateViewController("NewProjectNavigationViewController", storyboardName: "Projects") as! UINavigationController
-                self.presentViewController(newProjectView, animated: true, completion: nil)
+                self.showNewProject()
+            }
+            .addDisposableTo(disposeBag)
+    }
+
+    private func showNewProject() {
+        let newProjectNavigation = UIStoryboard.instantiateViewController("NewProjectNavigationViewController", storyboardName: "Projects") as! UINavigationController
+        let newProjectView = newProjectNavigation.viewControllers.first as? NewProjectTableViewController
+        let vm = NewProjectViewModel(model: NewProject())
+        newProjectView?.viewModel = vm
+        bindNewProjectViewModel(vm)
+        self.presentViewController(newProjectNavigation, animated: true, completion: nil)
+    }
+
+    private func bindNewProjectViewModel(vm: NewProjectViewModel) {
+        vm.dataUpdated
+            .driveNext { (project) in
+                if project != nil {
+                    CSNotificationView.showInViewController(self, style: .Success, message: "Save complete")
+                    self.viewModel.fetch()
+                }
+            }
+            .addDisposableTo(disposeBag)
+
+        vm.error
+            .driveNext { (errorType) in
+                guard let errorType = errorType else {
+                    return
+                }
+                switch errorType {
+                case FasciaAPIError.AuthenticateError:
+                    self.showSignInView()
+                    break
+                case FasciaAPIError.DoubleRequestError:
+                    break
+                case FasciaAPIError.ClientError:
+                    CSNotificationView.showInViewController(self, style: .Error, message: "The request is invalid")
+                    break
+                case FasciaAPIError.ServerError, ProjectError.PaserError, ProjectError.MappingError:
+                    CSNotificationView.showInViewController(self, style: .Error, message: "We're sorry, but something went wrong.")
+                    break
+                default:
+                    CSNotificationView.showInViewController(self, style: .Error, message: (errorType as NSError).localizedDescription)
+                    break
+                }
             }
             .addDisposableTo(disposeBag)
     }
