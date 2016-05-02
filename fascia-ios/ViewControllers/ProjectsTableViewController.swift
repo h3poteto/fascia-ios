@@ -120,6 +120,8 @@ class ProjectsTableViewController: UITableViewController {
         self.presentViewController(newProjectNavigation, animated: true, completion: nil)
     }
 
+    // 新規プロジェクト作成のViewModelとのつなぎ込みで，このviewに関係あるものをここで設定
+    // 管理的にはここに居ないほうがわかりやすかもしれない
     private func bindNewProjectViewModel(vm: NewProjectViewModel) {
         vm.dataUpdated
             .driveNext { (project) in

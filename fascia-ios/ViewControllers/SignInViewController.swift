@@ -25,7 +25,6 @@ class SignInViewController: UIViewController, UIWebViewDelegate {
         let url = NSURL(string: SIGN_IN_URL)
         let request = NSURLRequest(URL: url!)
         webView.loadRequest(request)
-        // Do any additional setup after loading the view.
     }
 
     override func didReceiveMemoryWarning() {
@@ -35,7 +34,6 @@ class SignInViewController: UIViewController, UIWebViewDelegate {
 
     func webView(webView: UIWebView, shouldStartLoadWithRequest request: NSURLRequest, navigationType: UIWebViewNavigationType) -> Bool {
         if request.URL?.host == NSURL(string: SIGN_IN_URL)?.host && request.URL?.path == "/webviews/callback" {
-            // todo: call
             viewModel.update()
             self.dismissViewControllerAnimated(true, completion: nil)
             return false
