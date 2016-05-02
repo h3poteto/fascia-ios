@@ -57,6 +57,7 @@ class ProjectsTableViewController: UITableViewController {
     }
 
     private func showSignInView() {
+        // TODO: 初回であればこのあとにロードさせたい
         let signIn = UIStoryboard.instantiateViewController("SignInViewController", storyboardName: "Main") as! UIViewController
         self.presentViewController(signIn, animated: true, completion: nil)
     }

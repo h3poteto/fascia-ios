@@ -7,16 +7,22 @@
 //
 
 import UIKit
+import RxSwift
+import RxCocoa
+
 
 class NewProjectDescriptionTableViewCell: UITableViewCell {
     @IBOutlet private weak var descriptionLabel: UILabel!
     @IBOutlet private weak var descriptionText: UITextField!
+
+    private let disposeBag = DisposeBag()
 
     var parentViewModel: NewProjectViewModel?
 
     override func awakeFromNib() {
         super.awakeFromNib()
         // Initialization code
+        bindViewModel()
     }
 
     override func setSelected(selected: Bool, animated: Bool) {
@@ -25,4 +31,11 @@ class NewProjectDescriptionTableViewCell: UITableViewCell {
         // Configure the view for the selected state
     }
 
+    private func bindViewModel() {
+        descriptionText.rx_text
+            .subscribeNext { (text) in
+                self.parentViewModel?.update(nil, description: text)
+            }
+            .addDisposableTo(disposeBag)
+    }
 }

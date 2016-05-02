@@ -37,8 +37,13 @@ class NewProjectViewModel {
         error = action.error.asDriver()
     }
 
-    func update(title: String?) {
-        newProject.value.title = title
+    func update(title: String?, description: String?) {
+        if title != nil {
+            newProject.value.title = title
+        }
+        if description != nil {
+            newProject.value.description = description
+        }
     }
 
     func save() -> Observable<Bool> {

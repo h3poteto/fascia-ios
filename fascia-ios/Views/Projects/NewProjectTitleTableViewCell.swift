@@ -30,10 +30,10 @@ class NewProjectTitleTableViewCell: UITableViewCell {
         // Configure the view for the selected state
     }
 
-    func bindViewModel() {
+    private func bindViewModel() {
         titleText.rx_text
             .subscribeNext { (text) in
-                self.parentViewModel?.update(text)
+                self.parentViewModel?.update(text, description: nil)
             }
             .addDisposableTo(disposeBag)
     }
