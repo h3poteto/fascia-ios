@@ -27,14 +27,11 @@ class NewProjectViewModel {
         dataUpdated = Driver
             .combineLatest(
                 action.project.asDriver(),
-                action.error.asDriver().map({ (error) in
-                    return error != nil
+                action.error.asDriver().map({
+                    $0 != nil
                 }),
-                resultSelector: { (project, error) -> Project? in
-                    guard error is ErrorType else {
-                        return nil
-                    }
-                    return project
+                resultSelector: {
+                    ($1) ? nil : $0
             })
         isLoading = action.isLoading.asDriver()
         error = action.error.asDriver()

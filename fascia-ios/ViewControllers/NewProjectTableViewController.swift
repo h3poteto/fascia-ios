@@ -21,20 +21,8 @@ class NewProjectTableViewController: UITableViewController {
         super.viewDidLoad()
 
         bindViewModel()
-
-
-        // Uncomment the following line to preserve selection between presentations
-        // self.clearsSelectionOnViewWillAppear = false
-
-        // Uncomment the following line to display an Edit button in the navigation bar for this view controller.
-        // self.navigationItem.rightBarButtonItem = self.editButtonItem()
     }
 
-/*    override func viewWillAppear(animated: Bool) {
-        super.viewWillAppear(animated)
-        tableView.tableFooterView = UIView(frame: CGRect.zero)
-    }
-*/
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
@@ -109,9 +97,7 @@ class NewProjectTableViewController: UITableViewController {
                         }
                     })
                     .subscribeNext({ (result) in
-                        if result {
-                            //self.dismissViewControllerAnimated(true, completion: nil)
-                        }
+                        print(result)
                     })
                     .addDisposableTo(self.disposeBag)
             }
@@ -119,9 +105,8 @@ class NewProjectTableViewController: UITableViewController {
 
         viewModel.dataUpdated
             .driveNext { (project) in
-                if let project = project {
-                    // todo: dissmiss
-                    print(project)
+                if project != nil {
+                    self.dismissViewControllerAnimated(true, completion: nil)
                 }
             }
             .addDisposableTo(disposeBag)
