@@ -19,13 +19,19 @@ enum FasciaAPIError: ErrorType {
 }
 
 class FasciaAPIService {
-    #if DEBUG
+    static let sharedInstance = FasciaAPIService()
+#if DEBUG
     let APIHost = "http://fascia.localdomain:9090"
-    #else
+#else
     let APIHost = "https://fascia.io"
-    #endif
-    let manager = Manager.sharedInstance
-    let disposeBag = DisposeBag()
+#endif
+    private var manager: Manager
+    private let disposeBag = DisposeBag()
+    private static let CookieKey = "fascia-session"
+
+    init() {
+        manager = FasciaAPIService.configureManager()
+    }
 
     func call(path: String, method: Alamofire.Method, params: [String: AnyObject]?) -> Observable<(NSHTTPURLResponse, NSData)> {
         return manager.rx_responseData(method, NSURL(string: APIHost + path)!, parameters: params, encoding: .URL, headers: nil)
@@ -43,5 +49,27 @@ class FasciaAPIService {
                 }
                 return (response, json)
             })
+    }
+
+    func saveSession(response: NSHTTPURLResponse) {
+        let cookies = NSHTTPCookie.cookiesWithResponseHeaderFields(response.allHeaderFields as! [String:String], forURL: (response.URL)!)
+        for i in 0 ..< cookies.count {
+            NSHTTPCookieStorage.sharedHTTPCookieStorage().setCookie(cookies[i])
+        }
+        let cookiesData: NSData = NSKeyedArchiver.archivedDataWithRootObject(NSHTTPCookieStorage.sharedHTTPCookieStorage().cookies!)
+        NSUserDefaults.standardUserDefaults().setObject(cookiesData, forKey: FasciaAPIService.CookieKey)
+    }
+
+    private class func configureManager() -> Manager {
+        if let cookiesData = NSUserDefaults.standardUserDefaults().objectForKey(CookieKey) as? NSData {
+            for cookie: NSHTTPCookie in NSKeyedUnarchiver.unarchiveObjectWithData(cookiesData) as! [NSHTTPCookie] {
+                NSHTTPCookieStorage.sharedHTTPCookieStorage().setCookie(cookie)
+            }
+        }
+        let cfg = NSURLSessionConfiguration.defaultSessionConfiguration()
+        cfg.HTTPCookieStorage = NSHTTPCookieStorage.sharedHTTPCookieStorage()
+        cfg.timeoutIntervalForResource = 30
+        cfg.timeoutIntervalForRequest = 10
+        return Manager(configuration: cfg)
     }
 }

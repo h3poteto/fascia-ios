@@ -13,11 +13,11 @@ class SessionAction {
     private let disposeBag = DisposeBag()
 
     func updateSession() {
-        FasciaAPIService().call("/session", method: .POST, params: nil)
+        FasciaAPIService.sharedInstance.call("/session", method: .POST, params: nil)
             .subscribeOn(Scheduler.sharedInstance.backgroundScheduler)
             .observeOn(Scheduler.sharedInstance.mainScheduler)
-            .subscribe(onNext: { (response, json) in
-                print(response)
+            .subscribe(onNext: { (response, data) in
+                    FasciaAPIService.sharedInstance.saveSession(response)
                 }, onError: { (errorType) in
                     print(errorType)
                 }, onCompleted: {

@@ -22,7 +22,7 @@ class NewProjectAction {
         }
         isLoading.value = true
         error.value = nil
-        FasciaAPIService().call("/projects", method: .POST, params: parameter)
+        FasciaAPIService.sharedInstance.call("/projects", method: .POST, params: parameter)
             .subscribeOn(Scheduler.sharedInstance.backgroundScheduler)
             .subscribe(onNext: { (respnse, project) in
                 print(project)
