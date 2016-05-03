@@ -46,6 +46,7 @@
                             </mask>
                         </variation>
                     </view>
+                    <extendedEdge key="edgesForExtendedLayout"/>
                     <connections>
                         <outlet property="webView" destination="XLg-1g-lBZ" id="l5B-Aa-CLz"/>
                     </connections>
