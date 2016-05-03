@@ -52,7 +52,10 @@ class FasciaAPIService {
     }
 
     func saveSession(response: NSHTTPURLResponse) {
-        let cookies = NSHTTPCookie.cookiesWithResponseHeaderFields(response.allHeaderFields as! [String:String], forURL: (response.URL)!)
+        guard let headers = response.allHeaderFields as? [String:String] else {
+            return
+        }
+        let cookies = NSHTTPCookie.cookiesWithResponseHeaderFields(headers, forURL: (response.URL)!)
         for i in 0 ..< cookies.count {
             NSHTTPCookieStorage.sharedHTTPCookieStorage().setCookie(cookies[i])
         }
@@ -62,8 +65,10 @@ class FasciaAPIService {
 
     private class func configureManager() -> Manager {
         if let cookiesData = NSUserDefaults.standardUserDefaults().objectForKey(CookieKey) as? NSData {
-            for cookie: NSHTTPCookie in NSKeyedUnarchiver.unarchiveObjectWithData(cookiesData) as! [NSHTTPCookie] {
-                NSHTTPCookieStorage.sharedHTTPCookieStorage().setCookie(cookie)
+            if let cookies = NSKeyedUnarchiver.unarchiveObjectWithData(cookiesData) as? [NSHTTPCookie] {
+                for cookie: NSHTTPCookie in cookies {
+                    NSHTTPCookieStorage.sharedHTTPCookieStorage().setCookie(cookie)
+                }
             }
         }
         let cfg = NSURLSessionConfiguration.defaultSessionConfiguration()

@@ -58,8 +58,9 @@ class ProjectsTableViewController: UITableViewController {
 
     private func showSignInView() {
         // TODO: 初回であればこのあとにロードさせたい
-        let signIn = UIStoryboard.instantiateViewController("SignInViewController", storyboardName: "Main") as! UIViewController
-        self.presentViewController(signIn, animated: true, completion: nil)
+        if let signIn = UIStoryboard.instantiateViewController("SignInViewController", storyboardName: "Main") as? UIViewController {
+            self.presentViewController(signIn, animated: true, completion: nil)
+        }
     }
 
     private func bindViewModel() {
@@ -113,7 +114,9 @@ class ProjectsTableViewController: UITableViewController {
     }
 
     private func showNewProject() {
-        let newProjectNavigation = UIStoryboard.instantiateViewController("NewProjectNavigationViewController", storyboardName: "Projects") as! UINavigationController
+        guard let newProjectNavigation = UIStoryboard.instantiateViewController("NewProjectNavigationViewController", storyboardName: "Projects") as? UINavigationController else {
+            return
+        }
         let newProjectView = newProjectNavigation.viewControllers.first as? NewProjectTableViewController
         let vm = NewProjectViewModel(model: NewProject())
         newProjectView?.viewModel = vm
