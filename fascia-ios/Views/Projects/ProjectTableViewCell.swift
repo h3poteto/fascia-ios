@@ -12,6 +12,8 @@ import RxCocoa
 
 class ProjectTableViewCell: UITableViewCell {
     @IBOutlet private weak var tilteLabel: UILabel!
+    @IBOutlet private weak var githubLabel: UILabel!
+    @IBOutlet private weak var projectImage: UIImageView!
 
     let disposeBag = DisposeBag()
 
@@ -19,6 +21,7 @@ class ProjectTableViewCell: UITableViewCell {
         didSet {
             guard let vModel = self.viewModel else { return }
             vModel.title.bindTo(self.tilteLabel.rx_text).addDisposableTo(disposeBag)
+            vModel.hideRepository.bindTo(self.githubLabel.rx_hidden).addDisposableTo(disposeBag)
         }
     }
 

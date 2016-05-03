@@ -22,19 +22,52 @@
                                     <rect key="frame" x="0.0" y="0.0" width="600" height="43.5"/>
                                     <autoresizingMask key="autoresizingMask"/>
                                     <subviews>
-                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="TBa-Wn-C5S">
-                                            <rect key="frame" x="16" y="11.5" width="42" height="21"/>
+                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Project" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="TBa-Wn-C5S">
+                                            <rect key="frame" x="56" y="11" width="54.5" height="21"/>
                                             <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                            <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+                                            <color key="textColor" white="0.33333333333333331" alpha="1" colorSpace="calibratedWhite"/>
+                                            <nil key="highlightedColor"/>
+                                        </label>
+                                        <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="gUG-uD-n6q">
+                                            <rect key="frame" x="20" y="10" width="24" height="24"/>
+                                            <color key="backgroundColor" red="0.25882352941176467" green="0.72156862745098038" blue="0.8666666666666667" alpha="1" colorSpace="calibratedRGB"/>
+                                            <color key="tintColor" red="0.86274509803921573" green="0.86274509803921573" blue="0.86274509803921573" alpha="1" colorSpace="calibratedRGB"/>
+                                            <constraints>
+                                                <constraint firstAttribute="width" constant="24" id="agm-mu-pmx"/>
+                                                <constraint firstAttribute="height" constant="24" id="wY9-rZ-g0g"/>
+                                            </constraints>
+                                            <userDefinedRuntimeAttributes>
+                                                <userDefinedRuntimeAttribute type="number" keyPath="layer.cornerRadius">
+                                                    <integer key="value" value="10"/>
+                                                </userDefinedRuntimeAttribute>
+                                                <userDefinedRuntimeAttribute type="boolean" keyPath="layer.masksToBounds" value="YES"/>
+                                            </userDefinedRuntimeAttributes>
+                                        </imageView>
+                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="GitHub" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="HgK-I5-eM3">
+                                            <rect key="frame" x="537.5" y="14" width="42.5" height="16"/>
+                                            <fontDescription key="fontDescription" type="system" pointSize="13"/>
+                                            <color key="textColor" white="0.66666666666666663" alpha="1" colorSpace="calibratedWhite"/>
                                             <nil key="highlightedColor"/>
                                         </label>
                                     </subviews>
                                     <constraints>
+                                        <constraint firstAttribute="trailingMargin" secondItem="HgK-I5-eM3" secondAttribute="trailing" constant="12" id="7g9-Le-T05"/>
+                                        <constraint firstItem="HgK-I5-eM3" firstAttribute="centerY" secondItem="Q4m-PW-8x7" secondAttribute="centerY" id="BV3-8Z-7hP"/>
+                                        <constraint firstItem="gUG-uD-n6q" firstAttribute="centerY" secondItem="Q4m-PW-8x7" secondAttribute="centerY" id="CJJ-Vc-LYu"/>
+                                        <constraint firstItem="gUG-uD-n6q" firstAttribute="leading" secondItem="Q4m-PW-8x7" secondAttribute="leadingMargin" constant="12" id="HHc-dp-BxX"/>
+                                        <constraint firstItem="TBa-Wn-C5S" firstAttribute="leading" secondItem="gUG-uD-n6q" secondAttribute="trailing" constant="12" id="K18-Ic-Vj7"/>
                                         <constraint firstItem="TBa-Wn-C5S" firstAttribute="centerY" secondItem="Q4m-PW-8x7" secondAttribute="centerY" id="Xc2-kc-V7N"/>
-                                        <constraint firstItem="TBa-Wn-C5S" firstAttribute="leading" secondItem="Q4m-PW-8x7" secondAttribute="leadingMargin" constant="8" id="iQs-gh-P1F"/>
+                                        <constraint firstItem="TBa-Wn-C5S" firstAttribute="leading" secondItem="Q4m-PW-8x7" secondAttribute="leadingMargin" constant="48" id="iQs-gh-P1F"/>
                                     </constraints>
+                                    <variation key="default">
+                                        <mask key="constraints">
+                                            <exclude reference="iQs-gh-P1F"/>
+                                        </mask>
+                                    </variation>
                                 </tableViewCellContentView>
                                 <connections>
+                                    <outlet property="githubLabel" destination="HgK-I5-eM3" id="pNk-Mf-0mO"/>
+                                    <outlet property="projectImage" destination="gUG-uD-n6q" id="SCf-fi-jBy"/>
                                     <outlet property="tilteLabel" destination="TBa-Wn-C5S" id="FhH-q8-RX2"/>
                                 </connections>
                             </tableViewCell>
