@@ -87,13 +87,13 @@ class ProjectsTableViewController: UITableViewController {
                 case FasciaAPIError.DoubleRequestError:
                     break
                 case FasciaAPIError.ClientError:
-                    CSNotificationView.showInViewController(self, style: CSNotificationViewStyle.Error, message: "The request is invalid")
+                    CSNotificationView.showInViewController(self, style: CSNotificationViewStyle.Error, message: "The request is invalid.")
                     break
                 case FasciaAPIError.ServerError:
                     CSNotificationView.showInViewController(self, style: .Error, message: "We're sorry, but something went wrong.")
                     break
                 default:
-                    CSNotificationView.showInViewController(self, style: .Error, message: (errorType as NSError).localizedDescription)
+                    CSNotificationView.showInViewController(self, style: .Error, message: "Network error.")
                     break
                 }
             }
@@ -151,7 +151,7 @@ class ProjectsTableViewController: UITableViewController {
                     CSNotificationView.showInViewController(self, style: .Error, message: "We're sorry, but something went wrong.")
                     break
                 default:
-                    CSNotificationView.showInViewController(self, style: .Error, message: (errorType as NSError).localizedDescription)
+                    CSNotificationView.showInViewController(self, style: .Error, message: "Network error.")
                     break
                 }
             }
