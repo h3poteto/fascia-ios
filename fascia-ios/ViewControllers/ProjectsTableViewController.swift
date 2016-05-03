@@ -25,11 +25,6 @@ class ProjectsTableViewController: UITableViewController {
 
     }
 
-    override func viewWillAppear(animated: Bool) {
-        super.viewWillAppear(animated)
-        tableView.tableFooterView = UIView(frame: CGRect.zero)
-    }
-
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
