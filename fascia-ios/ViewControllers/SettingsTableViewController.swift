@@ -29,11 +29,44 @@ class SettingsTableViewController: UITableViewController {
 
     override func numberOfSectionsInTableView(tableView: UITableView) -> Int {
         // #warning Incomplete implementation, return the number of sections
-        return 0
+        return 1
     }
 
     override func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         // #warning Incomplete implementation, return the number of rows
-        return 0
+        return 1
+    }
+
+    override func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
+        switch indexPath.section {
+        case 0:
+            guard let cell = tableView.dequeueReusableCellWithIdentifier("SignInTableViewCell", forIndexPath: indexPath) as? SignInTableViewCell else {
+                return tableView.dequeueReusableCellWithIdentifier("Cell", forIndexPath: indexPath)
+            }
+            return cell
+        default:
+            return tableView.dequeueReusableCellWithIdentifier("Cell", forIndexPath: indexPath)
+        }
+    }
+
+    override func tableView(tableView: UITableView, titleForHeaderInSection section: Int) -> String? {
+        switch section {
+        case 0:
+            return "Account"
+        default:
+            return nil
+        }
+    }
+
+    override func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
+        switch (indexPath.section, indexPath.row) {
+        case (0,0):
+            if let signInView = UIStoryboard.instantiateViewController("SignInViewController", storyboardName: "Main") as? UIViewController {
+                self.navigationController?.pushViewController(signInView, animated: true)
+            }
+            break
+        default:
+            break
+        }
     }
 }
