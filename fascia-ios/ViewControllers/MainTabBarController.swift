@@ -24,8 +24,12 @@ class MainTabBarController: UITabBarController {
     }
 
     func initViewControllers() {
-        let projects = UIStoryboard.instantiateViewController("ProjectsNavigationViewController", storyboardName: "Projects") as! UINavigationController
-        let settings = UIStoryboard.instantiateViewController("SettingsNavigationViewController", storyboardName: "Settings") as! UINavigationController
+        guard let projects = UIStoryboard.instantiateViewController("ProjectsNavigationViewController", storyboardName: "Projects") as? UINavigationController else {
+            return
+        }
+        guard let settings = UIStoryboard.instantiateViewController("SettingsNavigationViewController", storyboardName: "Settings") as? UINavigationController else {
+            return
+        }
         self.setViewControllers([projects, settings], animated: true)
     }
 

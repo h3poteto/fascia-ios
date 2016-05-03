@@ -72,8 +72,9 @@ class NewProjectTableViewController: UITableViewController {
     }
 
     private func showSignInView() {
-        let signIn = UIStoryboard.instantiateViewController("SignInViewController", storyboardName: "Main") as! UIViewController
-        self.presentViewController(signIn, animated: true, completion: nil)
+        if let signIn = UIStoryboard.instantiateViewController("SignInViewController", storyboardName: "Main") as? UIViewController {
+            self.presentViewController(signIn, animated: true, completion: nil)
+        }
     }
 
     private func bindViewModel() {
