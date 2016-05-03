@@ -22,6 +22,7 @@
 		E96CC3CC1CD58F1F007DDB65 /* SignInViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = E96CC3CB1CD58F1F007DDB65 /* SignInViewModel.swift */; };
 		E9749C951CCBC6BD00335B53 /* ProjectsViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = E9749C941CCBC6BD00335B53 /* ProjectsViewModel.swift */; };
 		E9749C971CCD075F00335B53 /* Scheduler.swift in Sources */ = {isa = PBXBuildFile; fileRef = E9749C961CCD075F00335B53 /* Scheduler.swift */; };
+		E9C6B52E1CD86001009DBE36 /* SignInTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = E9C6B52D1CD86001009DBE36 /* SignInTableViewCell.swift */; };
 		E9E4FEF81CC53D3100517729 /* Launch Screen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = E9E4FEF71CC53D3100517729 /* Launch Screen.storyboard */; };
 		E9E4FEFA1CC53D6B00517729 /* Settings.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = E9E4FEF91CC53D6B00517729 /* Settings.storyboard */; };
 		E9E4FEFC1CC53DC400517729 /* Projects.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = E9E4FEFB1CC53DC400517729 /* Projects.storyboard */; };
@@ -66,6 +67,7 @@
 		E96CC3CB1CD58F1F007DDB65 /* SignInViewModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = SignInViewModel.swift; path = ViewModels/SignInViewModel.swift; sourceTree = "<group>"; };
 		E9749C941CCBC6BD00335B53 /* ProjectsViewModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = ProjectsViewModel.swift; path = ViewModels/ProjectsViewModel.swift; sourceTree = "<group>"; };
 		E9749C961CCD075F00335B53 /* Scheduler.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = Scheduler.swift; path = Services/Scheduler.swift; sourceTree = "<group>"; };
+		E9C6B52D1CD86001009DBE36 /* SignInTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = SignInTableViewCell.swift; path = Views/Settings/SignInTableViewCell.swift; sourceTree = "<group>"; };
 		E9E4FEF71CC53D3100517729 /* Launch Screen.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; name = "Launch Screen.storyboard"; path = "Resources/Launch Screen.storyboard"; sourceTree = "<group>"; };
 		E9E4FEF91CC53D6B00517729 /* Settings.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; name = Settings.storyboard; path = Resources/Settings.storyboard; sourceTree = "<group>"; };
 		E9E4FEFB1CC53DC400517729 /* Projects.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; name = Projects.storyboard; path = Resources/Projects.storyboard; sourceTree = "<group>"; };
@@ -144,6 +146,14 @@
 			name = Projects;
 			sourceTree = "<group>";
 		};
+		E9C6B52C1CD85FDE009DBE36 /* Settings */ = {
+			isa = PBXGroup;
+			children = (
+				E9C6B52D1CD86001009DBE36 /* SignInTableViewCell.swift */,
+			);
+			name = Settings;
+			sourceTree = "<group>";
+		};
 		E9E4FEF11CC53B0D00517729 /* Models */ = {
 			isa = PBXGroup;
 			children = (
@@ -168,6 +178,7 @@
 		E9E4FEF31CC53C2100517729 /* Views */ = {
 			isa = PBXGroup;
 			children = (
+				E9C6B52C1CD85FDE009DBE36 /* Settings */,
 				E9571ADF1CD36B2E007A819F /* Projects */,
 			);
 			name = Views;
@@ -432,6 +443,7 @@
 				E9E4FF041CC7C51700517729 /* SignInViewController.swift in Sources */,
 				E9749C951CCBC6BD00335B53 /* ProjectsViewModel.swift in Sources */,
 				E9571ADA1CD332FC007A819F /* ProjectsAction.swift in Sources */,
+				E9C6B52E1CD86001009DBE36 /* SignInTableViewCell.swift in Sources */,
 				E96975A21CCE78F000DC5852 /* Project.swift in Sources */,
 				E9F4C6651CC52C19003DD8DC /* AppDelegate.swift in Sources */,
 				E9571ADC1CD35E86007A819F /* NewProjectTableViewController.swift in Sources */,
