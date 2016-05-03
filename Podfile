@@ -9,5 +9,6 @@ target "fascia-ios" do
   pod 'ObjectMapper', '~> 1.2'
   pod 'CSNotificationView'
   pod 'RxAlamofire'
+  pod 'SVProgressHUD'
 end
 
