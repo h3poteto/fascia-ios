@@ -27,9 +27,11 @@ class MainTabBarController: UITabBarController {
         guard let projects = UIStoryboard.instantiateViewController("ProjectsNavigationViewController", storyboardName: "Projects") as? UINavigationController else {
             return
         }
+        projects.tabBarItem.image = UIImage(named: "Projects")
         guard let settings = UIStoryboard.instantiateViewController("SettingsNavigationViewController", storyboardName: "Settings") as? UINavigationController else {
             return
         }
+        settings.tabBarItem.image = UIImage(named: "Settings")
         self.setViewControllers([projects, settings], animated: true)
     }
 
