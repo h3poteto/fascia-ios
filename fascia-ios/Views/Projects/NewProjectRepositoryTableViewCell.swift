@@ -20,10 +20,10 @@ class NewProjectRepositoryTableViewCell: UITableViewCell {
             vModel.repository
                 .asObservable()
                 .map({ (repository) -> String in
-                    guard let fullName = repository?.fullName else {
+                    guard let name = repository?.name else {
                         return "-"
                     }
-                    return fullName
+                    return name
                 })
                 .bindTo(self.selectRepositoryLabel.rx_text)
                 .addDisposableTo(disposeBag)
