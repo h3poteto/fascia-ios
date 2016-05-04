@@ -17,6 +17,7 @@ class Repository: Mappable {
     var name: String?
     var fullName: String?
     var ownerName: String?
+    var privateRepository: Bool?
 
     class func buildWithArray(repositories: [[String: AnyObject]]) -> [Repository] {
         var arr: [Repository] = []
@@ -33,9 +34,10 @@ class Repository: Mappable {
     }
 
     func mapping(map: Map) {
-        id <- map["id"]
-        name <- map["name"]
-        fullName <- map["full_name"]
-        ownerName <- map["owner"]["login"]
+        id                  <- map["id"]
+        name                <- map["name"]
+        fullName            <- map["full_name"]
+        ownerName           <- map["owner"]["login"]
+        privateRepository   <- map["private"]
     }
 }

@@ -12,6 +12,7 @@ import RxCocoa
 
 class RepositoryTableViewCell: UITableViewCell {
     @IBOutlet private weak var nameLabel: UILabel!
+    @IBOutlet private weak var privateImage: UIImageView!
 
     let disposeBag = DisposeBag()
 
@@ -19,6 +20,7 @@ class RepositoryTableViewCell: UITableViewCell {
         didSet {
             guard let vModel = self.viewModel else { return }
             vModel.fullName.bindTo(self.nameLabel.rx_text).addDisposableTo(disposeBag)
+            vModel.openRepository.bindTo(self.privateImage.rx_hidden).addDisposableTo(disposeBag)
         }
     }
 

@@ -13,6 +13,7 @@ class RepositoryCellViewModel {
     let model: Variable<Repository>
     let fullName: Observable<String>
     let name: Observable<String>
+    let openRepository: Observable<Bool>
 
     init(model: Repository) {
         self.model = Variable(model)
@@ -22,6 +23,8 @@ class RepositoryCellViewModel {
         self.name = self.model.asObservable().map({ (repository) -> String in
             return repository.name!
         })
-
+        self.openRepository = self.model.asObservable().map({ (repository) -> Bool in
+            return !repository.privateRepository!
+        })
     }
 }
