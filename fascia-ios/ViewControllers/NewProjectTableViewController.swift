@@ -156,6 +156,11 @@ class NewProjectTableViewController: UITableViewController {
                 }
             }
             .addDisposableTo(disposeBag)
+        repositoryViewModel.selectedRepository.asDriver()
+            .driveNext { (repository) in
+                self.viewModel.repository.value = repository
+            }
+            .addDisposableTo(disposeBag)
     }
 
 }

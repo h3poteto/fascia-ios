@@ -20,6 +20,7 @@ class NewProjectViewModel {
     final private(set) var dataUpdated: Driver<Project?> = Driver.never()
     final private(set) var isLoading: Driver<Bool> = Driver.never()
     final private(set) var error: Driver<ErrorType?> = Driver.never()
+    var repository: Variable<Repository?> = Variable(nil)
 
     init(model: NewProject) {
         self.newProject = Variable(model)
@@ -33,7 +34,7 @@ class NewProjectViewModel {
                 resultSelector: {
                     ($1) ? nil : $0
             })
-       
+
         isLoading = action.isLoading.asDriver()
         error = action.error.asDriver()
     }

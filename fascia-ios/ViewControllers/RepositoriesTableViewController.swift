@@ -37,7 +37,6 @@ class RepositoriesTableViewController: UITableViewController {
         return viewModel.repositories.count
     }
 
-
     override func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
         guard let cell = tableView.dequeueReusableCellWithIdentifier("RepositoryTableViewCell", forIndexPath: indexPath) as? RepositoryTableViewCell else {
             return tableView.dequeueReusableCellWithIdentifier("Cell", forIndexPath: indexPath)
@@ -47,7 +46,12 @@ class RepositoriesTableViewController: UITableViewController {
         return cell
     }
 
-    func bindViewModel() {
+    override func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
+        viewModel.selectedRepository.value = viewModel.repositories[indexPath.row]
+        self.navigationController?.popViewControllerAnimated(true)
+    }
+
+    private func bindViewModel() {
         viewModel.dataUpdated
             .driveNext { (repositories) in
                 self.tableView.reloadData()
