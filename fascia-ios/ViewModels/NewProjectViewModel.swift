@@ -33,6 +33,7 @@ class NewProjectViewModel {
                 resultSelector: {
                     ($1) ? nil : $0
             })
+       
         isLoading = action.isLoading.asDriver()
         error = action.error.asDriver()
     }

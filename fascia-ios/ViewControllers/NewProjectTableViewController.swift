@@ -16,6 +16,7 @@ class NewProjectTableViewController: UITableViewController {
     @IBOutlet private weak var cancelButton: UIBarButtonItem!
     private let disposeBag = DisposeBag()
     var viewModel: NewProjectViewModel!
+    var repositoryViewModel = RepositoriesViewModel()
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -103,6 +104,14 @@ class NewProjectTableViewController: UITableViewController {
                         }
                     })
                     .addDisposableTo(self.disposeBag)
+            }
+            .addDisposableTo(disposeBag)
+
+
+        repositoryViewModel.fetch()
+        repositoryViewModel.dataUpdated
+            .driveNext { (repositories) in
+                self.repositoryViewModel.repositories = repositories
             }
             .addDisposableTo(disposeBag)
     }

@@ -26,7 +26,7 @@ class NewProjectAction {
             .subscribeOn(Scheduler.sharedInstance.backgroundScheduler)
             .map({ (response, data) throws -> Project in
                 guard let json = try NSJSONSerialization.JSONObjectWithData(data, options: .AllowFragments) as? [String: AnyObject] else {
-                    throw ProjectError.PaserError
+                    throw ProjectError.ParserError
                 }
                 guard let project = Mapper<Project>().map(json) else {
                     throw ProjectError.MappingError

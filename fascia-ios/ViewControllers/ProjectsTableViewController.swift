@@ -145,7 +145,7 @@ class ProjectsTableViewController: UITableViewController {
                 case FasciaAPIError.ClientError:
                     CSNotificationView.showInViewController(self, style: .Error, message: "The request is invalid")
                     break
-                case FasciaAPIError.ServerError, ProjectError.PaserError, ProjectError.MappingError:
+                case FasciaAPIError.ServerError, ProjectError.ParserError, ProjectError.MappingError:
                     CSNotificationView.showInViewController(self, style: .Error, message: "We're sorry, but something went wrong.")
                     break
                 default:

@@ -10,7 +10,7 @@ import ObjectMapper
 
 enum ProjectError: ErrorType {
     case MappingError
-    case PaserError
+    case ParserError
 }
 
 class Project: Mappable {
