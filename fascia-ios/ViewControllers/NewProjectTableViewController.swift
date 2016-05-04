@@ -42,22 +42,28 @@ class NewProjectTableViewController: UITableViewController {
         case 0:
             return 1
         case 1:
-            return 1
+            return 2
         default:
             return 0
         }
     }
 
     override func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
-        switch indexPath.section {
-        case 0:
+        switch (indexPath.section, indexPath.row) {
+        case (0, 0):
             guard let cell = tableView.dequeueReusableCellWithIdentifier("NewProjectTitleTableViewCell", forIndexPath: indexPath) as? NewProjectTitleTableViewCell else {
                 return tableView.dequeueReusableCellWithIdentifier("Cell", forIndexPath: indexPath)
             }
             cell.parentViewModel = viewModel
             return cell
-        case 1:
+        case (1, 0):
             guard let cell = tableView.dequeueReusableCellWithIdentifier("NewProjectDescriptionTableViewCell", forIndexPath: indexPath) as? NewProjectDescriptionTableViewCell else {
+                return tableView.dequeueReusableCellWithIdentifier("Cell", forIndexPath: indexPath)
+            }
+            cell.parentViewModel = viewModel
+            return cell
+        case (1, 1):
+            guard let cell = tableView.dequeueReusableCellWithIdentifier("NewProjectRepositoryTableViewCell", forIndexPath: indexPath) as? NewProjectRepositoryTableViewCell else {
                 return tableView.dequeueReusableCellWithIdentifier("Cell", forIndexPath: indexPath)
             }
             cell.parentViewModel = viewModel

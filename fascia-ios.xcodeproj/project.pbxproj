@@ -27,6 +27,7 @@
 		E9CF1D3F1CD8F10100BD5DDE /* Repository.swift in Sources */ = {isa = PBXBuildFile; fileRef = E9CF1D3E1CD8F10100BD5DDE /* Repository.swift */; };
 		E9CF1D411CD8F72400BD5DDE /* RepositoryAction.swift in Sources */ = {isa = PBXBuildFile; fileRef = E9CF1D401CD8F72400BD5DDE /* RepositoryAction.swift */; };
 		E9CF1D431CD9EE8B00BD5DDE /* RepositoriesViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = E9CF1D421CD9EE8B00BD5DDE /* RepositoriesViewModel.swift */; };
+		E9CF1D451CD9FE7600BD5DDE /* NewProjectRepositoryTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = E9CF1D441CD9FE7600BD5DDE /* NewProjectRepositoryTableViewCell.swift */; };
 		E9E4FEF81CC53D3100517729 /* Launch Screen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = E9E4FEF71CC53D3100517729 /* Launch Screen.storyboard */; };
 		E9E4FEFA1CC53D6B00517729 /* Settings.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = E9E4FEF91CC53D6B00517729 /* Settings.storyboard */; };
 		E9E4FEFC1CC53DC400517729 /* Projects.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = E9E4FEFB1CC53DC400517729 /* Projects.storyboard */; };
@@ -76,6 +77,7 @@
 		E9CF1D3E1CD8F10100BD5DDE /* Repository.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = Repository.swift; path = Models/Repository.swift; sourceTree = "<group>"; };
 		E9CF1D401CD8F72400BD5DDE /* RepositoryAction.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = RepositoryAction.swift; path = Actions/RepositoryAction.swift; sourceTree = "<group>"; };
 		E9CF1D421CD9EE8B00BD5DDE /* RepositoriesViewModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = RepositoriesViewModel.swift; path = ViewModels/RepositoriesViewModel.swift; sourceTree = "<group>"; };
+		E9CF1D441CD9FE7600BD5DDE /* NewProjectRepositoryTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = NewProjectRepositoryTableViewCell.swift; path = Views/Projects/NewProjectRepositoryTableViewCell.swift; sourceTree = "<group>"; };
 		E9E4FEF71CC53D3100517729 /* Launch Screen.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; name = "Launch Screen.storyboard"; path = "Resources/Launch Screen.storyboard"; sourceTree = "<group>"; };
 		E9E4FEF91CC53D6B00517729 /* Settings.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; name = Settings.storyboard; path = Resources/Settings.storyboard; sourceTree = "<group>"; };
 		E9E4FEFB1CC53DC400517729 /* Projects.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; name = Projects.storyboard; path = Resources/Projects.storyboard; sourceTree = "<group>"; };
@@ -151,6 +153,7 @@
 				E9571AE01CD36B88007A819F /* ProjectTableViewCell.swift */,
 				E9571AE21CD36BA7007A819F /* NewProjectTitleTableViewCell.swift */,
 				E9571AE61CD3AB92007A819F /* NewProjectDescriptionTableViewCell.swift */,
+				E9CF1D441CD9FE7600BD5DDE /* NewProjectRepositoryTableViewCell.swift */,
 			);
 			name = Projects;
 			sourceTree = "<group>";
@@ -469,6 +472,7 @@
 				E9E4FF0B1CC7DE1B00517729 /* MainTabBarController.swift in Sources */,
 				E96CC3CA1CD58E50007DDB65 /* SessionAction.swift in Sources */,
 				E9571ADE1CD36781007A819F /* NewProjectViewModel.swift in Sources */,
+				E9CF1D451CD9FE7600BD5DDE /* NewProjectRepositoryTableViewCell.swift in Sources */,
 				E9571AE11CD36B88007A819F /* ProjectTableViewCell.swift in Sources */,
 				E9CF1D431CD9EE8B00BD5DDE /* RepositoriesViewModel.swift in Sources */,
 				E9E4FF001CC68ED600517729 /* ProjectsTableViewController.swift in Sources */,

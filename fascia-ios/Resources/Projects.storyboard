@@ -185,6 +185,45 @@
                                     <outlet property="descriptionText" destination="oDZ-bt-yke" id="e6i-ZW-daA"/>
                                 </connections>
                             </tableViewCell>
+                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" restorationIdentifier="NewProjectRepositoryTableViewCell" selectionStyle="default" indentationWidth="10" reuseIdentifier="NewProjectRepositoryTableViewCell" id="oHm-jb-5uC" customClass="NewProjectRepositoryTableViewCell" customModule="fascia_ios" customModuleProvider="target">
+                                <rect key="frame" x="0.0" y="201.5" width="600" height="44"/>
+                                <autoresizingMask key="autoresizingMask"/>
+                                <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="oHm-jb-5uC" id="whn-nP-Vm8">
+                                    <rect key="frame" x="0.0" y="0.0" width="600" height="43.5"/>
+                                    <autoresizingMask key="autoresizingMask"/>
+                                    <subviews>
+                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" ambiguous="YES" misplaced="YES" text="Repository" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="0gr-zi-rU0">
+                                            <rect key="frame" x="16" y="11" width="82" height="21"/>
+                                            <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                            <color key="textColor" white="0.33333333333333331" alpha="1" colorSpace="calibratedWhite"/>
+                                            <nil key="highlightedColor"/>
+                                        </label>
+                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" ambiguous="YES" misplaced="YES" text="-" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Ugt-ew-IEg">
+                                            <rect key="frame" x="110" y="11.5" width="470" height="21"/>
+                                            <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                            <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                            <nil key="highlightedColor"/>
+                                        </label>
+                                    </subviews>
+                                    <constraints>
+                                        <constraint firstItem="0gr-zi-rU0" firstAttribute="leading" secondItem="whn-nP-Vm8" secondAttribute="leadingMargin" constant="8" id="EXo-4G-RnY"/>
+                                        <constraint firstItem="Ugt-ew-IEg" firstAttribute="centerY" secondItem="whn-nP-Vm8" secondAttribute="centerY" id="GuQ-wr-eOd"/>
+                                        <constraint firstItem="0gr-zi-rU0" firstAttribute="centerY" secondItem="whn-nP-Vm8" secondAttribute="centerY" id="bNj-9j-GPE"/>
+                                        <constraint firstAttribute="trailingMargin" secondItem="Ugt-ew-IEg" secondAttribute="trailing" constant="12" id="lG8-vA-5vb"/>
+                                        <constraint firstAttribute="trailingMargin" secondItem="Ugt-ew-IEg" secondAttribute="trailing" constant="12" id="oU2-za-73o"/>
+                                        <constraint firstItem="Ugt-ew-IEg" firstAttribute="leading" secondItem="0gr-zi-rU0" secondAttribute="trailing" constant="12" id="ofm-FK-veD"/>
+                                    </constraints>
+                                    <variation key="default">
+                                        <mask key="constraints">
+                                            <exclude reference="lG8-vA-5vb"/>
+                                        </mask>
+                                    </variation>
+                                </tableViewCellContentView>
+                                <connections>
+                                    <outlet property="repositoryLabel" destination="0gr-zi-rU0" id="U1G-2i-4eG"/>
+                                    <outlet property="selectRepositoryLabel" destination="Ugt-ew-IEg" id="Qrz-Bf-aw1"/>
+                                </connections>
+                            </tableViewCell>
                         </prototypes>
                         <connections>
                             <outlet property="dataSource" destination="Lb0-uq-cfc" id="nck-ma-7gp"/>
