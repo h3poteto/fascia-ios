@@ -28,6 +28,9 @@
 		E9CF1D411CD8F72400BD5DDE /* RepositoryAction.swift in Sources */ = {isa = PBXBuildFile; fileRef = E9CF1D401CD8F72400BD5DDE /* RepositoryAction.swift */; };
 		E9CF1D431CD9EE8B00BD5DDE /* RepositoriesViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = E9CF1D421CD9EE8B00BD5DDE /* RepositoriesViewModel.swift */; };
 		E9CF1D451CD9FE7600BD5DDE /* NewProjectRepositoryTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = E9CF1D441CD9FE7600BD5DDE /* NewProjectRepositoryTableViewCell.swift */; };
+		E9CF1D471CDA027C00BD5DDE /* RepositoriesTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E9CF1D461CDA027C00BD5DDE /* RepositoriesTableViewController.swift */; };
+		E9CF1D491CDA0D8300BD5DDE /* RepositoryTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = E9CF1D481CDA0D8300BD5DDE /* RepositoryTableViewCell.swift */; };
+		E9CF1D4B1CDA31EB00BD5DDE /* RepositoryCellViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = E9CF1D4A1CDA31EB00BD5DDE /* RepositoryCellViewModel.swift */; };
 		E9E4FEF81CC53D3100517729 /* Launch Screen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = E9E4FEF71CC53D3100517729 /* Launch Screen.storyboard */; };
 		E9E4FEFA1CC53D6B00517729 /* Settings.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = E9E4FEF91CC53D6B00517729 /* Settings.storyboard */; };
 		E9E4FEFC1CC53DC400517729 /* Projects.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = E9E4FEFB1CC53DC400517729 /* Projects.storyboard */; };
@@ -78,6 +81,9 @@
 		E9CF1D401CD8F72400BD5DDE /* RepositoryAction.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = RepositoryAction.swift; path = Actions/RepositoryAction.swift; sourceTree = "<group>"; };
 		E9CF1D421CD9EE8B00BD5DDE /* RepositoriesViewModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = RepositoriesViewModel.swift; path = ViewModels/RepositoriesViewModel.swift; sourceTree = "<group>"; };
 		E9CF1D441CD9FE7600BD5DDE /* NewProjectRepositoryTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = NewProjectRepositoryTableViewCell.swift; path = Views/Projects/NewProjectRepositoryTableViewCell.swift; sourceTree = "<group>"; };
+		E9CF1D461CDA027C00BD5DDE /* RepositoriesTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = RepositoriesTableViewController.swift; path = ViewControllers/RepositoriesTableViewController.swift; sourceTree = "<group>"; };
+		E9CF1D481CDA0D8300BD5DDE /* RepositoryTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = RepositoryTableViewCell.swift; path = Views/Projects/RepositoryTableViewCell.swift; sourceTree = "<group>"; };
+		E9CF1D4A1CDA31EB00BD5DDE /* RepositoryCellViewModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = RepositoryCellViewModel.swift; path = ViewModels/RepositoryCellViewModel.swift; sourceTree = "<group>"; };
 		E9E4FEF71CC53D3100517729 /* Launch Screen.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; name = "Launch Screen.storyboard"; path = "Resources/Launch Screen.storyboard"; sourceTree = "<group>"; };
 		E9E4FEF91CC53D6B00517729 /* Settings.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; name = Settings.storyboard; path = Resources/Settings.storyboard; sourceTree = "<group>"; };
 		E9E4FEFB1CC53DC400517729 /* Projects.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; name = Projects.storyboard; path = Resources/Projects.storyboard; sourceTree = "<group>"; };
@@ -151,6 +157,7 @@
 			isa = PBXGroup;
 			children = (
 				E9571AE01CD36B88007A819F /* ProjectTableViewCell.swift */,
+				E9CF1D481CDA0D8300BD5DDE /* RepositoryTableViewCell.swift */,
 				E9571AE21CD36BA7007A819F /* NewProjectTitleTableViewCell.swift */,
 				E9571AE61CD3AB92007A819F /* NewProjectDescriptionTableViewCell.swift */,
 				E9CF1D441CD9FE7600BD5DDE /* NewProjectRepositoryTableViewCell.swift */,
@@ -205,6 +212,7 @@
 				E9E4FEFF1CC68ED500517729 /* ProjectsTableViewController.swift */,
 				E9571ADB1CD35E86007A819F /* NewProjectTableViewController.swift */,
 				E9E4FF011CC68FE300517729 /* SettingsTableViewController.swift */,
+				E9CF1D461CDA027C00BD5DDE /* RepositoriesTableViewController.swift */,
 			);
 			name = ViewControllers;
 			sourceTree = "<group>";
@@ -218,6 +226,7 @@
 				E96CC3CB1CD58F1F007DDB65 /* SignInViewModel.swift */,
 				E928659A1CD8DDC100D2EF07 /* HUDManager.swift */,
 				E9CF1D421CD9EE8B00BD5DDE /* RepositoriesViewModel.swift */,
+				E9CF1D4A1CDA31EB00BD5DDE /* RepositoryCellViewModel.swift */,
 			);
 			name = ViewModels;
 			sourceTree = "<group>";
@@ -463,7 +472,10 @@
 				E9F4C6651CC52C19003DD8DC /* AppDelegate.swift in Sources */,
 				E9571ADC1CD35E86007A819F /* NewProjectTableViewController.swift in Sources */,
 				E9CF1D411CD8F72400BD5DDE /* RepositoryAction.swift in Sources */,
+				E9CF1D4B1CDA31EB00BD5DDE /* RepositoryCellViewModel.swift in Sources */,
 				E96CC3CC1CD58F1F007DDB65 /* SignInViewModel.swift in Sources */,
+				E9CF1D471CDA027C00BD5DDE /* RepositoriesTableViewController.swift in Sources */,
+				E9CF1D491CDA0D8300BD5DDE /* RepositoryTableViewCell.swift in Sources */,
 				E9571AE71CD3AB92007A819F /* NewProjectDescriptionTableViewCell.swift in Sources */,
 				E9CF1D3F1CD8F10100BD5DDE /* Repository.swift in Sources */,
 				E9571AE91CD3C4FD007A819F /* NewProjectAction.swift in Sources */,

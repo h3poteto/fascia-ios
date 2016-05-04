@@ -96,7 +96,7 @@
         <scene sceneID="FvY-7Q-ivi">
             <objects>
                 <tableViewController storyboardIdentifier="NewProjectTableViewController" title="NewProjectTableViewController" id="Lb0-uq-cfc" customClass="NewProjectTableViewController" customModule="fascia_ios" customModuleProvider="target" sceneMemberID="viewController">
-                    <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="grouped" separatorStyle="default" allowsSelection="NO" rowHeight="44" sectionHeaderHeight="18" sectionFooterHeight="18" id="M5g-vr-BJc">
+                    <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="grouped" separatorStyle="default" rowHeight="44" sectionHeaderHeight="18" sectionFooterHeight="18" id="M5g-vr-BJc">
                         <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" red="0.93725490199999995" green="0.93725490199999995" blue="0.95686274510000002" alpha="1" colorSpace="calibratedRGB"/>
@@ -245,6 +245,75 @@
             </objects>
             <point key="canvasLocation" x="370" y="1118"/>
         </scene>
+        <!--Repositories-->
+        <scene sceneID="uqP-rq-W00">
+            <objects>
+                <tableViewController storyboardIdentifier="RepositoriesTableViewController" title="Repositories" id="wBv-RN-zNT" customClass="RepositoriesTableViewController" customModule="fascia_ios" customModuleProvider="target" sceneMemberID="viewController">
+                    <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="28" sectionFooterHeight="28" id="LYN-he-OMw">
+                        <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <prototypes>
+                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" restorationIdentifier="RepositoryTableViewCell" selectionStyle="default" indentationWidth="10" reuseIdentifier="RepositoryTableViewCell" id="62R-fN-Ed5" customClass="RepositoryTableViewCell" customModule="fascia_ios" customModuleProvider="target">
+                                <rect key="frame" x="0.0" y="28" width="600" height="44"/>
+                                <autoresizingMask key="autoresizingMask"/>
+                                <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" tag="2" contentMode="center" tableViewCell="62R-fN-Ed5" id="UMK-th-pGY">
+                                    <rect key="frame" x="0.0" y="0.0" width="600" height="43.5"/>
+                                    <autoresizingMask key="autoresizingMask"/>
+                                    <subviews>
+                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Name" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="2" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="PhA-sK-bfV">
+                                            <rect key="frame" x="20" y="14" width="540" height="16"/>
+                                            <constraints>
+                                                <constraint firstAttribute="height" constant="31" id="wdd-Z3-iJT"/>
+                                            </constraints>
+                                            <fontDescription key="fontDescription" type="system" pointSize="13"/>
+                                            <color key="textColor" white="0.33333333333333331" alpha="1" colorSpace="calibratedWhite"/>
+                                            <nil key="highlightedColor"/>
+                                            <variation key="default">
+                                                <mask key="constraints">
+                                                    <exclude reference="wdd-Z3-iJT"/>
+                                                </mask>
+                                            </variation>
+                                        </label>
+                                        <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="Lock" translatesAutoresizingMaskIntoConstraints="NO" id="cN8-aI-4R7">
+                                            <rect key="frame" x="568" y="12" width="16" height="20"/>
+                                            <constraints>
+                                                <constraint firstAttribute="width" constant="16" id="VJM-f8-01I"/>
+                                                <constraint firstAttribute="height" constant="20" id="tg3-Ka-e7C"/>
+                                            </constraints>
+                                        </imageView>
+                                    </subviews>
+                                    <constraints>
+                                        <constraint firstItem="cN8-aI-4R7" firstAttribute="centerY" secondItem="UMK-th-pGY" secondAttribute="centerY" id="G41-Su-DrT"/>
+                                        <constraint firstItem="PhA-sK-bfV" firstAttribute="centerY" secondItem="UMK-th-pGY" secondAttribute="centerY" id="cfx-Ll-vVo"/>
+                                        <constraint firstItem="cN8-aI-4R7" firstAttribute="leading" secondItem="PhA-sK-bfV" secondAttribute="trailing" constant="8" id="kAH-DJ-z9D"/>
+                                        <constraint firstItem="PhA-sK-bfV" firstAttribute="leading" secondItem="UMK-th-pGY" secondAttribute="leadingMargin" constant="12" id="m7A-Sm-x8N"/>
+                                        <constraint firstAttribute="trailingMargin" secondItem="cN8-aI-4R7" secondAttribute="trailing" constant="8" id="o2I-tJ-9cn"/>
+                                        <constraint firstItem="PhA-sK-bfV" firstAttribute="top" secondItem="UMK-th-pGY" secondAttribute="topMargin" constant="4" id="oGq-sD-s5K"/>
+                                        <constraint firstAttribute="bottomMargin" secondItem="PhA-sK-bfV" secondAttribute="bottom" constant="4" id="y7v-b9-Svk"/>
+                                    </constraints>
+                                    <variation key="default">
+                                        <mask key="constraints">
+                                            <exclude reference="oGq-sD-s5K"/>
+                                            <exclude reference="y7v-b9-Svk"/>
+                                        </mask>
+                                    </variation>
+                                </tableViewCellContentView>
+                                <connections>
+                                    <outlet property="nameLabel" destination="PhA-sK-bfV" id="X8T-9Q-fh1"/>
+                                </connections>
+                            </tableViewCell>
+                        </prototypes>
+                        <connections>
+                            <outlet property="dataSource" destination="wBv-RN-zNT" id="321-Dz-aKa"/>
+                            <outlet property="delegate" destination="wBv-RN-zNT" id="FsF-gg-gX2"/>
+                        </connections>
+                    </tableView>
+                </tableViewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="NZC-e2-s0q" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="1041" y="1118"/>
+        </scene>
         <!--NewProject-->
         <scene sceneID="rNz-WS-arU">
             <objects>
@@ -277,5 +346,35 @@
             </objects>
             <point key="canvasLocation" x="-457" y="354"/>
         </scene>
+        <!--Table View Controller-->
+        <scene sceneID="1vK-Nl-c3h">
+            <objects>
+                <tableViewController id="fqZ-q7-WZl" sceneMemberID="viewController">
+                    <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="28" sectionFooterHeight="28" id="Qtn-lG-BhX">
+                        <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <prototypes>
+                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" id="i9J-yy-WPm">
+                                <rect key="frame" x="0.0" y="28" width="600" height="44"/>
+                                <autoresizingMask key="autoresizingMask"/>
+                                <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="i9J-yy-WPm" id="FmI-oQ-m5a">
+                                    <rect key="frame" x="0.0" y="0.0" width="600" height="43.5"/>
+                                    <autoresizingMask key="autoresizingMask"/>
+                                </tableViewCellContentView>
+                            </tableViewCell>
+                        </prototypes>
+                        <connections>
+                            <outlet property="dataSource" destination="fqZ-q7-WZl" id="5sz-9n-YKa"/>
+                            <outlet property="delegate" destination="fqZ-q7-WZl" id="saK-f3-Zp7"/>
+                        </connections>
+                    </tableView>
+                </tableViewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="M2B-Dv-Bmp" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+        </scene>
     </scenes>
+    <resources>
+        <image name="Lock" width="23" height="29"/>
+    </resources>
 </document>

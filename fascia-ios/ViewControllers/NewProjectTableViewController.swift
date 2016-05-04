@@ -22,6 +22,7 @@ class NewProjectTableViewController: UITableViewController {
         super.viewDidLoad()
 
         bindViewModel()
+        bindRepositoryViewModel()
     }
 
     override func didReceiveMemoryWarning() {
@@ -75,7 +76,25 @@ class NewProjectTableViewController: UITableViewController {
 
 
     override func tableView(tableView: UITableView, willSelectRowAtIndexPath indexPath: NSIndexPath) -> NSIndexPath? {
-        return nil
+        switch (indexPath.section, indexPath.row) {
+        case (1, 1):
+            return indexPath
+        default:
+            return nil
+        }
+    }
+
+    override func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
+        switch (indexPath.section, indexPath.row) {
+        case (1, 1):
+            if let repositories = UIStoryboard.instantiateViewController("RepositoriesTableViewController", storyboardName: "Projects") as? RepositoriesTableViewController {
+                repositories.viewModel = self.repositoryViewModel
+                self.navigationController?.pushViewController(repositories, animated: true)
+            }
+            break
+        default:
+            break
+        }
     }
 
     private func showSignInView() {
@@ -112,12 +131,29 @@ class NewProjectTableViewController: UITableViewController {
                     .addDisposableTo(self.disposeBag)
             }
             .addDisposableTo(disposeBag)
+    }
 
-
+    private func bindRepositoryViewModel() {
         repositoryViewModel.fetch()
         repositoryViewModel.dataUpdated
             .driveNext { (repositories) in
                 self.repositoryViewModel.repositories = repositories
+            }
+            .addDisposableTo(disposeBag)
+        repositoryViewModel.isLoading
+            .driveNext { (loading) in
+                if loading {
+                    UIApplication.sharedApplication().networkActivityIndicatorVisible = true
+                } else {
+                    UIApplication.sharedApplication().networkActivityIndicatorVisible = false
+                }
+            }
+            .addDisposableTo(disposeBag)
+        repositoryViewModel.error
+            .driveNext { (error) in
+                if error != nil {
+                    UIApplication.sharedApplication().networkActivityIndicatorVisible = false
+                }
             }
             .addDisposableTo(disposeBag)
     }
