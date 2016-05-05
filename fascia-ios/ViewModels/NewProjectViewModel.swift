@@ -42,13 +42,18 @@ class NewProjectViewModel {
 
     }
 
-    func update(title: String?, description: String?) {
+    func update(title: String?, description: String?, repository: Repository?) {
         if title != nil {
             newProject.value.title = title
             self.title.value = title
         }
         if description != nil {
             newProject.value.description = description
+        }
+        if repository != nil {
+            newProject.value.repositoryName = repository?.name
+            newProject.value.repositoryID = repository?.id
+            newProject.value.repositoryOwner = repository?.ownerName
         }
     }
 

@@ -159,10 +159,7 @@ class NewProjectTableViewController: UITableViewController {
         repositoryViewModel.selectedRepository.asDriver()
             .driveNext { (repository) in
                 self.viewModel.repository.value = repository
-                self.viewModel.update(repository?.name, description: nil)
-                self.viewModel.newProject.value.repositoryID = repository?.id
-                self.viewModel.newProject.value.repositoryName = repository?.name
-                self.viewModel.newProject.value.repositoryOwner = repository?.ownerName
+                self.viewModel.update(repository?.name, description: nil, repository: repository)
             }
             .addDisposableTo(disposeBag)
     }
