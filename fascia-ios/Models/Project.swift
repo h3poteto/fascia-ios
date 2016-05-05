@@ -14,13 +14,13 @@ enum ProjectError: ErrorType {
 }
 
 class Project: Mappable {
-    var id: Int64?
-    var userID: Int64?
+    var id: Int?
+    var userID: Int?
     var title: String?
     var projectDescription: String?
     var showIssues: Bool?
     var showPullRequests: Bool?
-    var repositoryID: Int64?
+    var repositoryID: Int?
 
     class func buildWithArray(projects: [[String: AnyObject]]) -> [Project] {
         var arr: [Project] = []
