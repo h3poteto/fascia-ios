@@ -12,7 +12,7 @@ import ObjectMapper
 class NewProject: Mappable {
     var title: String?
     var description: String?
-    var repositoryID: Int64?
+    var repositoryID: Int?
     var repositoryOwner: String?
     var repositoryName: String?
 

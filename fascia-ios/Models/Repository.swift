@@ -13,7 +13,7 @@ enum RepositoryError: ErrorType {
 }
 
 class Repository: Mappable {
-    var id: Int64?
+    var id: Int?
     var name: String?
     var fullName: String?
     var ownerName: String?
@@ -37,7 +37,7 @@ class Repository: Mappable {
         id                  <- map["id"]
         name                <- map["name"]
         fullName            <- map["full_name"]
-        ownerName           <- map["owner"]["login"]
+        ownerName           <- map["owner.login"]
         privateRepository   <- map["private"]
     }
 }
