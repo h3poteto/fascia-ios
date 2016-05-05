@@ -41,3 +41,9 @@ class Repository: Mappable {
         privateRepository   <- map["private"]
     }
 }
+
+extension Repository: CustomStringConvertible {
+    internal var description: String {
+        return "{id:\(id), name:\(name), full_name:\(fullName), owner:\(ownerName), private:\(privateRepository)}"
+    }
+}

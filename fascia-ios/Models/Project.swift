@@ -17,7 +17,7 @@ class Project: Mappable {
     var id: Int64?
     var userID: Int64?
     var title: String?
-    var description: String?
+    var projectDescription: String?
     var showIssues: Bool?
     var showPullRequests: Bool?
     var repositoryID: Int64?
@@ -43,9 +43,15 @@ class Project: Mappable {
         id                  <- map["ID"]
         userID              <- map["UserID"]
         title               <- map["Title"]
-        description         <- map["Description"]
+        projectDescription  <- map["Description"]
         showIssues          <- map["ShowIssues"]
         showPullRequests    <- map["ShowPullRequests"]
         repositoryID        <- map["RepositoryID"]
+    }
+}
+
+extension Project: CustomStringConvertible {
+    internal var description: String {
+        return "{id:\(id), userID:\(userID), title:\(title), description:\(projectDescription), showIssues:\(showIssues), showPullRequests:\(showPullRequests), repositoryID:\(repositoryID)}"
     }
 }

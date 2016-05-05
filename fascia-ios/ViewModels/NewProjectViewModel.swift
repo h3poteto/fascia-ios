@@ -48,7 +48,7 @@ class NewProjectViewModel {
             self.title.value = title
         }
         if description != nil {
-            newProject.value.description = description
+            newProject.value.projectDescription = description
         }
         if repository != nil {
             newProject.value.repositoryName = repository?.name
@@ -77,6 +77,7 @@ class NewProjectViewModel {
     }
 
     func fetch(newProject: NewProject) {
+        print(newProject)
         let params = Mapper<NewProject>().toJSON(newProject)
         action.request(params)
     }

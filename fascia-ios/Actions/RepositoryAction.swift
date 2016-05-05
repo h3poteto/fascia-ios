@@ -32,6 +32,7 @@ class RepositoryAction {
                 return Repository.buildWithArray(json)
             })
             .subscribe(onNext: { (repositories) in
+                    print(repositories)
                     self.repositories.value = repositories
                 }, onError: { (errorType) in
                     self.error.value = errorType

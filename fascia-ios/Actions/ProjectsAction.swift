@@ -31,6 +31,7 @@ class ProjectsAction {
                 return Project.buildWithArray(json)
             })
             .subscribe(onNext: { (projects) -> Void in
+                    print(projects)
                     self.projects.value = projects
                 }, onError: { (errorType) in
                     self.error.value = errorType
