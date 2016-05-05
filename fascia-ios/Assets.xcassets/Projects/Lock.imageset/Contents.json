@@ -2,12 +2,11 @@
   "images" : [
     {
       "idiom" : "universal",
-      "filename" : "Lock-Line.png",
       "scale" : "1x"
     },
     {
       "idiom" : "universal",
-      "filename" : "Lock-Line@2x.png",
+      "filename" : "Lock-50.png",
       "scale" : "2x"
     },
     {

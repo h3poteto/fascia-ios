@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import FontAwesomeKit
 
 class MainTabBarController: UITabBarController {
 
