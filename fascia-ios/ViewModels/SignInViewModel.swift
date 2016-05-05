@@ -6,10 +6,12 @@
 //  Copyright © 2016年 h3poteto. All rights reserved.
 //
 
-import Foundation
+import RxSwift
+import RxCocoa
 
 class SignInViewModel {
     private final let action = SessionAction()
+    final private(set) var isLoading = Variable(false)
 
     func update() {
         action.updateSession()

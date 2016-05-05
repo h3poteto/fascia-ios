@@ -11,8 +11,8 @@ import ObjectMapper
 
 class NewProject: Mappable {
     var title: String?
-    var description: String?
-    var repositoryID: Int64?
+    var projectDescription: String?
+    var repositoryID: Int?
     var repositoryOwner: String?
     var repositoryName: String?
 
@@ -25,9 +25,15 @@ class NewProject: Mappable {
 
     func mapping(map: Map) {
         title               <- map["title"]
-        description         <- map["description"]
+        projectDescription  <- map["description"]
         repositoryID        <- map["repositoryID"]
         repositoryOwner     <- map["repositoryOwner"]
         repositoryName      <- map["repositoryName"]
+    }
+}
+
+extension NewProject: CustomStringConvertible {
+    internal var description: String {
+        return "{title:\(title), description:\(projectDescription), repositoryID:\(repositoryID), repositoryOwner:\(repositoryOwner), repositoryName:\(repositoryName)}"
     }
 }

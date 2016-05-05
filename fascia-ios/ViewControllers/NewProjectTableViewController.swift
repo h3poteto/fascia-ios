@@ -16,11 +16,13 @@ class NewProjectTableViewController: UITableViewController {
     @IBOutlet private weak var cancelButton: UIBarButtonItem!
     private let disposeBag = DisposeBag()
     var viewModel: NewProjectViewModel!
+    var repositoryViewModel = RepositoriesViewModel()
 
     override func viewDidLoad() {
         super.viewDidLoad()
 
         bindViewModel()
+        bindRepositoryViewModel()
     }
 
     override func didReceiveMemoryWarning() {
@@ -41,22 +43,28 @@ class NewProjectTableViewController: UITableViewController {
         case 0:
             return 1
         case 1:
-            return 1
+            return 2
         default:
             return 0
         }
     }
 
     override func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
-        switch indexPath.section {
-        case 0:
+        switch (indexPath.section, indexPath.row) {
+        case (0, 0):
             guard let cell = tableView.dequeueReusableCellWithIdentifier("NewProjectTitleTableViewCell", forIndexPath: indexPath) as? NewProjectTitleTableViewCell else {
                 return tableView.dequeueReusableCellWithIdentifier("Cell", forIndexPath: indexPath)
             }
             cell.parentViewModel = viewModel
             return cell
-        case 1:
+        case (1, 0):
             guard let cell = tableView.dequeueReusableCellWithIdentifier("NewProjectDescriptionTableViewCell", forIndexPath: indexPath) as? NewProjectDescriptionTableViewCell else {
+                return tableView.dequeueReusableCellWithIdentifier("Cell", forIndexPath: indexPath)
+            }
+            cell.parentViewModel = viewModel
+            return cell
+        case (1, 1):
+            guard let cell = tableView.dequeueReusableCellWithIdentifier("NewProjectRepositoryTableViewCell", forIndexPath: indexPath) as? NewProjectRepositoryTableViewCell else {
                 return tableView.dequeueReusableCellWithIdentifier("Cell", forIndexPath: indexPath)
             }
             cell.parentViewModel = viewModel
@@ -68,7 +76,25 @@ class NewProjectTableViewController: UITableViewController {
 
 
     override func tableView(tableView: UITableView, willSelectRowAtIndexPath indexPath: NSIndexPath) -> NSIndexPath? {
-        return nil
+        switch (indexPath.section, indexPath.row) {
+        case (1, 1):
+            return indexPath
+        default:
+            return nil
+        }
+    }
+
+    override func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
+        switch (indexPath.section, indexPath.row) {
+        case (1, 1):
+            if let repositories = UIStoryboard.instantiateViewController("RepositoriesTableViewController", storyboardName: "Projects") as? RepositoriesTableViewController {
+                repositories.viewModel = self.repositoryViewModel
+                self.navigationController?.pushViewController(repositories, animated: true)
+            }
+            break
+        default:
+            break
+        }
     }
 
     private func showSignInView() {
@@ -103,6 +129,37 @@ class NewProjectTableViewController: UITableViewController {
                         }
                     })
                     .addDisposableTo(self.disposeBag)
+            }
+            .addDisposableTo(disposeBag)
+    }
+
+    private func bindRepositoryViewModel() {
+        repositoryViewModel.fetch()
+        repositoryViewModel.dataUpdated
+            .driveNext { (repositories) in
+                self.repositoryViewModel.repositories = repositories
+            }
+            .addDisposableTo(disposeBag)
+        repositoryViewModel.isLoading
+            .driveNext { (loading) in
+                if loading {
+                    UIApplication.sharedApplication().networkActivityIndicatorVisible = true
+                } else {
+                    UIApplication.sharedApplication().networkActivityIndicatorVisible = false
+                }
+            }
+            .addDisposableTo(disposeBag)
+        repositoryViewModel.error
+            .driveNext { (error) in
+                if error != nil {
+                    UIApplication.sharedApplication().networkActivityIndicatorVisible = false
+                }
+            }
+            .addDisposableTo(disposeBag)
+        repositoryViewModel.selectedRepository.asDriver()
+            .driveNext { (repository) in
+                self.viewModel.repository.value = repository
+                self.viewModel.update(repository?.name, description: nil, repository: repository)
             }
             .addDisposableTo(disposeBag)
     }

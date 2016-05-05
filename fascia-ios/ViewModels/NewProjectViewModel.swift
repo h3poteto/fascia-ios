@@ -17,9 +17,11 @@ enum NewProjectValidationError: ErrorType {
 class NewProjectViewModel {
     private final let action = NewProjectAction()
     private(set) var newProject: Variable<NewProject>
+    final private(set) var title: Variable<String?> = Variable(nil)
     final private(set) var dataUpdated: Driver<Project?> = Driver.never()
     final private(set) var isLoading: Driver<Bool> = Driver.never()
     final private(set) var error: Driver<ErrorType?> = Driver.never()
+    var repository: Variable<Repository?> = Variable(nil)
 
     init(model: NewProject) {
         self.newProject = Variable(model)
@@ -33,16 +35,25 @@ class NewProjectViewModel {
                 resultSelector: {
                     ($1) ? nil : $0
             })
+
         isLoading = action.isLoading.asDriver()
         error = action.error.asDriver()
+
+
     }
 
-    func update(title: String?, description: String?) {
+    func update(title: String?, description: String?, repository: Repository?) {
         if title != nil {
             newProject.value.title = title
+            self.title.value = title
         }
         if description != nil {
-            newProject.value.description = description
+            newProject.value.projectDescription = description
+        }
+        if repository != nil {
+            newProject.value.repositoryName = repository?.name
+            newProject.value.repositoryID = repository?.id
+            newProject.value.repositoryOwner = repository?.ownerName
         }
     }
 
@@ -66,6 +77,7 @@ class NewProjectViewModel {
     }
 
     func fetch(newProject: NewProject) {
+        print(newProject)
         let params = Mapper<NewProject>().toJSON(newProject)
         action.request(params)
     }

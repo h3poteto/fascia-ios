@@ -10,6 +10,7 @@ PODS:
   - RxCocoa (2.4):
     - RxSwift (~> 2.4)
   - RxSwift (2.4)
+  - SVProgressHUD (2.0.3)
 
 DEPENDENCIES:
   - Alamofire (~> 3.3)
@@ -18,6 +19,7 @@ DEPENDENCIES:
   - RxAlamofire
   - RxCocoa (~> 2.4)
   - RxSwift (~> 2.4)
+  - SVProgressHUD
 
 SPEC CHECKSUMS:
   Alamofire: 369bc67b6f5ac33ded3648d7bd21c5bfb91c2ecc
@@ -26,7 +28,8 @@ SPEC CHECKSUMS:
   RxAlamofire: 250b7846cedbd189d6190e4f83caa01ee1f1eceb
   RxCocoa: 7d6cd877de99f5640306b3d6cf87f580c1d91b61
   RxSwift: 67b9ef4e8b34fb394e200e754c6a09cc16559f94
+  SVProgressHUD: b0830714205bea1317ea1a2ebc71e5633af334d4
 
-PODFILE CHECKSUM: 2a10b5a4c2cebdf9ab5a01558d2d76552c39c67f
+PODFILE CHECKSUM: 7bcd271646589140cd75ab22e71d79d95d43569f
 
 COCOAPODS: 1.0.0.beta.8

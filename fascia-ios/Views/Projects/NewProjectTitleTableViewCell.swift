@@ -16,7 +16,19 @@ class NewProjectTitleTableViewCell: UITableViewCell {
 
     private let disposeBag = DisposeBag()
 
-    var parentViewModel: NewProjectViewModel?
+    var parentViewModel: NewProjectViewModel? {
+        didSet {
+            guard let vModel = self.parentViewModel else { return }
+            vModel.title
+                .asObservable()
+                .map({ (t) -> String in
+                    guard let title = t else { return "" }
+                    return title
+                })
+                .bindTo(self.titleText.rx_text)
+                .addDisposableTo(disposeBag)
+        }
+    }
 
     override func awakeFromNib() {
         super.awakeFromNib()
@@ -33,7 +45,7 @@ class NewProjectTitleTableViewCell: UITableViewCell {
     private func bindViewModel() {
         titleText.rx_text
             .subscribeNext { (text) in
-                self.parentViewModel?.update(text, description: nil)
+                self.parentViewModel?.update(text, description: nil, repository: nil)
             }
             .addDisposableTo(disposeBag)
     }

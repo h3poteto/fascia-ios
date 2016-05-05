@@ -25,11 +25,6 @@ class ProjectsTableViewController: UITableViewController {
 
     }
 
-    override func viewWillAppear(animated: Bool) {
-        super.viewWillAppear(animated)
-        tableView.tableFooterView = UIView(frame: CGRect.zero)
-    }
-
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
@@ -150,7 +145,7 @@ class ProjectsTableViewController: UITableViewController {
                 case FasciaAPIError.ClientError:
                     CSNotificationView.showInViewController(self, style: .Error, message: "The request is invalid")
                     break
-                case FasciaAPIError.ServerError, ProjectError.PaserError, ProjectError.MappingError:
+                case FasciaAPIError.ServerError, ProjectError.ParserError, ProjectError.MappingError:
                     CSNotificationView.showInViewController(self, style: .Error, message: "We're sorry, but something went wrong.")
                     break
                 default:
