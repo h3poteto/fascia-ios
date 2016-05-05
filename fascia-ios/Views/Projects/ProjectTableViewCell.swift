@@ -12,7 +12,7 @@ import RxCocoa
 
 class ProjectTableViewCell: UITableViewCell {
     @IBOutlet private weak var tilteLabel: UILabel!
-    @IBOutlet private weak var githubLabel: UILabel!
+    @IBOutlet private weak var githubLabel: UIImageView!
     @IBOutlet private weak var projectImage: UIImageView!
 
     let disposeBag = DisposeBag()
