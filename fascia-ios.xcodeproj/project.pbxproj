@@ -23,6 +23,7 @@
 		E96CC3CC1CD58F1F007DDB65 /* SignInViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = E96CC3CB1CD58F1F007DDB65 /* SignInViewModel.swift */; };
 		E9749C951CCBC6BD00335B53 /* ProjectsViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = E9749C941CCBC6BD00335B53 /* ProjectsViewModel.swift */; };
 		E9749C971CCD075F00335B53 /* Scheduler.swift in Sources */ = {isa = PBXBuildFile; fileRef = E9749C961CCD075F00335B53 /* Scheduler.swift */; };
+		E9BE0AC21CDCE6C700E2CC13 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = E9BE0AC11CDCE6C700E2CC13 /* Main.storyboard */; };
 		E9C6B52E1CD86001009DBE36 /* SignInTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = E9C6B52D1CD86001009DBE36 /* SignInTableViewCell.swift */; };
 		E9CF1D3F1CD8F10100BD5DDE /* Repository.swift in Sources */ = {isa = PBXBuildFile; fileRef = E9CF1D3E1CD8F10100BD5DDE /* Repository.swift */; };
 		E9CF1D411CD8F72400BD5DDE /* RepositoryAction.swift in Sources */ = {isa = PBXBuildFile; fileRef = E9CF1D401CD8F72400BD5DDE /* RepositoryAction.swift */; };
@@ -34,7 +35,6 @@
 		E9E4FEF81CC53D3100517729 /* Launch Screen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = E9E4FEF71CC53D3100517729 /* Launch Screen.storyboard */; };
 		E9E4FEFA1CC53D6B00517729 /* Settings.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = E9E4FEF91CC53D6B00517729 /* Settings.storyboard */; };
 		E9E4FEFC1CC53DC400517729 /* Projects.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = E9E4FEFB1CC53DC400517729 /* Projects.storyboard */; };
-		E9E4FEFE1CC53DD400517729 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = E9E4FEFD1CC53DD400517729 /* Main.storyboard */; };
 		E9E4FF001CC68ED600517729 /* ProjectsTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E9E4FEFF1CC68ED500517729 /* ProjectsTableViewController.swift */; };
 		E9E4FF021CC68FE300517729 /* SettingsTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E9E4FF011CC68FE300517729 /* SettingsTableViewController.swift */; };
 		E9E4FF041CC7C51700517729 /* SignInViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E9E4FF031CC7C51700517729 /* SignInViewController.swift */; };
@@ -76,6 +76,7 @@
 		E96CC3CB1CD58F1F007DDB65 /* SignInViewModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = SignInViewModel.swift; path = ViewModels/SignInViewModel.swift; sourceTree = "<group>"; };
 		E9749C941CCBC6BD00335B53 /* ProjectsViewModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = ProjectsViewModel.swift; path = ViewModels/ProjectsViewModel.swift; sourceTree = "<group>"; };
 		E9749C961CCD075F00335B53 /* Scheduler.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = Scheduler.swift; path = Services/Scheduler.swift; sourceTree = "<group>"; };
+		E9BE0AC11CDCE6C700E2CC13 /* Main.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; name = Main.storyboard; path = Resources/Main.storyboard; sourceTree = "<group>"; };
 		E9C6B52D1CD86001009DBE36 /* SignInTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = SignInTableViewCell.swift; path = Views/Settings/SignInTableViewCell.swift; sourceTree = "<group>"; };
 		E9CF1D3E1CD8F10100BD5DDE /* Repository.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = Repository.swift; path = Models/Repository.swift; sourceTree = "<group>"; };
 		E9CF1D401CD8F72400BD5DDE /* RepositoryAction.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = RepositoryAction.swift; path = Actions/RepositoryAction.swift; sourceTree = "<group>"; };
@@ -87,7 +88,6 @@
 		E9E4FEF71CC53D3100517729 /* Launch Screen.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; name = "Launch Screen.storyboard"; path = "Resources/Launch Screen.storyboard"; sourceTree = "<group>"; };
 		E9E4FEF91CC53D6B00517729 /* Settings.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; name = Settings.storyboard; path = Resources/Settings.storyboard; sourceTree = "<group>"; };
 		E9E4FEFB1CC53DC400517729 /* Projects.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; name = Projects.storyboard; path = Resources/Projects.storyboard; sourceTree = "<group>"; };
-		E9E4FEFD1CC53DD400517729 /* Main.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = Main.storyboard; sourceTree = "<group>"; };
 		E9E4FEFF1CC68ED500517729 /* ProjectsTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = ProjectsTableViewController.swift; path = ViewControllers/ProjectsTableViewController.swift; sourceTree = "<group>"; };
 		E9E4FF011CC68FE300517729 /* SettingsTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = SettingsTableViewController.swift; path = ViewControllers/SettingsTableViewController.swift; sourceTree = "<group>"; };
 		E9E4FF031CC7C51700517729 /* SignInViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = SignInViewController.swift; path = ViewControllers/SignInViewController.swift; sourceTree = "<group>"; };
@@ -190,7 +190,7 @@
 				E9E4FEF71CC53D3100517729 /* Launch Screen.storyboard */,
 				E9E4FEF91CC53D6B00517729 /* Settings.storyboard */,
 				E9E4FEFB1CC53DC400517729 /* Projects.storyboard */,
-				E9E4FEFD1CC53DD400517729 /* Main.storyboard */,
+				E9BE0AC11CDCE6C700E2CC13 /* Main.storyboard */,
 			);
 			name = Resources;
 			sourceTree = "<group>";
@@ -380,8 +380,8 @@
 			buildActionMask = 2147483647;
 			files = (
 				E9E4FEFC1CC53DC400517729 /* Projects.storyboard in Resources */,
-				E9E4FEFE1CC53DD400517729 /* Main.storyboard in Resources */,
 				E9E4FEFA1CC53D6B00517729 /* Settings.storyboard in Resources */,
+				E9BE0AC21CDCE6C700E2CC13 /* Main.storyboard in Resources */,
 				E9E4FEF81CC53D3100517729 /* Launch Screen.storyboard in Resources */,
 				E9F4C66C1CC52C19003DD8DC /* Assets.xcassets in Resources */,
 			);
