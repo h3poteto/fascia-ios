@@ -80,12 +80,12 @@ class ListsTableViewController: UITableViewController {
             guard let noneList = lists.noneList else {
                 return cell
             }
-            cell.viewModel = TaskCellViewModel(model: noneList.listTasks[indexPath.row])
+            cell.viewModel = TaskCellViewModel(model: noneList.listTasks[indexPath.row], list: noneList)
         } else {
             if lists.lists.count < 1 {
                 return cell
             }
-            cell.viewModel = TaskCellViewModel(model: lists.lists[indexPath.section - 1].listTasks[indexPath.row])
+            cell.viewModel = TaskCellViewModel(model: lists.lists[indexPath.section - 1].listTasks[indexPath.row], list: lists.lists[indexPath.section - 1])
         }
         return cell
     }

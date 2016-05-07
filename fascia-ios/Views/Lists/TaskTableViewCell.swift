@@ -18,6 +18,10 @@ class TaskTableViewCell: UITableViewCell {
         didSet {
             guard let vModel = self.viewModel else { return }
             vModel.title.bindTo(self.taskLabel.rx_text).addDisposableTo(disposeBag)
+            vModel.color.subscribeNext { (color) in
+                self.taskColorImage.backgroundColor = color
+            }
+            .addDisposableTo(disposeBag)
         }
     }
 

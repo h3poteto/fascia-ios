@@ -10,13 +10,17 @@ import RxSwift
 import RxCocoa
 
 class TaskCellViewModel {
-    let model: Variable<Task>
+    let task: Variable<Task>
     let title: Observable<String>
+    let color: Observable<UIColor>
 
-    init(model: Task) {
-        self.model = Variable(model)
-        self.title = self.model.asObservable().map({ (task) -> String in
+    init(model: Task, list: List) {
+        self.task = Variable(model)
+        self.title = self.task.asObservable().map({ (task) -> String in
             return task.title!
+        })
+        self.color = self.task.asObservable().map({ (task) -> UIColor in
+            return UIColor(hexString: list.color!, alpha: 1.0)
         })
     }
 }
