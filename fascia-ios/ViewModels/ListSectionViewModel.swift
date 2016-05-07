@@ -14,6 +14,9 @@ class ListSectionViewModel {
     let list: Variable<List>
     let title: Observable<String>
     let isVisible: Observable<Bool>
+    final private(set) var listsUpdated: Driver<Lists?> = Driver.never()
+    final private(set) var isLoading: Driver<Bool> = Driver.never()
+    final private(set) var error: Driver<ErrorType?> = Driver.never()
 
     init(model: List) {
         self.list = Variable(model)
@@ -23,6 +26,17 @@ class ListSectionViewModel {
         self.isVisible = self.list.asObservable().map({ (list) -> Bool in
             return list.isHidden!
         })
+
+        self.listsUpdated = Driver
+            .combineLatest(
+                action.lists.asDriver(),
+                action.error.asDriver().map({
+                    $0 != nil
+                }), resultSelector: {
+                    ($1) ? nil : $0
+            })
+        self.isLoading = action.isLoading.asDriver()
+        self.error = action.error.asDriver()
     }
 
     func changeVisible() {

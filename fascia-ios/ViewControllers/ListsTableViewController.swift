@@ -75,13 +75,17 @@ class ListsTableViewController: UITableViewController {
             guard let noneList = lists.noneList else {
                 return sectionView
             }
-            sectionView.viewModel = ListSectionViewModel(model: noneList)
+            let sectionVM = ListSectionViewModel(model: noneList)
+            bindListSectionViewModel(sectionVM)
+            sectionView.viewModel = sectionVM
             return sectionView
         } else {
             if lists.lists.count < 1 {
                 return sectionView
             }
-            sectionView.viewModel = ListSectionViewModel(model: lists.lists[section - 1])
+            let sectionVM = ListSectionViewModel(model: lists.lists[section - 1])
+            bindListSectionViewModel(sectionVM)
+            sectionView.viewModel = sectionVM
             return sectionView
         }
     }
@@ -156,6 +160,46 @@ class ListsTableViewController: UITableViewController {
             }
             .addDisposableTo(disposeBag)
 
+    }
+
+    private func bindListSectionViewModel(vm: ListSectionViewModel) {
+        vm.listsUpdated
+            .driveNext { (lists) in
+                if lists != nil {
+                    self.viewModel.lists = lists
+                    self.tableView.reloadData()
+                }
+            }
+            .addDisposableTo(disposeBag)
+
+        vm.isLoading
+            .drive(self.refresh.rx_refreshing)
+            .addDisposableTo(disposeBag)
+
+        vm.error
+            .driveNext { (errorType) in
+                self.refresh.endRefreshing()
+                guard let errorType = errorType else {
+                    return
+                }
+                switch errorType {
+                case FasciaAPIError.AuthenticateError:
+                    self.showSignInView()
+                    break
+                case FasciaAPIError.DoubleRequestError:
+                    break
+                case FasciaAPIError.ClientError:
+                    CSNotificationView.showInViewController(self, style: CSNotificationViewStyle.Error, message: "The request is invalid.")
+                    break
+                case FasciaAPIError.ServerError:
+                    CSNotificationView.showInViewController(self, style: .Error, message: "We're sorry, but something went wrong.")
+                    break
+                default:
+                    CSNotificationView.showInViewController(self, style: .Error, message: "Network error.")
+                    break
+                }
+            }
+            .addDisposableTo(disposeBag)
     }
 
 }
