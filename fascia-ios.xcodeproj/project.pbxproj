@@ -28,6 +28,10 @@
 		E975D0C11CDDC23600F587CD /* TaskTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = E975D0C01CDDC23600F587CD /* TaskTableViewCell.swift */; };
 		E975D0C31CDDC4F000F587CD /* TaskCellViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = E975D0C21CDDC4F000F587CD /* TaskCellViewModel.swift */; };
 		E975D0C71CDDC8CF00F587CD /* UIColor+hex.swift in Sources */ = {isa = PBXBuildFile; fileRef = E975D0C61CDDC8CF00F587CD /* UIColor+hex.swift */; };
+		E975D0CC1CDDE8DE00F587CD /* ListSectionTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = E975D0CA1CDDE8DE00F587CD /* ListSectionTableViewCell.swift */; };
+		E975D0CD1CDDE8DE00F587CD /* ListSectionTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = E975D0CB1CDDE8DE00F587CD /* ListSectionTableViewCell.xib */; };
+		E975D0CF1CDDE9CC00F587CD /* ListSectionViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = E975D0CE1CDDE9CC00F587CD /* ListSectionViewModel.swift */; };
+		E975D0D11CDE434700F587CD /* ListVisibleAction.swift in Sources */ = {isa = PBXBuildFile; fileRef = E975D0D01CDE434700F587CD /* ListVisibleAction.swift */; };
 		E9BE0AC21CDCE6C700E2CC13 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = E9BE0AC11CDCE6C700E2CC13 /* Main.storyboard */; };
 		E9BE0AC41CDCE80E00E2CC13 /* Lists.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = E9BE0AC31CDCE80E00E2CC13 /* Lists.storyboard */; };
 		E9BE0AC61CDCE87200E2CC13 /* ListsTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E9BE0AC51CDCE87200E2CC13 /* ListsTableViewController.swift */; };
@@ -91,6 +95,10 @@
 		E975D0C01CDDC23600F587CD /* TaskTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = TaskTableViewCell.swift; path = Views/Lists/TaskTableViewCell.swift; sourceTree = "<group>"; };
 		E975D0C21CDDC4F000F587CD /* TaskCellViewModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = TaskCellViewModel.swift; path = ViewModels/TaskCellViewModel.swift; sourceTree = "<group>"; };
 		E975D0C61CDDC8CF00F587CD /* UIColor+hex.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = "UIColor+hex.swift"; path = "Utils/UIColor+hex.swift"; sourceTree = "<group>"; };
+		E975D0CA1CDDE8DE00F587CD /* ListSectionTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = ListSectionTableViewCell.swift; path = Views/Lists/ListSectionTableViewCell.swift; sourceTree = "<group>"; };
+		E975D0CB1CDDE8DE00F587CD /* ListSectionTableViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = ListSectionTableViewCell.xib; path = Views/Lists/ListSectionTableViewCell.xib; sourceTree = "<group>"; };
+		E975D0CE1CDDE9CC00F587CD /* ListSectionViewModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = ListSectionViewModel.swift; path = ViewModels/ListSectionViewModel.swift; sourceTree = "<group>"; };
+		E975D0D01CDE434700F587CD /* ListVisibleAction.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = ListVisibleAction.swift; path = Actions/ListVisibleAction.swift; sourceTree = "<group>"; };
 		E9BE0AC11CDCE6C700E2CC13 /* Main.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; name = Main.storyboard; path = Resources/Main.storyboard; sourceTree = "<group>"; };
 		E9BE0AC31CDCE80E00E2CC13 /* Lists.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; name = Lists.storyboard; path = Resources/Lists.storyboard; sourceTree = "<group>"; };
 		E9BE0AC51CDCE87200E2CC13 /* ListsTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = ListsTableViewController.swift; path = ViewControllers/ListsTableViewController.swift; sourceTree = "<group>"; };
@@ -170,6 +178,7 @@
 				E9571AE81CD3C4FD007A819F /* NewProjectAction.swift */,
 				E9CF1D401CD8F72400BD5DDE /* RepositoryAction.swift */,
 				E9BE0ACB1CDCE9C600E2CC13 /* ListsAction.swift */,
+				E975D0D01CDE434700F587CD /* ListVisibleAction.swift */,
 			);
 			name = Actions;
 			sourceTree = "<group>";
@@ -190,6 +199,8 @@
 			isa = PBXGroup;
 			children = (
 				E975D0C01CDDC23600F587CD /* TaskTableViewCell.swift */,
+				E975D0CA1CDDE8DE00F587CD /* ListSectionTableViewCell.swift */,
+				E975D0CB1CDDE8DE00F587CD /* ListSectionTableViewCell.xib */,
 			);
 			name = Lists;
 			sourceTree = "<group>";
@@ -263,6 +274,7 @@
 				E9CF1D4A1CDA31EB00BD5DDE /* RepositoryCellViewModel.swift */,
 				E975D0C21CDDC4F000F587CD /* TaskCellViewModel.swift */,
 				E9BE0AC91CDCE96600E2CC13 /* ListsViewModel.swift */,
+				E975D0CE1CDDE9CC00F587CD /* ListSectionViewModel.swift */,
 			);
 			name = ViewModels;
 			sourceTree = "<group>";
@@ -418,6 +430,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				E9BE0AC41CDCE80E00E2CC13 /* Lists.storyboard in Resources */,
+				E975D0CD1CDDE8DE00F587CD /* ListSectionTableViewCell.xib in Resources */,
 				E9E4FEFC1CC53DC400517729 /* Projects.storyboard in Resources */,
 				E9E4FEFA1CC53D6B00517729 /* Settings.storyboard in Resources */,
 				E9BE0AC21CDCE6C700E2CC13 /* Main.storyboard in Resources */,
@@ -520,6 +533,7 @@
 				E9CF1D471CDA027C00BD5DDE /* RepositoriesTableViewController.swift in Sources */,
 				E975D0BE1CDCF3B900F587CD /* Task.swift in Sources */,
 				E975D0BC1CDCEE4C00F587CD /* Lists.swift in Sources */,
+				E975D0CF1CDDE9CC00F587CD /* ListSectionViewModel.swift in Sources */,
 				E9CF1D491CDA0D8300BD5DDE /* RepositoryTableViewCell.swift in Sources */,
 				E9571AE71CD3AB92007A819F /* NewProjectDescriptionTableViewCell.swift in Sources */,
 				E9CF1D3F1CD8F10100BD5DDE /* Repository.swift in Sources */,
@@ -528,6 +542,7 @@
 				E928659B1CD8DDC100D2EF07 /* HUDManager.swift in Sources */,
 				E9E4FF0B1CC7DE1B00517729 /* MainTabBarController.swift in Sources */,
 				E96CC3CA1CD58E50007DDB65 /* SessionAction.swift in Sources */,
+				E975D0D11CDE434700F587CD /* ListVisibleAction.swift in Sources */,
 				E9BE0ACA1CDCE96600E2CC13 /* ListsViewModel.swift in Sources */,
 				E9571ADE1CD36781007A819F /* NewProjectViewModel.swift in Sources */,
 				E9CF1D451CD9FE7600BD5DDE /* NewProjectRepositoryTableViewCell.swift in Sources */,
@@ -538,6 +553,7 @@
 				E9E4FF071CC7DC2E00517729 /* FasciaAPIService.swift in Sources */,
 				E96975A51CD1039B00DC5852 /* ProjectCellViewModel.swift in Sources */,
 				E975D0C11CDDC23600F587CD /* TaskTableViewCell.swift in Sources */,
+				E975D0CC1CDDE8DE00F587CD /* ListSectionTableViewCell.swift in Sources */,
 				E9571AE31CD36BA8007A819F /* NewProjectTitleTableViewCell.swift in Sources */,
 				E975D0C31CDDC4F000F587CD /* TaskCellViewModel.swift in Sources */,
 			);

@@ -48,24 +48,37 @@ class ListsTableViewController: UITableViewController {
             if lists.lists.count < 1 {
                 return 0
             }
+            if lists.lists[section - 1].isHidden! {
+                return 0
+            }
             return lists.lists[section - 1].listTasks.count
         }
     }
 
-    override func tableView(tableView: UITableView, titleForHeaderInSection section: Int) -> String? {
+    override func tableView(tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat {
+        return 40.0
+    }
+
+    override func tableView(tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
+        let nib = UINib(nibName: "ListSectionTableViewCell", bundle: nil)
+        guard let sectionView = nib.instantiateWithOwner(nil, options: nil)[0] as? ListSectionTableViewCell else {
+            return nil
+        }
         guard let lists = viewModel.lists else {
-            return ""
+            return sectionView
         }
         if section == 0 {
             guard let noneList = lists.noneList else {
-                return ""
+                return sectionView
             }
-            return noneList.title
+            sectionView.viewModel = ListSectionViewModel(model: noneList)
+            return sectionView
         } else {
             if lists.lists.count < 1 {
-                return ""
+                return sectionView
             }
-            return lists.lists[section - 1].title
+            sectionView.viewModel = ListSectionViewModel(model: lists.lists[section - 1])
+            return sectionView
         }
     }
 
