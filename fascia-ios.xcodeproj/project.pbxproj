@@ -23,7 +23,16 @@
 		E96CC3CC1CD58F1F007DDB65 /* SignInViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = E96CC3CB1CD58F1F007DDB65 /* SignInViewModel.swift */; };
 		E9749C951CCBC6BD00335B53 /* ProjectsViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = E9749C941CCBC6BD00335B53 /* ProjectsViewModel.swift */; };
 		E9749C971CCD075F00335B53 /* Scheduler.swift in Sources */ = {isa = PBXBuildFile; fileRef = E9749C961CCD075F00335B53 /* Scheduler.swift */; };
+		E975D0BC1CDCEE4C00F587CD /* Lists.swift in Sources */ = {isa = PBXBuildFile; fileRef = E975D0BB1CDCEE4C00F587CD /* Lists.swift */; };
+		E975D0BE1CDCF3B900F587CD /* Task.swift in Sources */ = {isa = PBXBuildFile; fileRef = E975D0BD1CDCF3B900F587CD /* Task.swift */; };
+		E975D0C11CDDC23600F587CD /* TaskTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = E975D0C01CDDC23600F587CD /* TaskTableViewCell.swift */; };
+		E975D0C31CDDC4F000F587CD /* TaskCellViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = E975D0C21CDDC4F000F587CD /* TaskCellViewModel.swift */; };
 		E9BE0AC21CDCE6C700E2CC13 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = E9BE0AC11CDCE6C700E2CC13 /* Main.storyboard */; };
+		E9BE0AC41CDCE80E00E2CC13 /* Lists.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = E9BE0AC31CDCE80E00E2CC13 /* Lists.storyboard */; };
+		E9BE0AC61CDCE87200E2CC13 /* ListsTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E9BE0AC51CDCE87200E2CC13 /* ListsTableViewController.swift */; };
+		E9BE0AC81CDCE91800E2CC13 /* List.swift in Sources */ = {isa = PBXBuildFile; fileRef = E9BE0AC71CDCE91800E2CC13 /* List.swift */; };
+		E9BE0ACA1CDCE96600E2CC13 /* ListsViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = E9BE0AC91CDCE96600E2CC13 /* ListsViewModel.swift */; };
+		E9BE0ACC1CDCE9C600E2CC13 /* ListsAction.swift in Sources */ = {isa = PBXBuildFile; fileRef = E9BE0ACB1CDCE9C600E2CC13 /* ListsAction.swift */; };
 		E9C6B52E1CD86001009DBE36 /* SignInTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = E9C6B52D1CD86001009DBE36 /* SignInTableViewCell.swift */; };
 		E9CF1D3F1CD8F10100BD5DDE /* Repository.swift in Sources */ = {isa = PBXBuildFile; fileRef = E9CF1D3E1CD8F10100BD5DDE /* Repository.swift */; };
 		E9CF1D411CD8F72400BD5DDE /* RepositoryAction.swift in Sources */ = {isa = PBXBuildFile; fileRef = E9CF1D401CD8F72400BD5DDE /* RepositoryAction.swift */; };
@@ -76,7 +85,16 @@
 		E96CC3CB1CD58F1F007DDB65 /* SignInViewModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = SignInViewModel.swift; path = ViewModels/SignInViewModel.swift; sourceTree = "<group>"; };
 		E9749C941CCBC6BD00335B53 /* ProjectsViewModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = ProjectsViewModel.swift; path = ViewModels/ProjectsViewModel.swift; sourceTree = "<group>"; };
 		E9749C961CCD075F00335B53 /* Scheduler.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = Scheduler.swift; path = Services/Scheduler.swift; sourceTree = "<group>"; };
+		E975D0BB1CDCEE4C00F587CD /* Lists.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = Lists.swift; path = Models/Lists.swift; sourceTree = "<group>"; };
+		E975D0BD1CDCF3B900F587CD /* Task.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = Task.swift; path = Models/Task.swift; sourceTree = "<group>"; };
+		E975D0C01CDDC23600F587CD /* TaskTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = TaskTableViewCell.swift; path = Views/Lists/TaskTableViewCell.swift; sourceTree = "<group>"; };
+		E975D0C21CDDC4F000F587CD /* TaskCellViewModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = TaskCellViewModel.swift; path = ViewModels/TaskCellViewModel.swift; sourceTree = "<group>"; };
 		E9BE0AC11CDCE6C700E2CC13 /* Main.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; name = Main.storyboard; path = Resources/Main.storyboard; sourceTree = "<group>"; };
+		E9BE0AC31CDCE80E00E2CC13 /* Lists.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; name = Lists.storyboard; path = Resources/Lists.storyboard; sourceTree = "<group>"; };
+		E9BE0AC51CDCE87200E2CC13 /* ListsTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = ListsTableViewController.swift; path = ViewControllers/ListsTableViewController.swift; sourceTree = "<group>"; };
+		E9BE0AC71CDCE91800E2CC13 /* List.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = List.swift; path = Models/List.swift; sourceTree = "<group>"; };
+		E9BE0AC91CDCE96600E2CC13 /* ListsViewModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = ListsViewModel.swift; path = ViewModels/ListsViewModel.swift; sourceTree = "<group>"; };
+		E9BE0ACB1CDCE9C600E2CC13 /* ListsAction.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = ListsAction.swift; path = Actions/ListsAction.swift; sourceTree = "<group>"; };
 		E9C6B52D1CD86001009DBE36 /* SignInTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = SignInTableViewCell.swift; path = Views/Settings/SignInTableViewCell.swift; sourceTree = "<group>"; };
 		E9CF1D3E1CD8F10100BD5DDE /* Repository.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = Repository.swift; path = Models/Repository.swift; sourceTree = "<group>"; };
 		E9CF1D401CD8F72400BD5DDE /* RepositoryAction.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = RepositoryAction.swift; path = Actions/RepositoryAction.swift; sourceTree = "<group>"; };
@@ -149,6 +167,7 @@
 				E96CC3C91CD58E50007DDB65 /* SessionAction.swift */,
 				E9571AE81CD3C4FD007A819F /* NewProjectAction.swift */,
 				E9CF1D401CD8F72400BD5DDE /* RepositoryAction.swift */,
+				E9BE0ACB1CDCE9C600E2CC13 /* ListsAction.swift */,
 			);
 			name = Actions;
 			sourceTree = "<group>";
@@ -165,6 +184,14 @@
 			name = Projects;
 			sourceTree = "<group>";
 		};
+		E975D0BF1CDDC20F00F587CD /* Lists */ = {
+			isa = PBXGroup;
+			children = (
+				E975D0C01CDDC23600F587CD /* TaskTableViewCell.swift */,
+			);
+			name = Lists;
+			sourceTree = "<group>";
+		};
 		E9C6B52C1CD85FDE009DBE36 /* Settings */ = {
 			isa = PBXGroup;
 			children = (
@@ -179,6 +206,9 @@
 				E96975A11CCE78F000DC5852 /* Project.swift */,
 				E9EA958A1CD4718F008F5535 /* NewProject.swift */,
 				E9CF1D3E1CD8F10100BD5DDE /* Repository.swift */,
+				E975D0BD1CDCF3B900F587CD /* Task.swift */,
+				E9BE0AC71CDCE91800E2CC13 /* List.swift */,
+				E975D0BB1CDCEE4C00F587CD /* Lists.swift */,
 			);
 			name = Models;
 			sourceTree = "<group>";
@@ -191,6 +221,7 @@
 				E9E4FEF91CC53D6B00517729 /* Settings.storyboard */,
 				E9E4FEFB1CC53DC400517729 /* Projects.storyboard */,
 				E9BE0AC11CDCE6C700E2CC13 /* Main.storyboard */,
+				E9BE0AC31CDCE80E00E2CC13 /* Lists.storyboard */,
 			);
 			name = Resources;
 			sourceTree = "<group>";
@@ -198,6 +229,7 @@
 		E9E4FEF31CC53C2100517729 /* Views */ = {
 			isa = PBXGroup;
 			children = (
+				E975D0BF1CDDC20F00F587CD /* Lists */,
 				E9C6B52C1CD85FDE009DBE36 /* Settings */,
 				E9571ADF1CD36B2E007A819F /* Projects */,
 			);
@@ -208,6 +240,7 @@
 			isa = PBXGroup;
 			children = (
 				E9E4FF0A1CC7DE1B00517729 /* MainTabBarController.swift */,
+				E9BE0AC51CDCE87200E2CC13 /* ListsTableViewController.swift */,
 				E9E4FF031CC7C51700517729 /* SignInViewController.swift */,
 				E9E4FEFF1CC68ED500517729 /* ProjectsTableViewController.swift */,
 				E9571ADB1CD35E86007A819F /* NewProjectTableViewController.swift */,
@@ -224,9 +257,10 @@
 				E96975A41CD1039B00DC5852 /* ProjectCellViewModel.swift */,
 				E9571ADD1CD36781007A819F /* NewProjectViewModel.swift */,
 				E96CC3CB1CD58F1F007DDB65 /* SignInViewModel.swift */,
-				E928659A1CD8DDC100D2EF07 /* HUDManager.swift */,
 				E9CF1D421CD9EE8B00BD5DDE /* RepositoriesViewModel.swift */,
 				E9CF1D4A1CDA31EB00BD5DDE /* RepositoryCellViewModel.swift */,
+				E975D0C21CDDC4F000F587CD /* TaskCellViewModel.swift */,
+				E9BE0AC91CDCE96600E2CC13 /* ListsViewModel.swift */,
 			);
 			name = ViewModels;
 			sourceTree = "<group>";
@@ -235,6 +269,7 @@
 			isa = PBXGroup;
 			children = (
 				E9E4FF061CC7DC2E00517729 /* FasciaAPIService.swift */,
+				E928659A1CD8DDC100D2EF07 /* HUDManager.swift */,
 				E9749C961CCD075F00335B53 /* Scheduler.swift */,
 			);
 			name = Services;
@@ -379,6 +414,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				E9BE0AC41CDCE80E00E2CC13 /* Lists.storyboard in Resources */,
 				E9E4FEFC1CC53DC400517729 /* Projects.storyboard in Resources */,
 				E9E4FEFA1CC53D6B00517729 /* Settings.storyboard in Resources */,
 				E9BE0AC21CDCE6C700E2CC13 /* Main.storyboard in Resources */,
@@ -463,7 +499,9 @@
 			buildActionMask = 2147483647;
 			files = (
 				E9EA958B1CD4718F008F5535 /* NewProject.swift in Sources */,
+				E9BE0AC81CDCE91800E2CC13 /* List.swift in Sources */,
 				E9749C971CCD075F00335B53 /* Scheduler.swift in Sources */,
+				E9BE0ACC1CDCE9C600E2CC13 /* ListsAction.swift in Sources */,
 				E9E4FF041CC7C51700517729 /* SignInViewController.swift in Sources */,
 				E9749C951CCBC6BD00335B53 /* ProjectsViewModel.swift in Sources */,
 				E9571ADA1CD332FC007A819F /* ProjectsAction.swift in Sources */,
@@ -472,9 +510,12 @@
 				E9F4C6651CC52C19003DD8DC /* AppDelegate.swift in Sources */,
 				E9571ADC1CD35E86007A819F /* NewProjectTableViewController.swift in Sources */,
 				E9CF1D411CD8F72400BD5DDE /* RepositoryAction.swift in Sources */,
+				E9BE0AC61CDCE87200E2CC13 /* ListsTableViewController.swift in Sources */,
 				E9CF1D4B1CDA31EB00BD5DDE /* RepositoryCellViewModel.swift in Sources */,
 				E96CC3CC1CD58F1F007DDB65 /* SignInViewModel.swift in Sources */,
 				E9CF1D471CDA027C00BD5DDE /* RepositoriesTableViewController.swift in Sources */,
+				E975D0BE1CDCF3B900F587CD /* Task.swift in Sources */,
+				E975D0BC1CDCEE4C00F587CD /* Lists.swift in Sources */,
 				E9CF1D491CDA0D8300BD5DDE /* RepositoryTableViewCell.swift in Sources */,
 				E9571AE71CD3AB92007A819F /* NewProjectDescriptionTableViewCell.swift in Sources */,
 				E9CF1D3F1CD8F10100BD5DDE /* Repository.swift in Sources */,
@@ -483,6 +524,7 @@
 				E928659B1CD8DDC100D2EF07 /* HUDManager.swift in Sources */,
 				E9E4FF0B1CC7DE1B00517729 /* MainTabBarController.swift in Sources */,
 				E96CC3CA1CD58E50007DDB65 /* SessionAction.swift in Sources */,
+				E9BE0ACA1CDCE96600E2CC13 /* ListsViewModel.swift in Sources */,
 				E9571ADE1CD36781007A819F /* NewProjectViewModel.swift in Sources */,
 				E9CF1D451CD9FE7600BD5DDE /* NewProjectRepositoryTableViewCell.swift in Sources */,
 				E9571AE11CD36B88007A819F /* ProjectTableViewCell.swift in Sources */,
@@ -491,7 +533,9 @@
 				E9E4FF021CC68FE300517729 /* SettingsTableViewController.swift in Sources */,
 				E9E4FF071CC7DC2E00517729 /* FasciaAPIService.swift in Sources */,
 				E96975A51CD1039B00DC5852 /* ProjectCellViewModel.swift in Sources */,
+				E975D0C11CDDC23600F587CD /* TaskTableViewCell.swift in Sources */,
 				E9571AE31CD36BA8007A819F /* NewProjectTitleTableViewCell.swift in Sources */,
+				E975D0C31CDDC4F000F587CD /* TaskCellViewModel.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
