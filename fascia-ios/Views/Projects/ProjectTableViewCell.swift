@@ -33,7 +33,17 @@ class ProjectTableViewCell: UITableViewCell {
     override func setSelected(selected: Bool, animated: Bool) {
         super.setSelected(selected, animated: animated)
 
-        // Configure the view for the selected state
+        if selected {
+            projectImage.backgroundColor = UIColor(hexString: "42B8DD", alpha: 1.0)
+        }
+    }
+
+    override func setHighlighted(highlighted: Bool, animated: Bool) {
+        super.setHighlighted(highlighted, animated: animated)
+
+        if highlighted {
+            projectImage.backgroundColor = UIColor(hexString: "42B8DD", alpha: 1.0)
+        }
     }
 
 }
