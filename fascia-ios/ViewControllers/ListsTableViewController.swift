@@ -11,7 +11,7 @@ import RxSwift
 import RxCocoa
 import CSNotificationView
 
-class ListsTableViewController: UITableViewController {
+class ListsTableViewController: UITableViewController, UIGestureRecognizerDelegate {
     @IBOutlet private weak var refresh: UIRefreshControl!
     var viewModel: ListsViewModel!
     private let disposeBag = DisposeBag()
@@ -20,14 +20,15 @@ class ListsTableViewController: UITableViewController {
         super.viewDidLoad()
         bindViewModel()
 
+        let longPressRecognizer = UILongPressGestureRecognizer(target: self, action: #selector(ListsTableViewController.cellLongPressed(_:)))
+        longPressRecognizer.delegate = self
+        tableView.addGestureRecognizer(longPressRecognizer)
     }
 
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
     }
-
-    // MARK: - Table view data source
 
     override func numberOfSectionsInTableView(tableView: UITableView) -> Int {
         guard let lists = viewModel.lists else {
@@ -110,6 +111,17 @@ class ListsTableViewController: UITableViewController {
             cell.viewModel = TaskCellViewModel(model: lists.lists[indexPath.section - 1].listTasks[indexPath.row], list: lists.lists[indexPath.section - 1])
         }
         return cell
+    }
+
+    func cellLongPressed(recognizer: UILongPressGestureRecognizer) {
+        // 押された位置でcellのPathを取得
+        let point = recognizer.locationInView(tableView)
+        let indexPath = tableView.indexPathForRowAtPoint(point)
+
+        if indexPath != nil && recognizer.state == UIGestureRecognizerState.Began {
+            // 長押しされた場合の処理
+            print("長押しされたcellのindexPath:\(indexPath?.row)")
+        }
     }
 
     private func showSignInView() {
