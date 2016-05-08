@@ -18,10 +18,11 @@ class TaskTableViewCell: UITableViewCell {
         didSet {
             guard let vModel = self.viewModel else { return }
             vModel.title.bindTo(self.taskLabel.rx_text).addDisposableTo(disposeBag)
-            vModel.color.subscribeNext { (color) in
-                self.taskColorImage.backgroundColor = color
-            }
-            .addDisposableTo(disposeBag)
+            vModel.color.asObservable()
+                .subscribeNext { (color) in
+                    self.taskColorImage.backgroundColor = color
+                }
+                .addDisposableTo(disposeBag)
         }
     }
 
@@ -33,7 +34,22 @@ class TaskTableViewCell: UITableViewCell {
     override func setSelected(selected: Bool, animated: Bool) {
         super.setSelected(selected, animated: animated)
 
-        // Configure the view for the selected state
+        guard let color = viewModel?.color else {
+            return
+        }
+        if selected {
+            taskColorImage.backgroundColor = color.value
+        }
+    }
+
+    override func setHighlighted(highlighted: Bool, animated: Bool) {
+        super.setHighlighted(highlighted, animated: animated)
+        guard let color = viewModel?.color else {
+            return
+        }
+        if highlighted {
+            taskColorImage.backgroundColor = color.value
+        }
     }
 
 }
