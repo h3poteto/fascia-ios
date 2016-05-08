@@ -19,6 +19,7 @@ class ListsTableViewController: UITableViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         bindViewModel()
+
     }
 
     override func didReceiveMemoryWarning() {

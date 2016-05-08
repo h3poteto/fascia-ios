@@ -39,7 +39,7 @@ class ListVisibleAction {
                 }, onError: { (errorType) in
                     self.error.value = errorType
                     self.isLoading.value = false
-                }, onCompleted: { 
+                }, onCompleted: {
                     self.isLoading.value = false
                 }, onDisposed: nil)
             .addDisposableTo(disposeBag)
@@ -68,7 +68,7 @@ class ListVisibleAction {
                 }, onError: { (errorType) in
                     self.error.value = errorType
                     self.isLoading.value = false
-                }, onCompleted: { 
+                }, onCompleted: {
                     self.isLoading.value = false
                 }, onDisposed: nil
             )
