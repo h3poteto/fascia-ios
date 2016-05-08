@@ -51,6 +51,13 @@ class ProjectsTableViewController: UITableViewController {
         return cell
     }
 
+    override func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
+        if let listsView = UIStoryboard.instantiateViewController("ListsTableViewController", storyboardName: "Lists") as? ListsTableViewController {
+            listsView.viewModel = ListsViewModel(project: viewModel.projects[indexPath.row])
+            self.navigationController?.pushViewController(listsView, animated: true)
+        }
+    }
+
     private func showSignInView() {
         // TODO: 初回であればこのあとにロードさせたい
         if let signIn = UIStoryboard.instantiateViewController("SignInViewController", storyboardName: "Main") as? UIViewController {
