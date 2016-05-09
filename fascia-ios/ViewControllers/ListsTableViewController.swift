@@ -121,8 +121,17 @@ class ListsTableViewController: UITableViewController, UIGestureRecognizerDelega
         if indexPath != nil && recognizer.state == UIGestureRecognizerState.Began {
             // 長押しされた場合の処理
             print("長押しされたcellのindexPath:\(indexPath?.row)")
+            // TODO: 文字アイコンを作ってitemとして渡す
+            let items = [
+                ContextItem(title: "hoge", image: UIImage(named: "GitHub")! , highlightedImage: UIImage(named: "GitHub")!),
+                ContextItem(title: "fuga", image: UIImage(named: "Lock")!, highlightedImage: UIImage(named: "Lock")!),
+                ContextItem(title: "home", image: UIImage(named: "Projects")!, highlightedImage: UIImage(named: "Projects")!)
+            ]
+            let overlay = ContextMenuViewController(items: items, inViewController: self)
+            overlay.start(recognizer)
         }
     }
+
 
     private func showSignInView() {
         if let signIn = UIStoryboard.instantiateViewController("SignInViewController", storyboardName: "Main") as? UIViewController {

@@ -56,6 +56,7 @@
 		E9E4FF0B1CC7DE1B00517729 /* MainTabBarController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E9E4FF0A1CC7DE1B00517729 /* MainTabBarController.swift */; };
 		E9E4FF101CC7E06200517729 /* UIStoryboard+Fascia.swift in Sources */ = {isa = PBXBuildFile; fileRef = E9E4FF0F1CC7E06200517729 /* UIStoryboard+Fascia.swift */; };
 		E9EA958B1CD4718F008F5535 /* NewProject.swift in Sources */ = {isa = PBXBuildFile; fileRef = E9EA958A1CD4718F008F5535 /* NewProject.swift */; };
+		E9F3974F1CDF92590078957B /* ContextMenuViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E9F3974E1CDF92590078957B /* ContextMenuViewController.swift */; };
 		E9F4C6651CC52C19003DD8DC /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = E9F4C6641CC52C19003DD8DC /* AppDelegate.swift */; };
 		E9F4C66C1CC52C19003DD8DC /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = E9F4C66B1CC52C19003DD8DC /* Assets.xcassets */; };
 		E9F4C67A1CC52C19003DD8DC /* fascia_iosTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = E9F4C6791CC52C19003DD8DC /* fascia_iosTests.swift */; };
@@ -123,6 +124,7 @@
 		E9E4FF0A1CC7DE1B00517729 /* MainTabBarController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = MainTabBarController.swift; path = ViewControllers/MainTabBarController.swift; sourceTree = "<group>"; };
 		E9E4FF0F1CC7E06200517729 /* UIStoryboard+Fascia.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = "UIStoryboard+Fascia.swift"; path = "Utils/UIStoryboard+Fascia.swift"; sourceTree = "<group>"; };
 		E9EA958A1CD4718F008F5535 /* NewProject.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = NewProject.swift; path = Models/NewProject.swift; sourceTree = "<group>"; };
+		E9F3974E1CDF92590078957B /* ContextMenuViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = ContextMenuViewController.swift; path = ViewControllers/ContextMenuViewController.swift; sourceTree = "<group>"; };
 		E9F4C6611CC52C19003DD8DC /* fascia-ios.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "fascia-ios.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		E9F4C6641CC52C19003DD8DC /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		E9F4C66B1CC52C19003DD8DC /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
@@ -259,6 +261,7 @@
 				E9571ADB1CD35E86007A819F /* NewProjectTableViewController.swift */,
 				E9E4FF011CC68FE300517729 /* SettingsTableViewController.swift */,
 				E9CF1D461CDA027C00BD5DDE /* RepositoriesTableViewController.swift */,
+				E9F3974E1CDF92590078957B /* ContextMenuViewController.swift */,
 			);
 			name = ViewControllers;
 			sourceTree = "<group>";
@@ -541,6 +544,7 @@
 				E9E4FF101CC7E06200517729 /* UIStoryboard+Fascia.swift in Sources */,
 				E928659B1CD8DDC100D2EF07 /* HUDManager.swift in Sources */,
 				E9E4FF0B1CC7DE1B00517729 /* MainTabBarController.swift in Sources */,
+				E9F3974F1CDF92590078957B /* ContextMenuViewController.swift in Sources */,
 				E96CC3CA1CD58E50007DDB65 /* SessionAction.swift in Sources */,
 				E975D0D11CDE434700F587CD /* ListVisibleAction.swift in Sources */,
 				E9BE0ACA1CDCE96600E2CC13 /* ListsViewModel.swift in Sources */,
