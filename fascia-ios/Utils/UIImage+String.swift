@@ -23,13 +23,13 @@ extension UIImage {
         shadow.shadowColor = shadowColor
         shadow.shadowBlurRadius = 0.0
 
-        let font = UIFont.boldSystemFontOfSize(16.0)
+        let font = UIFont(name: "Avenir-Light", size: 16.0)
         let style = NSMutableParagraphStyle()
         style.alignment = NSTextAlignment.Center
         style.lineBreakMode = NSLineBreakMode.ByClipping
 
         let attributes = [
-            NSFontAttributeName: font,
+            NSFontAttributeName: font!,
             NSParagraphStyleAttributeName: style,
             NSShadowAttributeName: shadow,
             NSForegroundColorAttributeName: foregroundColor,

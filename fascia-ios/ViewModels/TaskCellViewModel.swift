@@ -8,6 +8,7 @@
 
 import RxSwift
 import RxCocoa
+import Colours
 
 class TaskCellViewModel {
     let task: Variable<Task>
@@ -19,6 +20,7 @@ class TaskCellViewModel {
         self.title = self.task.asObservable().map({ (task) -> String in
             return task.title!
         })
-        self.color = Variable(UIColor(hexString: list.color!, alpha: 1.0))
+        self.color = Variable(UIColor(hex: list.color!))
+            //UIColor(hexString: list.color!, alpha: 1.0))
     }
 }

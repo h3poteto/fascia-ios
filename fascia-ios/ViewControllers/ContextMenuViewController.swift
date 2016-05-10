@@ -57,7 +57,7 @@ class ContextMenuViewController: UIViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
-        self.view.backgroundColor = UIColor(hexString: "000000", alpha: 0.5)
+        self.view.backgroundColor = UIColor.init(red: 0.0, green: 0.0, blue: 0.0, alpha: 0.5)
         bindViewModel()
 
     }

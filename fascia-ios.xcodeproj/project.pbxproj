@@ -28,7 +28,6 @@
 		E975D0BE1CDCF3B900F587CD /* Task.swift in Sources */ = {isa = PBXBuildFile; fileRef = E975D0BD1CDCF3B900F587CD /* Task.swift */; };
 		E975D0C11CDDC23600F587CD /* TaskTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = E975D0C01CDDC23600F587CD /* TaskTableViewCell.swift */; };
 		E975D0C31CDDC4F000F587CD /* TaskCellViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = E975D0C21CDDC4F000F587CD /* TaskCellViewModel.swift */; };
-		E975D0C71CDDC8CF00F587CD /* UIColor+hex.swift in Sources */ = {isa = PBXBuildFile; fileRef = E975D0C61CDDC8CF00F587CD /* UIColor+hex.swift */; };
 		E975D0CC1CDDE8DE00F587CD /* ListSectionTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = E975D0CA1CDDE8DE00F587CD /* ListSectionTableViewCell.swift */; };
 		E975D0CD1CDDE8DE00F587CD /* ListSectionTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = E975D0CB1CDDE8DE00F587CD /* ListSectionTableViewCell.xib */; };
 		E975D0CF1CDDE9CC00F587CD /* ListSectionViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = E975D0CE1CDDE9CC00F587CD /* ListSectionViewModel.swift */; };
@@ -97,7 +96,6 @@
 		E975D0BD1CDCF3B900F587CD /* Task.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = Task.swift; path = Models/Task.swift; sourceTree = "<group>"; };
 		E975D0C01CDDC23600F587CD /* TaskTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = TaskTableViewCell.swift; path = Views/Lists/TaskTableViewCell.swift; sourceTree = "<group>"; };
 		E975D0C21CDDC4F000F587CD /* TaskCellViewModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = TaskCellViewModel.swift; path = ViewModels/TaskCellViewModel.swift; sourceTree = "<group>"; };
-		E975D0C61CDDC8CF00F587CD /* UIColor+hex.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = "UIColor+hex.swift"; path = "Utils/UIColor+hex.swift"; sourceTree = "<group>"; };
 		E975D0CA1CDDE8DE00F587CD /* ListSectionTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = ListSectionTableViewCell.swift; path = Views/Lists/ListSectionTableViewCell.swift; sourceTree = "<group>"; };
 		E975D0CB1CDDE8DE00F587CD /* ListSectionTableViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = ListSectionTableViewCell.xib; path = Views/Lists/ListSectionTableViewCell.xib; sourceTree = "<group>"; };
 		E975D0CE1CDDE9CC00F587CD /* ListSectionViewModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = ListSectionViewModel.swift; path = ViewModels/ListSectionViewModel.swift; sourceTree = "<group>"; };
@@ -298,7 +296,6 @@
 			isa = PBXGroup;
 			children = (
 				E9E4FF0F1CC7E06200517729 /* UIStoryboard+Fascia.swift */,
-				E975D0C61CDDC8CF00F587CD /* UIColor+hex.swift */,
 				E90640391CE22F91008367F0 /* UIImage+String.swift */,
 			);
 			name = Utils;
@@ -533,7 +530,6 @@
 				E9F4C6651CC52C19003DD8DC /* AppDelegate.swift in Sources */,
 				E9571ADC1CD35E86007A819F /* NewProjectTableViewController.swift in Sources */,
 				E9CF1D411CD8F72400BD5DDE /* RepositoryAction.swift in Sources */,
-				E975D0C71CDDC8CF00F587CD /* UIColor+hex.swift in Sources */,
 				E9BE0AC61CDCE87200E2CC13 /* ListsTableViewController.swift in Sources */,
 				E9CF1D4B1CDA31EB00BD5DDE /* RepositoryCellViewModel.swift in Sources */,
 				E96CC3CC1CD58F1F007DDB65 /* SignInViewModel.swift in Sources */,

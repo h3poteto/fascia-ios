@@ -8,6 +8,7 @@
 
 import RxSwift
 import RxCocoa
+import Colours
 
 class ListsViewModel {
     final private let action = ListsAction()
@@ -36,4 +37,44 @@ class ListsViewModel {
         action.request(project.id!)
     }
 
+    func contextItems() -> [ContextItem] {
+        var items: [ContextItem] = []
+        guard let noneList = self.lists?.noneList else {
+            return []
+        }
+        let noneListColor = UIColor(hex: noneList.color!)
+        items.append(ContextItem(
+            title: noneList.title!,
+            image: UIImage.imageWithString(
+                String(noneList.title![noneList.title!.startIndex]),
+                foregroundColor: noneListColor.blackOrWhiteContrastingColor(),
+                backgroundColor: noneListColor,
+                shadowColor: noneListColor.complementaryColor())!,
+            highlightedImage: UIImage.imageWithString(
+                String(noneList.title![noneList.title!.startIndex]),
+                foregroundColor: noneListColor.blackOrWhiteContrastingColor(),
+                backgroundColor: noneListColor,
+                shadowColor: noneListColor.complementaryColor())!))
+
+        guard let lists = self.lists?.lists else {
+            return []
+        }
+        for list in lists {
+            let listColor = UIColor(hex: list.color!)
+            let contrastColor = listColor.blackOrWhiteContrastingColor()
+            items.append(ContextItem(
+                title: list.title!,
+                image: UIImage.imageWithString(
+                    String(list.title![list.title!.startIndex]),
+                    foregroundColor: contrastColor,
+                    backgroundColor: listColor,
+                    shadowColor: listColor.complementaryColor())!,
+                highlightedImage: UIImage.imageWithString(
+                    String(list.title![list.title!.startIndex]),
+                    foregroundColor: contrastColor,
+                    backgroundColor: listColor,
+                    shadowColor: listColor.complementaryColor())!))
+        }
+        return items
+    }
 }

@@ -10,5 +10,6 @@ target "fascia-ios" do
   pod 'CSNotificationView'
   pod 'RxAlamofire'
   pod 'SVProgressHUD'
+  pod 'Colours/Swift'
 end
 
