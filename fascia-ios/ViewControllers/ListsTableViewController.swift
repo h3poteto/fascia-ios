@@ -121,12 +121,41 @@ class ListsTableViewController: UITableViewController, UIGestureRecognizerDelega
         if indexPath != nil && recognizer.state == UIGestureRecognizerState.Began {
             // 長押しされた場合の処理
             print("長押しされたcellのindexPath:\(indexPath?.row)")
-            // TODO: 文字アイコンを作ってitemとして渡す
-            let items = [
-                ContextItem(title: "hoge", image: UIImage(named: "GitHub")! , highlightedImage: UIImage(named: "GitHub")!),
-                ContextItem(title: "fuga", image: UIImage(named: "Lock")!, highlightedImage: UIImage(named: "Lock")!),
-                ContextItem(title: "home", image: UIImage(named: "Projects")!, highlightedImage: UIImage(named: "Projects")!)
-            ]
+
+            var items: [ContextItem] = []
+            guard let noneList = self.viewModel.lists?.noneList else {
+                return
+            }
+            items.append(ContextItem(
+                title: noneList.title!,
+                image: UIImage.imageWithString(
+                    String(noneList.title![noneList.title!.startIndex]),
+                    foregroundColor: UIColor.whiteColor(),
+                    backgroundColor: UIColor(hexString: noneList.color!, alpha: 1.0),
+                    shadowColor: UIColor.lightGrayColor())!,
+                highlightedImage: UIImage.imageWithString(
+                    String(noneList.title![noneList.title!.startIndex]),
+                    foregroundColor: UIColor.whiteColor(),
+                    backgroundColor: UIColor(hexString: noneList.color!, alpha: 1.0),
+                    shadowColor: UIColor.lightGrayColor())!))
+
+            guard let lists = self.viewModel.lists?.lists else {
+                return
+            }
+            for list in lists {
+                items.append(ContextItem(
+                    title: list.title!,
+                    image: UIImage.imageWithString(
+                        String(list.title![list.title!.startIndex]),
+                        foregroundColor: UIColor.whiteColor(),
+                        backgroundColor: UIColor(hexString: list.color!, alpha: 1.0),
+                        shadowColor: UIColor.lightGrayColor())!,
+                    highlightedImage: UIImage.imageWithString(
+                        String(list.title![list.title!.startIndex]),
+                        foregroundColor: UIColor.whiteColor(),
+                        backgroundColor: UIColor(hexString: list.color!, alpha: 1.0),
+                        shadowColor: UIColor.lightGrayColor())!))
+            }
             let overlay = ContextMenuViewController(items: items, inViewController: self)
             overlay.start(recognizer)
         }
