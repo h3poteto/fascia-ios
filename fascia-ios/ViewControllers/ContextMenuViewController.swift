@@ -137,7 +137,7 @@ class ContextMenuViewController: UIViewController {
             for (index, item) in items.enumerate() {
                 let delta_x = circleRadius * cos(CGFloat(index + 1) * singleRadius)
                 let delta_y = circleRadius * sin(CGFloat(index + 1) * singleRadius)
-                displayItem(item, point: CGPoint(x: point.x + delta_x, y: point.y - delta_y))
+                displayItem(item, point: CGPoint(x: point.x + delta_x, y: point.y - delta_y), startPos: point)
             }
             break
         case .DownSemicircle:
@@ -145,7 +145,7 @@ class ContextMenuViewController: UIViewController {
             for (index, item) in items.enumerate() {
                 let delta_x = circleRadius * cos(CGFloat(index + 1) * singleRadius - pi)
                 let delta_y = circleRadius * sin(CGFloat(index + 1) * singleRadius - pi)
-                displayItem(item, point: CGPoint(x: point.x + delta_x, y: point.y - delta_y))
+                displayItem(item, point: CGPoint(x: point.x + delta_x, y: point.y - delta_y), startPos: point)
             }
             break
         case .RightSemicircle:
@@ -153,7 +153,7 @@ class ContextMenuViewController: UIViewController {
             for (index, item) in items.enumerate() {
                 let delta_x = circleRadius * cos(CGFloat(index + 1) * singleRadius - pi / 2.0)
                 let delta_y = circleRadius * sin(CGFloat(index + 1) * singleRadius - pi / 2.0)
-                displayItem(item, point: CGPoint(x: point.x + delta_x, y: point.y - delta_y))
+                displayItem(item, point: CGPoint(x: point.x + delta_x, y: point.y - delta_y), startPos: point)
             }
             break
         case .LeftSemicircle:
@@ -161,7 +161,7 @@ class ContextMenuViewController: UIViewController {
             for (index, item) in items.enumerate() {
                 let delta_x = circleRadius * cos(CGFloat(index + 1) * singleRadius + pi / 2.0)
                 let delta_y = circleRadius * sin(CGFloat(index + 1) * singleRadius + pi / 2.0)
-                displayItem(item, point: CGPoint(x: point.x + delta_x, y: point.y - delta_y))
+                displayItem(item, point: CGPoint(x: point.x + delta_x, y: point.y - delta_y), startPos: point)
             }
             break
         case .RightUpQuadrant:
@@ -169,7 +169,7 @@ class ContextMenuViewController: UIViewController {
             for (index, item) in items.enumerate() {
                 let delta_x = circleRadius * cos(CGFloat(index + 1) * singleRadius)
                 let delta_y = circleRadius * sin(CGFloat(index + 1) * singleRadius)
-                displayItem(item, point: CGPoint(x: point.x + delta_x, y: point.y - delta_y))
+                displayItem(item, point: CGPoint(x: point.x + delta_x, y: point.y - delta_y), startPos: point)
             }
             break
         case .RightDownQuadrant:
@@ -177,7 +177,7 @@ class ContextMenuViewController: UIViewController {
             for (index, item) in items.enumerate() {
                 let delta_x = circleRadius * cos(CGFloat(index + 1) * singleRadius - pi / 2.0)
                 let delta_y = circleRadius * sin(CGFloat(index + 1) * singleRadius - pi / 2.0)
-                displayItem(item, point: CGPoint(x: point.x + delta_x, y: point.y - delta_y))
+                displayItem(item, point: CGPoint(x: point.x + delta_x, y: point.y - delta_y), startPos: point)
             }
             break
         case .LeftUpQuadrant:
@@ -185,7 +185,7 @@ class ContextMenuViewController: UIViewController {
             for (index, item) in items.enumerate() {
                 let delta_x = circleRadius * cos(CGFloat(index + 1) * singleRadius + pi / 2.0)
                 let delta_y = circleRadius * sin(CGFloat(index + 1) * singleRadius + pi / 2.0)
-                displayItem(item, point: CGPoint(x: point.x + delta_x, y: point.y - delta_y))
+                displayItem(item, point: CGPoint(x: point.x + delta_x, y: point.y - delta_y), startPos: point)
             }
             break
         case .LeftDownQuadrant:
@@ -193,7 +193,7 @@ class ContextMenuViewController: UIViewController {
             for (index, item) in items.enumerate() {
                 let delta_x = circleRadius * cos(CGFloat(index + 1) * singleRadius - pi)
                 let delta_y = circleRadius * sin(CGFloat(index + 1) * singleRadius - pi)
-                displayItem(item, point: CGPoint(x: point.x + delta_x, y: point.y - delta_y))
+                displayItem(item, point: CGPoint(x: point.x + delta_x, y: point.y - delta_y), startPos: point)
             }
             break
         }
@@ -201,15 +201,23 @@ class ContextMenuViewController: UIViewController {
 
     // TODO: できればラベルも表示したい
     // TODO: アニメーションをつけて表示したい
-    private func displayItem(item: ContextItem, point: CGPoint) {
+    private func displayItem(item: ContextItem, point: CGPoint, startPos: CGPoint) {
         let circleImageButton = UIButton(type: UIButtonType.Custom)
         circleImageButton.setBackgroundImage(item.image, forState: .Normal)
         circleImageButton.setBackgroundImage(item.image, forState: .Highlighted)
-        circleImageButton.frame = CGRect(x: point.x - itemRadius / 2.0, y: point.y - itemRadius / 2.0, width: itemRadius, height: itemRadius)
+        circleImageButton.frame = CGRect(x: startPos.x, y: startPos.y, width: itemRadius, height: itemRadius)
+        circleImageButton.alpha = 0.0
         circleImageButton.layer.cornerRadius = circleImageButton.frame.size.width * 0.5
         circleImageButton.layer.borderColor = UIColor.whiteColor().CGColor
         circleImageButton.layer.borderWidth = 1.0
         circleImageButton.clipsToBounds = true
+
+        // animation
+        UIView.animateWithDuration(0.3, delay: 0.0, usingSpringWithDamping: 0.7, initialSpringVelocity: 0.0, options: UIViewAnimationOptions.AllowAnimatedContent, animations: {
+                circleImageButton.alpha = 1.0
+                circleImageButton.frame = CGRect(x: point.x - self.itemRadius / 2.0, y: point.y - self.itemRadius / 2.0, width: self.itemRadius, height: self.itemRadius)
+            }, completion: nil)
+
         self.view.addSubview(circleImageButton)
 
         circleImageButton.rx_tap
