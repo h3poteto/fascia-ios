@@ -11,7 +11,7 @@ import RxSwift
 import RxCocoa
 import CSNotificationView
 
-class ListsTableViewController: UITableViewController, UIGestureRecognizerDelegate {
+class ListsTableViewController: UITableViewController, UIGestureRecognizerDelegate, ContextMenuDelegate {
     @IBOutlet private weak var refresh: UIRefreshControl!
     var viewModel: ListsViewModel!
     private let disposeBag = DisposeBag()
@@ -123,8 +123,13 @@ class ListsTableViewController: UITableViewController, UIGestureRecognizerDelega
             print("長押しされたcellのindexPath:\(indexPath?.row)")
             let items = viewModel.contextItems()
             let overlay = ContextMenuViewController(items: items, inViewController: self)
+            overlay.delegate = self
             overlay.start(recognizer)
         }
+    }
+
+    func itemTap(item: ContextItem) {
+        // TODO: List移動のAPICall
     }
 
 

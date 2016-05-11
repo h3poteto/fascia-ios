@@ -10,6 +10,10 @@ import UIKit
 import RxSwift
 import RxCocoa
 
+protocol ContextMenuDelegate {
+    func itemTap(item: ContextItem) -> Void
+}
+
 enum CircleMenu {
     case UpSemicircle
     case DownSemicircle
@@ -40,6 +44,8 @@ class ContextMenuViewController: UIViewController {
     private let itemRadius = CGFloat(30.0)
     private let margin = CGFloat(20.0)
     final private let pi = CGFloat(3.14159265359)
+    private let disposeBag = DisposeBag()
+    var delegate: ContextMenuDelegate!
 
     override init(nibName nibNameOrNil: String?, bundle nibBundleOrNil: NSBundle?) {
         super.init(nibName: nibNameOrNil, bundle: nibBundleOrNil)
@@ -193,15 +199,29 @@ class ContextMenuViewController: UIViewController {
         }
     }
 
-    // TODO: これらのitemにタップイベントを登録する
     // TODO: できればラベルも表示したい
     // TODO: アニメーションをつけて表示したい
     private func displayItem(item: ContextItem, point: CGPoint) {
-        let circleImageView = UIImageView(image: item.image, highlightedImage: item.highlightedImage)
-        circleImageView.frame = CGRect.init(x: point.x - itemRadius / 2.0, y: point.y - itemRadius / 2.0, width: itemRadius, height: itemRadius)
-        circleImageView.layer.cornerRadius = circleImageView.frame.size.width * 0.5
-        circleImageView.clipsToBounds = true
-        self.view.addSubview(circleImageView)
+        let circleImageButton = UIButton(type: UIButtonType.Custom)
+        circleImageButton.setBackgroundImage(item.image, forState: .Normal)
+        circleImageButton.setBackgroundImage(item.image, forState: .Highlighted)
+        circleImageButton.frame = CGRect(x: point.x - itemRadius / 2.0, y: point.y - itemRadius / 2.0, width: itemRadius, height: itemRadius)
+        circleImageButton.layer.cornerRadius = circleImageButton.frame.size.width * 0.5
+        circleImageButton.layer.borderColor = UIColor.whiteColor().CGColor
+        circleImageButton.layer.borderWidth = 1.0
+        circleImageButton.clipsToBounds = true
+        self.view.addSubview(circleImageButton)
+
+        circleImageButton.rx_tap
+            .subscribeNext { _ in
+                self.selectedItem(item)
+            }
+            .addDisposableTo(disposeBag)
+    }
+
+    private func selectedItem(item: ContextItem) {
+        delegate.itemTap(item)
+        end()
     }
 
     func end() {
