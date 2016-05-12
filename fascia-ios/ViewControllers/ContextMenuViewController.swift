@@ -200,11 +200,12 @@ class ContextMenuViewController: UIViewController {
     }
 
     // TODO: できればラベルも表示したい
-    // TODO: アニメーションをつけて表示したい
+    // TODO: 悩みどころ：タップにするかドラッグにするか，ラベルを表示するならドラッグにするしかない．ただ使い勝手としてはタップの方がいいのでは？
     private func displayItem(item: ContextItem, point: CGPoint, startPos: CGPoint) {
         let circleImageButton = UIButton(type: UIButtonType.Custom)
         circleImageButton.setBackgroundImage(item.image, forState: .Normal)
-        circleImageButton.setBackgroundImage(item.image, forState: .Highlighted)
+        circleImageButton.setBackgroundImage(item.highlightedImage, forState: .Highlighted)
+        circleImageButton.setBackgroundImage(item.highlightedImage, forState: .Selected)
         circleImageButton.frame = CGRect(x: startPos.x, y: startPos.y, width: itemRadius, height: itemRadius)
         circleImageButton.alpha = 0.0
         circleImageButton.layer.cornerRadius = circleImageButton.frame.size.width * 0.5

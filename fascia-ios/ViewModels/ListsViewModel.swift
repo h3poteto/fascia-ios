@@ -53,7 +53,7 @@ class ListsViewModel {
             highlightedImage: UIImage.imageWithString(
                 String(noneList.title![noneList.title!.startIndex]),
                 foregroundColor: noneListColor.blackOrWhiteContrastingColor(),
-                backgroundColor: noneListColor,
+                backgroundColor: noneListColor.darkenedColor(0.25),
                 shadowColor: noneListColor.complementaryColor())!))
 
         guard let lists = self.lists?.lists else {
@@ -72,7 +72,7 @@ class ListsViewModel {
                 highlightedImage: UIImage.imageWithString(
                     String(list.title![list.title!.startIndex]),
                     foregroundColor: contrastColor,
-                    backgroundColor: listColor,
+                    backgroundColor: listColor.darkenedColor(0.25),
                     shadowColor: listColor.complementaryColor())!))
         }
         return items
