@@ -17,6 +17,7 @@ class ListsViewModel {
     final private(set) var listsUpdated: Driver<Lists?> = Driver.never()
     final private(set) var isLoading: Driver<Bool> = Driver.never()
     final private(set) var error: Driver<ErrorType?> = Driver.never()
+    var contextMenuVisible = false
 
     init(project: Project) {
         self.project = project

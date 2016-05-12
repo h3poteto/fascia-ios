@@ -114,6 +114,9 @@ class ListsTableViewController: UITableViewController, UIGestureRecognizerDelega
     }
 
     func cellLongPressed(recognizer: UILongPressGestureRecognizer) {
+        if viewModel.contextMenuVisible {
+            return
+        }
         // 押された位置でcellのPathを取得
         let point = recognizer.locationInView(tableView)
         let indexPath = tableView.indexPathForRowAtPoint(point)
@@ -125,6 +128,7 @@ class ListsTableViewController: UITableViewController, UIGestureRecognizerDelega
             let overlay = ContextMenuViewController(items: items, inViewController: self)
             overlay.delegate = self
             overlay.start(recognizer)
+            viewModel.contextMenuVisible = true
         }
     }
 
