@@ -121,10 +121,12 @@ class ListsTableViewController: UITableViewController, UIGestureRecognizerDelega
         // 押された位置でcellのPathを取得
         let point = recognizer.locationInView(tableView)
         let indexPath = tableView.indexPathForRowAtPoint(point)
+        self.tableView.selectRowAtIndexPath(indexPath, animated: true, scrollPosition: .None)
 
         if indexPath != nil && recognizer.state == UIGestureRecognizerState.Began {
             // 長押しされた場合の処理
             print("長押しされたcellのindexPath:\(indexPath?.row)")
+
             guard let lists = viewModel.lists else {
                 return
             }
@@ -154,6 +156,10 @@ class ListsTableViewController: UITableViewController, UIGestureRecognizerDelega
 
     func closeContextMenu() {
         viewModel.contextMenuVisible = false
+        guard let indexPath = self.tableView.indexPathForSelectedRow else {
+            return
+        }
+        self.tableView.deselectRowAtIndexPath(indexPath, animated: true)
     }
     //------------------------------------------
 
