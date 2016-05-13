@@ -131,6 +131,30 @@ class ContextMenuViewController: UIViewController {
         }
 
         showItems(circle, point: touchPoint)
+        showSelectedCircle(touchPoint)
+    }
+
+    private func showSelectedCircle(point: CGPoint) {
+        let circleLayer = CAShapeLayer()
+        circleLayer.strokeColor = UIColor.babyBlueColor().CGColor
+        circleLayer.fillColor = UIColor(red: 1.0, green: 1.0, blue: 1.0, alpha: 0.0).CGColor
+        circleLayer.lineWidth = 2.0
+
+        self.view.layer.addSublayer(circleLayer)
+
+        let circleAnimation = CABasicAnimation(keyPath: "path")
+        circleAnimation.fromValue = UIBezierPath(arcCenter: point, radius: 25.0, startAngle: 0, endAngle: 2.0 * CGFloat(M_PI), clockwise: true).CGPath
+        circleAnimation.toValue = UIBezierPath(arcCenter: point, radius: 15.0, startAngle: 0, endAngle: 2.0 * CGFloat(M_PI), clockwise: true).CGPath
+        let opacityAnimation = CABasicAnimation(keyPath: "opacity")
+        opacityAnimation.fromValue = 0.0
+        opacityAnimation.toValue = 0.7
+        let animationGroup = CAAnimationGroup()
+        animationGroup.duration = 0.3
+        animationGroup.animations = [circleAnimation, opacityAnimation]
+        animationGroup.removedOnCompletion = false
+        animationGroup.fillMode = kCAFillModeForwards
+        circleLayer.addAnimation(animationGroup, forKey: nil)
+
     }
 
     private func showItems(menu: CircleMenu, point: CGPoint) {
