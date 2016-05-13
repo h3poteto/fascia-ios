@@ -55,7 +55,10 @@ class ListsViewModel {
                 String(noneList.title![noneList.title!.startIndex]),
                 foregroundColor: noneListColor.blackOrWhiteContrastingColor(),
                 backgroundColor: noneListColor.darkenedColor(0.25),
-                shadowColor: noneListColor.complementaryColor())!))
+                shadowColor: noneListColor.complementaryColor())!,
+            object: noneList
+            )
+        )
 
         guard let lists = self.lists?.lists else {
             return []
@@ -74,8 +77,18 @@ class ListsViewModel {
                     String(list.title![list.title!.startIndex]),
                     foregroundColor: contrastColor,
                     backgroundColor: listColor.darkenedColor(0.25),
-                    shadowColor: listColor.complementaryColor())!))
+                    shadowColor: listColor.complementaryColor())!,
+                object: list
+                )
+            )
         }
         return items
+    }
+
+    func moveRequest(item: ContextItem, task: Task) {
+        guard let list = item.object as? List else {
+            return
+        }
+        action.moveRequest(project.id!, taskID: task.id!, listID: task.listID!, toListID: list.id!)
     }
 }

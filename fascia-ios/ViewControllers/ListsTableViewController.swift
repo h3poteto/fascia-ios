@@ -14,6 +14,7 @@ import CSNotificationView
 class ListsTableViewController: UITableViewController, UIGestureRecognizerDelegate, ContextMenuDelegate {
     @IBOutlet private weak var refresh: UIRefreshControl!
     var viewModel: ListsViewModel!
+    private let hud = HUDManager()
     private let disposeBag = DisposeBag()
 
     override func viewDidLoad() {
@@ -124,17 +125,37 @@ class ListsTableViewController: UITableViewController, UIGestureRecognizerDelega
         if indexPath != nil && recognizer.state == UIGestureRecognizerState.Began {
             // 長押しされた場合の処理
             print("長押しされたcellのindexPath:\(indexPath?.row)")
+            guard let lists = viewModel.lists else {
+                return
+            }
+            let task: Task
+            if indexPath?.section == 0 {
+                guard let noneList = lists.noneList else {
+                    return
+                }
+                task = noneList.listTasks[indexPath!.row]
+            } else {
+                task = lists.lists[indexPath!.section - 1].listTasks[indexPath!.row]
+            }
             let items = viewModel.contextItems()
-            let overlay = ContextMenuViewController(items: items, inViewController: self)
+            let overlay = ContextMenuViewController(items: items, task: task, inViewController: self)
             overlay.delegate = self
             overlay.start(recognizer)
             viewModel.contextMenuVisible = true
         }
     }
 
-    func itemTap(item: ContextItem) {
-        // TODO: List移動のAPICall
+    //------------------------------------------
+    // ContextMenuDelegate
+    //------------------------------------------
+    func itemTap(item: ContextItem, task: Task) {
+        viewModel.moveRequest(item, task: task)
     }
+
+    func closeContextMenu() {
+        viewModel.contextMenuVisible = false
+    }
+    //------------------------------------------
 
 
     private func showSignInView() {
@@ -154,6 +175,7 @@ class ListsTableViewController: UITableViewController, UIGestureRecognizerDelega
         viewModel.isLoading
             .drive(self.refresh.rx_refreshing)
             .addDisposableTo(disposeBag)
+        hud.bind(viewModel.isLoading)
 
         viewModel.error
             .driveNext { (errorType) in

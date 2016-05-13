@@ -11,7 +11,8 @@ import RxSwift
 import RxCocoa
 
 protocol ContextMenuDelegate {
-    func itemTap(item: ContextItem) -> Void
+    func itemTap(item: ContextItem, task: Task) -> Void
+    func closeContextMenu() -> Void
 }
 
 enum CircleMenu {
@@ -26,14 +27,16 @@ enum CircleMenu {
 }
 
 class ContextItem {
+    var object: AnyObject?
     var title: String!
     var image: UIImage!
     var highlightedImage: UIImage!
 
-    init(title: String, image: UIImage, highlightedImage: UIImage) {
+    init(title: String, image: UIImage, highlightedImage: UIImage, object: AnyObject?) {
         self.title = title
         self.image = image
         self.highlightedImage = highlightedImage
+        self.object = object
     }
 }
 
@@ -46,15 +49,17 @@ class ContextMenuViewController: UIViewController {
     final private let pi = CGFloat(3.14159265359)
     private let disposeBag = DisposeBag()
     var delegate: ContextMenuDelegate!
+    var selectedTask: Task?
 
     override init(nibName nibNameOrNil: String?, bundle nibBundleOrNil: NSBundle?) {
         super.init(nibName: nibNameOrNil, bundle: nibBundleOrNil)
     }
 
-    convenience init(items: [ContextItem], inViewController: UITableViewController) {
+    convenience init(items: [ContextItem], task: Task, inViewController: UITableViewController) {
         self.init()
         self.parent = inViewController
         self.items = items
+        self.selectedTask = task
     }
 
     required init?(coder aDecoder: NSCoder) {
@@ -199,8 +204,8 @@ class ContextMenuViewController: UIViewController {
         }
     }
 
-    // TODO: できればラベルも表示したい
-    // TODO: 悩みどころ：タップにするかドラッグにするか，ラベルを表示するならドラッグにするしかない．ただ使い勝手としてはタップの方がいいのでは？
+    // 現状ではタップで遷移させている
+    // もしD&Dで実現するならラベルも出せる
     private func displayItem(item: ContextItem, point: CGPoint, startPos: CGPoint) {
         let circleImageButton = UIButton(type: UIButtonType.Custom)
         circleImageButton.setBackgroundImage(item.image, forState: .Normal)
@@ -229,13 +234,17 @@ class ContextMenuViewController: UIViewController {
     }
 
     private func selectedItem(item: ContextItem) {
-        delegate.itemTap(item)
+        guard let task = self.selectedTask else {
+            return
+        }
+        delegate.itemTap(item, task: task)
         end()
     }
 
     func end() {
         self.view.removeFromSuperview()
         self.parent?.tableView.scrollEnabled = true
+        delegate.closeContextMenu()
     }
 
     func tapped(sender: UIGestureRecognizer) {
