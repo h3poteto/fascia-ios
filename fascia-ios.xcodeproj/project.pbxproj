@@ -10,6 +10,7 @@
 		5F8671B19F4521C1BB30C10E /* Pods_fascia_ios.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 16D2F05040D44D1E1FE11135 /* Pods_fascia_ios.framework */; };
 		E906403A1CE22F91008367F0 /* UIImage+String.swift in Sources */ = {isa = PBXBuildFile; fileRef = E90640391CE22F91008367F0 /* UIImage+String.swift */; };
 		E928659B1CD8DDC100D2EF07 /* HUDManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = E928659A1CD8DDC100D2EF07 /* HUDManager.swift */; };
+		E95104E71CE714F500754A51 /* InitialViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E95104E61CE714F500754A51 /* InitialViewController.swift */; };
 		E9571AD71CD2893E007A819F /* QuartzCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E9571AD61CD2893E007A819F /* QuartzCore.framework */; };
 		E9571ADA1CD332FC007A819F /* ProjectsAction.swift in Sources */ = {isa = PBXBuildFile; fileRef = E9571AD91CD332FC007A819F /* ProjectsAction.swift */; };
 		E9571ADC1CD35E86007A819F /* NewProjectTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E9571ADB1CD35E86007A819F /* NewProjectTableViewController.swift */; };
@@ -53,7 +54,6 @@
 		E9E4FF021CC68FE300517729 /* SettingsTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E9E4FF011CC68FE300517729 /* SettingsTableViewController.swift */; };
 		E9E4FF041CC7C51700517729 /* SignInViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E9E4FF031CC7C51700517729 /* SignInViewController.swift */; };
 		E9E4FF071CC7DC2E00517729 /* FasciaAPIService.swift in Sources */ = {isa = PBXBuildFile; fileRef = E9E4FF061CC7DC2E00517729 /* FasciaAPIService.swift */; };
-		E9E4FF0B1CC7DE1B00517729 /* MainTabBarController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E9E4FF0A1CC7DE1B00517729 /* MainTabBarController.swift */; };
 		E9E4FF101CC7E06200517729 /* UIStoryboard+Fascia.swift in Sources */ = {isa = PBXBuildFile; fileRef = E9E4FF0F1CC7E06200517729 /* UIStoryboard+Fascia.swift */; };
 		E9EA958B1CD4718F008F5535 /* NewProject.swift in Sources */ = {isa = PBXBuildFile; fileRef = E9EA958A1CD4718F008F5535 /* NewProject.swift */; };
 		E9F3974F1CDF92590078957B /* ContextMenuViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E9F3974E1CDF92590078957B /* ContextMenuViewController.swift */; };
@@ -78,6 +78,7 @@
 		67AD5B1E44C7EB47CEA7BB03 /* Pods-fascia-ios.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-fascia-ios.debug.xcconfig"; path = "Pods/Target Support Files/Pods-fascia-ios/Pods-fascia-ios.debug.xcconfig"; sourceTree = "<group>"; };
 		E90640391CE22F91008367F0 /* UIImage+String.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = "UIImage+String.swift"; path = "Utils/UIImage+String.swift"; sourceTree = "<group>"; };
 		E928659A1CD8DDC100D2EF07 /* HUDManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = HUDManager.swift; path = Services/HUDManager.swift; sourceTree = "<group>"; };
+		E95104E61CE714F500754A51 /* InitialViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = InitialViewController.swift; path = ViewControllers/InitialViewController.swift; sourceTree = "<group>"; };
 		E9571AD61CD2893E007A819F /* QuartzCore.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = QuartzCore.framework; path = System/Library/Frameworks/QuartzCore.framework; sourceTree = SDKROOT; };
 		E9571AD91CD332FC007A819F /* ProjectsAction.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = ProjectsAction.swift; path = Actions/ProjectsAction.swift; sourceTree = "<group>"; };
 		E9571ADB1CD35E86007A819F /* NewProjectTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = NewProjectTableViewController.swift; path = ViewControllers/NewProjectTableViewController.swift; sourceTree = "<group>"; };
@@ -121,7 +122,6 @@
 		E9E4FF011CC68FE300517729 /* SettingsTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = SettingsTableViewController.swift; path = ViewControllers/SettingsTableViewController.swift; sourceTree = "<group>"; };
 		E9E4FF031CC7C51700517729 /* SignInViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = SignInViewController.swift; path = ViewControllers/SignInViewController.swift; sourceTree = "<group>"; };
 		E9E4FF061CC7DC2E00517729 /* FasciaAPIService.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = FasciaAPIService.swift; path = Services/FasciaAPIService.swift; sourceTree = "<group>"; };
-		E9E4FF0A1CC7DE1B00517729 /* MainTabBarController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = MainTabBarController.swift; path = ViewControllers/MainTabBarController.swift; sourceTree = "<group>"; };
 		E9E4FF0F1CC7E06200517729 /* UIStoryboard+Fascia.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = "UIStoryboard+Fascia.swift"; path = "Utils/UIStoryboard+Fascia.swift"; sourceTree = "<group>"; };
 		E9EA958A1CD4718F008F5535 /* NewProject.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = NewProject.swift; path = Models/NewProject.swift; sourceTree = "<group>"; };
 		E9F3974E1CDF92590078957B /* ContextMenuViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = ContextMenuViewController.swift; path = ViewControllers/ContextMenuViewController.swift; sourceTree = "<group>"; };
@@ -254,7 +254,7 @@
 		E9E4FEF51CC53C3000517729 /* ViewControllers */ = {
 			isa = PBXGroup;
 			children = (
-				E9E4FF0A1CC7DE1B00517729 /* MainTabBarController.swift */,
+				E95104E61CE714F500754A51 /* InitialViewController.swift */,
 				E9BE0AC51CDCE87200E2CC13 /* ListsTableViewController.swift */,
 				E9E4FF031CC7C51700517729 /* SignInViewController.swift */,
 				E9E4FEFF1CC68ED500517729 /* ProjectsTableViewController.swift */,
@@ -518,6 +518,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				E9EA958B1CD4718F008F5535 /* NewProject.swift in Sources */,
+				E95104E71CE714F500754A51 /* InitialViewController.swift in Sources */,
 				E9BE0AC81CDCE91800E2CC13 /* List.swift in Sources */,
 				E906403A1CE22F91008367F0 /* UIImage+String.swift in Sources */,
 				E9749C971CCD075F00335B53 /* Scheduler.swift in Sources */,
@@ -543,7 +544,6 @@
 				E9571AE91CD3C4FD007A819F /* NewProjectAction.swift in Sources */,
 				E9E4FF101CC7E06200517729 /* UIStoryboard+Fascia.swift in Sources */,
 				E928659B1CD8DDC100D2EF07 /* HUDManager.swift in Sources */,
-				E9E4FF0B1CC7DE1B00517729 /* MainTabBarController.swift in Sources */,
 				E9F3974F1CDF92590078957B /* ContextMenuViewController.swift in Sources */,
 				E96CC3CA1CD58E50007DDB65 /* SessionAction.swift in Sources */,
 				E975D0D11CDE434700F587CD /* ListVisibleAction.swift in Sources */,

@@ -15,7 +15,11 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 
 
     func application(application: UIApplication, didFinishLaunchingWithOptions launchOptions: [NSObject: AnyObject]?) -> Bool {
-        // Override point for customization after application launch.
+        // InitialViewControllerも用意してあるので，walkthroughとか表示するならこのコードを消すだけで遷移できる
+        guard let projects = UIStoryboard.instantiateViewController("ProjectsNavigationViewController", storyboardName: "Projects") as? UINavigationController else {
+            return true
+        }
+        self.window?.rootViewController = projects
         return true
     }
 
