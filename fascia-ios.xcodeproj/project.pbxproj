@@ -8,6 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		5F8671B19F4521C1BB30C10E /* Pods_fascia_ios.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 16D2F05040D44D1E1FE11135 /* Pods_fascia_ios.framework */; };
+		E906403A1CE22F91008367F0 /* UIImage+String.swift in Sources */ = {isa = PBXBuildFile; fileRef = E90640391CE22F91008367F0 /* UIImage+String.swift */; };
 		E928659B1CD8DDC100D2EF07 /* HUDManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = E928659A1CD8DDC100D2EF07 /* HUDManager.swift */; };
 		E9571AD71CD2893E007A819F /* QuartzCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E9571AD61CD2893E007A819F /* QuartzCore.framework */; };
 		E9571ADA1CD332FC007A819F /* ProjectsAction.swift in Sources */ = {isa = PBXBuildFile; fileRef = E9571AD91CD332FC007A819F /* ProjectsAction.swift */; };
@@ -27,7 +28,6 @@
 		E975D0BE1CDCF3B900F587CD /* Task.swift in Sources */ = {isa = PBXBuildFile; fileRef = E975D0BD1CDCF3B900F587CD /* Task.swift */; };
 		E975D0C11CDDC23600F587CD /* TaskTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = E975D0C01CDDC23600F587CD /* TaskTableViewCell.swift */; };
 		E975D0C31CDDC4F000F587CD /* TaskCellViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = E975D0C21CDDC4F000F587CD /* TaskCellViewModel.swift */; };
-		E975D0C71CDDC8CF00F587CD /* UIColor+hex.swift in Sources */ = {isa = PBXBuildFile; fileRef = E975D0C61CDDC8CF00F587CD /* UIColor+hex.swift */; };
 		E975D0CC1CDDE8DE00F587CD /* ListSectionTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = E975D0CA1CDDE8DE00F587CD /* ListSectionTableViewCell.swift */; };
 		E975D0CD1CDDE8DE00F587CD /* ListSectionTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = E975D0CB1CDDE8DE00F587CD /* ListSectionTableViewCell.xib */; };
 		E975D0CF1CDDE9CC00F587CD /* ListSectionViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = E975D0CE1CDDE9CC00F587CD /* ListSectionViewModel.swift */; };
@@ -56,6 +56,7 @@
 		E9E4FF0B1CC7DE1B00517729 /* MainTabBarController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E9E4FF0A1CC7DE1B00517729 /* MainTabBarController.swift */; };
 		E9E4FF101CC7E06200517729 /* UIStoryboard+Fascia.swift in Sources */ = {isa = PBXBuildFile; fileRef = E9E4FF0F1CC7E06200517729 /* UIStoryboard+Fascia.swift */; };
 		E9EA958B1CD4718F008F5535 /* NewProject.swift in Sources */ = {isa = PBXBuildFile; fileRef = E9EA958A1CD4718F008F5535 /* NewProject.swift */; };
+		E9F3974F1CDF92590078957B /* ContextMenuViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E9F3974E1CDF92590078957B /* ContextMenuViewController.swift */; };
 		E9F4C6651CC52C19003DD8DC /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = E9F4C6641CC52C19003DD8DC /* AppDelegate.swift */; };
 		E9F4C66C1CC52C19003DD8DC /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = E9F4C66B1CC52C19003DD8DC /* Assets.xcassets */; };
 		E9F4C67A1CC52C19003DD8DC /* fascia_iosTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = E9F4C6791CC52C19003DD8DC /* fascia_iosTests.swift */; };
@@ -75,6 +76,7 @@
 		16D2F05040D44D1E1FE11135 /* Pods_fascia_ios.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_fascia_ios.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		500F9BE1C0E6F2F088F98868 /* Pods-fascia-ios.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-fascia-ios.release.xcconfig"; path = "Pods/Target Support Files/Pods-fascia-ios/Pods-fascia-ios.release.xcconfig"; sourceTree = "<group>"; };
 		67AD5B1E44C7EB47CEA7BB03 /* Pods-fascia-ios.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-fascia-ios.debug.xcconfig"; path = "Pods/Target Support Files/Pods-fascia-ios/Pods-fascia-ios.debug.xcconfig"; sourceTree = "<group>"; };
+		E90640391CE22F91008367F0 /* UIImage+String.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = "UIImage+String.swift"; path = "Utils/UIImage+String.swift"; sourceTree = "<group>"; };
 		E928659A1CD8DDC100D2EF07 /* HUDManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = HUDManager.swift; path = Services/HUDManager.swift; sourceTree = "<group>"; };
 		E9571AD61CD2893E007A819F /* QuartzCore.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = QuartzCore.framework; path = System/Library/Frameworks/QuartzCore.framework; sourceTree = SDKROOT; };
 		E9571AD91CD332FC007A819F /* ProjectsAction.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = ProjectsAction.swift; path = Actions/ProjectsAction.swift; sourceTree = "<group>"; };
@@ -94,7 +96,6 @@
 		E975D0BD1CDCF3B900F587CD /* Task.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = Task.swift; path = Models/Task.swift; sourceTree = "<group>"; };
 		E975D0C01CDDC23600F587CD /* TaskTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = TaskTableViewCell.swift; path = Views/Lists/TaskTableViewCell.swift; sourceTree = "<group>"; };
 		E975D0C21CDDC4F000F587CD /* TaskCellViewModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = TaskCellViewModel.swift; path = ViewModels/TaskCellViewModel.swift; sourceTree = "<group>"; };
-		E975D0C61CDDC8CF00F587CD /* UIColor+hex.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = "UIColor+hex.swift"; path = "Utils/UIColor+hex.swift"; sourceTree = "<group>"; };
 		E975D0CA1CDDE8DE00F587CD /* ListSectionTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = ListSectionTableViewCell.swift; path = Views/Lists/ListSectionTableViewCell.swift; sourceTree = "<group>"; };
 		E975D0CB1CDDE8DE00F587CD /* ListSectionTableViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = ListSectionTableViewCell.xib; path = Views/Lists/ListSectionTableViewCell.xib; sourceTree = "<group>"; };
 		E975D0CE1CDDE9CC00F587CD /* ListSectionViewModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = ListSectionViewModel.swift; path = ViewModels/ListSectionViewModel.swift; sourceTree = "<group>"; };
@@ -123,6 +124,7 @@
 		E9E4FF0A1CC7DE1B00517729 /* MainTabBarController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = MainTabBarController.swift; path = ViewControllers/MainTabBarController.swift; sourceTree = "<group>"; };
 		E9E4FF0F1CC7E06200517729 /* UIStoryboard+Fascia.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = "UIStoryboard+Fascia.swift"; path = "Utils/UIStoryboard+Fascia.swift"; sourceTree = "<group>"; };
 		E9EA958A1CD4718F008F5535 /* NewProject.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = NewProject.swift; path = Models/NewProject.swift; sourceTree = "<group>"; };
+		E9F3974E1CDF92590078957B /* ContextMenuViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = ContextMenuViewController.swift; path = ViewControllers/ContextMenuViewController.swift; sourceTree = "<group>"; };
 		E9F4C6611CC52C19003DD8DC /* fascia-ios.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "fascia-ios.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		E9F4C6641CC52C19003DD8DC /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		E9F4C66B1CC52C19003DD8DC /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
@@ -259,6 +261,7 @@
 				E9571ADB1CD35E86007A819F /* NewProjectTableViewController.swift */,
 				E9E4FF011CC68FE300517729 /* SettingsTableViewController.swift */,
 				E9CF1D461CDA027C00BD5DDE /* RepositoriesTableViewController.swift */,
+				E9F3974E1CDF92590078957B /* ContextMenuViewController.swift */,
 			);
 			name = ViewControllers;
 			sourceTree = "<group>";
@@ -293,7 +296,7 @@
 			isa = PBXGroup;
 			children = (
 				E9E4FF0F1CC7E06200517729 /* UIStoryboard+Fascia.swift */,
-				E975D0C61CDDC8CF00F587CD /* UIColor+hex.swift */,
+				E90640391CE22F91008367F0 /* UIImage+String.swift */,
 			);
 			name = Utils;
 			sourceTree = "<group>";
@@ -516,6 +519,7 @@
 			files = (
 				E9EA958B1CD4718F008F5535 /* NewProject.swift in Sources */,
 				E9BE0AC81CDCE91800E2CC13 /* List.swift in Sources */,
+				E906403A1CE22F91008367F0 /* UIImage+String.swift in Sources */,
 				E9749C971CCD075F00335B53 /* Scheduler.swift in Sources */,
 				E9BE0ACC1CDCE9C600E2CC13 /* ListsAction.swift in Sources */,
 				E9E4FF041CC7C51700517729 /* SignInViewController.swift in Sources */,
@@ -526,7 +530,6 @@
 				E9F4C6651CC52C19003DD8DC /* AppDelegate.swift in Sources */,
 				E9571ADC1CD35E86007A819F /* NewProjectTableViewController.swift in Sources */,
 				E9CF1D411CD8F72400BD5DDE /* RepositoryAction.swift in Sources */,
-				E975D0C71CDDC8CF00F587CD /* UIColor+hex.swift in Sources */,
 				E9BE0AC61CDCE87200E2CC13 /* ListsTableViewController.swift in Sources */,
 				E9CF1D4B1CDA31EB00BD5DDE /* RepositoryCellViewModel.swift in Sources */,
 				E96CC3CC1CD58F1F007DDB65 /* SignInViewModel.swift in Sources */,
@@ -541,6 +544,7 @@
 				E9E4FF101CC7E06200517729 /* UIStoryboard+Fascia.swift in Sources */,
 				E928659B1CD8DDC100D2EF07 /* HUDManager.swift in Sources */,
 				E9E4FF0B1CC7DE1B00517729 /* MainTabBarController.swift in Sources */,
+				E9F3974F1CDF92590078957B /* ContextMenuViewController.swift in Sources */,
 				E96CC3CA1CD58E50007DDB65 /* SessionAction.swift in Sources */,
 				E975D0D11CDE434700F587CD /* ListVisibleAction.swift in Sources */,
 				E9BE0ACA1CDCE96600E2CC13 /* ListsViewModel.swift in Sources */,

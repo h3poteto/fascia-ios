@@ -1,5 +1,6 @@
 PODS:
   - Alamofire (3.3.1)
+  - Colours/Swift (5.13.0)
   - CSNotificationView (0.5.4)
   - ObjectMapper (1.2.0)
   - RxAlamofire (2.2):
@@ -14,6 +15,7 @@ PODS:
 
 DEPENDENCIES:
   - Alamofire (~> 3.3)
+  - Colours/Swift
   - CSNotificationView
   - ObjectMapper (~> 1.2)
   - RxAlamofire
@@ -23,6 +25,7 @@ DEPENDENCIES:
 
 SPEC CHECKSUMS:
   Alamofire: 369bc67b6f5ac33ded3648d7bd21c5bfb91c2ecc
+  Colours: f24220c38f13deac88612667e9b4a7fb96b871d4
   CSNotificationView: 0792f5220163c2befaf1a9716aa3d5a7d6bd4fb1
   ObjectMapper: b1e9c7c8a9f6400b72690c80072c131504caa66f
   RxAlamofire: 250b7846cedbd189d6190e4f83caa01ee1f1eceb
@@ -30,6 +33,6 @@ SPEC CHECKSUMS:
   RxSwift: 67b9ef4e8b34fb394e200e754c6a09cc16559f94
   SVProgressHUD: b0830714205bea1317ea1a2ebc71e5633af334d4
 
-PODFILE CHECKSUM: 7bcd271646589140cd75ab22e71d79d95d43569f
+PODFILE CHECKSUM: 587cd5fa597a2750c48c4ce8c3b5e49ab06cac3b
 
 COCOAPODS: 1.0.0.beta.8

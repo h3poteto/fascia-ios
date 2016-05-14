@@ -11,22 +11,25 @@ import RxSwift
 import RxCocoa
 import CSNotificationView
 
-class ListsTableViewController: UITableViewController {
+class ListsTableViewController: UITableViewController, UIGestureRecognizerDelegate, ContextMenuDelegate {
     @IBOutlet private weak var refresh: UIRefreshControl!
     var viewModel: ListsViewModel!
+    private let hud = HUDManager()
     private let disposeBag = DisposeBag()
 
     override func viewDidLoad() {
         super.viewDidLoad()
         bindViewModel()
+
+        let longPressRecognizer = UILongPressGestureRecognizer(target: self, action: #selector(ListsTableViewController.cellLongPressed(_:)))
+        longPressRecognizer.delegate = self
+        tableView.addGestureRecognizer(longPressRecognizer)
     }
 
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
     }
-
-    // MARK: - Table view data source
 
     override func numberOfSectionsInTableView(tableView: UITableView) -> Int {
         guard let lists = viewModel.lists else {
@@ -111,6 +114,56 @@ class ListsTableViewController: UITableViewController {
         return cell
     }
 
+    func cellLongPressed(recognizer: UILongPressGestureRecognizer) {
+        if viewModel.contextMenuVisible {
+            return
+        }
+        // 押された位置でcellのPathを取得
+        let point = recognizer.locationInView(tableView)
+        let indexPath = tableView.indexPathForRowAtPoint(point)
+        self.tableView.selectRowAtIndexPath(indexPath, animated: true, scrollPosition: .None)
+
+        if indexPath != nil && recognizer.state == UIGestureRecognizerState.Began {
+            // 長押しされた場合の処理
+            print("長押しされたcellのindexPath:\(indexPath?.row)")
+
+            guard let lists = viewModel.lists else {
+                return
+            }
+            let task: Task
+            if indexPath?.section == 0 {
+                guard let noneList = lists.noneList else {
+                    return
+                }
+                task = noneList.listTasks[indexPath!.row]
+            } else {
+                task = lists.lists[indexPath!.section - 1].listTasks[indexPath!.row]
+            }
+            let items = viewModel.contextItems()
+            let overlay = ContextMenuViewController(items: items, task: task, inViewController: self)
+            overlay.delegate = self
+            overlay.start(recognizer)
+            viewModel.contextMenuVisible = true
+        }
+    }
+
+    //------------------------------------------
+    // ContextMenuDelegate
+    //------------------------------------------
+    func itemTap(item: ContextItem, task: Task) {
+        viewModel.moveRequest(item, task: task)
+    }
+
+    func closeContextMenu() {
+        viewModel.contextMenuVisible = false
+        guard let indexPath = self.tableView.indexPathForSelectedRow else {
+            return
+        }
+        self.tableView.deselectRowAtIndexPath(indexPath, animated: true)
+    }
+    //------------------------------------------
+
+
     private func showSignInView() {
         if let signIn = UIStoryboard.instantiateViewController("SignInViewController", storyboardName: "Main") as? UIViewController {
             self.presentViewController(signIn, animated: true, completion: nil)
@@ -128,6 +181,7 @@ class ListsTableViewController: UITableViewController {
         viewModel.isLoading
             .drive(self.refresh.rx_refreshing)
             .addDisposableTo(disposeBag)
+        hud.bind(viewModel.isLoading)
 
         viewModel.error
             .driveNext { (errorType) in

@@ -34,7 +34,7 @@ class ProjectTableViewCell: UITableViewCell {
         super.setSelected(selected, animated: animated)
 
         if selected {
-            projectImage.backgroundColor = UIColor(hexString: "42B8DD", alpha: 1.0)
+            projectImage.backgroundColor = UIColor(hex: "42B8DD")
         }
     }
 
@@ -42,7 +42,7 @@ class ProjectTableViewCell: UITableViewCell {
         super.setHighlighted(highlighted, animated: animated)
 
         if highlighted {
-            projectImage.backgroundColor = UIColor(hexString: "42B8DD", alpha: 1.0)
+            projectImage.backgroundColor = UIColor(hex: "42B8DD")
         }
     }
 
