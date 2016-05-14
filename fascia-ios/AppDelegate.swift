@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import SideMenu
 
 @UIApplicationMain
 class AppDelegate: UIResponder, UIApplicationDelegate {
@@ -20,6 +21,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
             return true
         }
         self.window?.rootViewController = projects
+        setupSideMenu()
         return true
     }
 
@@ -46,4 +48,9 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     }
 
 
+    private func setupSideMenu() {
+        SideMenuManager.menuFadeStatusBar = false
+        SideMenuManager.menuPresentMode = .ViewSlideOut
+        SideMenuManager.menuAnimationBackgroundColor = UIColor(patternImage: UIImage(named: "Background")!)
+    }
 }

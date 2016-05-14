@@ -10,11 +10,13 @@ import UIKit
 import RxSwift
 import RxCocoa
 import CSNotificationView
+import SideMenu
 
 
 class ProjectsTableViewController: UITableViewController {
     @IBOutlet private weak var refresh: UIRefreshControl!
     @IBOutlet private weak var newProjectButton: UIBarButtonItem!
+    @IBOutlet private weak var openSideMenu: UIBarButtonItem!
     private var viewModel = ProjectsViewModel()
     private var disposeBag = DisposeBag()
 
@@ -22,6 +24,12 @@ class ProjectsTableViewController: UITableViewController {
         super.viewDidLoad()
 
         bindViewModel()
+        guard let leftNav = UIStoryboard.instantiateViewController("UISideMenuNavigationController", storyboardName: "Main") as? UISideMenuNavigationController else {
+            return
+        }
+        SideMenuManager.menuLeftNavigationController = leftNav
+        SideMenuManager.menuAddPanGestureToPresent(toView: self.navigationController!.navigationBar)
+        SideMenuManager.menuAddScreenEdgePanGesturesToPresent(toView: self.navigationController!.navigationBar)
 
     }
 
@@ -111,6 +119,12 @@ class ProjectsTableViewController: UITableViewController {
         newProjectButton.rx_tap
             .subscribeNext { () in
                 self.showNewProject()
+            }
+            .addDisposableTo(disposeBag)
+
+        openSideMenu.rx_tap
+            .subscribeNext { () in
+                self.presentViewController(SideMenuManager.menuLeftNavigationController!, animated: true, completion: nil)
             }
             .addDisposableTo(disposeBag)
     }

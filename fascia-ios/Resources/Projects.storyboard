@@ -79,6 +79,7 @@
                         </connections>
                     </tableView>
                     <navigationItem key="navigationItem" title="Projects" id="aCm-P4-Ibc">
+                        <barButtonItem key="leftBarButtonItem" image="SideMenu" id="l46-N0-rz5"/>
                         <barButtonItem key="rightBarButtonItem" systemItem="add" id="qJJ-Va-IUM"/>
                     </navigationItem>
                     <refreshControl key="refreshControl" opaque="NO" multipleTouchEnabled="YES" contentMode="center" enabled="NO" contentHorizontalAlignment="center" contentVerticalAlignment="center" id="p2G-pg-cDi">
@@ -86,6 +87,7 @@
                     </refreshControl>
                     <connections>
                         <outlet property="newProjectButton" destination="qJJ-Va-IUM" id="lfa-5X-tny"/>
+                        <outlet property="openSideMenu" destination="l46-N0-rz5" id="9Vp-Ps-xgH"/>
                         <outlet property="refresh" destination="p2G-pg-cDi" id="Ymj-eG-ukz"/>
                     </connections>
                 </tableViewController>
@@ -352,5 +354,6 @@
     <resources>
         <image name="GitHub" width="25" height="25"/>
         <image name="Lock" width="25" height="25"/>
+        <image name="SideMenu" width="25" height="25"/>
     </resources>
 </document>

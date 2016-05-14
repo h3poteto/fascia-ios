@@ -60,6 +60,7 @@
 		E9F4C6651CC52C19003DD8DC /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = E9F4C6641CC52C19003DD8DC /* AppDelegate.swift */; };
 		E9F4C66C1CC52C19003DD8DC /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = E9F4C66B1CC52C19003DD8DC /* Assets.xcassets */; };
 		E9F4C67A1CC52C19003DD8DC /* fascia_iosTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = E9F4C6791CC52C19003DD8DC /* fascia_iosTests.swift */; };
+		E9FB1D351CE78F3D00604026 /* SideMenuTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E9FB1D341CE78F3D00604026 /* SideMenuTableViewController.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -132,6 +133,7 @@
 		E9F4C6751CC52C19003DD8DC /* fascia-iosTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "fascia-iosTests.xctest"; sourceTree = BUILT_PRODUCTS_DIR; };
 		E9F4C6791CC52C19003DD8DC /* fascia_iosTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = fascia_iosTests.swift; sourceTree = "<group>"; };
 		E9F4C67B1CC52C19003DD8DC /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		E9FB1D341CE78F3D00604026 /* SideMenuTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = SideMenuTableViewController.swift; path = ViewControllers/SideMenuTableViewController.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -262,6 +264,7 @@
 				E9E4FF011CC68FE300517729 /* SettingsTableViewController.swift */,
 				E9CF1D461CDA027C00BD5DDE /* RepositoriesTableViewController.swift */,
 				E9F3974E1CDF92590078957B /* ContextMenuViewController.swift */,
+				E9FB1D341CE78F3D00604026 /* SideMenuTableViewController.swift */,
 			);
 			name = ViewControllers;
 			sourceTree = "<group>";
@@ -560,6 +563,7 @@
 				E975D0CC1CDDE8DE00F587CD /* ListSectionTableViewCell.swift in Sources */,
 				E9571AE31CD36BA8007A819F /* NewProjectTitleTableViewCell.swift in Sources */,
 				E975D0C31CDDC4F000F587CD /* TaskCellViewModel.swift in Sources */,
+				E9FB1D351CE78F3D00604026 /* SideMenuTableViewController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

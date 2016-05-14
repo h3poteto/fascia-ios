@@ -55,6 +55,135 @@
             </objects>
             <point key="canvasLocation" x="-1372" y="-111"/>
         </scene>
+        <!--SideMenu-->
+        <scene sceneID="hdr-R2-tLC">
+            <objects>
+                <tableViewController storyboardIdentifier="SideMenuTableViewController" title="SideMenu" id="nP9-iO-rPg" customClass="SideMenuTableViewController" customModule="fascia_ios" customModuleProvider="target" sceneMemberID="viewController">
+                    <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="28" sectionFooterHeight="28" id="0A8-bI-dO6">
+                        <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+                        <color key="sectionIndexBackgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+                        <prototypes>
+                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="SideMenuTitleCell" id="4jH-vg-hgV">
+                                <rect key="frame" x="0.0" y="28" width="600" height="44"/>
+                                <autoresizingMask key="autoresizingMask"/>
+                                <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="4jH-vg-hgV" id="8Xz-pK-Glt">
+                                    <rect key="frame" x="0.0" y="0.0" width="600" height="43.5"/>
+                                    <autoresizingMask key="autoresizingMask"/>
+                                    <subviews>
+                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Menu" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="tCh-p9-PAh">
+                                            <rect key="frame" x="278.5" y="11" width="43" height="21"/>
+                                            <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+                                            <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                            <color key="textColor" white="0.66666666666666663" alpha="1" colorSpace="calibratedWhite"/>
+                                            <nil key="highlightedColor"/>
+                                        </label>
+                                    </subviews>
+                                    <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+                                    <constraints>
+                                        <constraint firstItem="tCh-p9-PAh" firstAttribute="centerY" secondItem="8Xz-pK-Glt" secondAttribute="centerY" id="35v-Mz-QQj"/>
+                                        <constraint firstItem="tCh-p9-PAh" firstAttribute="centerX" secondItem="8Xz-pK-Glt" secondAttribute="centerX" id="EFZ-fH-kxL"/>
+                                    </constraints>
+                                </tableViewCellContentView>
+                                <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+                            </tableViewCell>
+                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="SideMenuProjectsCell" id="bVl-m7-MzL">
+                                <rect key="frame" x="0.0" y="72" width="600" height="44"/>
+                                <autoresizingMask key="autoresizingMask"/>
+                                <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="bVl-m7-MzL" id="a2X-49-KV7">
+                                    <rect key="frame" x="0.0" y="0.0" width="600" height="43.5"/>
+                                    <autoresizingMask key="autoresizingMask"/>
+                                    <subviews>
+                                        <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="Projects" highlightedImage="Projects" translatesAutoresizingMaskIntoConstraints="NO" id="zkI-No-wWR">
+                                            <rect key="frame" x="16" y="10" width="24" height="24"/>
+                                            <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+                                            <constraints>
+                                                <constraint firstAttribute="height" constant="24" id="WeI-Gt-bmg"/>
+                                                <constraint firstAttribute="width" constant="24" id="cW9-BD-4JV"/>
+                                            </constraints>
+                                        </imageView>
+                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Projects" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="zJf-Uo-tw0">
+                                            <rect key="frame" x="52" y="11.5" width="62.5" height="21"/>
+                                            <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+                                            <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                            <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                            <nil key="highlightedColor"/>
+                                        </label>
+                                    </subviews>
+                                    <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+                                    <constraints>
+                                        <constraint firstItem="zJf-Uo-tw0" firstAttribute="leading" secondItem="zkI-No-wWR" secondAttribute="trailing" constant="12" id="AhW-mT-6Pj"/>
+                                        <constraint firstItem="zkI-No-wWR" firstAttribute="centerY" secondItem="a2X-49-KV7" secondAttribute="centerY" id="CFL-kY-mgz"/>
+                                        <constraint firstItem="zJf-Uo-tw0" firstAttribute="centerY" secondItem="a2X-49-KV7" secondAttribute="centerY" id="FMu-Le-fhH"/>
+                                        <constraint firstItem="zkI-No-wWR" firstAttribute="leading" secondItem="a2X-49-KV7" secondAttribute="leadingMargin" constant="8" id="ceK-0d-JZQ"/>
+                                    </constraints>
+                                </tableViewCellContentView>
+                                <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+                            </tableViewCell>
+                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="SideMenuSignInCell" id="NXj-jK-WUS">
+                                <rect key="frame" x="0.0" y="116" width="600" height="44"/>
+                                <autoresizingMask key="autoresizingMask"/>
+                                <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="NXj-jK-WUS" id="NUt-uJ-YbG">
+                                    <rect key="frame" x="0.0" y="0.0" width="600" height="43.5"/>
+                                    <autoresizingMask key="autoresizingMask"/>
+                                    <subviews>
+                                        <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="Account" highlightedImage="Account" translatesAutoresizingMaskIntoConstraints="NO" id="92M-t0-08n">
+                                            <rect key="frame" x="16" y="10" width="24" height="24"/>
+                                            <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+                                            <constraints>
+                                                <constraint firstAttribute="height" constant="24" id="3Ce-Gw-uHj"/>
+                                                <constraint firstAttribute="width" constant="24" id="m84-o5-7mo"/>
+                                            </constraints>
+                                        </imageView>
+                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="SignIn" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="VoB-pr-KLw">
+                                            <rect key="frame" x="52" y="11.5" width="47.5" height="21"/>
+                                            <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                            <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                            <nil key="highlightedColor"/>
+                                        </label>
+                                    </subviews>
+                                    <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+                                    <constraints>
+                                        <constraint firstItem="VoB-pr-KLw" firstAttribute="leading" secondItem="92M-t0-08n" secondAttribute="trailing" constant="12" id="8lK-MG-DQP"/>
+                                        <constraint firstItem="92M-t0-08n" firstAttribute="leading" secondItem="NUt-uJ-YbG" secondAttribute="leadingMargin" constant="8" id="M5L-en-X6M"/>
+                                        <constraint firstItem="92M-t0-08n" firstAttribute="centerY" secondItem="NUt-uJ-YbG" secondAttribute="centerY" id="NPo-Hd-1QE"/>
+                                        <constraint firstItem="VoB-pr-KLw" firstAttribute="centerY" secondItem="NUt-uJ-YbG" secondAttribute="centerY" id="dB9-hn-wj0"/>
+                                    </constraints>
+                                </tableViewCellContentView>
+                                <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+                            </tableViewCell>
+                        </prototypes>
+                        <connections>
+                            <outlet property="dataSource" destination="nP9-iO-rPg" id="eiO-p4-3IB"/>
+                            <outlet property="delegate" destination="nP9-iO-rPg" id="sep-e5-4Uc"/>
+                        </connections>
+                    </tableView>
+                    <navigationItem key="navigationItem" title="Menu" id="a7h-BU-CTf"/>
+                </tableViewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="D1P-3b-CRy" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="-494" y="-1016"/>
+        </scene>
+        <!--Side Menu Navigation Controller-->
+        <scene sceneID="oTQ-mL-Uy5">
+            <objects>
+                <navigationController storyboardIdentifier="UISideMenuNavigationController" navigationBarHidden="YES" id="Vie-ew-a9m" customClass="UISideMenuNavigationController" customModule="SideMenu" sceneMemberID="viewController">
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" id="92f-Wd-zLM">
+                        <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
+                        <autoresizingMask key="autoresizingMask"/>
+                    </navigationBar>
+                    <userDefinedRuntimeAttributes>
+                        <userDefinedRuntimeAttribute type="boolean" keyPath="leftSide" value="YES"/>
+                    </userDefinedRuntimeAttributes>
+                    <connections>
+                        <segue destination="nP9-iO-rPg" kind="relationship" relationship="rootViewController" id="Yfh-HQ-2yf"/>
+                    </connections>
+                </navigationController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="Qds-fy-qYn" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="-1314" y="-1016"/>
+        </scene>
         <!--Initial View Controller-->
         <scene sceneID="Cpc-UX-lX7">
             <objects>
@@ -74,4 +203,8 @@
             <point key="canvasLocation" x="-526" y="-118"/>
         </scene>
     </scenes>
+    <resources>
+        <image name="Account" width="25" height="25"/>
+        <image name="Projects" width="25" height="25"/>
+    </resources>
 </document>
