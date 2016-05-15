@@ -59,8 +59,12 @@ class ProjectsTableViewController: UITableViewController, SideMenuable {
     }
 
     private func showSignInView() {
-        // TODO: 初回であればこのあとにロードさせたい
-        if let signIn = UIStoryboard.instantiateViewController("SignInViewController", storyboardName: "Main") as? UIViewController {
+        if let signIn = UIStoryboard.instantiateViewController("SignInViewController", storyboardName: "Main") as? SignInViewController {
+            signIn.rx_viewDidDisappear
+                .subscribeNext({ () in
+                    self.viewModel.fetch()
+                })
+                .addDisposableTo(disposeBag)
             self.presentViewController(signIn, animated: true, completion: nil)
         }
     }
@@ -114,11 +118,6 @@ class ProjectsTableViewController: UITableViewController, SideMenuable {
             }
             .addDisposableTo(disposeBag)
 
-        /*openSideMenu.rx_tap
-            .subscribeNext({ () in
-                self.presentViewController(SideMenuManager.menuLeftNavigationController!, animated: true, completion: nil)
-            })
-            .addDisposableTo(disposeBag)*/
     }
 
     private func showNewProject() {
