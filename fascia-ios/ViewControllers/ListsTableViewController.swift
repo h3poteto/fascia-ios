@@ -124,9 +124,6 @@ class ListsTableViewController: UITableViewController, UIGestureRecognizerDelega
         self.tableView.selectRowAtIndexPath(indexPath, animated: true, scrollPosition: .None)
 
         if indexPath != nil && recognizer.state == UIGestureRecognizerState.Began {
-            // 長押しされた場合の処理
-            print("長押しされたcellのindexPath:\(indexPath?.row)")
-
             guard let lists = viewModel.lists else {
                 return
             }
