@@ -11,5 +11,6 @@ target "fascia-ios" do
   pod 'RxAlamofire'
   pod 'SVProgressHUD'
   pod 'Colours/Swift'
+  pod 'SideMenu'
 end
 

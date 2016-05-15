@@ -9,7 +9,7 @@
         <!--ProjectsTableViewController-->
         <scene sceneID="8hb-dY-vfE">
             <objects>
-                <tableViewController title="ProjectsTableViewController" id="V9h-pA-VTO" customClass="ProjectsTableViewController" customModule="fascia_ios" customModuleProvider="target" sceneMemberID="viewController">
+                <tableViewController storyboardIdentifier="ProjectsTableViewController" title="ProjectsTableViewController" id="V9h-pA-VTO" customClass="ProjectsTableViewController" customModule="fascia_ios" customModuleProvider="target" sceneMemberID="viewController">
                     <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="28" sectionFooterHeight="28" id="JeV-tN-by4">
                         <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -335,7 +335,7 @@
         <!--Projects-->
         <scene sceneID="noP-C9-UAc">
             <objects>
-                <navigationController storyboardIdentifier="ProjectsNavigationViewController" title="Projects" id="8fT-aJ-K0D" sceneMemberID="viewController">
+                <navigationController storyboardIdentifier="ProjectsNavigationViewController" title="Projects" id="8fT-aJ-K0D" customClass="ProjectsNavigationViewController" customModule="fascia_ios" customModuleProvider="target" sceneMemberID="viewController">
                     <navigationBar key="navigationBar" contentMode="scaleToFill" id="gLV-fx-XVS">
                         <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
                         <autoresizingMask key="autoresizingMask"/>

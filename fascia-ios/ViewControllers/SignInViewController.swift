@@ -7,10 +7,15 @@
 //
 
 import UIKit
+import SideMenu
+import RxSwift
+import RxCocoa
 
-class SignInViewController: UIViewController, UIWebViewDelegate {
+class SignInViewController: UIViewController, UIWebViewDelegate, SideMenuable {
     private let viewModel = SignInViewModel()
     private var hud = HUDManager()
+    var disposeBag = DisposeBag()
+    var openSideMenu: UIBarButtonItem = UIBarButtonItem(image: UIImage(named: "SideMenu"), style: UIBarButtonItemStyle.Plain, target: nil, action: nil)
 
 #if DEBUG
     let SIGN_IN_URL = "http://fascia.localdomain:9090/webviews/sign_in"
@@ -22,7 +27,7 @@ class SignInViewController: UIViewController, UIWebViewDelegate {
 
     override func viewDidLoad() {
         super.viewDidLoad()
-
+        sideMenuSetup(self)
         bindViewModel()
         let url = NSURL(string: SIGN_IN_URL)
         let request = NSURLRequest(URL: url!)
@@ -57,4 +62,5 @@ class SignInViewController: UIViewController, UIWebViewDelegate {
     private func bindViewModel() {
         hud.bind(viewModel.isLoading.asDriver())
     }
+
 }

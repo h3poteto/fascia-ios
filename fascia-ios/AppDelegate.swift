@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import SideMenu
 
 @UIApplicationMain
 class AppDelegate: UIResponder, UIApplicationDelegate {
@@ -15,7 +16,12 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 
 
     func application(application: UIApplication, didFinishLaunchingWithOptions launchOptions: [NSObject: AnyObject]?) -> Bool {
-        // Override point for customization after application launch.
+        // InitialViewControllerも用意してあるので，walkthroughとか表示するならこのコードを消すだけで遷移できる
+        guard let projects = UIStoryboard.instantiateViewController("ProjectsNavigationViewController", storyboardName: "Projects") as? ProjectsNavigationViewController else {
+            return true
+        }
+        self.window?.rootViewController = projects
+        setupSideMenu()
         return true
     }
 
@@ -42,4 +48,9 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     }
 
 
+    private func setupSideMenu() {
+        SideMenuManager.menuFadeStatusBar = true
+        SideMenuManager.menuPresentMode = .ViewSlideInOut
+        SideMenuManager.menuAnimationBackgroundColor = UIColor(patternImage: UIImage(named: "Background")!)
+    }
 }

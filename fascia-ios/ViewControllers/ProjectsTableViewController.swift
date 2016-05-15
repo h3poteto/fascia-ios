@@ -10,19 +10,19 @@ import UIKit
 import RxSwift
 import RxCocoa
 import CSNotificationView
+import SideMenu
 
-
-class ProjectsTableViewController: UITableViewController {
+class ProjectsTableViewController: UITableViewController, SideMenuable {
     @IBOutlet private weak var refresh: UIRefreshControl!
     @IBOutlet private weak var newProjectButton: UIBarButtonItem!
     private var viewModel = ProjectsViewModel()
-    private var disposeBag = DisposeBag()
+    var disposeBag = DisposeBag()
+    var openSideMenu: UIBarButtonItem = UIBarButtonItem(image: UIImage(named: "SideMenu"), style: UIBarButtonItemStyle.Plain, target: nil, action: nil)
 
     override func viewDidLoad() {
         super.viewDidLoad()
-
+        sideMenuSetup(self)
         bindViewModel()
-
     }
 
     override func didReceiveMemoryWarning() {
@@ -113,6 +113,12 @@ class ProjectsTableViewController: UITableViewController {
                 self.showNewProject()
             }
             .addDisposableTo(disposeBag)
+
+        /*openSideMenu.rx_tap
+            .subscribeNext({ () in
+                self.presentViewController(SideMenuManager.menuLeftNavigationController!, animated: true, completion: nil)
+            })
+            .addDisposableTo(disposeBag)*/
     }
 
     private func showNewProject() {

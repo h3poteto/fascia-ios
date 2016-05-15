@@ -12,3 +12,10 @@ line_length: 360
 
 force_cast: warning
 
+function_body_length:
+  warning: 100
+  error: 150
+
+cyclomatic_complexity:
+  warning: 20
+  error: 30
