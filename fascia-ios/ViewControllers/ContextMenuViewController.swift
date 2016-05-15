@@ -46,7 +46,6 @@ class ContextMenuViewController: UIViewController {
     private let circleRadius = CGFloat(80.0)
     private let itemRadius = CGFloat(30.0)
     private let margin = CGFloat(20.0)
-    final private let pi = CGFloat(3.14159265359)
     private let disposeBag = DisposeBag()
     var delegate: ContextMenuDelegate!
     var selectedTask: Task?
@@ -157,71 +156,83 @@ class ContextMenuViewController: UIViewController {
 
     }
 
+    //----------------------------------------------
+    // PIの場合：
+    // itemが1つであれば，PI/2の位置に配置したい
+    // itemが2つであれば，0とPIに配置したい
+    // itemが3であれば，0，PI/2，PIに配置したい
+    // itemが4つであれば，PI/3ごとに配置したい
+    // 0を起点として，PI/(n - 1)ごと
+    // ただし，itemが1のことはありえない．デフォルトのリストは削除させないので，最低でも4つのリストが存在する．
+    //----------------------------------------------
     private func showItems(menu: CircleMenu, point: CGPoint) {
         let itemCount = items.count
+        if itemCount < 2 {
+            return
+        }
 
         switch menu {
         case .UpSemicircle:
-            let singleRadius = pi / CGFloat(itemCount + 1)
+            let singleRadius = CGFloat(M_PI / Double(itemCount - 1))
             for (index, item) in items.enumerate() {
-                let delta_x = circleRadius * cos(CGFloat(index + 1) * singleRadius)
-                let delta_y = circleRadius * sin(CGFloat(index + 1) * singleRadius)
+                let delta_x = circleRadius * cos(CGFloat(index) * singleRadius)
+                let delta_y = circleRadius * sin(CGFloat(index) * singleRadius)
                 displayItem(item, point: CGPoint(x: point.x + delta_x, y: point.y - delta_y), startPos: point)
             }
             break
         case .DownSemicircle:
-            let singleRadius = pi / CGFloat(itemCount + 1)
+            let singleRadius = CGFloat(M_PI / Double(itemCount - 1))
             for (index, item) in items.enumerate() {
-                let delta_x = circleRadius * cos(CGFloat(index + 1) * singleRadius - pi)
-                let delta_y = circleRadius * sin(CGFloat(index + 1) * singleRadius - pi)
+                let delta_x = circleRadius * cos(CGFloat(index) * singleRadius - CGFloat(M_PI))
+                let delta_y = circleRadius * sin(CGFloat(index) * singleRadius - CGFloat(M_PI))
                 displayItem(item, point: CGPoint(x: point.x + delta_x, y: point.y - delta_y), startPos: point)
             }
             break
         case .RightSemicircle:
-            let singleRadius = pi / CGFloat(itemCount + 1)
+            let singleRadius = CGFloat(M_PI / Double(itemCount - 1))
             for (index, item) in items.enumerate() {
-                let delta_x = circleRadius * cos(CGFloat(index + 1) * singleRadius - pi / 2.0)
-                let delta_y = circleRadius * sin(CGFloat(index + 1) * singleRadius - pi / 2.0)
+                let delta_x = circleRadius * cos(CGFloat(index) * singleRadius - CGFloat(M_PI / 2.0))
+                let delta_y = circleRadius * sin(CGFloat(index) * singleRadius - CGFloat(M_PI / 2.0))
                 displayItem(item, point: CGPoint(x: point.x + delta_x, y: point.y - delta_y), startPos: point)
             }
             break
         case .LeftSemicircle:
-            let singleRadius = pi / CGFloat(itemCount + 1)
+            let singleRadius = CGFloat(M_PI / Double(itemCount - 1))
             for (index, item) in items.enumerate() {
-                let delta_x = circleRadius * cos(CGFloat(index + 1) * singleRadius + pi / 2.0)
-                let delta_y = circleRadius * sin(CGFloat(index + 1) * singleRadius + pi / 2.0)
+                let delta_x = circleRadius * cos(CGFloat(index) * singleRadius + CGFloat(M_PI / 2.0))
+                let delta_y = circleRadius * sin(CGFloat(index) * singleRadius + CGFloat(M_PI / 2.0))
                 displayItem(item, point: CGPoint(x: point.x + delta_x, y: point.y - delta_y), startPos: point)
             }
             break
         case .RightUpQuadrant:
-            let singleRadius = pi / (2.0 * CGFloat(itemCount + 1))
+            let singleRadius = CGFloat(M_PI / (2.0 * Double(itemCount - 1)))
             for (index, item) in items.enumerate() {
-                let delta_x = circleRadius * cos(CGFloat(index + 1) * singleRadius)
-                let delta_y = circleRadius * sin(CGFloat(index + 1) * singleRadius)
+                let delta_x = circleRadius * cos(CGFloat(index) * singleRadius)
+                let delta_y = circleRadius * sin(CGFloat(index) * singleRadius)
                 displayItem(item, point: CGPoint(x: point.x + delta_x, y: point.y - delta_y), startPos: point)
             }
             break
         case .RightDownQuadrant:
-            let singleRadius = pi / (2.0 * CGFloat(itemCount + 1))
+            let singleRadius = CGFloat(M_PI / (2.0 * Double(itemCount - 1)))
             for (index, item) in items.enumerate() {
-                let delta_x = circleRadius * cos(CGFloat(index + 1) * singleRadius - pi / 2.0)
-                let delta_y = circleRadius * sin(CGFloat(index + 1) * singleRadius - pi / 2.0)
+                let delta_x = circleRadius * cos(CGFloat(index) * singleRadius - CGFloat(M_PI / 2.0))
+                let delta_y = circleRadius * sin(CGFloat(index) * singleRadius - CGFloat(M_PI / 2.0))
                 displayItem(item, point: CGPoint(x: point.x + delta_x, y: point.y - delta_y), startPos: point)
             }
             break
         case .LeftUpQuadrant:
-            let singleRadius = pi / (2.0 * CGFloat(itemCount + 1))
+            let singleRadius = CGFloat(M_PI / (2.0 * Double(itemCount - 1)))
             for (index, item) in items.enumerate() {
-                let delta_x = circleRadius * cos(CGFloat(index + 1) * singleRadius + pi / 2.0)
-                let delta_y = circleRadius * sin(CGFloat(index + 1) * singleRadius + pi / 2.0)
+                let delta_x = circleRadius * cos(CGFloat(index) * singleRadius + CGFloat(M_PI / 2.0))
+                let delta_y = circleRadius * sin(CGFloat(index) * singleRadius + CGFloat(M_PI / 2.0))
                 displayItem(item, point: CGPoint(x: point.x + delta_x, y: point.y - delta_y), startPos: point)
             }
             break
         case .LeftDownQuadrant:
-            let singleRadius = pi / (2.0 * CGFloat(itemCount + 1))
+            let singleRadius = CGFloat(M_PI / (2.0 * Double(itemCount - 1)))
             for (index, item) in items.enumerate() {
-                let delta_x = circleRadius * cos(CGFloat(index + 1) * singleRadius - pi)
-                let delta_y = circleRadius * sin(CGFloat(index + 1) * singleRadius - pi)
+                let delta_x = circleRadius * cos(CGFloat(index) * singleRadius - CGFloat(M_PI))
+                let delta_y = circleRadius * sin(CGFloat(index) * singleRadius - CGFloat(M_PI))
                 displayItem(item, point: CGPoint(x: point.x + delta_x, y: point.y - delta_y), startPos: point)
             }
             break
