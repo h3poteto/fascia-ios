@@ -80,7 +80,6 @@ class SideMenuTableViewController: UITableViewController {
         default:
             break
         }
-        SideMenuManager.menuLeftNavigationController?.dismissViewControllerAnimated(true, completion: nil)
         return
     }
 }
