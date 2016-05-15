@@ -28,9 +28,11 @@ class FasciaAPIService {
     private var manager: Manager
     private let disposeBag = DisposeBag()
     private static let CookieKey = "fascia-session"
+    let signInURL: String?
 
     init() {
         manager = FasciaAPIService.configureManager()
+        signInURL = APIHost + "/webviews/sign_in"
     }
 
     func call(path: String, method: Alamofire.Method, params: [String: AnyObject]?) -> Observable<(NSHTTPURLResponse, NSData)> {
