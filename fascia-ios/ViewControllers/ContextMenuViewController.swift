@@ -105,7 +105,7 @@ class ContextMenuViewController: UIViewController {
             if touchPoint.y - margin - windowRect.origin.y < self.circleRadius {
                 // 右下向きの円しか使えない
                 circle = CircleMenu.RightDownQuadrant
-            } else if windowRect.height - touchPoint.x < self.circleRadius {
+            } else if windowRect.height - touchPoint.y < self.circleRadius {
                 // 右上向きの円しか使えない
                 circle = CircleMenu.RightUpQuadrant
             } else {
@@ -116,7 +116,7 @@ class ContextMenuViewController: UIViewController {
             if touchPoint.y - margin - windowRect.origin.y < self.circleRadius {
                 // 左下向きの円しか使えない
                 circle = CircleMenu.LeftDownQuadrant
-            } else if windowRect.height - touchPoint.x < self.circleRadius {
+            } else if windowRect.height - touchPoint.y < self.circleRadius {
                 // 左上向きの円しか使えない
                 circle = CircleMenu.LeftUpQuadrant
             } else {
