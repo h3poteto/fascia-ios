@@ -9,7 +9,7 @@
         <!--ProjectsTableViewController-->
         <scene sceneID="8hb-dY-vfE">
             <objects>
-                <tableViewController title="ProjectsTableViewController" id="V9h-pA-VTO" customClass="ProjectsTableViewController" customModule="fascia_ios" customModuleProvider="target" sceneMemberID="viewController">
+                <tableViewController storyboardIdentifier="ProjectsTableViewController" title="ProjectsTableViewController" id="V9h-pA-VTO" customClass="ProjectsTableViewController" customModule="fascia_ios" customModuleProvider="target" sceneMemberID="viewController">
                     <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="28" sectionFooterHeight="28" id="JeV-tN-by4">
                         <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -79,7 +79,6 @@
                         </connections>
                     </tableView>
                     <navigationItem key="navigationItem" title="Projects" id="aCm-P4-Ibc">
-                        <barButtonItem key="leftBarButtonItem" image="SideMenu" id="l46-N0-rz5"/>
                         <barButtonItem key="rightBarButtonItem" systemItem="add" id="qJJ-Va-IUM"/>
                     </navigationItem>
                     <refreshControl key="refreshControl" opaque="NO" multipleTouchEnabled="YES" contentMode="center" enabled="NO" contentHorizontalAlignment="center" contentVerticalAlignment="center" id="p2G-pg-cDi">
@@ -87,7 +86,6 @@
                     </refreshControl>
                     <connections>
                         <outlet property="newProjectButton" destination="qJJ-Va-IUM" id="lfa-5X-tny"/>
-                        <outlet property="openSideMenu" destination="l46-N0-rz5" id="9Vp-Ps-xgH"/>
                         <outlet property="refresh" destination="p2G-pg-cDi" id="Ymj-eG-ukz"/>
                     </connections>
                 </tableViewController>
@@ -337,7 +335,7 @@
         <!--Projects-->
         <scene sceneID="noP-C9-UAc">
             <objects>
-                <navigationController storyboardIdentifier="ProjectsNavigationViewController" title="Projects" id="8fT-aJ-K0D" sceneMemberID="viewController">
+                <navigationController storyboardIdentifier="ProjectsNavigationViewController" title="Projects" id="8fT-aJ-K0D" customClass="ProjectsNavigationViewController" customModule="fascia_ios" customModuleProvider="target" sceneMemberID="viewController">
                     <navigationBar key="navigationBar" contentMode="scaleToFill" id="gLV-fx-XVS">
                         <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
                         <autoresizingMask key="autoresizingMask"/>
@@ -354,6 +352,5 @@
     <resources>
         <image name="GitHub" width="25" height="25"/>
         <image name="Lock" width="25" height="25"/>
-        <image name="SideMenu" width="25" height="25"/>
     </resources>
 </document>

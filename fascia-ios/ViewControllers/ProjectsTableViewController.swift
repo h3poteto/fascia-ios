@@ -12,25 +12,17 @@ import RxCocoa
 import CSNotificationView
 import SideMenu
 
-
-class ProjectsTableViewController: UITableViewController {
+class ProjectsTableViewController: UITableViewController, SideMenuable {
     @IBOutlet private weak var refresh: UIRefreshControl!
     @IBOutlet private weak var newProjectButton: UIBarButtonItem!
-    @IBOutlet private weak var openSideMenu: UIBarButtonItem!
     private var viewModel = ProjectsViewModel()
-    private var disposeBag = DisposeBag()
+    var disposeBag = DisposeBag()
+    var openSideMenu: UIBarButtonItem = UIBarButtonItem(image: UIImage(named: "SideMenu"), style: UIBarButtonItemStyle.Plain, target: nil, action: nil)
 
     override func viewDidLoad() {
         super.viewDidLoad()
-
+        sideMenuSetup(self)
         bindViewModel()
-        guard let leftNav = UIStoryboard.instantiateViewController("UISideMenuNavigationController", storyboardName: "Main") as? UISideMenuNavigationController else {
-            return
-        }
-        SideMenuManager.menuLeftNavigationController = leftNav
-        SideMenuManager.menuAddPanGestureToPresent(toView: self.navigationController!.navigationBar)
-        SideMenuManager.menuAddScreenEdgePanGesturesToPresent(toView: self.navigationController!.navigationBar)
-
     }
 
     override func didReceiveMemoryWarning() {
@@ -122,11 +114,11 @@ class ProjectsTableViewController: UITableViewController {
             }
             .addDisposableTo(disposeBag)
 
-        openSideMenu.rx_tap
-            .subscribeNext { () in
+        /*openSideMenu.rx_tap
+            .subscribeNext({ () in
                 self.presentViewController(SideMenuManager.menuLeftNavigationController!, animated: true, completion: nil)
-            }
-            .addDisposableTo(disposeBag)
+            })
+            .addDisposableTo(disposeBag)*/
     }
 
     private func showNewProject() {

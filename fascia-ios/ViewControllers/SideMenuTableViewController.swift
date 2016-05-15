@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import SideMenu
 
 class SideMenuTableViewController: UITableViewController {
 
@@ -50,7 +51,7 @@ class SideMenuTableViewController: UITableViewController {
             let cell = tableView.dequeueReusableCellWithIdentifier("SideMenuSignInCell", forIndexPath: indexPath)
             return cell
         default:
-            let cell = tableView.dequeueReusableCellWithIdentifier("SignInTableViewCell", forIndexPath: indexPath)
+            let cell = tableView.dequeueReusableCellWithIdentifier("SideMenuSignInCell", forIndexPath: indexPath)
             return cell
         }
     }
@@ -64,4 +65,22 @@ class SideMenuTableViewController: UITableViewController {
         }
     }
 
+    override func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
+        switch (indexPath.section, indexPath.row) {
+        case (1, 0):
+            if let projects = UIStoryboard.instantiateViewController("ProjectsTableViewController", storyboardName: "Projects") as? UITableViewController {
+                showViewController(projects, sender: nil)
+            }
+            break
+        case (1, 1):
+            if let signIn = UIStoryboard.instantiateViewController("SignInViewController", storyboardName: "Main") as? UIViewController {
+                showViewController(signIn, sender: true)
+            }
+            break
+        default:
+            break
+        }
+        SideMenuManager.menuLeftNavigationController?.dismissViewControllerAnimated(true, completion: nil)
+        return
+    }
 }
