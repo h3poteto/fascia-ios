@@ -13,12 +13,14 @@ import CSNotificationView
 
 class ListsTableViewController: UITableViewController, UIGestureRecognizerDelegate, ContextMenuDelegate {
     @IBOutlet private weak var refresh: UIRefreshControl!
+    private let newListButton = UIBarButtonItem(barButtonSystemItem: UIBarButtonSystemItem.Add, target: nil, action: nil)
     var viewModel: ListsViewModel!
     private let hud = HUDManager()
     private let disposeBag = DisposeBag()
 
     override func viewDidLoad() {
         super.viewDidLoad()
+        self.navigationItem.rightBarButtonItem = newListButton
         bindViewModel()
 
         let longPressRecognizer = UILongPressGestureRecognizer(target: self, action: #selector(ListsTableViewController.cellLongPressed(_:)))
@@ -167,6 +169,13 @@ class ListsTableViewController: UITableViewController, UIGestureRecognizerDelega
         }
     }
 
+    private func showNewListView() {
+        if let newList = UIStoryboard.instantiateViewController("NewListTableViewController", storyboardName: "Lists") as? NewListTableViewController {
+            newList.viewModel = NewListViewModel(model: NewList())
+            showViewController(newList, sender: nil)
+        }
+    }
+
     private func bindViewModel() {
         viewModel.listsUpdated
             .driveNext { (lists) in
@@ -208,6 +217,12 @@ class ListsTableViewController: UITableViewController, UIGestureRecognizerDelega
         refresh.rx_controlEvent(.ValueChanged).startWith({ print("start lists loading") }())
             .subscribeNext { () in
                 self.viewModel.fetch()
+            }
+            .addDisposableTo(disposeBag)
+
+        newListButton.rx_tap
+            .subscribeNext { () in
+                self.showNewListView()
             }
             .addDisposableTo(disposeBag)
 
