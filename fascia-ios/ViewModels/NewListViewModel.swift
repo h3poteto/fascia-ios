@@ -21,10 +21,26 @@ class NewListViewModel {
     final private var project: Project!
     final private(set) var title: Variable<String?> = Variable(nil)
     final private(set) var color: Variable<String?> = Variable(nil)
+    final private(set) var dataUpdated: Driver<List?> = Driver.never()
+    final private(set) var isLoading: Driver<Bool> = Driver.never()
+    final private(set) var error: Driver<ErrorType?> = Driver.never()
 
     init(model: NewList, project: Project) {
         newList = Variable(model)
         self.project = project
+
+        dataUpdated = Driver
+            .combineLatest(
+                action.list.asDriver(),
+                action.error.asDriver().map({
+                    $0 != nil
+                }),
+                resultSelector: {
+                    ($1) ? nil : $0
+            })
+
+        isLoading = action.isLoading.asDriver()
+        error = action.error.asDriver()
     }
 
     func update(title: String?, color: String?) {
