@@ -40,6 +40,7 @@
 		E9BE0ACA1CDCE96600E2CC13 /* ListsViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = E9BE0AC91CDCE96600E2CC13 /* ListsViewModel.swift */; };
 		E9BE0ACC1CDCE9C600E2CC13 /* ListsAction.swift in Sources */ = {isa = PBXBuildFile; fileRef = E9BE0ACB1CDCE9C600E2CC13 /* ListsAction.swift */; };
 		E9C6B52E1CD86001009DBE36 /* SignInTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = E9C6B52D1CD86001009DBE36 /* SignInTableViewCell.swift */; };
+		E9C86B261CEB590800765615 /* NewListAction.swift in Sources */ = {isa = PBXBuildFile; fileRef = E9C86B251CEB590800765615 /* NewListAction.swift */; };
 		E9CF1D3F1CD8F10100BD5DDE /* Repository.swift in Sources */ = {isa = PBXBuildFile; fileRef = E9CF1D3E1CD8F10100BD5DDE /* Repository.swift */; };
 		E9CF1D411CD8F72400BD5DDE /* RepositoryAction.swift in Sources */ = {isa = PBXBuildFile; fileRef = E9CF1D401CD8F72400BD5DDE /* RepositoryAction.swift */; };
 		E9CF1D431CD9EE8B00BD5DDE /* RepositoriesViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = E9CF1D421CD9EE8B00BD5DDE /* RepositoriesViewModel.swift */; };
@@ -116,6 +117,7 @@
 		E9BE0AC91CDCE96600E2CC13 /* ListsViewModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = ListsViewModel.swift; path = ViewModels/ListsViewModel.swift; sourceTree = "<group>"; };
 		E9BE0ACB1CDCE9C600E2CC13 /* ListsAction.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = ListsAction.swift; path = Actions/ListsAction.swift; sourceTree = "<group>"; };
 		E9C6B52D1CD86001009DBE36 /* SignInTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = SignInTableViewCell.swift; path = Views/Settings/SignInTableViewCell.swift; sourceTree = "<group>"; };
+		E9C86B251CEB590800765615 /* NewListAction.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = NewListAction.swift; path = Actions/NewListAction.swift; sourceTree = "<group>"; };
 		E9CF1D3E1CD8F10100BD5DDE /* Repository.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = Repository.swift; path = Models/Repository.swift; sourceTree = "<group>"; };
 		E9CF1D401CD8F72400BD5DDE /* RepositoryAction.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = RepositoryAction.swift; path = Actions/RepositoryAction.swift; sourceTree = "<group>"; };
 		E9CF1D421CD9EE8B00BD5DDE /* RepositoriesViewModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = RepositoriesViewModel.swift; path = ViewModels/RepositoriesViewModel.swift; sourceTree = "<group>"; };
@@ -197,6 +199,7 @@
 				E9CF1D401CD8F72400BD5DDE /* RepositoryAction.swift */,
 				E9BE0ACB1CDCE9C600E2CC13 /* ListsAction.swift */,
 				E975D0D01CDE434700F587CD /* ListVisibleAction.swift */,
+				E9C86B251CEB590800765615 /* NewListAction.swift */,
 			);
 			name = Actions;
 			sourceTree = "<group>";
@@ -551,6 +554,7 @@
 				E9EE5D001CE8D071003D176B /* UIViewController+Rx.swift in Sources */,
 				E9E4FF041CC7C51700517729 /* SignInViewController.swift in Sources */,
 				E9749C951CCBC6BD00335B53 /* ProjectsViewModel.swift in Sources */,
+				E9C86B261CEB590800765615 /* NewListAction.swift in Sources */,
 				E9571ADA1CD332FC007A819F /* ProjectsAction.swift in Sources */,
 				E9C6B52E1CD86001009DBE36 /* SignInTableViewCell.swift in Sources */,
 				E96975A21CCE78F000DC5852 /* Project.swift in Sources */,

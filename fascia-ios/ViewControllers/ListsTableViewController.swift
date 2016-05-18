@@ -171,7 +171,7 @@ class ListsTableViewController: UITableViewController, UIGestureRecognizerDelega
 
     private func showNewListView() {
         if let newList = UIStoryboard.instantiateViewController("NewListTableViewController", storyboardName: "Lists") as? NewListTableViewController {
-            newList.viewModel = NewListViewModel(model: NewList())
+            newList.viewModel = NewListViewModel(model: NewList(), project: viewModel.project)
             showViewController(newList, sender: nil)
         }
     }

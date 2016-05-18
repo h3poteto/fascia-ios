@@ -18,6 +18,7 @@ class NewListColorTableViewCell: UITableViewCell {
 
     override func awakeFromNib() {
         super.awakeFromNib()
+        bindViewModel()
         // Initialization code
     }
 
