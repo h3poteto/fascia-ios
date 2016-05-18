@@ -13,7 +13,7 @@ import Colours
 class ListsViewModel {
     final private let action = ListsAction()
     final var lists: Lists?
-    final private var project: Project!
+    var project: Project!
     final private(set) var listsUpdated: Driver<Lists?> = Driver.never()
     final private(set) var isLoading: Driver<Bool> = Driver.never()
     final private(set) var error: Driver<ErrorType?> = Driver.never()

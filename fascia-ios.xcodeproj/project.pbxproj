@@ -40,6 +40,7 @@
 		E9BE0ACA1CDCE96600E2CC13 /* ListsViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = E9BE0AC91CDCE96600E2CC13 /* ListsViewModel.swift */; };
 		E9BE0ACC1CDCE9C600E2CC13 /* ListsAction.swift in Sources */ = {isa = PBXBuildFile; fileRef = E9BE0ACB1CDCE9C600E2CC13 /* ListsAction.swift */; };
 		E9C6B52E1CD86001009DBE36 /* SignInTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = E9C6B52D1CD86001009DBE36 /* SignInTableViewCell.swift */; };
+		E9C86B261CEB590800765615 /* NewListAction.swift in Sources */ = {isa = PBXBuildFile; fileRef = E9C86B251CEB590800765615 /* NewListAction.swift */; };
 		E9CF1D3F1CD8F10100BD5DDE /* Repository.swift in Sources */ = {isa = PBXBuildFile; fileRef = E9CF1D3E1CD8F10100BD5DDE /* Repository.swift */; };
 		E9CF1D411CD8F72400BD5DDE /* RepositoryAction.swift in Sources */ = {isa = PBXBuildFile; fileRef = E9CF1D401CD8F72400BD5DDE /* RepositoryAction.swift */; };
 		E9CF1D431CD9EE8B00BD5DDE /* RepositoriesViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = E9CF1D421CD9EE8B00BD5DDE /* RepositoriesViewModel.swift */; };
@@ -58,6 +59,11 @@
 		E9EA958B1CD4718F008F5535 /* NewProject.swift in Sources */ = {isa = PBXBuildFile; fileRef = E9EA958A1CD4718F008F5535 /* NewProject.swift */; };
 		E9EE5CFE1CE85E45003D176B /* ProjectsNavigationViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E9EE5CFD1CE85E45003D176B /* ProjectsNavigationViewController.swift */; };
 		E9EE5D001CE8D071003D176B /* UIViewController+Rx.swift in Sources */ = {isa = PBXBuildFile; fileRef = E9EE5CFF1CE8D071003D176B /* UIViewController+Rx.swift */; };
+		E9EE5D021CEA179B003D176B /* NewListTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E9EE5D011CEA179B003D176B /* NewListTableViewController.swift */; };
+		E9EE5D041CEA19BF003D176B /* NewListTitleTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = E9EE5D031CEA19BF003D176B /* NewListTitleTableViewCell.swift */; };
+		E9EE5D061CEA1D3A003D176B /* NewListColorTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = E9EE5D051CEA1D3A003D176B /* NewListColorTableViewCell.swift */; };
+		E9EE5D081CEA2B98003D176B /* NewListViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = E9EE5D071CEA2B98003D176B /* NewListViewModel.swift */; };
+		E9EE5D0A1CEA2C10003D176B /* NewList.swift in Sources */ = {isa = PBXBuildFile; fileRef = E9EE5D091CEA2C10003D176B /* NewList.swift */; };
 		E9F3974F1CDF92590078957B /* ContextMenuViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E9F3974E1CDF92590078957B /* ContextMenuViewController.swift */; };
 		E9F4C6651CC52C19003DD8DC /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = E9F4C6641CC52C19003DD8DC /* AppDelegate.swift */; };
 		E9F4C66C1CC52C19003DD8DC /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = E9F4C66B1CC52C19003DD8DC /* Assets.xcassets */; };
@@ -111,6 +117,7 @@
 		E9BE0AC91CDCE96600E2CC13 /* ListsViewModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = ListsViewModel.swift; path = ViewModels/ListsViewModel.swift; sourceTree = "<group>"; };
 		E9BE0ACB1CDCE9C600E2CC13 /* ListsAction.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = ListsAction.swift; path = Actions/ListsAction.swift; sourceTree = "<group>"; };
 		E9C6B52D1CD86001009DBE36 /* SignInTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = SignInTableViewCell.swift; path = Views/Settings/SignInTableViewCell.swift; sourceTree = "<group>"; };
+		E9C86B251CEB590800765615 /* NewListAction.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = NewListAction.swift; path = Actions/NewListAction.swift; sourceTree = "<group>"; };
 		E9CF1D3E1CD8F10100BD5DDE /* Repository.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = Repository.swift; path = Models/Repository.swift; sourceTree = "<group>"; };
 		E9CF1D401CD8F72400BD5DDE /* RepositoryAction.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = RepositoryAction.swift; path = Actions/RepositoryAction.swift; sourceTree = "<group>"; };
 		E9CF1D421CD9EE8B00BD5DDE /* RepositoriesViewModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = RepositoriesViewModel.swift; path = ViewModels/RepositoriesViewModel.swift; sourceTree = "<group>"; };
@@ -129,6 +136,11 @@
 		E9EA958A1CD4718F008F5535 /* NewProject.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = NewProject.swift; path = Models/NewProject.swift; sourceTree = "<group>"; };
 		E9EE5CFD1CE85E45003D176B /* ProjectsNavigationViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = ProjectsNavigationViewController.swift; path = ViewControllers/ProjectsNavigationViewController.swift; sourceTree = "<group>"; };
 		E9EE5CFF1CE8D071003D176B /* UIViewController+Rx.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = "UIViewController+Rx.swift"; path = "Utils/UIViewController+Rx.swift"; sourceTree = "<group>"; };
+		E9EE5D011CEA179B003D176B /* NewListTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = NewListTableViewController.swift; path = ViewControllers/NewListTableViewController.swift; sourceTree = "<group>"; };
+		E9EE5D031CEA19BF003D176B /* NewListTitleTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = NewListTitleTableViewCell.swift; path = Views/NewListTitleTableViewCell.swift; sourceTree = "<group>"; };
+		E9EE5D051CEA1D3A003D176B /* NewListColorTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = NewListColorTableViewCell.swift; path = Views/NewListColorTableViewCell.swift; sourceTree = "<group>"; };
+		E9EE5D071CEA2B98003D176B /* NewListViewModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = NewListViewModel.swift; path = ViewModels/NewListViewModel.swift; sourceTree = "<group>"; };
+		E9EE5D091CEA2C10003D176B /* NewList.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = NewList.swift; path = Models/NewList.swift; sourceTree = "<group>"; };
 		E9F3974E1CDF92590078957B /* ContextMenuViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = ContextMenuViewController.swift; path = ViewControllers/ContextMenuViewController.swift; sourceTree = "<group>"; };
 		E9F4C6611CC52C19003DD8DC /* fascia-ios.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "fascia-ios.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		E9F4C6641CC52C19003DD8DC /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
@@ -187,6 +199,7 @@
 				E9CF1D401CD8F72400BD5DDE /* RepositoryAction.swift */,
 				E9BE0ACB1CDCE9C600E2CC13 /* ListsAction.swift */,
 				E975D0D01CDE434700F587CD /* ListVisibleAction.swift */,
+				E9C86B251CEB590800765615 /* NewListAction.swift */,
 			);
 			name = Actions;
 			sourceTree = "<group>";
@@ -209,6 +222,8 @@
 				E975D0C01CDDC23600F587CD /* TaskTableViewCell.swift */,
 				E975D0CA1CDDE8DE00F587CD /* ListSectionTableViewCell.swift */,
 				E975D0CB1CDDE8DE00F587CD /* ListSectionTableViewCell.xib */,
+				E9EE5D031CEA19BF003D176B /* NewListTitleTableViewCell.swift */,
+				E9EE5D051CEA1D3A003D176B /* NewListColorTableViewCell.swift */,
 			);
 			name = Lists;
 			sourceTree = "<group>";
@@ -230,6 +245,7 @@
 				E975D0BD1CDCF3B900F587CD /* Task.swift */,
 				E9BE0AC71CDCE91800E2CC13 /* List.swift */,
 				E975D0BB1CDCEE4C00F587CD /* Lists.swift */,
+				E9EE5D091CEA2C10003D176B /* NewList.swift */,
 			);
 			name = Models;
 			sourceTree = "<group>";
@@ -261,11 +277,12 @@
 			isa = PBXGroup;
 			children = (
 				E95104E61CE714F500754A51 /* InitialViewController.swift */,
-				E9BE0AC51CDCE87200E2CC13 /* ListsTableViewController.swift */,
 				E9E4FF031CC7C51700517729 /* SignInViewController.swift */,
 				E9EE5CFD1CE85E45003D176B /* ProjectsNavigationViewController.swift */,
 				E9E4FEFF1CC68ED500517729 /* ProjectsTableViewController.swift */,
 				E9571ADB1CD35E86007A819F /* NewProjectTableViewController.swift */,
+				E9EE5D011CEA179B003D176B /* NewListTableViewController.swift */,
+				E9BE0AC51CDCE87200E2CC13 /* ListsTableViewController.swift */,
 				E9E4FF011CC68FE300517729 /* SettingsTableViewController.swift */,
 				E9CF1D461CDA027C00BD5DDE /* RepositoriesTableViewController.swift */,
 				E9F3974E1CDF92590078957B /* ContextMenuViewController.swift */,
@@ -286,6 +303,7 @@
 				E975D0C21CDDC4F000F587CD /* TaskCellViewModel.swift */,
 				E9BE0AC91CDCE96600E2CC13 /* ListsViewModel.swift */,
 				E975D0CE1CDDE9CC00F587CD /* ListSectionViewModel.swift */,
+				E9EE5D071CEA2B98003D176B /* NewListViewModel.swift */,
 			);
 			name = ViewModels;
 			sourceTree = "<group>";
@@ -531,10 +549,12 @@
 				E9BE0AC81CDCE91800E2CC13 /* List.swift in Sources */,
 				E906403A1CE22F91008367F0 /* UIImage+String.swift in Sources */,
 				E9749C971CCD075F00335B53 /* Scheduler.swift in Sources */,
+				E9EE5D021CEA179B003D176B /* NewListTableViewController.swift in Sources */,
 				E9BE0ACC1CDCE9C600E2CC13 /* ListsAction.swift in Sources */,
 				E9EE5D001CE8D071003D176B /* UIViewController+Rx.swift in Sources */,
 				E9E4FF041CC7C51700517729 /* SignInViewController.swift in Sources */,
 				E9749C951CCBC6BD00335B53 /* ProjectsViewModel.swift in Sources */,
+				E9C86B261CEB590800765615 /* NewListAction.swift in Sources */,
 				E9571ADA1CD332FC007A819F /* ProjectsAction.swift in Sources */,
 				E9C6B52E1CD86001009DBE36 /* SignInTableViewCell.swift in Sources */,
 				E96975A21CCE78F000DC5852 /* Project.swift in Sources */,
@@ -553,15 +573,19 @@
 				E9571AE71CD3AB92007A819F /* NewProjectDescriptionTableViewCell.swift in Sources */,
 				E9CF1D3F1CD8F10100BD5DDE /* Repository.swift in Sources */,
 				E9571AE91CD3C4FD007A819F /* NewProjectAction.swift in Sources */,
+				E9EE5D0A1CEA2C10003D176B /* NewList.swift in Sources */,
 				E9E4FF101CC7E06200517729 /* UIStoryboard+Fascia.swift in Sources */,
+				E9EE5D061CEA1D3A003D176B /* NewListColorTableViewCell.swift in Sources */,
 				E928659B1CD8DDC100D2EF07 /* HUDManager.swift in Sources */,
 				E9F3974F1CDF92590078957B /* ContextMenuViewController.swift in Sources */,
 				E96CC3CA1CD58E50007DDB65 /* SessionAction.swift in Sources */,
+				E9EE5D081CEA2B98003D176B /* NewListViewModel.swift in Sources */,
 				E975D0D11CDE434700F587CD /* ListVisibleAction.swift in Sources */,
 				E9BE0ACA1CDCE96600E2CC13 /* ListsViewModel.swift in Sources */,
 				E9571ADE1CD36781007A819F /* NewProjectViewModel.swift in Sources */,
 				E9CF1D451CD9FE7600BD5DDE /* NewProjectRepositoryTableViewCell.swift in Sources */,
 				E9571AE11CD36B88007A819F /* ProjectTableViewCell.swift in Sources */,
+				E9EE5D041CEA19BF003D176B /* NewListTitleTableViewCell.swift in Sources */,
 				E9CF1D431CD9EE8B00BD5DDE /* RepositoriesViewModel.swift in Sources */,
 				E9E4FF001CC68ED600517729 /* ProjectsTableViewController.swift in Sources */,
 				E9E4FF021CC68FE300517729 /* SettingsTableViewController.swift in Sources */,
