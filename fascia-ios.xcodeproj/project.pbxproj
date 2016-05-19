@@ -10,6 +10,7 @@
 		5F8671B19F4521C1BB30C10E /* Pods_fascia_ios.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 16D2F05040D44D1E1FE11135 /* Pods_fascia_ios.framework */; };
 		E906403A1CE22F91008367F0 /* UIImage+String.swift in Sources */ = {isa = PBXBuildFile; fileRef = E90640391CE22F91008367F0 /* UIImage+String.swift */; };
 		E928659B1CD8DDC100D2EF07 /* HUDManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = E928659A1CD8DDC100D2EF07 /* HUDManager.swift */; };
+		E945E32F1CEE0BCA002D1F01 /* AddTaskTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = E945E32E1CEE0BCA002D1F01 /* AddTaskTableViewCell.swift */; };
 		E95104E71CE714F500754A51 /* InitialViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E95104E61CE714F500754A51 /* InitialViewController.swift */; };
 		E9571AD71CD2893E007A819F /* QuartzCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E9571AD61CD2893E007A819F /* QuartzCore.framework */; };
 		E9571ADA1CD332FC007A819F /* ProjectsAction.swift in Sources */ = {isa = PBXBuildFile; fileRef = E9571AD91CD332FC007A819F /* ProjectsAction.swift */; };
@@ -87,6 +88,7 @@
 		67AD5B1E44C7EB47CEA7BB03 /* Pods-fascia-ios.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-fascia-ios.debug.xcconfig"; path = "Pods/Target Support Files/Pods-fascia-ios/Pods-fascia-ios.debug.xcconfig"; sourceTree = "<group>"; };
 		E90640391CE22F91008367F0 /* UIImage+String.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = "UIImage+String.swift"; path = "Utils/UIImage+String.swift"; sourceTree = "<group>"; };
 		E928659A1CD8DDC100D2EF07 /* HUDManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = HUDManager.swift; path = Services/HUDManager.swift; sourceTree = "<group>"; };
+		E945E32E1CEE0BCA002D1F01 /* AddTaskTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = AddTaskTableViewCell.swift; path = Views/AddTaskTableViewCell.swift; sourceTree = "<group>"; };
 		E95104E61CE714F500754A51 /* InitialViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = InitialViewController.swift; path = ViewControllers/InitialViewController.swift; sourceTree = "<group>"; };
 		E9571AD61CD2893E007A819F /* QuartzCore.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = QuartzCore.framework; path = System/Library/Frameworks/QuartzCore.framework; sourceTree = SDKROOT; };
 		E9571AD91CD332FC007A819F /* ProjectsAction.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = ProjectsAction.swift; path = Actions/ProjectsAction.swift; sourceTree = "<group>"; };
@@ -224,6 +226,7 @@
 				E975D0CB1CDDE8DE00F587CD /* ListSectionTableViewCell.xib */,
 				E9EE5D031CEA19BF003D176B /* NewListTitleTableViewCell.swift */,
 				E9EE5D051CEA1D3A003D176B /* NewListColorTableViewCell.swift */,
+				E945E32E1CEE0BCA002D1F01 /* AddTaskTableViewCell.swift */,
 			);
 			name = Lists;
 			sourceTree = "<group>";
@@ -563,6 +566,7 @@
 				E9CF1D411CD8F72400BD5DDE /* RepositoryAction.swift in Sources */,
 				E9BE0AC61CDCE87200E2CC13 /* ListsTableViewController.swift in Sources */,
 				E9CF1D4B1CDA31EB00BD5DDE /* RepositoryCellViewModel.swift in Sources */,
+				E945E32F1CEE0BCA002D1F01 /* AddTaskTableViewCell.swift in Sources */,
 				E9EE5CFE1CE85E45003D176B /* ProjectsNavigationViewController.swift in Sources */,
 				E96CC3CC1CD58F1F007DDB65 /* SignInViewModel.swift in Sources */,
 				E9CF1D471CDA027C00BD5DDE /* RepositoriesTableViewController.swift in Sources */,

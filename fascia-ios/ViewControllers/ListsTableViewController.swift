@@ -48,7 +48,10 @@ class ListsTableViewController: UITableViewController, UIGestureRecognizerDelega
             guard let noneList = lists.noneList else {
                 return 0
             }
-            return noneList.listTasks.count
+            if noneList.isHidden! {
+                return 0
+            }
+            return noneList.listTasks.count + 1
         } else {
             if lists.lists.count < 1 {
                 return 0
@@ -56,7 +59,7 @@ class ListsTableViewController: UITableViewController, UIGestureRecognizerDelega
             if lists.lists[section - 1].isHidden! {
                 return 0
             }
-            return lists.lists[section - 1].listTasks.count
+            return lists.lists[section - 1].listTasks.count + 1
         }
     }
 
@@ -96,24 +99,39 @@ class ListsTableViewController: UITableViewController, UIGestureRecognizerDelega
     }
 
     override func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
-        guard let cell = tableView.dequeueReusableCellWithIdentifier("TaskTableViewCell", forIndexPath: indexPath) as? TaskTableViewCell else {
-            return tableView.dequeueReusableCellWithIdentifier("Cell", forIndexPath: indexPath)
-        }
+        let defaultCell = UITableViewCell(style: .Default, reuseIdentifier: "Cell")
         guard let lists = viewModel.lists else {
-            return cell
+            return defaultCell
         }
-        if indexPath.section == 0 {
-            guard let noneList = lists.noneList else {
-                return cell
+        guard let noneList = lists.noneList else {
+            return defaultCell
+        }
+        switch (indexPath.section, indexPath.row) {
+        case (0, 0..<(noneList.listTasks.count)):
+            guard let cell = tableView.dequeueReusableCellWithIdentifier("TaskTableViewCell", forIndexPath: indexPath) as? TaskTableViewCell else {
+                return defaultCell
             }
             cell.viewModel = TaskCellViewModel(model: noneList.listTasks[indexPath.row], list: noneList)
-        } else {
-            if lists.lists.count < 1 {
-                return cell
+            return cell
+        case (0, noneList.listTasks.count):
+            guard let addCell = tableView.dequeueReusableCellWithIdentifier("AddTaskTableViewCell", forIndexPath: indexPath) as? AddTaskTableViewCell else {
+                return defaultCell
+            }
+            return addCell
+        case (0..<(lists.lists.count + 1), 0..<(lists.lists[indexPath.section - 1].listTasks.count)):
+            guard let cell = tableView.dequeueReusableCellWithIdentifier("TaskTableViewCell", forIndexPath: indexPath) as? TaskTableViewCell else {
+                return defaultCell
             }
             cell.viewModel = TaskCellViewModel(model: lists.lists[indexPath.section - 1].listTasks[indexPath.row], list: lists.lists[indexPath.section - 1])
+            return cell
+        case (0..<(lists.lists.count + 1), lists.lists[indexPath.section - 1].listTasks.count):
+            guard let addCell = tableView.dequeueReusableCellWithIdentifier("AddTaskTableViewCell", forIndexPath: indexPath) as? AddTaskTableViewCell else {
+                return defaultCell
+            }
+            return addCell
+        default:
+            return defaultCell
         }
-        return cell
     }
 
     func cellLongPressed(recognizer: UILongPressGestureRecognizer) {
