@@ -118,19 +118,37 @@ class ListsTableViewController: UITableViewController, UIGestureRecognizerDelega
                 return defaultCell
             }
             return addCell
-        case (0..<(lists.lists.count + 1), 0..<(lists.lists[indexPath.section - 1].listTasks.count)):
+        case (1..<(lists.lists.count + 1), 0..<(lists.lists[indexPath.section - 1].listTasks.count)):
             guard let cell = tableView.dequeueReusableCellWithIdentifier("TaskTableViewCell", forIndexPath: indexPath) as? TaskTableViewCell else {
                 return defaultCell
             }
             cell.viewModel = TaskCellViewModel(model: lists.lists[indexPath.section - 1].listTasks[indexPath.row], list: lists.lists[indexPath.section - 1])
             return cell
-        case (0..<(lists.lists.count + 1), lists.lists[indexPath.section - 1].listTasks.count):
+        case (1..<(lists.lists.count + 1), lists.lists[indexPath.section - 1].listTasks.count):
             guard let addCell = tableView.dequeueReusableCellWithIdentifier("AddTaskTableViewCell", forIndexPath: indexPath) as? AddTaskTableViewCell else {
                 return defaultCell
             }
             return addCell
         default:
             return defaultCell
+        }
+    }
+
+    override func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
+        // AddCellだったときだけ処理する
+        guard let lists = viewModel.lists else {
+            return
+        }
+        guard let noneList = lists.noneList else {
+            return
+        }
+        switch (indexPath.section, indexPath.row) {
+        case (0, noneList.listTasks.count):
+            return
+        case (1..<(lists.lists.count + 1), lists.lists[indexPath.section - 1].listTasks.count):
+            return
+        default:
+            return
         }
     }
 
@@ -147,11 +165,20 @@ class ListsTableViewController: UITableViewController, UIGestureRecognizerDelega
             guard let lists = viewModel.lists else {
                 return
             }
+            guard let noneList = lists.noneList else {
+                return
+            }
+            // AddCellだった場合を除外する
+            switch (indexPath!.section, indexPath!.row) {
+            case (0, noneList.listTasks.count):
+                return
+            case (1..<(lists.lists.count + 1), lists.lists[indexPath!.section - 1].listTasks.count):
+                return
+            default:
+                break
+            }
             let task: Task
             if indexPath?.section == 0 {
-                guard let noneList = lists.noneList else {
-                    return
-                }
                 task = noneList.listTasks[indexPath!.row]
             } else {
                 task = lists.lists[indexPath!.section - 1].listTasks[indexPath!.row]
