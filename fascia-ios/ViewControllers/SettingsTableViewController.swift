@@ -7,7 +7,7 @@
 //
 
 import UIKit
-
+// TODO: これ消す
 class SettingsTableViewController: UITableViewController {
 
     override func viewDidLoad() {

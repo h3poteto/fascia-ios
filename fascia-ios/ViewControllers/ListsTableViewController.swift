@@ -48,7 +48,10 @@ class ListsTableViewController: UITableViewController, UIGestureRecognizerDelega
             guard let noneList = lists.noneList else {
                 return 0
             }
-            return noneList.listTasks.count
+            if noneList.isHidden! {
+                return 0
+            }
+            return noneList.listTasks.count + 1
         } else {
             if lists.lists.count < 1 {
                 return 0
@@ -56,7 +59,7 @@ class ListsTableViewController: UITableViewController, UIGestureRecognizerDelega
             if lists.lists[section - 1].isHidden! {
                 return 0
             }
-            return lists.lists[section - 1].listTasks.count
+            return lists.lists[section - 1].listTasks.count + 1
         }
     }
 
@@ -96,24 +99,59 @@ class ListsTableViewController: UITableViewController, UIGestureRecognizerDelega
     }
 
     override func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
-        guard let cell = tableView.dequeueReusableCellWithIdentifier("TaskTableViewCell", forIndexPath: indexPath) as? TaskTableViewCell else {
-            return tableView.dequeueReusableCellWithIdentifier("Cell", forIndexPath: indexPath)
-        }
+        let defaultCell = UITableViewCell(style: .Default, reuseIdentifier: "Cell")
         guard let lists = viewModel.lists else {
-            return cell
+            return defaultCell
         }
-        if indexPath.section == 0 {
-            guard let noneList = lists.noneList else {
-                return cell
+        guard let noneList = lists.noneList else {
+            return defaultCell
+        }
+        switch (indexPath.section, indexPath.row) {
+        case (0, 0..<(noneList.listTasks.count)):
+            guard let cell = tableView.dequeueReusableCellWithIdentifier("TaskTableViewCell", forIndexPath: indexPath) as? TaskTableViewCell else {
+                return defaultCell
             }
             cell.viewModel = TaskCellViewModel(model: noneList.listTasks[indexPath.row], list: noneList)
-        } else {
-            if lists.lists.count < 1 {
-                return cell
+            return cell
+        case (0, noneList.listTasks.count):
+            guard let addCell = tableView.dequeueReusableCellWithIdentifier("AddTaskTableViewCell", forIndexPath: indexPath) as? AddTaskTableViewCell else {
+                return defaultCell
+            }
+            return addCell
+        case (1..<(lists.lists.count + 1), 0..<(lists.lists[indexPath.section - 1].listTasks.count)):
+            guard let cell = tableView.dequeueReusableCellWithIdentifier("TaskTableViewCell", forIndexPath: indexPath) as? TaskTableViewCell else {
+                return defaultCell
             }
             cell.viewModel = TaskCellViewModel(model: lists.lists[indexPath.section - 1].listTasks[indexPath.row], list: lists.lists[indexPath.section - 1])
+            return cell
+        case (1..<(lists.lists.count + 1), lists.lists[indexPath.section - 1].listTasks.count):
+            guard let addCell = tableView.dequeueReusableCellWithIdentifier("AddTaskTableViewCell", forIndexPath: indexPath) as? AddTaskTableViewCell else {
+                return defaultCell
+            }
+            return addCell
+        default:
+            return defaultCell
         }
-        return cell
+    }
+
+    override func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
+        // AddCellだったときだけ処理する
+        guard let lists = viewModel.lists else {
+            return
+        }
+        guard let noneList = lists.noneList else {
+            return
+        }
+        switch (indexPath.section, indexPath.row) {
+        case (0, noneList.listTasks.count):
+            showNewTaskView(noneList)
+            return
+        case (1..<(lists.lists.count + 1), lists.lists[indexPath.section - 1].listTasks.count):
+            showNewTaskView(lists.lists[indexPath.section - 1])
+            return
+        default:
+            return
+        }
     }
 
     func cellLongPressed(recognizer: UILongPressGestureRecognizer) {
@@ -129,11 +167,20 @@ class ListsTableViewController: UITableViewController, UIGestureRecognizerDelega
             guard let lists = viewModel.lists else {
                 return
             }
+            guard let noneList = lists.noneList else {
+                return
+            }
+            // AddCellだった場合を除外する
+            switch (indexPath!.section, indexPath!.row) {
+            case (0, noneList.listTasks.count):
+                return
+            case (1..<(lists.lists.count + 1), lists.lists[indexPath!.section - 1].listTasks.count):
+                return
+            default:
+                break
+            }
             let task: Task
             if indexPath?.section == 0 {
-                guard let noneList = lists.noneList else {
-                    return
-                }
                 task = noneList.listTasks[indexPath!.row]
             } else {
                 task = lists.lists[indexPath!.section - 1].listTasks[indexPath!.row]
@@ -175,6 +222,15 @@ class ListsTableViewController: UITableViewController, UIGestureRecognizerDelega
             newList.viewModel = vm
             bindNewListViewModel(vm)
             showViewController(newList, sender: nil)
+        }
+    }
+
+    private func showNewTaskView(list: List) {
+        if let newTask = UIStoryboard.instantiateViewController("NewTaskTableViewController", storyboardName: "Lists") as? NewTaskTableViewController {
+            let vm = NewTaskViewModel(model: NewTask(), list: list)
+            newTask.viewModel = vm
+            bindNewTaskViewModel(vm)
+            showViewController(newTask, sender: nil)
         }
     }
 
@@ -274,7 +330,7 @@ class ListsTableViewController: UITableViewController, UIGestureRecognizerDelega
         vm.dataUpdated
             .driveNext { (list) in
                 if list != nil {
-                    CSNotificationView.showInViewController(self, style: .Success, message: "Save complete")
+                    CSNotificationView.showInViewController(self, style: .Success, message: "List save complete")
                     self.viewModel.fetch()
                 }
             }
@@ -308,4 +364,41 @@ class ListsTableViewController: UITableViewController, UIGestureRecognizerDelega
             .addDisposableTo(disposeBag)
     }
 
+    private func bindNewTaskViewModel(vm: NewTaskViewModel) {
+        vm.dataUpdated
+            .driveNext { (task) in
+                if task != nil {
+                    CSNotificationView.showInViewController(self, style: .Success, message: "Task save complete")
+                    self.viewModel.fetch()
+                }
+            }
+            .addDisposableTo(disposeBag)
+        vm.isLoading
+            .drive(self.refresh.rx_refreshing)
+            .addDisposableTo(disposeBag)
+
+        vm.error
+            .driveNext { (errorType) in
+                guard let errorType = errorType else {
+                    return
+                }
+                switch errorType {
+                case FasciaAPIError.AuthenticateError:
+                    self.showSignInView()
+                    break
+                case FasciaAPIError.DoubleRequestError:
+                    break
+                case FasciaAPIError.ClientError:
+                    CSNotificationView.showInViewController(self, style: .Error, message: "The request is invalid")
+                    break
+                case FasciaAPIError.ServerError, ProjectError.ParserError, ProjectError.MappingError:
+                    CSNotificationView.showInViewController(self, style: .Error, message: "We're sorry, but something went wrong.")
+                    break
+                default:
+                    CSNotificationView.showInViewController(self, style: .Error, message: "Network error.")
+                    break
+                }
+            }
+            .addDisposableTo(disposeBag)
+    }
 }

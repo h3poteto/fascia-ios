@@ -18,10 +18,10 @@ class NewProjectViewModel {
     private final let action = NewProjectAction()
     private(set) var newProject: Variable<NewProject>
     final private(set) var title: Variable<String?> = Variable(nil)
+    var repository: Variable<Repository?> = Variable(nil)
     final private(set) var dataUpdated: Driver<Project?> = Driver.never()
     final private(set) var isLoading: Driver<Bool> = Driver.never()
     final private(set) var error: Driver<ErrorType?> = Driver.never()
-    var repository: Variable<Repository?> = Variable(nil)
 
     init(model: NewProject) {
         self.newProject = Variable(model)
