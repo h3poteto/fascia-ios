@@ -144,8 +144,10 @@ class ListsTableViewController: UITableViewController, UIGestureRecognizerDelega
         }
         switch (indexPath.section, indexPath.row) {
         case (0, noneList.listTasks.count):
+            showNewTaskView(noneList)
             return
         case (1..<(lists.lists.count + 1), lists.lists[indexPath.section - 1].listTasks.count):
+            showNewTaskView(lists.lists[indexPath.section - 1])
             return
         default:
             return
@@ -220,6 +222,15 @@ class ListsTableViewController: UITableViewController, UIGestureRecognizerDelega
             newList.viewModel = vm
             bindNewListViewModel(vm)
             showViewController(newList, sender: nil)
+        }
+    }
+
+    private func showNewTaskView(list: List) {
+        if let newTask = UIStoryboard.instantiateViewController("NewTaskTableViewController", storyboardName: "Lists") as? NewTaskTableViewController {
+            let vm = NewTaskViewModel(model: NewTask(), list: list)
+            newTask.viewModel = vm
+            bindNewTaskViewModel(vm)
+            showViewController(newTask, sender: nil)
         }
     }
 
@@ -319,7 +330,7 @@ class ListsTableViewController: UITableViewController, UIGestureRecognizerDelega
         vm.dataUpdated
             .driveNext { (list) in
                 if list != nil {
-                    CSNotificationView.showInViewController(self, style: .Success, message: "Save complete")
+                    CSNotificationView.showInViewController(self, style: .Success, message: "List save complete")
                     self.viewModel.fetch()
                 }
             }
@@ -353,4 +364,41 @@ class ListsTableViewController: UITableViewController, UIGestureRecognizerDelega
             .addDisposableTo(disposeBag)
     }
 
+    private func bindNewTaskViewModel(vm: NewTaskViewModel) {
+        vm.dataUpdated
+            .driveNext { (task) in
+                if task != nil {
+                    CSNotificationView.showInViewController(self, style: .Success, message: "Task save complete")
+                    self.viewModel.fetch()
+                }
+            }
+            .addDisposableTo(disposeBag)
+        vm.isLoading
+            .drive(self.refresh.rx_refreshing)
+            .addDisposableTo(disposeBag)
+
+        vm.error
+            .driveNext { (errorType) in
+                guard let errorType = errorType else {
+                    return
+                }
+                switch errorType {
+                case FasciaAPIError.AuthenticateError:
+                    self.showSignInView()
+                    break
+                case FasciaAPIError.DoubleRequestError:
+                    break
+                case FasciaAPIError.ClientError:
+                    CSNotificationView.showInViewController(self, style: .Error, message: "The request is invalid")
+                    break
+                case FasciaAPIError.ServerError, ProjectError.ParserError, ProjectError.MappingError:
+                    CSNotificationView.showInViewController(self, style: .Error, message: "We're sorry, but something went wrong.")
+                    break
+                default:
+                    CSNotificationView.showInViewController(self, style: .Error, message: "Network error.")
+                    break
+                }
+            }
+            .addDisposableTo(disposeBag)
+    }
 }

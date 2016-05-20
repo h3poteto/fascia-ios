@@ -8,6 +8,11 @@
 
 import ObjectMapper
 
+enum TaskError: ErrorType {
+    case ParserError
+    case MappingError
+}
+
 class Task: Mappable {
     var id: Int?
     var listID: Int?

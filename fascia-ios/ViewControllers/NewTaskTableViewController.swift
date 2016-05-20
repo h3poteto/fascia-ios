@@ -1,8 +1,8 @@
 //
-//  NewListTableViewController.swift
+//  NewTaskTableViewController.swift
 //  fascia-ios
 //
-//  Created by akirafukushima on 2016/05/16.
+//  Created by akirafukushima on 2016/05/20.
 //  Copyright © 2016年 h3poteto. All rights reserved.
 //
 
@@ -11,17 +11,19 @@ import RxSwift
 import RxCocoa
 import CSNotificationView
 
-class NewListTableViewController: UITableViewController {
-    var viewModel: NewListViewModel!
-    private let saveButton = UIBarButtonItem(barButtonSystemItem: UIBarButtonSystemItem.Save, target: nil, action: nil)
+class NewTaskTableViewController: UITableViewController {
     private let cancelButton = UIBarButtonItem(barButtonSystemItem: UIBarButtonSystemItem.Cancel, target: nil, action: nil)
+    private let saveButton = UIBarButtonItem(barButtonSystemItem: UIBarButtonSystemItem.Save, target: nil, action: nil)
     private let disposeBag = DisposeBag()
+    var viewModel: NewTaskViewModel!
 
     override func viewDidLoad() {
         super.viewDidLoad()
-        self.navigationItem.rightBarButtonItem = saveButton
+
         self.navigationItem.leftBarButtonItem = cancelButton
+        self.navigationItem.rightBarButtonItem = saveButton
         bindViewModel()
+
     }
 
     override func didReceiveMemoryWarning() {
@@ -41,26 +43,27 @@ class NewListTableViewController: UITableViewController {
         return 2
     }
 
+
     override func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
-        switch (indexPath.section, indexPath.row) {
-        case (0, 0):
-            if let cell = tableView.dequeueReusableCellWithIdentifier("NewListTitleTableViewCell", forIndexPath: indexPath) as? NewListTitleTableViewCell {
-                cell.viewModel = self.viewModel
-                return cell
+        let defaultCell = UITableViewCell(style: .Default, reuseIdentifier: "Cell")
+        switch(indexPath.row) {
+        case 0:
+            guard let cell = tableView.dequeueReusableCellWithIdentifier("NewTaskTitleTableViewCell", forIndexPath: indexPath) as? NewTaskTitleTableViewCell else {
+                return defaultCell
             }
-            break
-        case (0, 1):
-            if let cell = tableView.dequeueReusableCellWithIdentifier("NewListColorTableViewCell", forIndexPath: indexPath) as? NewListColorTableViewCell {
-                cell.viewModel = self.viewModel
-                return cell
+            cell.viewModel = self.viewModel
+            return cell
+        case 1:
+            guard let cell = tableView.dequeueReusableCellWithIdentifier("NewTaskDescriptionTableViewCell", forIndexPath: indexPath) as? NewTaskDescriptionTableViewCell else {
+                return defaultCell
             }
-            break
+            cell.viewModel = self.viewModel
+            return cell
         default:
-            break
+            return defaultCell
         }
-        let cell = tableView.dequeueReusableCellWithIdentifier("NewListTitleTableViewCell", forIndexPath: indexPath)
-        return cell
     }
+
 
     private func bindViewModel() {
         cancelButton.rx_tap
@@ -78,11 +81,8 @@ class NewListTableViewController: UITableViewController {
                             }
                         }, onError: { (errorType) in
                             switch errorType {
-                            case NewListValidationError.TitleError:
+                            case NewTaskValidationError.TitleError:
                                 CSNotificationView.showInViewController(self, style: .Error, message: "Title is invalid")
-                                break
-                            case NewListValidationError.ColorError:
-                                CSNotificationView.showInViewController(self, style: .Error, message: "Color is invalid")
                                 break
                             default:
                                 CSNotificationView.showInViewController(self, style: .Error, message: "Some items are invalid")
@@ -94,4 +94,5 @@ class NewListTableViewController: UITableViewController {
             }
             .addDisposableTo(disposeBag)
     }
+
 }
