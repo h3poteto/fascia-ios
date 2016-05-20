@@ -46,7 +46,6 @@
 		E9BE0AC81CDCE91800E2CC13 /* List.swift in Sources */ = {isa = PBXBuildFile; fileRef = E9BE0AC71CDCE91800E2CC13 /* List.swift */; };
 		E9BE0ACA1CDCE96600E2CC13 /* ListsViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = E9BE0AC91CDCE96600E2CC13 /* ListsViewModel.swift */; };
 		E9BE0ACC1CDCE9C600E2CC13 /* ListsAction.swift in Sources */ = {isa = PBXBuildFile; fileRef = E9BE0ACB1CDCE9C600E2CC13 /* ListsAction.swift */; };
-		E9C6B52E1CD86001009DBE36 /* SignInTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = E9C6B52D1CD86001009DBE36 /* SignInTableViewCell.swift */; };
 		E9C86B261CEB590800765615 /* NewListAction.swift in Sources */ = {isa = PBXBuildFile; fileRef = E9C86B251CEB590800765615 /* NewListAction.swift */; };
 		E9CF1D3F1CD8F10100BD5DDE /* Repository.swift in Sources */ = {isa = PBXBuildFile; fileRef = E9CF1D3E1CD8F10100BD5DDE /* Repository.swift */; };
 		E9CF1D411CD8F72400BD5DDE /* RepositoryAction.swift in Sources */ = {isa = PBXBuildFile; fileRef = E9CF1D401CD8F72400BD5DDE /* RepositoryAction.swift */; };
@@ -56,10 +55,8 @@
 		E9CF1D491CDA0D8300BD5DDE /* RepositoryTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = E9CF1D481CDA0D8300BD5DDE /* RepositoryTableViewCell.swift */; };
 		E9CF1D4B1CDA31EB00BD5DDE /* RepositoryCellViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = E9CF1D4A1CDA31EB00BD5DDE /* RepositoryCellViewModel.swift */; };
 		E9E4FEF81CC53D3100517729 /* Launch Screen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = E9E4FEF71CC53D3100517729 /* Launch Screen.storyboard */; };
-		E9E4FEFA1CC53D6B00517729 /* Settings.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = E9E4FEF91CC53D6B00517729 /* Settings.storyboard */; };
 		E9E4FEFC1CC53DC400517729 /* Projects.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = E9E4FEFB1CC53DC400517729 /* Projects.storyboard */; };
 		E9E4FF001CC68ED600517729 /* ProjectsTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E9E4FEFF1CC68ED500517729 /* ProjectsTableViewController.swift */; };
-		E9E4FF021CC68FE300517729 /* SettingsTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E9E4FF011CC68FE300517729 /* SettingsTableViewController.swift */; };
 		E9E4FF041CC7C51700517729 /* SignInViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E9E4FF031CC7C51700517729 /* SignInViewController.swift */; };
 		E9E4FF071CC7DC2E00517729 /* FasciaAPIService.swift in Sources */ = {isa = PBXBuildFile; fileRef = E9E4FF061CC7DC2E00517729 /* FasciaAPIService.swift */; };
 		E9E4FF101CC7E06200517729 /* UIStoryboard+Fascia.swift in Sources */ = {isa = PBXBuildFile; fileRef = E9E4FF0F1CC7E06200517729 /* UIStoryboard+Fascia.swift */; };
@@ -130,7 +127,6 @@
 		E9BE0AC71CDCE91800E2CC13 /* List.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = List.swift; path = Models/List.swift; sourceTree = "<group>"; };
 		E9BE0AC91CDCE96600E2CC13 /* ListsViewModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = ListsViewModel.swift; path = ViewModels/ListsViewModel.swift; sourceTree = "<group>"; };
 		E9BE0ACB1CDCE9C600E2CC13 /* ListsAction.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = ListsAction.swift; path = Actions/ListsAction.swift; sourceTree = "<group>"; };
-		E9C6B52D1CD86001009DBE36 /* SignInTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = SignInTableViewCell.swift; path = Views/Settings/SignInTableViewCell.swift; sourceTree = "<group>"; };
 		E9C86B251CEB590800765615 /* NewListAction.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = NewListAction.swift; path = Actions/NewListAction.swift; sourceTree = "<group>"; };
 		E9CF1D3E1CD8F10100BD5DDE /* Repository.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = Repository.swift; path = Models/Repository.swift; sourceTree = "<group>"; };
 		E9CF1D401CD8F72400BD5DDE /* RepositoryAction.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = RepositoryAction.swift; path = Actions/RepositoryAction.swift; sourceTree = "<group>"; };
@@ -140,10 +136,8 @@
 		E9CF1D481CDA0D8300BD5DDE /* RepositoryTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = RepositoryTableViewCell.swift; path = Views/Projects/RepositoryTableViewCell.swift; sourceTree = "<group>"; };
 		E9CF1D4A1CDA31EB00BD5DDE /* RepositoryCellViewModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = RepositoryCellViewModel.swift; path = ViewModels/RepositoryCellViewModel.swift; sourceTree = "<group>"; };
 		E9E4FEF71CC53D3100517729 /* Launch Screen.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; name = "Launch Screen.storyboard"; path = "Resources/Launch Screen.storyboard"; sourceTree = "<group>"; };
-		E9E4FEF91CC53D6B00517729 /* Settings.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; name = Settings.storyboard; path = Resources/Settings.storyboard; sourceTree = "<group>"; };
 		E9E4FEFB1CC53DC400517729 /* Projects.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; name = Projects.storyboard; path = Resources/Projects.storyboard; sourceTree = "<group>"; };
 		E9E4FEFF1CC68ED500517729 /* ProjectsTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = ProjectsTableViewController.swift; path = ViewControllers/ProjectsTableViewController.swift; sourceTree = "<group>"; };
-		E9E4FF011CC68FE300517729 /* SettingsTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = SettingsTableViewController.swift; path = ViewControllers/SettingsTableViewController.swift; sourceTree = "<group>"; };
 		E9E4FF031CC7C51700517729 /* SignInViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = SignInViewController.swift; path = ViewControllers/SignInViewController.swift; sourceTree = "<group>"; };
 		E9E4FF061CC7DC2E00517729 /* FasciaAPIService.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = FasciaAPIService.swift; path = Services/FasciaAPIService.swift; sourceTree = "<group>"; };
 		E9E4FF0F1CC7E06200517729 /* UIStoryboard+Fascia.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = "UIStoryboard+Fascia.swift"; path = "Utils/UIStoryboard+Fascia.swift"; sourceTree = "<group>"; };
@@ -246,14 +240,6 @@
 			name = Lists;
 			sourceTree = "<group>";
 		};
-		E9C6B52C1CD85FDE009DBE36 /* Settings */ = {
-			isa = PBXGroup;
-			children = (
-				E9C6B52D1CD86001009DBE36 /* SignInTableViewCell.swift */,
-			);
-			name = Settings;
-			sourceTree = "<group>";
-		};
 		E9E4FEF11CC53B0D00517729 /* Models */ = {
 			isa = PBXGroup;
 			children = (
@@ -274,7 +260,6 @@
 			children = (
 				E9F4C66B1CC52C19003DD8DC /* Assets.xcassets */,
 				E9E4FEF71CC53D3100517729 /* Launch Screen.storyboard */,
-				E9E4FEF91CC53D6B00517729 /* Settings.storyboard */,
 				E9E4FEFB1CC53DC400517729 /* Projects.storyboard */,
 				E9BE0AC11CDCE6C700E2CC13 /* Main.storyboard */,
 				E9BE0AC31CDCE80E00E2CC13 /* Lists.storyboard */,
@@ -286,7 +271,6 @@
 			isa = PBXGroup;
 			children = (
 				E975D0BF1CDDC20F00F587CD /* Lists */,
-				E9C6B52C1CD85FDE009DBE36 /* Settings */,
 				E9571ADF1CD36B2E007A819F /* Projects */,
 			);
 			name = Views;
@@ -305,7 +289,6 @@
 				E9CF1D461CDA027C00BD5DDE /* RepositoriesTableViewController.swift */,
 				E9EE5D011CEA179B003D176B /* NewListTableViewController.swift */,
 				E9BE0AC51CDCE87200E2CC13 /* ListsTableViewController.swift */,
-				E9E4FF011CC68FE300517729 /* SettingsTableViewController.swift */,
 				E945E3301CEE2025002D1F01 /* NewTaskTableViewController.swift */,
 			);
 			name = ViewControllers;
@@ -483,7 +466,6 @@
 				E9BE0AC41CDCE80E00E2CC13 /* Lists.storyboard in Resources */,
 				E975D0CD1CDDE8DE00F587CD /* ListSectionTableViewCell.xib in Resources */,
 				E9E4FEFC1CC53DC400517729 /* Projects.storyboard in Resources */,
-				E9E4FEFA1CC53D6B00517729 /* Settings.storyboard in Resources */,
 				E9BE0AC21CDCE6C700E2CC13 /* Main.storyboard in Resources */,
 				E9E4FEF81CC53D3100517729 /* Launch Screen.storyboard in Resources */,
 				E9F4C66C1CC52C19003DD8DC /* Assets.xcassets in Resources */,
@@ -579,7 +561,6 @@
 				E9749C951CCBC6BD00335B53 /* ProjectsViewModel.swift in Sources */,
 				E9C86B261CEB590800765615 /* NewListAction.swift in Sources */,
 				E9571ADA1CD332FC007A819F /* ProjectsAction.swift in Sources */,
-				E9C6B52E1CD86001009DBE36 /* SignInTableViewCell.swift in Sources */,
 				E96975A21CCE78F000DC5852 /* Project.swift in Sources */,
 				E9F4C6651CC52C19003DD8DC /* AppDelegate.swift in Sources */,
 				E9571ADC1CD35E86007A819F /* NewProjectTableViewController.swift in Sources */,
@@ -616,7 +597,6 @@
 				E9EE5D041CEA19BF003D176B /* NewListTitleTableViewCell.swift in Sources */,
 				E9CF1D431CD9EE8B00BD5DDE /* RepositoriesViewModel.swift in Sources */,
 				E9E4FF001CC68ED600517729 /* ProjectsTableViewController.swift in Sources */,
-				E9E4FF021CC68FE300517729 /* SettingsTableViewController.swift in Sources */,
 				E9E4FF071CC7DC2E00517729 /* FasciaAPIService.swift in Sources */,
 				E96975A51CD1039B00DC5852 /* ProjectCellViewModel.swift in Sources */,
 				E975D0C11CDDC23600F587CD /* TaskTableViewCell.swift in Sources */,
