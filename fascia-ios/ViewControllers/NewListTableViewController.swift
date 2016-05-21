@@ -11,7 +11,7 @@ import RxSwift
 import RxCocoa
 import CSNotificationView
 
-class NewListTableViewController: UITableViewController {
+class NewListTableViewController: UITableViewController, UIPopoverPresentationControllerDelegate {
     var viewModel: NewListViewModel!
     private let saveButton = UIBarButtonItem(barButtonSystemItem: UIBarButtonSystemItem.Save, target: nil, action: nil)
     private let cancelButton = UIBarButtonItem(barButtonSystemItem: UIBarButtonSystemItem.Cancel, target: nil, action: nil)
@@ -60,6 +60,19 @@ class NewListTableViewController: UITableViewController {
         }
         let cell = tableView.dequeueReusableCellWithIdentifier("NewListTitleTableViewCell", forIndexPath: indexPath)
         return cell
+    }
+
+    override func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
+        switch (indexPath.section, indexPath.row) {
+        case (0, 1):
+            guard let colorPicker = UIStoryboard.instantiateViewController("ColorPickerViewController", storyboardName: "Lists") as? ColorPickerViewController else {
+                return
+            }
+            self.navigationController?.pushViewController(colorPicker, animated: true)
+            break
+        default:
+            break
+        }
     }
 
     private func bindViewModel() {

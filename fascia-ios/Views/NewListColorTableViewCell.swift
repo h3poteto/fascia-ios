@@ -13,6 +13,7 @@ import RxCocoa
 class NewListColorTableViewCell: UITableViewCell {
     @IBOutlet private weak var colorLabel: UILabel!
     @IBOutlet private weak var colorText: UITextField!
+    @IBOutlet private weak var colorImage: UIImageView!
     var viewModel: NewListViewModel?
     private let disposeBag = DisposeBag()
 

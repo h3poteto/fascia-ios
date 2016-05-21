@@ -1,5 +1,6 @@
 PODS:
   - Alamofire (3.3.1)
+  - Color-Picker-for-iOS (2.0.2)
   - Colours/Swift (5.13.0)
   - CSNotificationView (0.5.4)
   - ObjectMapper (1.2.0)
@@ -16,6 +17,7 @@ PODS:
 
 DEPENDENCIES:
   - Alamofire (~> 3.3)
+  - Color-Picker-for-iOS (~> 2.0)
   - Colours/Swift
   - CSNotificationView
   - ObjectMapper (~> 1.2)
@@ -27,6 +29,7 @@ DEPENDENCIES:
 
 SPEC CHECKSUMS:
   Alamofire: 369bc67b6f5ac33ded3648d7bd21c5bfb91c2ecc
+  Color-Picker-for-iOS: 4980589b3e3cfe7198f227dd50be9adb02d8bc0b
   Colours: f24220c38f13deac88612667e9b4a7fb96b871d4
   CSNotificationView: 0792f5220163c2befaf1a9716aa3d5a7d6bd4fb1
   ObjectMapper: b1e9c7c8a9f6400b72690c80072c131504caa66f
@@ -36,6 +39,6 @@ SPEC CHECKSUMS:
   SideMenu: c7eb4edeb570469a70c6503306f5a97df08e8e9d
   SVProgressHUD: b0830714205bea1317ea1a2ebc71e5633af334d4
 
-PODFILE CHECKSUM: cd41c5f6361987a713e38431e6367e24872bc9b8
+PODFILE CHECKSUM: 04433936e553ffe45adb0e32306487a8515f6996
 
 COCOAPODS: 1.0.0.beta.8
