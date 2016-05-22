@@ -10,7 +10,7 @@ import ObjectMapper
 
 class NewList: Mappable {
     var title: String?
-    var color: String?
+    var color: String? = (UIColor.pastelBlueColor().hexString() as NSString).substringFromIndex(1)
 
     required init?(_ map: Map) {
         mapping(map)

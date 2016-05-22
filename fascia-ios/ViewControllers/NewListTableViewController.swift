@@ -12,10 +12,10 @@ import RxCocoa
 import CSNotificationView
 
 class NewListTableViewController: UITableViewController, UIPopoverPresentationControllerDelegate {
-    var viewModel: NewListViewModel!
     private let saveButton = UIBarButtonItem(barButtonSystemItem: UIBarButtonSystemItem.Save, target: nil, action: nil)
     private let cancelButton = UIBarButtonItem(barButtonSystemItem: UIBarButtonSystemItem.Cancel, target: nil, action: nil)
     private let disposeBag = DisposeBag()
+    var viewModel: NewListViewModel!
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -68,6 +68,18 @@ class NewListTableViewController: UITableViewController, UIPopoverPresentationCo
             guard let colorPicker = UIStoryboard.instantiateViewController("ColorPickerViewController", storyboardName: "Lists") as? ColorPickerViewController else {
                 return
             }
+            guard let color = viewModel.color.value else {
+                return
+            }
+            colorPicker.viewModel = ColorPickerViewModel(color: UIColor(hex: color))
+            colorPicker.rx_color()
+                .subscribeNext({ (color) in
+                    let colorStr = (color.hexString() as NSString).substringFromIndex(1)
+                    self.viewModel.update(nil, color: colorStr)
+                })
+                .addDisposableTo(disposeBag)
+            // 選択状態を解除してからviewModelのupdateをかけないと，select時のbackgroundColorとしてsetされてしまう
+            self.tableView.deselectRowAtIndexPath(indexPath, animated: true)
             self.navigationController?.pushViewController(colorPicker, animated: true)
             break
         default:
