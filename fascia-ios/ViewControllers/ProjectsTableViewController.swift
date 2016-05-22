@@ -58,6 +58,16 @@ class ProjectsTableViewController: UITableViewController, SideMenuable {
         }
     }
 
+    override func tableView(tableView: UITableView, commitEditingStyle editingStyle: UITableViewCellEditingStyle, forRowAtIndexPath indexPath: NSIndexPath) {
+    }
+
+    override func tableView(tableView: UITableView, editActionsForRowAtIndexPath indexPath: NSIndexPath) -> [UITableViewRowAction]? {
+        let editAction = UITableViewRowAction(style: UITableViewRowActionStyle.Normal, title: "Edit") { (action, indexPath) in
+            self.tableView.setEditing(false, animated: true)
+        }
+        return [editAction]
+    }
+
     private func showSignInView() {
         if let signIn = UIStoryboard.instantiateViewController("SignInViewController", storyboardName: "Main") as? SignInViewController {
             signIn.rx_viewDidDisappear
