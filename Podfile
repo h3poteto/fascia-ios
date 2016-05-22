@@ -12,5 +12,6 @@ target "fascia-ios" do
   pod 'SVProgressHUD'
   pod 'Colours/Swift'
   pod 'SideMenu'
+  pod 'Color-Picker-for-iOS', '~> 2.0'
 end
 

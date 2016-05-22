@@ -41,6 +41,8 @@ class NewListViewModel {
 
         isLoading = action.isLoading.asDriver()
         error = action.error.asDriver()
+        color.value = newList.value.color
+        title.value = newList.value.title
     }
 
     func update(title: String?, color: String?) {
