@@ -157,48 +157,41 @@
                                     <autoresizingMask key="autoresizingMask"/>
                                     <subviews>
                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Color" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="MpX-kg-2d1">
-                                            <rect key="frame" x="20" y="11" width="528" height="21"/>
+                                            <rect key="frame" x="20" y="11" width="41.5" height="21"/>
                                             <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                             <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                             <nil key="highlightedColor"/>
                                         </label>
-                                        <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="oC4-T1-9b8">
-                                            <rect key="frame" x="572" y="8" width="8" height="27.5"/>
-                                            <fontDescription key="fontDescription" type="system" pointSize="14"/>
-                                            <textInputTraits key="textInputTraits"/>
-                                        </textField>
                                         <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="o0V-e3-ceJ">
-                                            <rect key="frame" x="560" y="10" width="24" height="24"/>
+                                            <rect key="frame" x="73.5" y="10" width="510.5" height="24"/>
                                             <constraints>
                                                 <constraint firstAttribute="height" constant="24" id="Ojz-ky-yWh"/>
                                                 <constraint firstAttribute="width" constant="24" id="pU9-LU-hej"/>
                                             </constraints>
+                                            <userDefinedRuntimeAttributes>
+                                                <userDefinedRuntimeAttribute type="number" keyPath="layer.cornerRadius">
+                                                    <integer key="value" value="10"/>
+                                                </userDefinedRuntimeAttribute>
+                                                <userDefinedRuntimeAttribute type="boolean" keyPath="layer.masksToBounds" value="YES"/>
+                                            </userDefinedRuntimeAttributes>
+                                            <variation key="default">
+                                                <mask key="constraints">
+                                                    <exclude reference="pU9-LU-hej"/>
+                                                </mask>
+                                            </variation>
                                         </imageView>
                                     </subviews>
                                     <constraints>
                                         <constraint firstItem="MpX-kg-2d1" firstAttribute="leading" secondItem="35I-HM-aqj" secondAttribute="leadingMargin" constant="12" id="0fb-pi-p6r"/>
                                         <constraint firstItem="o0V-e3-ceJ" firstAttribute="leading" secondItem="MpX-kg-2d1" secondAttribute="trailing" constant="12" id="4Xc-7P-IXK"/>
-                                        <constraint firstAttribute="trailingMargin" secondItem="oC4-T1-9b8" secondAttribute="trailing" constant="12" id="6FX-Ex-8jR"/>
-                                        <constraint firstAttribute="trailingMargin" secondItem="oC4-T1-9b8" secondAttribute="trailing" constant="8" id="MGx-TZ-XxV"/>
                                         <constraint firstItem="o0V-e3-ceJ" firstAttribute="centerY" secondItem="35I-HM-aqj" secondAttribute="centerY" id="OKA-5o-fzg"/>
                                         <constraint firstAttribute="trailingMargin" secondItem="o0V-e3-ceJ" secondAttribute="trailing" constant="8" id="PA3-ZG-TKa"/>
-                                        <constraint firstAttribute="bottomMargin" secondItem="oC4-T1-9b8" secondAttribute="bottom" id="ZJA-y2-6bW"/>
-                                        <constraint firstItem="oC4-T1-9b8" firstAttribute="leading" secondItem="MpX-kg-2d1" secondAttribute="trailing" constant="12" id="fnd-BP-vv3"/>
-                                        <constraint firstItem="oC4-T1-9b8" firstAttribute="top" secondItem="35I-HM-aqj" secondAttribute="topMargin" id="leq-ce-Pdo"/>
-                                        <constraint firstItem="oC4-T1-9b8" firstAttribute="centerY" secondItem="35I-HM-aqj" secondAttribute="centerY" id="lqu-am-H1n"/>
                                         <constraint firstItem="MpX-kg-2d1" firstAttribute="centerY" secondItem="35I-HM-aqj" secondAttribute="centerY" id="num-Zc-Q1z"/>
                                     </constraints>
-                                    <variation key="default">
-                                        <mask key="constraints">
-                                            <exclude reference="MGx-TZ-XxV"/>
-                                            <exclude reference="fnd-BP-vv3"/>
-                                        </mask>
-                                    </variation>
                                 </tableViewCellContentView>
                                 <connections>
                                     <outlet property="colorImage" destination="o0V-e3-ceJ" id="hnG-ph-JCh"/>
                                     <outlet property="colorLabel" destination="MpX-kg-2d1" id="v6x-NU-49W"/>
-                                    <outlet property="colorText" destination="oC4-T1-9b8" id="35Q-VW-Vvs"/>
                                 </connections>
                             </tableViewCell>
                         </prototypes>

@@ -12,7 +12,6 @@ import RxCocoa
 
 class NewListColorTableViewCell: UITableViewCell {
     @IBOutlet private weak var colorLabel: UILabel!
-    @IBOutlet private weak var colorText: UITextField!
     @IBOutlet private weak var colorImage: UIImageView!
     private let disposeBag = DisposeBag()
     var viewModel: NewListViewModel? {
@@ -30,8 +29,6 @@ class NewListColorTableViewCell: UITableViewCell {
 
     override func awakeFromNib() {
         super.awakeFromNib()
-        bindViewModel()
-        // Initialization code
     }
 
     override func setSelected(selected: Bool, animated: Bool) {
@@ -44,13 +41,5 @@ class NewListColorTableViewCell: UITableViewCell {
             colorImage.backgroundColor = UIColor(hex: color)
         }
         // Configure the view for the selected state
-    }
-
-    private func bindViewModel() {
-        colorText.rx_text
-            .subscribeNext { (color) in
-                self.viewModel?.update(nil, color: color)
-            }
-            .addDisposableTo(disposeBag)
     }
 }
