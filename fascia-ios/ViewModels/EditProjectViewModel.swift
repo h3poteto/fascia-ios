@@ -8,6 +8,11 @@
 
 import RxSwift
 import RxCocoa
+import ObjectMapper
+
+enum EditProjectValidationError: ErrorType {
+    case TitleError
+}
 
 class EditProjectViewModel {
     private let action = EditProjectAction()
@@ -39,5 +44,40 @@ class EditProjectViewModel {
         error = action.error.asDriver()
         title = Variable(self.project.title)
         description = Variable(self.project.projectDescription)
+    }
+
+    func update(title: String?, description: String?) {
+        if title != nil {
+            self.title.value = title
+            self.editProject.value.title = title
+        }
+        if description != nil {
+            self.description.value = description
+            self.editProject.value.projectDescription = description
+        }
+    }
+
+    func save() -> Observable<Bool> {
+        return valid()
+            .doOnNext({ (result) throws -> Void in
+                if result {
+                    self.fetch(self.editProject.value)
+                }
+            })
+    }
+
+    func valid() -> Observable<Bool> {
+        return editProject.asObservable()
+            .flatMap({ (project) -> Observable<Bool> in
+                if project.title?.characters.count < 1 {
+                    throw EditProjectValidationError.TitleError
+                }
+                return Observable.just(true)
+            })
+    }
+    func fetch(editProject: EditProject) {
+        print(editProject)
+        let params = Mapper<EditProject>().toJSON(editProject)
+        action.request(project.id!, params: params)
     }
 }

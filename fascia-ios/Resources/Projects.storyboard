@@ -256,7 +256,7 @@
                         <color key="backgroundColor" cocoaTouchSystemColor="groupTableViewBackgroundColor"/>
                         <prototypes>
                             <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" restorationIdentifier="EditProjectTitleTableViewCell" selectionStyle="default" indentationWidth="10" reuseIdentifier="EditProjectTitleTableViewCell" id="edG-Te-bs2" customClass="EditProjectTitleTableViewCell" customModule="fascia_ios" customModuleProvider="target">
-                                <rect key="frame" x="0.0" y="49.5" width="600" height="44"/>
+                                <rect key="frame" x="0.0" y="113.5" width="600" height="44"/>
                                 <autoresizingMask key="autoresizingMask"/>
                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="edG-Te-bs2" id="4ZV-e6-2rD">
                                     <rect key="frame" x="0.0" y="0.0" width="600" height="43.5"/>
@@ -290,7 +290,7 @@
                                 </connections>
                             </tableViewCell>
                             <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" restorationIdentifier="EditProjectDescriptionTableViewCell" selectionStyle="default" indentationWidth="10" reuseIdentifier="EditProjectDescriptionTableViewCell" id="zfl-3e-edD" customClass="EditProjectDescriptionTableViewCell" customModule="fascia_ios" customModuleProvider="target">
-                                <rect key="frame" x="0.0" y="93.5" width="600" height="44"/>
+                                <rect key="frame" x="0.0" y="157.5" width="600" height="44"/>
                                 <autoresizingMask key="autoresizingMask"/>
                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="zfl-3e-edD" id="OUE-iL-CfI">
                                     <rect key="frame" x="0.0" y="0.0" width="600" height="43.5"/>
@@ -329,6 +329,14 @@
                             <outlet property="delegate" destination="EZ2-U2-Von" id="fN1-DG-OGS"/>
                         </connections>
                     </tableView>
+                    <navigationItem key="navigationItem" title="EditProject" id="1w4-M9-v4J">
+                        <barButtonItem key="leftBarButtonItem" systemItem="cancel" id="15O-iw-5Fx"/>
+                        <barButtonItem key="rightBarButtonItem" systemItem="save" id="fkc-S1-ZdD"/>
+                    </navigationItem>
+                    <connections>
+                        <outlet property="cancelButton" destination="15O-iw-5Fx" id="wmt-4J-AKu"/>
+                        <outlet property="saveButton" destination="fkc-S1-ZdD" id="V0R-W3-drv"/>
+                    </connections>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="FQb-n3-Xi8" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
@@ -419,6 +427,22 @@
                 <placeholder placeholderIdentifier="IBFirstResponder" id="rsq-ck-nHe" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="-450" y="1118"/>
+        </scene>
+        <!--EditProject-->
+        <scene sceneID="x1M-5q-fN1">
+            <objects>
+                <navigationController storyboardIdentifier="EditProjectNavigationController" title="EditProject" id="0hq-h8-gVS" sceneMemberID="viewController">
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" id="w0b-yv-kBy">
+                        <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
+                        <autoresizingMask key="autoresizingMask"/>
+                    </navigationBar>
+                    <connections>
+                        <segue destination="EZ2-U2-Von" kind="relationship" relationship="rootViewController" id="FCx-gT-fad"/>
+                    </connections>
+                </navigationController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="0St-RH-KO9" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="-481" y="1851"/>
         </scene>
         <!--Projects-->
         <scene sceneID="noP-C9-UAc">

@@ -30,7 +30,7 @@ class EditProjectDescriptionTableViewCell: UITableViewCell {
 
     override func awakeFromNib() {
         super.awakeFromNib()
-        // Initialization code
+        bindViewModel()
     }
 
     override func setSelected(selected: Bool, animated: Bool) {
@@ -39,4 +39,11 @@ class EditProjectDescriptionTableViewCell: UITableViewCell {
         // Configure the view for the selected state
     }
 
+    private func bindViewModel() {
+        descriptionText.rx_text
+            .subscribeNext { (text) in
+                self.viewModel?.update(nil, description: text)
+            }
+            .addDisposableTo(disposeBag)
+    }
 }

@@ -7,18 +7,19 @@
 //
 
 import UIKit
+import RxSwift
+import RxCocoa
+import CSNotificationView
 
 class EditProjectTableViewController: UITableViewController {
+    @IBOutlet private weak var saveButton: UIBarButtonItem!
+    @IBOutlet private weak var cancelButton: UIBarButtonItem!
     var viewModel: EditProjectViewModel!
+    private let disposeBag = DisposeBag()
 
     override func viewDidLoad() {
         super.viewDidLoad()
-
-        // Uncomment the following line to preserve selection between presentations
-        // self.clearsSelectionOnViewWillAppear = false
-
-        // Uncomment the following line to display an Edit button in the navigation bar for this view controller.
-        // self.navigationItem.rightBarButtonItem = self.editButtonItem()
+        bindViewModel()
     }
 
     override func didReceiveMemoryWarning() {
@@ -56,5 +57,35 @@ class EditProjectTableViewController: UITableViewController {
         default:
             return tableView.dequeueReusableCellWithIdentifier("Cell", forIndexPath: indexPath)
         }
+    }
+
+    private func bindViewModel() {
+        cancelButton.rx_tap
+            .subscribeNext { () in
+                self.dismissViewControllerAnimated(true, completion: nil)
+            }
+            .addDisposableTo(disposeBag)
+
+        saveButton.rx_tap
+            .subscribeNext { () in
+                self.viewModel.save()
+                    .doOnError({ (errorType) in
+                        switch errorType {
+                        case EditProjectValidationError.TitleError:
+                            CSNotificationView.showInViewController(self, style: .Error, message: "Title is invalid")
+                            break
+                        default:
+                            CSNotificationView.showInViewController(self, style: .Error, message: "Some items are invalid")
+                            break
+                        }
+                    })
+                    .subscribeNext({ (result) in
+                        if result {
+                            self.dismissViewControllerAnimated(true, completion: nil)
+                        }
+                    })
+                    .addDisposableTo(self.disposeBag)
+            }
+            .addDisposableTo(disposeBag)
     }
 }

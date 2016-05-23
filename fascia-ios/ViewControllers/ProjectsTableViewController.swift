@@ -64,11 +64,12 @@ class ProjectsTableViewController: UITableViewController, SideMenuable {
     override func tableView(tableView: UITableView, editActionsForRowAtIndexPath indexPath: NSIndexPath) -> [UITableViewRowAction]? {
         let editAction = UITableViewRowAction(style: UITableViewRowActionStyle.Normal, title: "Edit") { (action, indexPath) in
             self.tableView.setEditing(false, animated: true)
-            guard let editProject = UIStoryboard.instantiateViewController("EditProjectTableViewController", storyboardName: "Projects") as? EditProjectTableViewController else {
+            guard let editProjectNavigation = UIStoryboard.instantiateViewController("EditProjectNavigationController", storyboardName: "Projects") as? UINavigationController else {
                 return
             }
-            editProject.viewModel = EditProjectViewModel(project: self.viewModel.projects[indexPath.row])
-            self.navigationController?.pushViewController(editProject, animated: true)
+            let editProject = editProjectNavigation.viewControllers.first as? EditProjectTableViewController
+            editProject?.viewModel = EditProjectViewModel(project: self.viewModel.projects[indexPath.row])
+            self.showViewController(editProjectNavigation, sender: true)
         }
         return [editAction]
     }
