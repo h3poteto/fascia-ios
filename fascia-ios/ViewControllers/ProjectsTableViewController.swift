@@ -68,7 +68,9 @@ class ProjectsTableViewController: UITableViewController, SideMenuable {
                 return
             }
             let editProject = editProjectNavigation.viewControllers.first as? EditProjectTableViewController
-            editProject?.viewModel = EditProjectViewModel(project: self.viewModel.projects[indexPath.row])
+            let vm = EditProjectViewModel(project: self.viewModel.projects[indexPath.row])
+            self.bindEditProjectViewModel(vm)
+            editProject?.viewModel = vm
             self.showViewController(editProjectNavigation, sender: true)
         }
         return [editAction]
@@ -150,6 +152,41 @@ class ProjectsTableViewController: UITableViewController, SideMenuable {
     // 新規プロジェクト作成のViewModelとのつなぎ込みで，このviewに関係あるものをここで設定
     // 管理的にはここに居ないほうがわかりやすかもしれない
     private func bindNewProjectViewModel(vm: NewProjectViewModel) {
+        vm.dataUpdated
+            .driveNext { (project) in
+                if project != nil {
+                    CSNotificationView.showInViewController(self, style: .Success, message: "Save complete")
+                    self.viewModel.fetch()
+                }
+            }
+            .addDisposableTo(disposeBag)
+
+        vm.error
+            .driveNext { (errorType) in
+                guard let errorType = errorType else {
+                    return
+                }
+                switch errorType {
+                case FasciaAPIError.AuthenticateError:
+                    self.showSignInView()
+                    break
+                case FasciaAPIError.DoubleRequestError:
+                    break
+                case FasciaAPIError.ClientError:
+                    CSNotificationView.showInViewController(self, style: .Error, message: "The request is invalid")
+                    break
+                case FasciaAPIError.ServerError, ProjectError.ParserError, ProjectError.MappingError:
+                    CSNotificationView.showInViewController(self, style: .Error, message: "We're sorry, but something went wrong.")
+                    break
+                default:
+                    CSNotificationView.showInViewController(self, style: .Error, message: "Network error.")
+                    break
+                }
+            }
+            .addDisposableTo(disposeBag)
+    }
+
+    private func bindEditProjectViewModel(vm: EditProjectViewModel) {
         vm.dataUpdated
             .driveNext { (project) in
                 if project != nil {
