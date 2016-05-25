@@ -105,6 +105,38 @@
             </objects>
             <point key="canvasLocation" x="531" y="306"/>
         </scene>
+        <!--Navigation Controller-->
+        <scene sceneID="Mwi-5H-Dmf">
+            <objects>
+                <navigationController storyboardIdentifier="NewTaskNavigationController" id="Ycr-3g-p0f" sceneMemberID="viewController">
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" id="8I9-4V-ghE">
+                        <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
+                        <autoresizingMask key="autoresizingMask"/>
+                    </navigationBar>
+                    <connections>
+                        <segue destination="2ap-Bc-UMD" kind="relationship" relationship="rootViewController" id="9yr-NN-aWx"/>
+                    </connections>
+                </navigationController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="6KB-2r-Hnp" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="531" y="1030"/>
+        </scene>
+        <!--Navigation Controller-->
+        <scene sceneID="IBW-iL-sN8">
+            <objects>
+                <navigationController storyboardIdentifier="NewListNavigationController" id="koL-or-v8T" sceneMemberID="viewController">
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" id="JPd-6o-FXB">
+                        <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
+                        <autoresizingMask key="autoresizingMask"/>
+                    </navigationBar>
+                    <connections>
+                        <segue destination="MW8-0h-PAQ" kind="relationship" relationship="rootViewController" id="FxA-Ka-vLp"/>
+                    </connections>
+                </navigationController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="yGA-ql-NN8" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="538" y="-429"/>
+        </scene>
         <!--NewList-->
         <scene sceneID="qoB-34-YUc">
             <objects>
@@ -115,7 +147,7 @@
                         <color key="backgroundColor" red="0.93725490199999995" green="0.93725490199999995" blue="0.95686274510000002" alpha="1" colorSpace="calibratedRGB"/>
                         <prototypes>
                             <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" restorationIdentifier="NewListTitleTableViewCell" selectionStyle="default" indentationWidth="10" reuseIdentifier="NewListTitleTableViewCell" id="GLd-8I-CMY" customClass="NewListTitleTableViewCell" customModule="fascia_ios" customModuleProvider="target">
-                                <rect key="frame" x="0.0" y="49.5" width="600" height="44"/>
+                                <rect key="frame" x="0.0" y="113.5" width="600" height="44"/>
                                 <autoresizingMask key="autoresizingMask"/>
                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="GLd-8I-CMY" id="IIj-LA-kK4">
                                     <rect key="frame" x="0.0" y="0.0" width="600" height="43.5"/>
@@ -149,7 +181,7 @@
                                 </connections>
                             </tableViewCell>
                             <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" restorationIdentifier="NewListColorTableViewCell" selectionStyle="default" indentationWidth="10" reuseIdentifier="NewListColorTableViewCell" id="Dm9-cv-2tN" customClass="NewListColorTableViewCell" customModule="fascia_ios" customModuleProvider="target">
-                                <rect key="frame" x="0.0" y="93.5" width="600" height="44"/>
+                                <rect key="frame" x="0.0" y="157.5" width="600" height="44"/>
                                 <autoresizingMask key="autoresizingMask"/>
                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="Dm9-cv-2tN" id="35I-HM-aqj">
                                     <rect key="frame" x="0.0" y="0.0" width="600" height="43.5"/>
@@ -199,10 +231,11 @@
                             <outlet property="delegate" destination="MW8-0h-PAQ" id="Tp7-XL-2RI"/>
                         </connections>
                     </tableView>
+                    <navigationItem key="navigationItem" id="bpg-Qi-btR"/>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="cMh-fO-evm" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1319" y="306"/>
+            <point key="canvasLocation" x="1285" y="-420"/>
         </scene>
         <!--Color Picker View Controller-->
         <scene sceneID="G5U-oT-cdJ">
@@ -220,7 +253,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="aIy-WU-N3O" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1989" y="306"/>
+            <point key="canvasLocation" x="1991" y="-420"/>
         </scene>
         <!--NewTask-->
         <scene sceneID="JHH-J6-vAC">
@@ -232,7 +265,7 @@
                         <color key="backgroundColor" cocoaTouchSystemColor="groupTableViewBackgroundColor"/>
                         <prototypes>
                             <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" restorationIdentifier="NewTaskTitleTableViewCell" selectionStyle="default" indentationWidth="10" reuseIdentifier="NewTaskTitleTableViewCell" id="HBP-UQ-7S1" customClass="NewTaskTitleTableViewCell" customModule="fascia_ios" customModuleProvider="target">
-                                <rect key="frame" x="0.0" y="49.5" width="600" height="44"/>
+                                <rect key="frame" x="0.0" y="113.5" width="600" height="44"/>
                                 <autoresizingMask key="autoresizingMask"/>
                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="HBP-UQ-7S1" id="Y4f-19-grX">
                                     <rect key="frame" x="0.0" y="0.0" width="600" height="43.5"/>
@@ -266,7 +299,7 @@
                                 </connections>
                             </tableViewCell>
                             <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" restorationIdentifier="NewTaskDescriptionTableViewCell" selectionStyle="default" indentationWidth="10" reuseIdentifier="NewTaskDescriptionTableViewCell" id="0tN-jD-oQy" customClass="NewTaskDescriptionTableViewCell" customModule="fascia_ios" customModuleProvider="target">
-                                <rect key="frame" x="0.0" y="93.5" width="600" height="44"/>
+                                <rect key="frame" x="0.0" y="157.5" width="600" height="44"/>
                                 <autoresizingMask key="autoresizingMask"/>
                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="0tN-jD-oQy" id="bDo-H0-mld">
                                     <rect key="frame" x="0.0" y="0.0" width="600" height="43.5"/>
@@ -305,6 +338,7 @@
                             <outlet property="delegate" destination="2ap-Bc-UMD" id="3QV-uO-2fI"/>
                         </connections>
                     </tableView>
+                    <navigationItem key="navigationItem" id="EdG-fL-DgE"/>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="FoN-Hf-hVO" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
