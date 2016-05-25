@@ -68,7 +68,7 @@ class NewTaskTableViewController: UITableViewController {
     private func bindViewModel() {
         cancelButton.rx_tap
             .subscribeNext { () in
-                self.navigationController?.popViewControllerAnimated(true)
+                self.dismissViewControllerAnimated(true, completion: nil)
             }
             .addDisposableTo(disposeBag)
 
@@ -77,7 +77,7 @@ class NewTaskTableViewController: UITableViewController {
                 self.viewModel.save()
                     .subscribe(onNext: { (result) in
                             if result {
-                                self.navigationController?.popViewControllerAnimated(true)
+                                self.dismissViewControllerAnimated(true, completion: nil)
                             }
                         }, onError: { (errorType) in
                             switch errorType {

@@ -227,11 +227,12 @@ class ListsTableViewController: UITableViewController, UIGestureRecognizerDelega
     }
 
     private func showNewTaskView(list: List) {
-        if let newTask = UIStoryboard.instantiateViewController("NewTaskTableViewController", storyboardName: "Lists") as? NewTaskTableViewController {
+        if let newTaskNavigation = UIStoryboard.instantiateViewController("NewTaskNavigationController", storyboardName: "Lists") as? UINavigationController {
+            let newTaskView = newTaskNavigation.viewControllers.first as? NewTaskTableViewController
             let vm = NewTaskViewModel(model: NewTask(), list: list)
-            newTask.viewModel = vm
+            newTaskView?.viewModel = vm
             bindNewTaskViewModel(vm)
-            showViewController(newTask, sender: nil)
+            showViewController(newTaskNavigation, sender: nil)
         }
     }
 
