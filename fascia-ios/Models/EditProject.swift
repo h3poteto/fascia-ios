@@ -30,5 +30,3 @@ extension EditProject: CustomStringConvertible {
         return "{title: \(title), description: \(projectDescription)}"
     }
 }
-
-
