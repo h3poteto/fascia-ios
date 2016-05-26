@@ -9,8 +9,9 @@
 import UIKit
 import RxSwift
 import RxCocoa
+import SESlideTableViewCell
 
-class ProjectTableViewCell: UITableViewCell {
+class ProjectTableViewCell: SESlideTableViewCell {
     @IBOutlet private weak var tilteLabel: UILabel!
     @IBOutlet private weak var githubLabel: UIImageView!
     @IBOutlet private weak var projectImage: UIImageView!

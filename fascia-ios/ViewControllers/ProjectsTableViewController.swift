@@ -11,8 +11,9 @@ import RxSwift
 import RxCocoa
 import CSNotificationView
 import SideMenu
+import SESlideTableViewCell
 
-class ProjectsTableViewController: UITableViewController, SideMenuable {
+class ProjectsTableViewController: UITableViewController, SideMenuable, SESlideTableViewCellDelegate {
     @IBOutlet private weak var refresh: UIRefreshControl!
     @IBOutlet private weak var newProjectButton: UIBarButtonItem!
     private var viewModel = ProjectsViewModel()
@@ -48,7 +49,22 @@ class ProjectsTableViewController: UITableViewController, SideMenuable {
         }
         let project = viewModel.projects[indexPath.row]
         cell.viewModel = ProjectCellViewModel(model: project)
+        cell.delegate = self
+        cell.addRightButtonWithText("Edit", textColor: UIColor.whiteColor(), backgroundColor: UIColor.coolGrayColor())
         return cell
+    }
+
+    func slideTableViewCell(cell: SESlideTableViewCell!, didTriggerRightButton buttonIndex: Int) {
+        cell.setSlideState(SESlideTableViewCellSlideState.Center, animated: true)
+        guard let editProjectNavigation = UIStoryboard.instantiateViewController("EditProjectNavigationController", storyboardName: "Projects") as? UINavigationController else {
+            return
+        }
+        let editProject = editProjectNavigation.viewControllers.first as? EditProjectTableViewController
+        guard let indexPath = tableView.indexPathForCell(cell) else { return }
+        let vm = EditProjectViewModel(project: self.viewModel.projects[indexPath.row])
+        self.bindEditProjectViewModel(vm)
+        editProject?.viewModel = vm
+        self.showViewController(editProjectNavigation, sender: true)
     }
 
     override func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
@@ -58,9 +74,7 @@ class ProjectsTableViewController: UITableViewController, SideMenuable {
         }
     }
 
-    override func tableView(tableView: UITableView, commitEditingStyle editingStyle: UITableViewCellEditingStyle, forRowAtIndexPath indexPath: NSIndexPath) {
-    }
-
+/*
     override func tableView(tableView: UITableView, editActionsForRowAtIndexPath indexPath: NSIndexPath) -> [UITableViewRowAction]? {
         let editAction = UITableViewRowAction(style: UITableViewRowActionStyle.Normal, title: "Edit") { (action, indexPath) in
             self.tableView.setEditing(false, animated: true)
@@ -75,6 +89,7 @@ class ProjectsTableViewController: UITableViewController, SideMenuable {
         }
         return [editAction]
     }
+ */
 
     private func showSignInView() {
         if let signIn = UIStoryboard.instantiateViewController("SignInViewController", storyboardName: "Main") as? SignInViewController {
