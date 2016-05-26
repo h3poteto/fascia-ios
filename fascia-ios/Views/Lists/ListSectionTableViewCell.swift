@@ -9,8 +9,9 @@
 import UIKit
 import RxSwift
 import RxCocoa
+import SESlideTableViewCell
 
-class ListSectionTableViewCell: UITableViewCell {
+class ListSectionTableViewCell: SESlideTableViewCell {
     @IBOutlet private weak var listTitle: UILabel!
     @IBOutlet private weak var expandImageView: UIImageView!
     private let disposeBag = DisposeBag()

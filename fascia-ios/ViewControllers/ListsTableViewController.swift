@@ -10,8 +10,9 @@ import UIKit
 import RxSwift
 import RxCocoa
 import CSNotificationView
+import SESlideTableViewCell
 
-class ListsTableViewController: UITableViewController, UIGestureRecognizerDelegate, ContextMenuDelegate {
+class ListsTableViewController: UITableViewController, UIGestureRecognizerDelegate, ContextMenuDelegate, SESlideTableViewCellDelegate {
     @IBOutlet private weak var refresh: UIRefreshControl!
     private let newListButton = UIBarButtonItem(barButtonSystemItem: UIBarButtonSystemItem.Add, target: nil, action: nil)
     var viewModel: ListsViewModel!
@@ -86,6 +87,8 @@ class ListsTableViewController: UITableViewController, UIGestureRecognizerDelega
             let sectionVM = ListSectionViewModel(model: noneList)
             bindListSectionViewModel(sectionVM)
             sectionView.viewModel = sectionVM
+            sectionView.delegate = self
+            sectionView.addRightButtonWithText("Edit", textColor: UIColor.whiteColor(), backgroundColor: UIColor.coolGrayColor())
             return sectionView
         } else {
             if lists.lists.count < 1 {
@@ -96,6 +99,10 @@ class ListsTableViewController: UITableViewController, UIGestureRecognizerDelega
             sectionView.viewModel = sectionVM
             return sectionView
         }
+    }
+
+    func slideTableViewCell(cell: SESlideTableViewCell!, didTriggerRightButton buttonIndex: Int) {
+        cell.setSlideState(SESlideTableViewCellSlideState.Center, animated: true)
     }
 
     override func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {

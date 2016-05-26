@@ -13,5 +13,6 @@ target "fascia-ios" do
   pod 'Colours/Swift'
   pod 'SideMenu'
   pod 'Color-Picker-for-iOS', '~> 2.0'
+  pod 'SESlideTableViewCell'
 end
 
