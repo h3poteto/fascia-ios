@@ -103,6 +103,10 @@ class ListsTableViewController: UITableViewController, UIGestureRecognizerDelega
 
     func slideTableViewCell(cell: SESlideTableViewCell!, didTriggerRightButton buttonIndex: Int) {
         cell.setSlideState(SESlideTableViewCellSlideState.Center, animated: true)
+        guard let editListNavigation = UIStoryboard.instantiateViewController("EditListNavigationController", storyboardName: "Lists") as? UINavigationController else {
+            return
+        }
+        showViewController(editListNavigation, sender: nil)
     }
 
     override func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
