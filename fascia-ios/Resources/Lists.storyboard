@@ -231,7 +231,14 @@
                             <outlet property="delegate" destination="MW8-0h-PAQ" id="Tp7-XL-2RI"/>
                         </connections>
                     </tableView>
-                    <navigationItem key="navigationItem" id="bpg-Qi-btR"/>
+                    <navigationItem key="navigationItem" title="NewList" id="bpg-Qi-btR">
+                        <barButtonItem key="leftBarButtonItem" systemItem="cancel" id="WOf-6L-u9n"/>
+                        <barButtonItem key="rightBarButtonItem" systemItem="save" id="Q2H-9F-Ucs"/>
+                    </navigationItem>
+                    <connections>
+                        <outlet property="cancelButton" destination="WOf-6L-u9n" id="ALb-mg-xf1"/>
+                        <outlet property="saveButton" destination="Q2H-9F-Ucs" id="SKb-HC-QSx"/>
+                    </connections>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="cMh-fO-evm" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
@@ -262,7 +269,7 @@
                     <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="grouped" separatorStyle="default" allowsSelection="NO" rowHeight="44" sectionHeaderHeight="18" sectionFooterHeight="18" id="rgb-ji-4cf">
                         <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-                        <color key="backgroundColor" cocoaTouchSystemColor="groupTableViewBackgroundColor"/>
+                        <color key="backgroundColor" red="0.93725490199999995" green="0.93725490199999995" blue="0.95686274510000002" alpha="1" colorSpace="calibratedRGB"/>
                         <prototypes>
                             <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" restorationIdentifier="NewTaskTitleTableViewCell" selectionStyle="default" indentationWidth="10" reuseIdentifier="NewTaskTitleTableViewCell" id="HBP-UQ-7S1" customClass="NewTaskTitleTableViewCell" customModule="fascia_ios" customModuleProvider="target">
                                 <rect key="frame" x="0.0" y="113.5" width="600" height="44"/>
@@ -274,7 +281,7 @@
                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Title:" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Kqq-eH-cfp">
                                             <rect key="frame" x="20" y="11" width="38" height="21"/>
                                             <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                            <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                            <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                             <nil key="highlightedColor"/>
                                         </label>
                                         <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="IEz-Cd-nRq">
@@ -308,7 +315,7 @@
                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Description:" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Xba-VG-N8H">
                                             <rect key="frame" x="20" y="11" width="92.5" height="21"/>
                                             <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                            <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                            <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                             <nil key="highlightedColor"/>
                                         </label>
                                         <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="5qA-nU-xb8">
@@ -338,7 +345,14 @@
                             <outlet property="delegate" destination="2ap-Bc-UMD" id="3QV-uO-2fI"/>
                         </connections>
                     </tableView>
-                    <navigationItem key="navigationItem" id="EdG-fL-DgE"/>
+                    <navigationItem key="navigationItem" title="NewTask" id="EdG-fL-DgE">
+                        <barButtonItem key="leftBarButtonItem" systemItem="cancel" id="kxk-xW-Duh"/>
+                        <barButtonItem key="rightBarButtonItem" systemItem="save" id="APe-tH-gV8"/>
+                    </navigationItem>
+                    <connections>
+                        <outlet property="cancelButton" destination="kxk-xW-Duh" id="AIo-KP-bLT"/>
+                        <outlet property="saveButton" destination="APe-tH-gV8" id="7Tf-pJ-qQT"/>
+                    </connections>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="FoN-Hf-hVO" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
