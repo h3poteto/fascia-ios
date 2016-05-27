@@ -41,6 +41,8 @@
 		E95A8BD61CF88356002382AE /* EditListViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = E95A8BD51CF88356002382AE /* EditListViewModel.swift */; };
 		E95A8BDA1CF88533002382AE /* EditList.swift in Sources */ = {isa = PBXBuildFile; fileRef = E95A8BD91CF88533002382AE /* EditList.swift */; };
 		E95A8BDC1CF88902002382AE /* EditListAction.swift in Sources */ = {isa = PBXBuildFile; fileRef = E95A8BDB1CF88902002382AE /* EditListAction.swift */; };
+		E95A8BDE1CF8ABD5002382AE /* ListOptionsAction.swift in Sources */ = {isa = PBXBuildFile; fileRef = E95A8BDD1CF8ABD5002382AE /* ListOptionsAction.swift */; };
+		E95A8BE01CF8AC3B002382AE /* ListOption.swift in Sources */ = {isa = PBXBuildFile; fileRef = E95A8BDF1CF8AC3B002382AE /* ListOption.swift */; };
 		E96975A21CCE78F000DC5852 /* Project.swift in Sources */ = {isa = PBXBuildFile; fileRef = E96975A11CCE78F000DC5852 /* Project.swift */; };
 		E96975A51CD1039B00DC5852 /* ProjectCellViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = E96975A41CD1039B00DC5852 /* ProjectCellViewModel.swift */; };
 		E96CC3CA1CD58E50007DDB65 /* SessionAction.swift in Sources */ = {isa = PBXBuildFile; fileRef = E96CC3C91CD58E50007DDB65 /* SessionAction.swift */; };
@@ -137,6 +139,8 @@
 		E95A8BD51CF88356002382AE /* EditListViewModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = EditListViewModel.swift; path = ViewModels/EditListViewModel.swift; sourceTree = "<group>"; };
 		E95A8BD91CF88533002382AE /* EditList.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = EditList.swift; path = Models/EditList.swift; sourceTree = "<group>"; };
 		E95A8BDB1CF88902002382AE /* EditListAction.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = EditListAction.swift; path = Actions/EditListAction.swift; sourceTree = "<group>"; };
+		E95A8BDD1CF8ABD5002382AE /* ListOptionsAction.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = ListOptionsAction.swift; path = Actions/ListOptionsAction.swift; sourceTree = "<group>"; };
+		E95A8BDF1CF8AC3B002382AE /* ListOption.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = ListOption.swift; path = Models/ListOption.swift; sourceTree = "<group>"; };
 		E96975A11CCE78F000DC5852 /* Project.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = Project.swift; path = Models/Project.swift; sourceTree = "<group>"; };
 		E96975A41CD1039B00DC5852 /* ProjectCellViewModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = ProjectCellViewModel.swift; path = ViewModels/ProjectCellViewModel.swift; sourceTree = "<group>"; };
 		E96CC3C91CD58E50007DDB65 /* SessionAction.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = SessionAction.swift; path = Actions/SessionAction.swift; sourceTree = "<group>"; };
@@ -241,6 +245,7 @@
 				E945E33A1CEF5A67002D1F01 /* NewTaskAction.swift */,
 				E945E3461CF200DE002D1F01 /* EditProjectAction.swift */,
 				E95A8BDB1CF88902002382AE /* EditListAction.swift */,
+				E95A8BDD1CF8ABD5002382AE /* ListOptionsAction.swift */,
 			);
 			name = Actions;
 			sourceTree = "<group>";
@@ -290,6 +295,7 @@
 				E9EE5D091CEA2C10003D176B /* NewList.swift */,
 				E945E3381CEF52C1002D1F01 /* NewTask.swift */,
 				E95A8BD91CF88533002382AE /* EditList.swift */,
+				E95A8BDF1CF8AC3B002382AE /* ListOption.swift */,
 			);
 			name = Models;
 			sourceTree = "<group>";
@@ -598,6 +604,7 @@
 				E906403A1CE22F91008367F0 /* UIImage+String.swift in Sources */,
 				E9749C971CCD075F00335B53 /* Scheduler.swift in Sources */,
 				E945E3371CEF5247002D1F01 /* NewTaskViewModel.swift in Sources */,
+				E95A8BE01CF8AC3B002382AE /* ListOption.swift in Sources */,
 				E95A8BDA1CF88533002382AE /* EditList.swift in Sources */,
 				E9EE5D021CEA179B003D176B /* NewListTableViewController.swift in Sources */,
 				E945E3411CF1F83E002D1F01 /* EditProjectTableViewController.swift in Sources */,
@@ -657,6 +664,7 @@
 				E9CF1D431CD9EE8B00BD5DDE /* RepositoriesViewModel.swift in Sources */,
 				E9E4FF001CC68ED600517729 /* ProjectsTableViewController.swift in Sources */,
 				E9E4FF071CC7DC2E00517729 /* FasciaAPIService.swift in Sources */,
+				E95A8BDE1CF8ABD5002382AE /* ListOptionsAction.swift in Sources */,
 				E96975A51CD1039B00DC5852 /* ProjectCellViewModel.swift in Sources */,
 				E945E3471CF200DE002D1F01 /* EditProjectAction.swift in Sources */,
 				E975D0C11CDDC23600F587CD /* TaskTableViewCell.swift in Sources */,

@@ -105,7 +105,7 @@ class ListsTableViewController: UITableViewController, UIGestureRecognizerDelega
                         return
                     }
                     let editListView = editListNavigation.viewControllers.first as? EditListTableViewController
-                    editListView?.viewModel = EditListViewModel(model: lists.lists[section - 1], project: self.viewModel.project)
+                    editListView?.viewModel = EditListViewModel(model: lists.lists[section - 1])
                     self.showViewController(editListNavigation, sender: nil)
                 })
                 .addDisposableTo(disposeBag)

@@ -18,7 +18,7 @@ class EditListTableViewController: UITableViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
-
+        viewModel.loadOption()
         bindViewModel()
     }
 
