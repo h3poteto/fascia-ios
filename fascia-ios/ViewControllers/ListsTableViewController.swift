@@ -12,7 +12,7 @@ import RxCocoa
 import CSNotificationView
 import SESlideTableViewCell
 
-class ListsTableViewController: UITableViewController, UIGestureRecognizerDelegate, ContextMenuDelegate, SESlideTableViewCellDelegate {
+class ListsTableViewController: UITableViewController, UIGestureRecognizerDelegate, ContextMenuDelegate {
     @IBOutlet private weak var refresh: UIRefreshControl!
     private let newListButton = UIBarButtonItem(barButtonSystemItem: UIBarButtonSystemItem.Add, target: nil, action: nil)
     var viewModel: ListsViewModel!
@@ -87,8 +87,6 @@ class ListsTableViewController: UITableViewController, UIGestureRecognizerDelega
             let sectionVM = ListSectionViewModel(model: noneList)
             bindListSectionViewModel(sectionVM)
             sectionView.viewModel = sectionVM
-            sectionView.delegate = self
-            sectionView.addRightButtonWithText("Edit", textColor: UIColor.whiteColor(), backgroundColor: UIColor.coolGrayColor())
             return sectionView
         } else {
             if lists.lists.count < 1 {
@@ -97,16 +95,24 @@ class ListsTableViewController: UITableViewController, UIGestureRecognizerDelega
             let sectionVM = ListSectionViewModel(model: lists.lists[section - 1])
             bindListSectionViewModel(sectionVM)
             sectionView.viewModel = sectionVM
+            let button = UIButton(type: UIButtonType.Custom)
+            button.setTitle("Edit", forState: .Normal)
+            button.setTitleColor(UIColor.whiteColor(), forState: .Normal)
+            button.rx_tap
+                .subscribeNext({ () in
+                    sectionView.setSlideState(SESlideTableViewCellSlideState.Center, animated: true)
+                    guard let editListNavigation = UIStoryboard.instantiateViewController("EditListNavigationController", storyboardName: "Lists") as? UINavigationController else {
+                        return
+                    }
+                    let editListView = editListNavigation.viewControllers.first as? EditListTableViewController
+                    editListView?.viewModel = EditListViewModel(model: lists.lists[section - 1], project: self.viewModel.project)
+                    self.showViewController(editListNavigation, sender: nil)
+                })
+                .addDisposableTo(disposeBag)
+
+            sectionView.addRightButton(button, buttonWidth: 60.0, backgroundColor: UIColor.coolGrayColor())
             return sectionView
         }
-    }
-
-    func slideTableViewCell(cell: SESlideTableViewCell!, didTriggerRightButton buttonIndex: Int) {
-        cell.setSlideState(SESlideTableViewCellSlideState.Center, animated: true)
-        guard let editListNavigation = UIStoryboard.instantiateViewController("EditListNavigationController", storyboardName: "Lists") as? UINavigationController else {
-            return
-        }
-        showViewController(editListNavigation, sender: nil)
     }
 
     override func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {

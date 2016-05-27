@@ -35,6 +35,12 @@
 		E9571AE71CD3AB92007A819F /* NewProjectDescriptionTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = E9571AE61CD3AB92007A819F /* NewProjectDescriptionTableViewCell.swift */; };
 		E9571AE91CD3C4FD007A819F /* NewProjectAction.swift in Sources */ = {isa = PBXBuildFile; fileRef = E9571AE81CD3C4FD007A819F /* NewProjectAction.swift */; };
 		E95A8BCC1CF75849002382AE /* EditListTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E95A8BCB1CF75849002382AE /* EditListTableViewController.swift */; };
+		E95A8BCE1CF75A61002382AE /* EditListTitleTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = E95A8BCD1CF75A61002382AE /* EditListTitleTableViewCell.swift */; };
+		E95A8BD01CF75B1F002382AE /* EditListColorTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = E95A8BCF1CF75B1F002382AE /* EditListColorTableViewCell.swift */; };
+		E95A8BD21CF75B45002382AE /* EditListActionTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = E95A8BD11CF75B45002382AE /* EditListActionTableViewCell.swift */; };
+		E95A8BD61CF88356002382AE /* EditListViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = E95A8BD51CF88356002382AE /* EditListViewModel.swift */; };
+		E95A8BDA1CF88533002382AE /* EditList.swift in Sources */ = {isa = PBXBuildFile; fileRef = E95A8BD91CF88533002382AE /* EditList.swift */; };
+		E95A8BDC1CF88902002382AE /* EditListAction.swift in Sources */ = {isa = PBXBuildFile; fileRef = E95A8BDB1CF88902002382AE /* EditListAction.swift */; };
 		E96975A21CCE78F000DC5852 /* Project.swift in Sources */ = {isa = PBXBuildFile; fileRef = E96975A11CCE78F000DC5852 /* Project.swift */; };
 		E96975A51CD1039B00DC5852 /* ProjectCellViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = E96975A41CD1039B00DC5852 /* ProjectCellViewModel.swift */; };
 		E96CC3CA1CD58E50007DDB65 /* SessionAction.swift in Sources */ = {isa = PBXBuildFile; fileRef = E96CC3C91CD58E50007DDB65 /* SessionAction.swift */; };
@@ -125,6 +131,12 @@
 		E9571AE61CD3AB92007A819F /* NewProjectDescriptionTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = NewProjectDescriptionTableViewCell.swift; path = Views/Projects/NewProjectDescriptionTableViewCell.swift; sourceTree = "<group>"; };
 		E9571AE81CD3C4FD007A819F /* NewProjectAction.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = NewProjectAction.swift; path = Actions/NewProjectAction.swift; sourceTree = "<group>"; };
 		E95A8BCB1CF75849002382AE /* EditListTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = EditListTableViewController.swift; path = ViewControllers/EditListTableViewController.swift; sourceTree = "<group>"; };
+		E95A8BCD1CF75A61002382AE /* EditListTitleTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = EditListTitleTableViewCell.swift; path = Views/Lists/EditListTitleTableViewCell.swift; sourceTree = "<group>"; };
+		E95A8BCF1CF75B1F002382AE /* EditListColorTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = EditListColorTableViewCell.swift; path = Views/Lists/EditListColorTableViewCell.swift; sourceTree = "<group>"; };
+		E95A8BD11CF75B45002382AE /* EditListActionTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = EditListActionTableViewCell.swift; path = Views/Lists/EditListActionTableViewCell.swift; sourceTree = "<group>"; };
+		E95A8BD51CF88356002382AE /* EditListViewModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = EditListViewModel.swift; path = ViewModels/EditListViewModel.swift; sourceTree = "<group>"; };
+		E95A8BD91CF88533002382AE /* EditList.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = EditList.swift; path = Models/EditList.swift; sourceTree = "<group>"; };
+		E95A8BDB1CF88902002382AE /* EditListAction.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = EditListAction.swift; path = Actions/EditListAction.swift; sourceTree = "<group>"; };
 		E96975A11CCE78F000DC5852 /* Project.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = Project.swift; path = Models/Project.swift; sourceTree = "<group>"; };
 		E96975A41CD1039B00DC5852 /* ProjectCellViewModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = ProjectCellViewModel.swift; path = ViewModels/ProjectCellViewModel.swift; sourceTree = "<group>"; };
 		E96CC3C91CD58E50007DDB65 /* SessionAction.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = SessionAction.swift; path = Actions/SessionAction.swift; sourceTree = "<group>"; };
@@ -228,6 +240,7 @@
 				E9C86B251CEB590800765615 /* NewListAction.swift */,
 				E945E33A1CEF5A67002D1F01 /* NewTaskAction.swift */,
 				E945E3461CF200DE002D1F01 /* EditProjectAction.swift */,
+				E95A8BDB1CF88902002382AE /* EditListAction.swift */,
 			);
 			name = Actions;
 			sourceTree = "<group>";
@@ -257,6 +270,9 @@
 				E945E32E1CEE0BCA002D1F01 /* AddTaskTableViewCell.swift */,
 				E945E3321CEE2220002D1F01 /* NewTaskTitleTableViewCell.swift */,
 				E945E3341CEE25E2002D1F01 /* NewTaskDescriptionTableViewCell.swift */,
+				E95A8BCD1CF75A61002382AE /* EditListTitleTableViewCell.swift */,
+				E95A8BCF1CF75B1F002382AE /* EditListColorTableViewCell.swift */,
+				E95A8BD11CF75B45002382AE /* EditListActionTableViewCell.swift */,
 			);
 			name = Lists;
 			sourceTree = "<group>";
@@ -273,6 +289,7 @@
 				E975D0BB1CDCEE4C00F587CD /* Lists.swift */,
 				E9EE5D091CEA2C10003D176B /* NewList.swift */,
 				E945E3381CEF52C1002D1F01 /* NewTask.swift */,
+				E95A8BD91CF88533002382AE /* EditList.swift */,
 			);
 			name = Models;
 			sourceTree = "<group>";
@@ -333,6 +350,7 @@
 				E9BE0AC91CDCE96600E2CC13 /* ListsViewModel.swift */,
 				E975D0CE1CDDE9CC00F587CD /* ListSectionViewModel.swift */,
 				E9EE5D071CEA2B98003D176B /* NewListViewModel.swift */,
+				E95A8BD51CF88356002382AE /* EditListViewModel.swift */,
 				E945E3361CEF5247002D1F01 /* NewTaskViewModel.swift */,
 				E945E33E1CF0CBF7002D1F01 /* ColorPickerViewModel.swift */,
 			);
@@ -580,6 +598,7 @@
 				E906403A1CE22F91008367F0 /* UIImage+String.swift in Sources */,
 				E9749C971CCD075F00335B53 /* Scheduler.swift in Sources */,
 				E945E3371CEF5247002D1F01 /* NewTaskViewModel.swift in Sources */,
+				E95A8BDA1CF88533002382AE /* EditList.swift in Sources */,
 				E9EE5D021CEA179B003D176B /* NewListTableViewController.swift in Sources */,
 				E945E3411CF1F83E002D1F01 /* EditProjectTableViewController.swift in Sources */,
 				E945E3391CEF52C1002D1F01 /* NewTask.swift in Sources */,
@@ -604,6 +623,7 @@
 				E9CF1D471CDA027C00BD5DDE /* RepositoriesTableViewController.swift in Sources */,
 				E975D0BE1CDCF3B900F587CD /* Task.swift in Sources */,
 				E975D0BC1CDCEE4C00F587CD /* Lists.swift in Sources */,
+				E95A8BD21CF75B45002382AE /* EditListActionTableViewCell.swift in Sources */,
 				E945E34B1CF3547B002D1F01 /* EditProjectDescriptionTableViewCell.swift in Sources */,
 				E975D0CF1CDDE9CC00F587CD /* ListSectionViewModel.swift in Sources */,
 				E945E3431CF1F92D002D1F01 /* EditProjectTitleTableViewCell.swift in Sources */,
@@ -617,6 +637,7 @@
 				E9EE5D0A1CEA2C10003D176B /* NewList.swift in Sources */,
 				E9E4FF101CC7E06200517729 /* UIStoryboard+Fascia.swift in Sources */,
 				E9EE5D061CEA1D3A003D176B /* NewListColorTableViewCell.swift in Sources */,
+				E95A8BCE1CF75A61002382AE /* EditListTitleTableViewCell.swift in Sources */,
 				E928659B1CD8DDC100D2EF07 /* HUDManager.swift in Sources */,
 				E9F3974F1CDF92590078957B /* ContextMenuViewController.swift in Sources */,
 				E96CC3CA1CD58E50007DDB65 /* SessionAction.swift in Sources */,
@@ -626,10 +647,13 @@
 				E9BE0ACA1CDCE96600E2CC13 /* ListsViewModel.swift in Sources */,
 				E9571ADE1CD36781007A819F /* NewProjectViewModel.swift in Sources */,
 				E9CF1D451CD9FE7600BD5DDE /* NewProjectRepositoryTableViewCell.swift in Sources */,
+				E95A8BDC1CF88902002382AE /* EditListAction.swift in Sources */,
 				E9571AE11CD36B88007A819F /* ProjectTableViewCell.swift in Sources */,
+				E95A8BD01CF75B1F002382AE /* EditListColorTableViewCell.swift in Sources */,
 				E945E33B1CEF5A67002D1F01 /* NewTaskAction.swift in Sources */,
 				E945E3351CEE25E2002D1F01 /* NewTaskDescriptionTableViewCell.swift in Sources */,
 				E9EE5D041CEA19BF003D176B /* NewListTitleTableViewCell.swift in Sources */,
+				E95A8BD61CF88356002382AE /* EditListViewModel.swift in Sources */,
 				E9CF1D431CD9EE8B00BD5DDE /* RepositoriesViewModel.swift in Sources */,
 				E9E4FF001CC68ED600517729 /* ProjectsTableViewController.swift in Sources */,
 				E9E4FF071CC7DC2E00517729 /* FasciaAPIService.swift in Sources */,
