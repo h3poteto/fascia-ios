@@ -43,5 +43,15 @@ class EditListViewModel {
         color.value = editList.value.color
         title.value = editList.value.title
     }
-}
 
+    func update(title: String?, color: String?) {
+        if title != nil {
+            self.title.value = title
+            editList.value.title = title
+        }
+        if color != nil {
+            self.color.value = color
+            editList.value.color = color
+        }
+    }
+}
