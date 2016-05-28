@@ -9,6 +9,7 @@
 import UIKit
 import RxSwift
 import RxCocoa
+import CSNotificationView
 
 class EditListTableViewController: UITableViewController {
     @IBOutlet private weak var cancelButton: UIBarButtonItem!
@@ -79,16 +80,33 @@ class EditListTableViewController: UITableViewController {
             colorPicker.rx_color()
                 .subscribeNext({ (color) in
                     let colorStr = (color.hexString() as NSString).substringFromIndex(1)
-                    self.viewModel.update(nil, color: colorStr)
+                    self.viewModel.update(nil, color: colorStr, option: nil)
                 })
                 .addDisposableTo(disposeBag)
             // 選択状態を解除してからviewModelのupdateをかけないと，select時のbackgroundColorとしてsetされてしまう
             self.tableView.deselectRowAtIndexPath(indexPath, animated: true)
             self.navigationController?.pushViewController(colorPicker, animated: true)
             break
+        case (0, 2):
+            listOptionAlert()
+            self.tableView.deselectRowAtIndexPath(indexPath, animated: true)
+            break
         default:
             break
         }
+    }
+
+    private func listOptionAlert() {
+        let alert = UIAlertController(title: "Action", message: nil, preferredStyle: .ActionSheet)
+        viewModel.listOptions.forEach { (listOption) in
+            let action = UIAlertAction(title: listOption.action, style: .Default, handler: { (optionAction) in
+                self.viewModel.update(nil, color: nil, option: listOption)
+            })
+            alert.addAction(action)
+        }
+        let cancelAction = UIAlertAction(title: "Cancel", style: .Cancel, handler: nil)
+        alert.addAction(cancelAction)
+        presentViewController(alert, animated: true, completion: nil)
     }
 
 
@@ -101,7 +119,26 @@ class EditListTableViewController: UITableViewController {
 
         saveButton.rx_tap
             .subscribeNext { () in
-                self.dismissViewControllerAnimated(true, completion: nil)
+                self.viewModel.save()
+                    .subscribe(onNext: { (result) in
+                        if result {
+                            self.dismissViewControllerAnimated(true, completion: nil)
+                        }
+                        }, onError: { (errorType) in
+                            switch errorType {
+                            case EditListValidationError.TitleError:
+                                CSNotificationView.showInViewController(self, style: .Error, message: "Title is invalid")
+                                break
+                            case EditListValidationError.ColorError:
+                                CSNotificationView.showInViewController(self, style: .Error, message: "Color is invalid")
+                                break
+                            default:
+                                CSNotificationView.showInViewController(self, style: .Error, message: "Some items are invalid")
+                                break
+                            }
+                        }, onCompleted: nil, onDisposed: nil
+                    )
+                    .addDisposableTo(self.disposeBag)
             }
             .addDisposableTo(disposeBag)
     }

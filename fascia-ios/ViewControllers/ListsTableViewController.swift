@@ -105,7 +105,9 @@ class ListsTableViewController: UITableViewController, UIGestureRecognizerDelega
                         return
                     }
                     let editListView = editListNavigation.viewControllers.first as? EditListTableViewController
-                    editListView?.viewModel = EditListViewModel(model: lists.lists[section - 1])
+                    let vm = EditListViewModel(model: lists.lists[section - 1])
+                    self.bindEditListViewModel(vm)
+                    editListView?.viewModel = vm
                     self.showViewController(editListNavigation, sender: nil)
                 })
                 .addDisposableTo(disposeBag)
@@ -346,6 +348,44 @@ class ListsTableViewController: UITableViewController, UIGestureRecognizerDelega
     }
 
     private func bindNewListViewModel(vm: NewListViewModel) {
+        vm.dataUpdated
+            .driveNext { (list) in
+                if list != nil {
+                    CSNotificationView.showInViewController(self, style: .Success, message: "List save complete")
+                    self.viewModel.fetch()
+                }
+            }
+            .addDisposableTo(disposeBag)
+        vm.isLoading
+            .drive(self.refresh.rx_refreshing)
+            .addDisposableTo(disposeBag)
+
+        vm.error
+            .driveNext { (errorType) in
+                guard let errorType = errorType else {
+                    return
+                }
+                switch errorType {
+                case FasciaAPIError.AuthenticateError:
+                    self.showSignInView()
+                    break
+                case FasciaAPIError.DoubleRequestError:
+                    break
+                case FasciaAPIError.ClientError:
+                    CSNotificationView.showInViewController(self, style: .Error, message: "The request is invalid")
+                    break
+                case FasciaAPIError.ServerError, ProjectError.ParserError, ProjectError.MappingError:
+                    CSNotificationView.showInViewController(self, style: .Error, message: "We're sorry, but something went wrong.")
+                    break
+                default:
+                    CSNotificationView.showInViewController(self, style: .Error, message: "Network error.")
+                    break
+                }
+            }
+            .addDisposableTo(disposeBag)
+    }
+
+    private func bindEditListViewModel(vm: EditListViewModel) {
         vm.dataUpdated
             .driveNext { (list) in
                 if list != nil {
