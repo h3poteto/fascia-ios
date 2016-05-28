@@ -29,13 +29,21 @@ class EditListTitleTableViewCell: UITableViewCell {
 
     override func awakeFromNib() {
         super.awakeFromNib()
-        // Initialization code
+        bindViewModel()
     }
 
     override func setSelected(selected: Bool, animated: Bool) {
         super.setSelected(selected, animated: animated)
 
         // Configure the view for the selected state
+    }
+
+    private func bindViewModel() {
+        titleText.rx_text
+            .subscribeNext { (text) in
+                self.viewModel?.update(text, color: nil, option: nil)
+            }
+            .addDisposableTo(disposeBag)
     }
 
 }
