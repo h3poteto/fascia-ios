@@ -14,7 +14,7 @@ class List: Mappable {
     var userID: Int?
     var title: String?
     var color: String?
-    var listOptionID: String?
+    var listOptionID: Int?
     var isHidden: Bool?
     var listTasks: Array<Task>  = []
 

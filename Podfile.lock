@@ -12,6 +12,7 @@ PODS:
   - RxCocoa (2.4):
     - RxSwift (~> 2.4)
   - RxSwift (2.4)
+  - SESlideTableViewCell (0.7.0)
   - SideMenu (1.1.5)
   - SVProgressHUD (2.0.3)
 
@@ -24,6 +25,7 @@ DEPENDENCIES:
   - RxAlamofire
   - RxCocoa (~> 2.4)
   - RxSwift (~> 2.4)
+  - SESlideTableViewCell
   - SideMenu
   - SVProgressHUD
 
@@ -36,9 +38,10 @@ SPEC CHECKSUMS:
   RxAlamofire: 250b7846cedbd189d6190e4f83caa01ee1f1eceb
   RxCocoa: 7d6cd877de99f5640306b3d6cf87f580c1d91b61
   RxSwift: 67b9ef4e8b34fb394e200e754c6a09cc16559f94
+  SESlideTableViewCell: 1487a6aedc84b480a888fc33b8d1c58fa5026f99
   SideMenu: c7eb4edeb570469a70c6503306f5a97df08e8e9d
   SVProgressHUD: b0830714205bea1317ea1a2ebc71e5633af334d4
 
-PODFILE CHECKSUM: 04433936e553ffe45adb0e32306487a8515f6996
+PODFILE CHECKSUM: f2f36707975ae5cfc192bb83f6579f4ec7eef4b2
 
 COCOAPODS: 1.0.0.beta.8

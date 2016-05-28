@@ -12,16 +12,14 @@ import RxCocoa
 import CSNotificationView
 
 class NewTaskTableViewController: UITableViewController {
-    private let cancelButton = UIBarButtonItem(barButtonSystemItem: UIBarButtonSystemItem.Cancel, target: nil, action: nil)
-    private let saveButton = UIBarButtonItem(barButtonSystemItem: UIBarButtonSystemItem.Save, target: nil, action: nil)
+    @IBOutlet private weak var cancelButton: UIBarButtonItem!
+    @IBOutlet private weak var saveButton: UIBarButtonItem!
     private let disposeBag = DisposeBag()
     var viewModel: NewTaskViewModel!
 
     override func viewDidLoad() {
         super.viewDidLoad()
 
-        self.navigationItem.leftBarButtonItem = cancelButton
-        self.navigationItem.rightBarButtonItem = saveButton
         bindViewModel()
 
     }
