@@ -11,7 +11,6 @@ import RxSwift
 import RxCocoa
 
 class NewListColorTableViewCell: UITableViewCell {
-    @IBOutlet private weak var colorLabel: UILabel!
     @IBOutlet private weak var colorImage: UIImageView!
     private let disposeBag = DisposeBag()
     var viewModel: NewListViewModel? {

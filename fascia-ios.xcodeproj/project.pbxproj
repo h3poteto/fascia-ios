@@ -10,7 +10,9 @@
 		5F8671B19F4521C1BB30C10E /* Pods_fascia_ios.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 16D2F05040D44D1E1FE11135 /* Pods_fascia_ios.framework */; };
 		E906403A1CE22F91008367F0 /* UIImage+String.swift in Sources */ = {isa = PBXBuildFile; fileRef = E90640391CE22F91008367F0 /* UIImage+String.swift */; };
 		E928659B1CD8DDC100D2EF07 /* HUDManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = E928659A1CD8DDC100D2EF07 /* HUDManager.swift */; };
-		E945E32F1CEE0BCA002D1F01 /* AddTaskTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = E945E32E1CEE0BCA002D1F01 /* AddTaskTableViewCell.swift */; };
+		E92DCF531CF9992400D9E348 /* AddTaskTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = E92DCF521CF9992400D9E348 /* AddTaskTableViewCell.swift */; };
+		E92DCF561CF9993B00D9E348 /* NewListColorTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = E92DCF541CF9993B00D9E348 /* NewListColorTableViewCell.swift */; };
+		E92DCF571CF9993B00D9E348 /* NewListTitleTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = E92DCF551CF9993B00D9E348 /* NewListTitleTableViewCell.swift */; };
 		E945E3311CEE2025002D1F01 /* NewTaskTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E945E3301CEE2025002D1F01 /* NewTaskTableViewController.swift */; };
 		E945E3331CEE2220002D1F01 /* NewTaskTitleTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = E945E3321CEE2220002D1F01 /* NewTaskTitleTableViewCell.swift */; };
 		E945E3351CEE25E2002D1F01 /* NewTaskDescriptionTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = E945E3341CEE25E2002D1F01 /* NewTaskDescriptionTableViewCell.swift */; };
@@ -81,8 +83,6 @@
 		E9EE5CFE1CE85E45003D176B /* ProjectsNavigationViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E9EE5CFD1CE85E45003D176B /* ProjectsNavigationViewController.swift */; };
 		E9EE5D001CE8D071003D176B /* UIViewController+Rx.swift in Sources */ = {isa = PBXBuildFile; fileRef = E9EE5CFF1CE8D071003D176B /* UIViewController+Rx.swift */; };
 		E9EE5D021CEA179B003D176B /* NewListTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E9EE5D011CEA179B003D176B /* NewListTableViewController.swift */; };
-		E9EE5D041CEA19BF003D176B /* NewListTitleTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = E9EE5D031CEA19BF003D176B /* NewListTitleTableViewCell.swift */; };
-		E9EE5D061CEA1D3A003D176B /* NewListColorTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = E9EE5D051CEA1D3A003D176B /* NewListColorTableViewCell.swift */; };
 		E9EE5D081CEA2B98003D176B /* NewListViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = E9EE5D071CEA2B98003D176B /* NewListViewModel.swift */; };
 		E9EE5D0A1CEA2C10003D176B /* NewList.swift in Sources */ = {isa = PBXBuildFile; fileRef = E9EE5D091CEA2C10003D176B /* NewList.swift */; };
 		E9F3974F1CDF92590078957B /* ContextMenuViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E9F3974E1CDF92590078957B /* ContextMenuViewController.swift */; };
@@ -108,7 +108,9 @@
 		67AD5B1E44C7EB47CEA7BB03 /* Pods-fascia-ios.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-fascia-ios.debug.xcconfig"; path = "Pods/Target Support Files/Pods-fascia-ios/Pods-fascia-ios.debug.xcconfig"; sourceTree = "<group>"; };
 		E90640391CE22F91008367F0 /* UIImage+String.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = "UIImage+String.swift"; path = "Utils/UIImage+String.swift"; sourceTree = "<group>"; };
 		E928659A1CD8DDC100D2EF07 /* HUDManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = HUDManager.swift; path = Services/HUDManager.swift; sourceTree = "<group>"; };
-		E945E32E1CEE0BCA002D1F01 /* AddTaskTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = AddTaskTableViewCell.swift; path = Views/AddTaskTableViewCell.swift; sourceTree = "<group>"; };
+		E92DCF521CF9992400D9E348 /* AddTaskTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = AddTaskTableViewCell.swift; path = Views/Lists/AddTaskTableViewCell.swift; sourceTree = "<group>"; };
+		E92DCF541CF9993B00D9E348 /* NewListColorTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = NewListColorTableViewCell.swift; path = Views/Lists/NewListColorTableViewCell.swift; sourceTree = "<group>"; };
+		E92DCF551CF9993B00D9E348 /* NewListTitleTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = NewListTitleTableViewCell.swift; path = Views/Lists/NewListTitleTableViewCell.swift; sourceTree = "<group>"; };
 		E945E3301CEE2025002D1F01 /* NewTaskTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = NewTaskTableViewController.swift; path = ViewControllers/NewTaskTableViewController.swift; sourceTree = "<group>"; };
 		E945E3321CEE2220002D1F01 /* NewTaskTitleTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = NewTaskTitleTableViewCell.swift; path = Views/Lists/NewTaskTitleTableViewCell.swift; sourceTree = "<group>"; };
 		E945E3341CEE25E2002D1F01 /* NewTaskDescriptionTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = NewTaskDescriptionTableViewCell.swift; path = Views/Lists/NewTaskDescriptionTableViewCell.swift; sourceTree = "<group>"; };
@@ -179,8 +181,6 @@
 		E9EE5CFD1CE85E45003D176B /* ProjectsNavigationViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = ProjectsNavigationViewController.swift; path = ViewControllers/ProjectsNavigationViewController.swift; sourceTree = "<group>"; };
 		E9EE5CFF1CE8D071003D176B /* UIViewController+Rx.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = "UIViewController+Rx.swift"; path = "Utils/UIViewController+Rx.swift"; sourceTree = "<group>"; };
 		E9EE5D011CEA179B003D176B /* NewListTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = NewListTableViewController.swift; path = ViewControllers/NewListTableViewController.swift; sourceTree = "<group>"; };
-		E9EE5D031CEA19BF003D176B /* NewListTitleTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = NewListTitleTableViewCell.swift; path = Views/NewListTitleTableViewCell.swift; sourceTree = "<group>"; };
-		E9EE5D051CEA1D3A003D176B /* NewListColorTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = NewListColorTableViewCell.swift; path = Views/NewListColorTableViewCell.swift; sourceTree = "<group>"; };
 		E9EE5D071CEA2B98003D176B /* NewListViewModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = NewListViewModel.swift; path = ViewModels/NewListViewModel.swift; sourceTree = "<group>"; };
 		E9EE5D091CEA2C10003D176B /* NewList.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = NewList.swift; path = Models/NewList.swift; sourceTree = "<group>"; };
 		E9F3974E1CDF92590078957B /* ContextMenuViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = ContextMenuViewController.swift; path = ViewControllers/ContextMenuViewController.swift; sourceTree = "<group>"; };
@@ -270,9 +270,9 @@
 				E975D0C01CDDC23600F587CD /* TaskTableViewCell.swift */,
 				E975D0CA1CDDE8DE00F587CD /* ListSectionTableViewCell.swift */,
 				E975D0CB1CDDE8DE00F587CD /* ListSectionTableViewCell.xib */,
-				E9EE5D031CEA19BF003D176B /* NewListTitleTableViewCell.swift */,
-				E9EE5D051CEA1D3A003D176B /* NewListColorTableViewCell.swift */,
-				E945E32E1CEE0BCA002D1F01 /* AddTaskTableViewCell.swift */,
+				E92DCF541CF9993B00D9E348 /* NewListColorTableViewCell.swift */,
+				E92DCF551CF9993B00D9E348 /* NewListTitleTableViewCell.swift */,
+				E92DCF521CF9992400D9E348 /* AddTaskTableViewCell.swift */,
 				E945E3321CEE2220002D1F01 /* NewTaskTitleTableViewCell.swift */,
 				E945E3341CEE25E2002D1F01 /* NewTaskDescriptionTableViewCell.swift */,
 				E95A8BCD1CF75A61002382AE /* EditListTitleTableViewCell.swift */,
@@ -601,10 +601,12 @@
 				E9EA958B1CD4718F008F5535 /* NewProject.swift in Sources */,
 				E95104E71CE714F500754A51 /* InitialViewController.swift in Sources */,
 				E9BE0AC81CDCE91800E2CC13 /* List.swift in Sources */,
+				E92DCF571CF9993B00D9E348 /* NewListTitleTableViewCell.swift in Sources */,
 				E906403A1CE22F91008367F0 /* UIImage+String.swift in Sources */,
 				E9749C971CCD075F00335B53 /* Scheduler.swift in Sources */,
 				E945E3371CEF5247002D1F01 /* NewTaskViewModel.swift in Sources */,
 				E95A8BE01CF8AC3B002382AE /* ListOption.swift in Sources */,
+				E92DCF561CF9993B00D9E348 /* NewListColorTableViewCell.swift in Sources */,
 				E95A8BDA1CF88533002382AE /* EditList.swift in Sources */,
 				E9EE5D021CEA179B003D176B /* NewListTableViewController.swift in Sources */,
 				E945E3411CF1F83E002D1F01 /* EditProjectTableViewController.swift in Sources */,
@@ -622,7 +624,6 @@
 				E9CF1D411CD8F72400BD5DDE /* RepositoryAction.swift in Sources */,
 				E9BE0AC61CDCE87200E2CC13 /* ListsTableViewController.swift in Sources */,
 				E9CF1D4B1CDA31EB00BD5DDE /* RepositoryCellViewModel.swift in Sources */,
-				E945E32F1CEE0BCA002D1F01 /* AddTaskTableViewCell.swift in Sources */,
 				E945E3451CF1FEEF002D1F01 /* EditProjectViewModel.swift in Sources */,
 				E9EE5CFE1CE85E45003D176B /* ProjectsNavigationViewController.swift in Sources */,
 				E945E33F1CF0CBF7002D1F01 /* ColorPickerViewModel.swift in Sources */,
@@ -643,7 +644,6 @@
 				E95A8BCC1CF75849002382AE /* EditListTableViewController.swift in Sources */,
 				E9EE5D0A1CEA2C10003D176B /* NewList.swift in Sources */,
 				E9E4FF101CC7E06200517729 /* UIStoryboard+Fascia.swift in Sources */,
-				E9EE5D061CEA1D3A003D176B /* NewListColorTableViewCell.swift in Sources */,
 				E95A8BCE1CF75A61002382AE /* EditListTitleTableViewCell.swift in Sources */,
 				E928659B1CD8DDC100D2EF07 /* HUDManager.swift in Sources */,
 				E9F3974F1CDF92590078957B /* ContextMenuViewController.swift in Sources */,
@@ -659,7 +659,6 @@
 				E95A8BD01CF75B1F002382AE /* EditListColorTableViewCell.swift in Sources */,
 				E945E33B1CEF5A67002D1F01 /* NewTaskAction.swift in Sources */,
 				E945E3351CEE25E2002D1F01 /* NewTaskDescriptionTableViewCell.swift in Sources */,
-				E9EE5D041CEA19BF003D176B /* NewListTitleTableViewCell.swift in Sources */,
 				E95A8BD61CF88356002382AE /* EditListViewModel.swift in Sources */,
 				E9CF1D431CD9EE8B00BD5DDE /* RepositoriesViewModel.swift in Sources */,
 				E9E4FF001CC68ED600517729 /* ProjectsTableViewController.swift in Sources */,
@@ -669,6 +668,7 @@
 				E945E3471CF200DE002D1F01 /* EditProjectAction.swift in Sources */,
 				E975D0C11CDDC23600F587CD /* TaskTableViewCell.swift in Sources */,
 				E975D0CC1CDDE8DE00F587CD /* ListSectionTableViewCell.swift in Sources */,
+				E92DCF531CF9992400D9E348 /* AddTaskTableViewCell.swift in Sources */,
 				E9571AE31CD36BA8007A819F /* NewProjectTitleTableViewCell.swift in Sources */,
 				E975D0C31CDDC4F000F587CD /* TaskCellViewModel.swift in Sources */,
 				E9FB1D351CE78F3D00604026 /* SideMenuTableViewController.swift in Sources */,
