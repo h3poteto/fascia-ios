@@ -371,7 +371,6 @@
                                 </tableViewCellContentView>
                                 <connections>
                                     <outlet property="colorImage" destination="o0V-e3-ceJ" id="hnG-ph-JCh"/>
-                                    <outlet property="colorLabel" destination="MpX-kg-2d1" id="v6x-NU-49W"/>
                                 </connections>
                             </tableViewCell>
                         </prototypes>
