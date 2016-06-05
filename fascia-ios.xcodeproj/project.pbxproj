@@ -785,7 +785,7 @@
 				INFOPLIST_FILE = "fascia-ios/Info.plist";
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				OTHER_SWIFT_FLAGS = "$(inherited) \"-D\" \"COCOAPODS\" \"-D\" \"DEBUG\"";
-				PRODUCT_BUNDLE_IDENTIFIER = "io.github.h3poteto.fascia-ios";
+				PRODUCT_BUNDLE_IDENTIFIER = io.fascia;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 			};
 			name = Debug;
@@ -798,7 +798,7 @@
 				INFOPLIST_FILE = "fascia-ios/Info.plist";
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				OTHER_SWIFT_FLAGS = "$(inherited) \"-D\" \"COCOAPODS\" \"-D\" \"RELEASE\"";
-				PRODUCT_BUNDLE_IDENTIFIER = "io.github.h3poteto.fascia-ios";
+				PRODUCT_BUNDLE_IDENTIFIER = io.fascia;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 			};
 			name = Release;
