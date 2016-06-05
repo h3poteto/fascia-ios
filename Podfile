@@ -14,5 +14,7 @@ target "fascia-ios" do
   pod 'SideMenu'
   pod 'Color-Picker-for-iOS', '~> 2.0'
   pod 'SESlideTableViewCell'
+  pod 'Fabric'
+  pod 'Crashlytics'
 end
 

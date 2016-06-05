@@ -2,7 +2,10 @@ PODS:
   - Alamofire (3.3.1)
   - Color-Picker-for-iOS (2.0.2)
   - Colours/Swift (5.13.0)
+  - Crashlytics (3.7.0):
+    - Fabric (~> 1.6.3)
   - CSNotificationView (0.5.4)
+  - Fabric (1.6.7)
   - ObjectMapper (1.2.0)
   - RxAlamofire (2.2):
     - RxAlamofire/Core (= 2.2)
@@ -20,7 +23,9 @@ DEPENDENCIES:
   - Alamofire (~> 3.3)
   - Color-Picker-for-iOS (~> 2.0)
   - Colours/Swift
+  - Crashlytics
   - CSNotificationView
+  - Fabric
   - ObjectMapper (~> 1.2)
   - RxAlamofire
   - RxCocoa (~> 2.4)
@@ -33,7 +38,9 @@ SPEC CHECKSUMS:
   Alamofire: 369bc67b6f5ac33ded3648d7bd21c5bfb91c2ecc
   Color-Picker-for-iOS: 4980589b3e3cfe7198f227dd50be9adb02d8bc0b
   Colours: f24220c38f13deac88612667e9b4a7fb96b871d4
+  Crashlytics: c3a2333dea9e2733d2777f730910321fc9e25c0d
   CSNotificationView: 0792f5220163c2befaf1a9716aa3d5a7d6bd4fb1
+  Fabric: caf7580c725e64db144f610ac65cd60956911dc7
   ObjectMapper: b1e9c7c8a9f6400b72690c80072c131504caa66f
   RxAlamofire: 250b7846cedbd189d6190e4f83caa01ee1f1eceb
   RxCocoa: 7d6cd877de99f5640306b3d6cf87f580c1d91b61
@@ -42,6 +49,6 @@ SPEC CHECKSUMS:
   SideMenu: c7eb4edeb570469a70c6503306f5a97df08e8e9d
   SVProgressHUD: b0830714205bea1317ea1a2ebc71e5633af334d4
 
-PODFILE CHECKSUM: f2f36707975ae5cfc192bb83f6579f4ec7eef4b2
+PODFILE CHECKSUM: 94015a9aa49ffcc58d1c4b7f4845da03ac012a03
 
 COCOAPODS: 1.0.0.beta.8
