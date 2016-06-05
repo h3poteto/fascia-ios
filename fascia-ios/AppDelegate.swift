@@ -8,6 +8,8 @@
 
 import UIKit
 import SideMenu
+import Fabric
+import Crashlytics
 
 @UIApplicationMain
 class AppDelegate: UIResponder, UIApplicationDelegate {
@@ -16,6 +18,8 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 
 
     func application(application: UIApplication, didFinishLaunchingWithOptions launchOptions: [NSObject: AnyObject]?) -> Bool {
+        // Fabricの初期化
+        Fabric.with([Crashlytics.self])
         // InitialViewControllerも用意してあるので，walkthroughとか表示するならこのコードを消すだけで遷移できる
         guard let projects = UIStoryboard.instantiateViewController("ProjectsNavigationViewController", storyboardName: "Projects") as? ProjectsNavigationViewController else {
             return true
