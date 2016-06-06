@@ -78,23 +78,6 @@ class ProjectsTableViewController: UITableViewController, SideMenuable {
         }
     }
 
-/*
-    override func tableView(tableView: UITableView, editActionsForRowAtIndexPath indexPath: NSIndexPath) -> [UITableViewRowAction]? {
-        let editAction = UITableViewRowAction(style: UITableViewRowActionStyle.Normal, title: "Edit") { (action, indexPath) in
-            self.tableView.setEditing(false, animated: true)
-            guard let editProjectNavigation = UIStoryboard.instantiateViewController("EditProjectNavigationController", storyboardName: "Projects") as? UINavigationController else {
-                return
-            }
-            let editProject = editProjectNavigation.viewControllers.first as? EditProjectTableViewController
-            let vm = EditProjectViewModel(project: self.viewModel.projects[indexPath.row])
-            self.bindEditProjectViewModel(vm)
-            editProject?.viewModel = vm
-            self.showViewController(editProjectNavigation, sender: true)
-        }
-        return [editAction]
-    }
- */
-
     private func showSignInView() {
         if let signIn = UIStoryboard.instantiateViewController("SignInViewController", storyboardName: "Main") as? SignInViewController {
             signIn.rx_viewDidDisappear
