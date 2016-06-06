@@ -163,10 +163,22 @@ class ListsTableViewController: UITableViewController, UIGestureRecognizerDelega
         }
         switch (indexPath.section, indexPath.row) {
         case (0, noneList.listTasks.count):
-            showNewTaskView(noneList)
+            prepareNewTaskView(noneList)
+                .observeOn(Scheduler.sharedInstance.mainScheduler)
+                .subscribeOn(Scheduler.sharedInstance.mainScheduler)
+                .subscribeNext({ (navigation) in
+                    self.showViewController(navigation, sender: nil)
+                })
+                .addDisposableTo(disposeBag)
             return
         case (1..<(lists.lists.count + 1), lists.lists[indexPath.section - 1].listTasks.count):
-            showNewTaskView(lists.lists[indexPath.section - 1])
+            prepareNewTaskView(lists.lists[indexPath.section - 1])
+                .observeOn(Scheduler.sharedInstance.mainScheduler)
+                .subscribeOn(Scheduler.sharedInstance.mainScheduler)
+                .subscribeNext({ (navigation) in
+                    self.showViewController(navigation, sender: nil)
+                })
+                .addDisposableTo(disposeBag)
             return
         default:
             return
@@ -245,14 +257,18 @@ class ListsTableViewController: UITableViewController, UIGestureRecognizerDelega
         }
     }
 
-    private func showNewTaskView(list: List) {
-        if let newTaskNavigation = UIStoryboard.instantiateViewController("NewTaskNavigationController", storyboardName: "Lists") as? UINavigationController {
-            let newTaskView = newTaskNavigation.viewControllers.first as? NewTaskTableViewController
-            let vm = NewTaskViewModel(model: NewTask(), list: list)
-            newTaskView?.viewModel = vm
-            bindNewTaskViewModel(vm)
-            showViewController(newTaskNavigation, sender: nil)
-        }
+    private func prepareNewTaskView(list: List) -> Observable<UINavigationController> {
+        return Observable.create({ observe -> Disposable in
+            if let newTaskNavigation = UIStoryboard.instantiateViewController("NewTaskNavigationController", storyboardName: "Lists") as? UINavigationController {
+                let newTaskView = newTaskNavigation.viewControllers.first as? NewTaskTableViewController
+                let vm = NewTaskViewModel(model: NewTask(), list: list)
+                newTaskView?.viewModel = vm
+                self.bindNewTaskViewModel(vm)
+                observe.onNext(newTaskNavigation)
+            }
+            observe.onCompleted()
+            return NopDisposable.instance
+        })
     }
 
     private func bindViewModel() {
