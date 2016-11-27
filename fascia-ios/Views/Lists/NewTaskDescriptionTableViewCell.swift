@@ -11,27 +11,29 @@ import RxSwift
 import RxCocoa
 
 class NewTaskDescriptionTableViewCell: UITableViewCell {
-    @IBOutlet private weak var descriptionLabel: UILabel!
-    @IBOutlet private weak var descriptionText: UITextField!
+    @IBOutlet fileprivate weak var descriptionLabel: UILabel!
+    @IBOutlet fileprivate weak var descriptionText: UITextField!
     var viewModel: NewTaskViewModel?
-    private let disposeBag = DisposeBag()
+    fileprivate let disposeBag = DisposeBag()
 
     override func awakeFromNib() {
         super.awakeFromNib()
         bindViewModel()
     }
 
-    override func setSelected(selected: Bool, animated: Bool) {
+    override func setSelected(_ selected: Bool, animated: Bool) {
         super.setSelected(selected, animated: animated)
 
         // Configure the view for the selected state
     }
 
-    private func bindViewModel() {
-        descriptionText.rx_text
-            .subscribeNext { (text) in
+    fileprivate func bindViewModel() {
+        descriptionText
+            .rx
+            .text
+            .subscribe(onNext: { (text) in
                 self.viewModel?.update(nil, description: text)
-            }
+            }, onError: nil, onCompleted: nil, onDisposed: nil)
             .addDisposableTo(disposeBag)
     }
 }

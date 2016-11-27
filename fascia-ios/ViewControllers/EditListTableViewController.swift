@@ -10,11 +10,12 @@ import UIKit
 import RxSwift
 import RxCocoa
 import CSNotificationView
+import ChameleonFramework
 
 class EditListTableViewController: UITableViewController {
-    @IBOutlet private weak var cancelButton: UIBarButtonItem!
-    @IBOutlet private weak var saveButton: UIBarButtonItem!
-    private let disposeBag = DisposeBag()
+    @IBOutlet fileprivate weak var cancelButton: UIBarButtonItem!
+    @IBOutlet fileprivate weak var saveButton: UIBarButtonItem!
+    fileprivate let disposeBag = DisposeBag()
     var viewModel: EditListViewModel!
 
     override func viewDidLoad() {
@@ -30,32 +31,32 @@ class EditListTableViewController: UITableViewController {
 
     // MARK: - Table view data source
 
-    override func numberOfSectionsInTableView(tableView: UITableView) -> Int {
+    override func numberOfSections(in tableView: UITableView) -> Int {
         // #warning Incomplete implementation, return the number of sections
         return 1
     }
 
-    override func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+    override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         // #warning Incomplete implementation, return the number of rows
         return 3
     }
 
-    override func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
+    override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         switch (indexPath.section, indexPath.row) {
         case (0, 0):
-            if let cell = tableView.dequeueReusableCellWithIdentifier("EditListTitleTableViewCell", forIndexPath: indexPath) as? EditListTitleTableViewCell {
+            if let cell = tableView.dequeueReusableCell(withIdentifier: "EditListTitleTableViewCell", for: indexPath) as? EditListTitleTableViewCell {
                 cell.viewModel = self.viewModel
                 return cell
             }
             break
         case (0, 1):
-            if let cell = tableView.dequeueReusableCellWithIdentifier("EditListColorTableViewCell", forIndexPath: indexPath) as? EditListColorTableViewCell {
+            if let cell = tableView.dequeueReusableCell(withIdentifier: "EditListColorTableViewCell", for: indexPath) as? EditListColorTableViewCell {
                 cell.viewModel = self.viewModel
                 return cell
             }
             break
         case (0, 2):
-            if let cell = tableView.dequeueReusableCellWithIdentifier("EditListActionTableViewCell", forIndexPath: indexPath) as? EditListActionTableViewCell {
+            if let cell = tableView.dequeueReusableCell(withIdentifier: "EditListActionTableViewCell", for: indexPath) as? EditListActionTableViewCell {
                 cell.viewModel = self.viewModel
                 return cell
             }
@@ -63,11 +64,11 @@ class EditListTableViewController: UITableViewController {
         default:
             break
         }
-        let cell = tableView.dequeueReusableCellWithIdentifier("EditListTitleTableViewCell", forIndexPath: indexPath)
+        let cell = tableView.dequeueReusableCell(withIdentifier: "EditListTitleTableViewCell", for: indexPath)
         return cell
     }
 
-    override func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
+    override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         switch (indexPath.section, indexPath.row) {
         case (0, 1):
             guard let colorPicker = UIStoryboard.instantiateViewController("ColorPickerViewController", storyboardName: "Lists") as? ColorPickerViewController else {
@@ -76,70 +77,75 @@ class EditListTableViewController: UITableViewController {
             guard let color = viewModel.color.value else {
                 return
             }
-            colorPicker.viewModel = ColorPickerViewModel(color: UIColor(hex: color))
-            colorPicker.rx_color()
-                .subscribeNext({ (color) in
-                    let colorStr = (color.hexString() as NSString).substringFromIndex(1)
+            colorPicker.viewModel = ColorPickerViewModel(color: UIColor(hexString: color)!)
+            colorPicker
+                .rx_color()
+                .subscribe(onNext: { (color) in
+                    let colorStr = (color.hexValue() as NSString).substring(from: 1)
                     self.viewModel.update(nil, color: colorStr, option: nil)
-                })
+                }, onError: nil, onCompleted: nil, onDisposed: nil)
                 .addDisposableTo(disposeBag)
             // 選択状態を解除してからviewModelのupdateをかけないと，select時のbackgroundColorとしてsetされてしまう
-            self.tableView.deselectRowAtIndexPath(indexPath, animated: true)
+            self.tableView.deselectRow(at: indexPath, animated: true)
             self.navigationController?.pushViewController(colorPicker, animated: true)
             break
         case (0, 2):
             listOptionAlert()
-            self.tableView.deselectRowAtIndexPath(indexPath, animated: true)
+            self.tableView.deselectRow(at: indexPath, animated: true)
             break
         default:
             break
         }
     }
 
-    private func listOptionAlert() {
-        let alert = UIAlertController(title: "Action", message: nil, preferredStyle: .ActionSheet)
+    fileprivate func listOptionAlert() {
+        let alert = UIAlertController(title: "Action", message: nil, preferredStyle: .actionSheet)
         viewModel.listOptions.forEach { (listOption) in
-            let action = UIAlertAction(title: listOption.action, style: .Default, handler: { (optionAction) in
+            let action = UIAlertAction(title: listOption.action, style: .default, handler: { (optionAction) in
                 self.viewModel.update(nil, color: nil, option: listOption)
             })
             alert.addAction(action)
         }
-        let cancelAction = UIAlertAction(title: "Cancel", style: .Cancel, handler: nil)
+        let cancelAction = UIAlertAction(title: "Cancel", style: .cancel, handler: nil)
         alert.addAction(cancelAction)
-        presentViewController(alert, animated: true, completion: nil)
+        present(alert, animated: true, completion: nil)
     }
 
 
-    private func bindViewModel() {
-        cancelButton.rx_tap
-            .subscribeNext { () in
-                self.dismissViewControllerAnimated(true, completion: nil)
-            }
+    fileprivate func bindViewModel() {
+        cancelButton
+            .rx
+            .tap
+            .subscribe(onNext: { () in
+                self.dismiss(animated: true, completion: nil)
+            }, onError: nil, onCompleted: nil, onDisposed: nil)
             .addDisposableTo(disposeBag)
 
-        saveButton.rx_tap
-            .subscribeNext { () in
+        saveButton
+            .rx
+            .tap
+            .subscribe(onNext: { () in
                 self.viewModel.save()
                     .subscribe(onNext: { (result) in
                         if result {
-                            self.dismissViewControllerAnimated(true, completion: nil)
+                            self.dismiss(animated: true, completion: nil)
                         }
                         }, onError: { (errorType) in
                             switch errorType {
-                            case EditListValidationError.TitleError:
-                                CSNotificationView.showInViewController(self, style: .Error, message: "Title is invalid")
+                            case EditListValidationError.titleError:
+                                CSNotificationView.show(in: self, style: .error, message: "Title is invalid")
                                 break
-                            case EditListValidationError.ColorError:
-                                CSNotificationView.showInViewController(self, style: .Error, message: "Color is invalid")
+                            case EditListValidationError.colorError:
+                                CSNotificationView.show(in: self, style: .error, message: "Color is invalid")
                                 break
                             default:
-                                CSNotificationView.showInViewController(self, style: .Error, message: "Some items are invalid")
+                                CSNotificationView.show(in: self, style: .error, message: "Some items are invalid")
                                 break
                             }
                         }, onCompleted: nil, onDisposed: nil
                     )
                     .addDisposableTo(self.disposeBag)
-            }
+            }, onError: nil, onCompleted: nil, onDisposed: nil)
             .addDisposableTo(disposeBag)
     }
 }

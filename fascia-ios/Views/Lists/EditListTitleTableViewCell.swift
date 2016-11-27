@@ -11,8 +11,8 @@ import RxSwift
 import RxCocoa
 
 class EditListTitleTableViewCell: UITableViewCell {
-    @IBOutlet private weak var titleText: UITextField!
-    private let disposeBag = DisposeBag()
+    @IBOutlet fileprivate weak var titleText: UITextField!
+    fileprivate let disposeBag = DisposeBag()
     var viewModel: EditListViewModel? {
         didSet {
             guard let vModel = viewModel else { return }
@@ -22,7 +22,7 @@ class EditListTitleTableViewCell: UITableViewCell {
                     guard let text = text else { return "" }
                     return text
                 }
-                .bindTo(titleText.rx_text)
+                .bindTo(titleText.rx.text)
                 .addDisposableTo(disposeBag)
         }
     }
@@ -32,17 +32,19 @@ class EditListTitleTableViewCell: UITableViewCell {
         bindViewModel()
     }
 
-    override func setSelected(selected: Bool, animated: Bool) {
+    override func setSelected(_ selected: Bool, animated: Bool) {
         super.setSelected(selected, animated: animated)
 
         // Configure the view for the selected state
     }
 
-    private func bindViewModel() {
-        titleText.rx_text
-            .subscribeNext { (text) in
+    fileprivate func bindViewModel() {
+        titleText
+            .rx
+            .text
+            .subscribe(onNext: { (text) in
                 self.viewModel?.update(text, color: nil, option: nil)
-            }
+            }, onError: nil, onCompleted: nil, onDisposed: nil)
             .addDisposableTo(disposeBag)
     }
 

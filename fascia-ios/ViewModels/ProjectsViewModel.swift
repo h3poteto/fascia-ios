@@ -10,11 +10,11 @@ import RxSwift
 import RxCocoa
 
 class ProjectsViewModel: NSObject {
-    private final let action = ProjectsAction()
+    fileprivate final let action = ProjectsAction()
     final var projects = [Project]()
-    final private(set) var dataUpdated: Driver<[Project]> = Driver.never()
-    final private(set) var isLoading: Driver<Bool> = Driver.never()
-    final private(set) var error: Driver<ErrorType?> = Driver.never()
+    final fileprivate(set) var dataUpdated: Driver<[Project]> = Driver.never()
+    final fileprivate(set) var isLoading: Driver<Bool> = Driver.never()
+    final fileprivate(set) var err: Driver<Error?> = Driver.never()
 
     override init() {
         super.init()
@@ -22,7 +22,7 @@ class ProjectsViewModel: NSObject {
         dataUpdated = Driver
             .combineLatest(
                 action.projects.asDriver(),
-                action.error.asDriver().map({
+                action.err.asDriver().map({
                     $0 != nil
                 }),
                 resultSelector: {
@@ -30,7 +30,7 @@ class ProjectsViewModel: NSObject {
             })
 
         isLoading = action.isLoading.asDriver()
-        error = action.error.asDriver()
+        err = action.err.asDriver()
     }
 
     func fetch() {

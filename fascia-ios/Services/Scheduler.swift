@@ -14,9 +14,9 @@ class Scheduler {
 
     let mainScheduler = MainScheduler.asyncInstance
     let backgroundScheduler: ImmediateSchedulerType = {
-        let operationQueue = NSOperationQueue()
+        let operationQueue = OperationQueue()
         operationQueue.maxConcurrentOperationCount = 2
-        operationQueue.qualityOfService = NSQualityOfService.UserInitiated
+        operationQueue.qualityOfService = QualityOfService.userInitiated
 
         return OperationQueueScheduler(operationQueue: operationQueue)
     }()
@@ -25,5 +25,5 @@ class Scheduler {
 
     // MARK: - Initializers
 
-    private init() {}
+    fileprivate init() {}
 }

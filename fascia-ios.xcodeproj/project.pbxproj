@@ -486,9 +486,11 @@
 					E9F4C6601CC52C19003DD8DC = {
 						CreatedOnToolsVersion = 7.3;
 						DevelopmentTeam = HB4N6B2YVM;
+						LastSwiftMigration = 0810;
 					};
 					E9F4C6741CC52C19003DD8DC = {
 						CreatedOnToolsVersion = 7.3;
+						LastSwiftMigration = 0810;
 						TestTargetID = E9F4C6601CC52C19003DD8DC;
 					};
 				};
@@ -749,6 +751,7 @@
 				PRODUCT_BUNDLE_IDENTIFIER = io.fascia;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE = "c34a5165-6cd1-4996-ac12-e46824367752";
+				SWIFT_VERSION = 3.0;
 			};
 			name = AdHoc;
 		};
@@ -760,6 +763,7 @@
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = "io.github.h3poteto.fascia-iosTests";
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_VERSION = 3.0;
 				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/fascia-ios.app/fascia-ios";
 			};
 			name = AdHoc;
@@ -861,6 +865,7 @@
 				PRODUCT_BUNDLE_IDENTIFIER = io.fascia.dev;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE = "";
+				SWIFT_VERSION = 3.0;
 			};
 			name = Debug;
 		};
@@ -878,6 +883,7 @@
 				PRODUCT_BUNDLE_IDENTIFIER = io.fascia;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE = "";
+				SWIFT_VERSION = 3.0;
 			};
 			name = Release;
 		};
@@ -889,6 +895,7 @@
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = "io.github.h3poteto.fascia-iosTests";
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_VERSION = 3.0;
 				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/fascia-ios.app/fascia-ios";
 			};
 			name = Debug;
@@ -901,6 +908,7 @@
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = "io.github.h3poteto.fascia-iosTests";
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_VERSION = 3.0;
 				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/fascia-ios.app/fascia-ios";
 			};
 			name = Release;

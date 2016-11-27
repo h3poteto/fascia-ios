@@ -12,7 +12,7 @@ import RxCocoa
 class ProjectsAction {
     final let isLoading = Variable(false)
     final var projects = Variable([Project]())
-    final let error: Variable<ErrorType?> = Variable(nil)
+    final let err: Variable<Error?> = Variable(nil)
     final let disposeBag = DisposeBag()
 
     func request() {
@@ -20,13 +20,13 @@ class ProjectsAction {
             return
         }
         isLoading.value = true
-        error.value = nil
-        FasciaAPIService.sharedInstance.call("/projects", method: .GET, params: nil)
+        err.value = nil
+        FasciaAPIService.sharedInstance.call("/projects", method: .get, params: nil)
             .subscribeOn(Scheduler.sharedInstance.backgroundScheduler)
             .observeOn(Scheduler.sharedInstance.mainScheduler)
             .map({ (response, data) throws -> [Project] in
-                guard let json = try NSJSONSerialization.JSONObjectWithData(data, options: .AllowFragments) as? [[String: AnyObject]] else {
-                    throw ProjectError.ParserError
+                guard let json = try JSONSerialization.jsonObject(with: data as Data, options: .allowFragments) as? [[String: AnyObject]] else {
+                    throw ProjectError.parserError
                 }
                 return Project.buildWithArray(json)
             })
@@ -34,7 +34,7 @@ class ProjectsAction {
                     print(projects)
                     self.projects.value = projects
                 }, onError: { (errorType) in
-                    self.error.value = errorType
+                    self.err.value = errorType
                     self.isLoading.value = false
                 }, onCompleted: {
                     self.isLoading.value = false

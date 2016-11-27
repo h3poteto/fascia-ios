@@ -11,9 +11,9 @@ import RxSwift
 import RxCocoa
 
 class NewProjectRepositoryTableViewCell: UITableViewCell {
-    @IBOutlet private weak var repositoryLabel: UILabel!
-    @IBOutlet private weak var selectRepositoryLabel: UILabel!
-    private let disposeBag = DisposeBag()
+    @IBOutlet fileprivate weak var repositoryLabel: UILabel!
+    @IBOutlet fileprivate weak var selectRepositoryLabel: UILabel!
+    fileprivate let disposeBag = DisposeBag()
     var parentViewModel: NewProjectViewModel? {
         didSet {
             guard let vModel = self.parentViewModel else { return }
@@ -25,7 +25,7 @@ class NewProjectRepositoryTableViewCell: UITableViewCell {
                     }
                     return name
                 })
-                .bindTo(self.selectRepositoryLabel.rx_text)
+                .bindTo(self.selectRepositoryLabel.rx.text)
                 .addDisposableTo(disposeBag)
         }
     }
@@ -35,7 +35,7 @@ class NewProjectRepositoryTableViewCell: UITableViewCell {
         // Initialization code
     }
 
-    override func setSelected(selected: Bool, animated: Bool) {
+    override func setSelected(_ selected: Bool, animated: Bool) {
         super.setSelected(selected, animated: animated)
 
         // Configure the view for the selected state

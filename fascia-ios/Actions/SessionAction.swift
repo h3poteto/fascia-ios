@@ -10,10 +10,10 @@ import RxSwift
 import RxCocoa
 
 class SessionAction {
-    private let disposeBag = DisposeBag()
+    fileprivate let disposeBag = DisposeBag()
 
     func updateSession() {
-        FasciaAPIService.sharedInstance.call("/session", method: .POST, params: nil)
+        FasciaAPIService.sharedInstance.call("/session", method: .post, params: nil)
             .subscribeOn(Scheduler.sharedInstance.backgroundScheduler)
             .observeOn(Scheduler.sharedInstance.mainScheduler)
             .subscribe(onNext: { (response, data) in

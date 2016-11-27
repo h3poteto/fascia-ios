@@ -9,14 +9,14 @@
 import UIKit
 
 extension UIImage {
-    class func imageWithString(text: String, foregroundColor: UIColor, backgroundColor: UIColor, shadowColor: UIColor) -> UIImage? {
+    class func imageWithString(_ text: String, foregroundColor: UIColor, backgroundColor: UIColor, shadowColor: UIColor) -> UIImage? {
         let size = CGSize(width: 24, height: 24)
         UIGraphicsBeginImageContextWithOptions(size, true, 0)
 
         let context = UIGraphicsGetCurrentContext()
 
-        CGContextSetFillColorWithColor(context, backgroundColor.CGColor)
-        CGContextFillRect(context, CGRect(x: 0, y: 0, width: size.width, height: size.height))
+        context?.setFillColor(backgroundColor.cgColor)
+        context?.fill(CGRect(x: 0, y: 0, width: size.width, height: size.height))
 
         let shadow = NSShadow()
         shadow.shadowOffset = CGSize(width: 0.0, height: -0.5)
@@ -25,8 +25,8 @@ extension UIImage {
 
         let font = UIFont(name: "Avenir-Light", size: 16.0)
         let style = NSMutableParagraphStyle()
-        style.alignment = NSTextAlignment.Center
-        style.lineBreakMode = NSLineBreakMode.ByClipping
+        style.alignment = NSTextAlignment.center
+        style.lineBreakMode = NSLineBreakMode.byClipping
 
         let attributes = [
             NSFontAttributeName: font!,
@@ -36,7 +36,7 @@ extension UIImage {
             NSBackgroundColorAttributeName: backgroundColor
         ]
 
-        text.drawInRect(CGRect(x: 0, y: 2, width: size.width, height: size.height), withAttributes: attributes)
+        text.draw(in: CGRect(x: 0, y: 2, width: size.width, height: size.height), withAttributes: attributes)
         var image: UIImage? = nil
         image = UIGraphicsGetImageFromCurrentImageContext()
 

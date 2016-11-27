@@ -11,8 +11,8 @@ import RxSwift
 import RxCocoa
 
 class EditListActionTableViewCell: UITableViewCell {
-    @IBOutlet private weak var actionLabel: UILabel!
-    private let disposeBag = DisposeBag()
+    @IBOutlet fileprivate weak var actionLabel: UILabel!
+    fileprivate let disposeBag = DisposeBag()
     var viewModel: EditListViewModel? {
         didSet {
             guard let vModel = viewModel else { return }
@@ -22,7 +22,7 @@ class EditListActionTableViewCell: UITableViewCell {
                     guard let text = text else { return "-" }
                     return text
                 }
-                .bindTo(actionLabel.rx_text)
+                .bindTo(actionLabel.rx.text)
                 .addDisposableTo(disposeBag)
         }
     }
@@ -32,7 +32,7 @@ class EditListActionTableViewCell: UITableViewCell {
         // Initialization code
     }
 
-    override func setSelected(selected: Bool, animated: Bool) {
+    override func setSelected(_ selected: Bool, animated: Bool) {
         super.setSelected(selected, animated: animated)
 
         // Configure the view for the selected state

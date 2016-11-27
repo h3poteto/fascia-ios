@@ -11,16 +11,16 @@ import RxSwift
 import RxCocoa
 
 class RepositoryTableViewCell: UITableViewCell {
-    @IBOutlet private weak var nameLabel: UILabel!
-    @IBOutlet private weak var privateImage: UIImageView!
+    @IBOutlet fileprivate weak var nameLabel: UILabel!
+    @IBOutlet fileprivate weak var privateImage: UIImageView!
 
     let disposeBag = DisposeBag()
 
     var viewModel: RepositoryCellViewModel? {
         didSet {
             guard let vModel = self.viewModel else { return }
-            vModel.fullName.bindTo(self.nameLabel.rx_text).addDisposableTo(disposeBag)
-            vModel.openRepository.bindTo(self.privateImage.rx_hidden).addDisposableTo(disposeBag)
+            vModel.fullName.bindTo(self.nameLabel.rx.text).addDisposableTo(disposeBag)
+            vModel.openRepository.bindTo(self.privateImage.rx.isHidden).addDisposableTo(disposeBag)
         }
     }
 
@@ -29,7 +29,7 @@ class RepositoryTableViewCell: UITableViewCell {
         // Initialization code
     }
 
-    override func setSelected(selected: Bool, animated: Bool) {
+    override func setSelected(_ selected: Bool, animated: Bool) {
         super.setSelected(selected, animated: animated)
 
         // Configure the view for the selected state

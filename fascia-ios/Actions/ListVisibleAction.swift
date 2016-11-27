@@ -13,31 +13,31 @@ import ObjectMapper
 class ListVisibleAction {
     final let isLoading = Variable(false)
     final var lists: Variable<Lists?> = Variable(nil)
-    final let error: Variable<ErrorType?> = Variable(nil)
+    final let err: Variable<Error?> = Variable(nil)
     final let disposeBag = DisposeBag()
 
-    func hide(list: List) {
+    func hide(_ list: List) {
         if isLoading.value {
             return
         }
         isLoading.value = true
-        error.value = nil
-        FasciaAPIService.sharedInstance.call("/projects/\(list.projectID!)/lists/\(list.id!)/hide", method: .POST, params: nil)
+        err.value = nil
+        FasciaAPIService.sharedInstance.call("/projects/\(list.projectID!)/lists/\(list.id!)/hide", method: .post, params: nil)
             .subscribeOn(Scheduler.sharedInstance.backgroundScheduler)
             .observeOn(Scheduler.sharedInstance.mainScheduler)
             .map { (response, data) -> Lists in
-                guard let json = try NSJSONSerialization.JSONObjectWithData(data, options: .AllowFragments) as? [String: AnyObject] else {
-                    throw ListsError.ParserError
+                guard let json = try JSONSerialization.jsonObject(with: data as Data, options: .allowFragments) as? [String: AnyObject] else {
+                    throw ListsError.parserError
                 }
-                guard let lists = Mapper<Lists>().map(json) else {
-                    throw ListsError.MappingError
+                guard let lists = Mapper<Lists>().map(JSON: json) else {
+                    throw ListsError.mappingError
                 }
                 return lists
             }
             .subscribe(onNext: { (lists) in
                     self.lists.value = lists
                 }, onError: { (errorType) in
-                    self.error.value = errorType
+                    self.err.value = errorType
                     self.isLoading.value = false
                 }, onCompleted: {
                     self.isLoading.value = false
@@ -45,28 +45,28 @@ class ListVisibleAction {
             .addDisposableTo(disposeBag)
     }
 
-    func display(list: List) {
+    func display(_ list: List) {
         if isLoading.value {
             return
         }
         isLoading.value = true
-        error.value = nil
-        FasciaAPIService.sharedInstance.call("/projects/\(list.projectID!)/lists/\(list.id!)/display", method: .POST, params: nil)
+        err.value = nil
+        FasciaAPIService.sharedInstance.call("/projects/\(list.projectID!)/lists/\(list.id!)/display", method: .post, params: nil)
             .subscribeOn(Scheduler.sharedInstance.backgroundScheduler)
             .observeOn(Scheduler.sharedInstance.mainScheduler)
             .map { (response, data) -> Lists in
-                guard let json = try NSJSONSerialization.JSONObjectWithData(data, options: .AllowFragments) as? [String: AnyObject] else {
-                    throw ListsError.ParserError
+                guard let json = try JSONSerialization.jsonObject(with: data as Data, options: .allowFragments) as? [String: AnyObject] else {
+                    throw ListsError.parserError
                 }
-                guard let lists = Mapper<Lists>().map(json) else {
-                    throw ListsError.MappingError
+                guard let lists = Mapper<Lists>().map(JSON: json) else {
+                    throw ListsError.mappingError
                 }
                 return lists
             }
             .subscribe(onNext: { (lists) in
                     self.lists.value = lists
                 }, onError: { (errorType) in
-                    self.error.value = errorType
+                    self.err.value = errorType
                     self.isLoading.value = false
                 }, onCompleted: {
                     self.isLoading.value = false

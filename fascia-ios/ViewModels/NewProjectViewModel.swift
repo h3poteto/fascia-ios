@@ -10,18 +10,18 @@ import RxSwift
 import RxCocoa
 import ObjectMapper
 
-enum NewProjectValidationError: ErrorType {
-    case TitleError
+enum NewProjectValidationError: Error {
+    case titleError
 }
 
 class NewProjectViewModel {
-    private final let action = NewProjectAction()
-    private(set) var newProject: Variable<NewProject>
-    final private(set) var title: Variable<String?> = Variable(nil)
+    fileprivate final let action = NewProjectAction()
+    fileprivate(set) var newProject: Variable<NewProject>
+    final fileprivate(set) var title: Variable<String?> = Variable(nil)
     var repository: Variable<Repository?> = Variable(nil)
-    final private(set) var dataUpdated: Driver<Project?> = Driver.never()
-    final private(set) var isLoading: Driver<Bool> = Driver.never()
-    final private(set) var error: Driver<ErrorType?> = Driver.never()
+    final fileprivate(set) var dataUpdated: Driver<Project?> = Driver.never()
+    final fileprivate(set) var isLoading: Driver<Bool> = Driver.never()
+    final fileprivate(set) var err: Driver<Error?> = Driver.never()
 
     init(model: NewProject) {
         self.newProject = Variable(model)
@@ -29,7 +29,7 @@ class NewProjectViewModel {
         dataUpdated = Driver
             .combineLatest(
                 action.project.asDriver(),
-                action.error.asDriver().map({
+                action.err.asDriver().map({
                     $0 != nil
                 }),
                 resultSelector: {
@@ -37,12 +37,12 @@ class NewProjectViewModel {
             })
 
         isLoading = action.isLoading.asDriver()
-        error = action.error.asDriver()
+        err = action.err.asDriver()
 
 
     }
 
-    func update(title: String?, description: String?, repository: Repository?) {
+    func update(_ title: String?, description: String?, repository: Repository?) {
         if title != nil {
             newProject.value.title = title
             self.title.value = title
@@ -59,26 +59,26 @@ class NewProjectViewModel {
 
     func save() -> Observable<Bool> {
         return valid()
-            .doOnNext({ (result) throws -> Void in
+            .do(onNext: { (result) in
                 if result {
                     self.fetch(self.newProject.value)
                 }
-            })
+            }, onError: nil, onCompleted: nil, onSubscribe: nil, onDispose: nil)
     }
 
     func valid() -> Observable<Bool> {
         return newProject.asObservable()
             .flatMap({ (project) -> Observable<Bool> in
-                if project.title?.characters.count < 1 {
-                    throw NewProjectValidationError.TitleError
+                if (project.title?.characters.count)! < 1 {
+                    throw NewProjectValidationError.titleError
                 }
                 return Observable.just(true)
             })
     }
 
-    func fetch(newProject: NewProject) {
+    func fetch(_ newProject: NewProject) {
         print(newProject)
         let params = Mapper<NewProject>().toJSON(newProject)
-        action.request(params)
+        action.request(params as [String : AnyObject])
     }
 }

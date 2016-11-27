@@ -11,19 +11,19 @@ import RxSwift
 import RxCocoa
 
 protocol ContextMenuDelegate {
-    func itemTap(item: ContextItem, task: Task) -> Void
+    func itemTap(_ item: ContextItem, task: Task) -> Void
     func closeContextMenu() -> Void
 }
 
 enum CircleMenu {
-    case UpSemicircle
-    case DownSemicircle
-    case LeftSemicircle
-    case RightSemicircle
-    case LeftUpQuadrant
-    case RightUpQuadrant
-    case LeftDownQuadrant
-    case RightDownQuadrant
+    case upSemicircle
+    case downSemicircle
+    case leftSemicircle
+    case rightSemicircle
+    case leftUpQuadrant
+    case rightUpQuadrant
+    case leftDownQuadrant
+    case rightDownQuadrant
 }
 
 class ContextItem {
@@ -41,22 +41,22 @@ class ContextItem {
 }
 
 class ContextMenuViewController: UIViewController {
-    var parent: UITableViewController?
+    var contextParent: UITableViewController?
     var items: [ContextItem] = []
-    private let circleRadius = CGFloat(80.0)
-    private let itemRadius = CGFloat(30.0)
-    private let margin = CGFloat(20.0)
-    private let disposeBag = DisposeBag()
+    fileprivate let circleRadius = CGFloat(80.0)
+    fileprivate let itemRadius = CGFloat(30.0)
+    fileprivate let margin = CGFloat(20.0)
+    fileprivate let disposeBag = DisposeBag()
     var delegate: ContextMenuDelegate!
     var selectedTask: Task?
 
-    override init(nibName nibNameOrNil: String?, bundle nibBundleOrNil: NSBundle?) {
+    override init(nibName nibNameOrNil: String?, bundle nibBundleOrNil: Bundle?) {
         super.init(nibName: nibNameOrNil, bundle: nibBundleOrNil)
     }
 
     convenience init(items: [ContextItem], task: Task, inViewController: UITableViewController) {
         self.init()
-        self.parent = inViewController
+        self.contextParent = inViewController
         self.items = items
         self.selectedTask = task
     }
@@ -77,11 +77,11 @@ class ContextMenuViewController: UIViewController {
         // Dispose of any resources that can be recreated.
     }
 
-    override func touchesBegan(touches: Set<UITouch>, withEvent event: UIEvent?) {
+    override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
     }
 
-    func start(recognizer: UIGestureRecognizer) {
-        guard let parentView = parent else {
+    func start(_ recognizer: UIGestureRecognizer) {
+        guard let parentView = contextParent else {
             return
         }
         var offset = parentView.tableView.contentOffset.y
@@ -91,68 +91,68 @@ class ContextMenuViewController: UIViewController {
         parentView.view.addSubview(self.view)
         self.view.frame = CGRect.init(x: 0, y: offset, width: parentView.view.frame.size.width, height: parentView.view.frame.size.height)
         parentView.addChildViewController(self)
-        parentView.didMoveToParentViewController(parentView)
-        parentView.tableView.scrollEnabled = false
+        parentView.didMove(toParentViewController: parentView)
+        parentView.tableView.isScrollEnabled = false
 
-        let touchPoint = recognizer.locationInView(self.view)
+        let touchPoint = recognizer.location(in: self.view)
         var windowRect = self.view.bounds
-        windowRect.origin.y += self.navigationController!.navigationBar.frame.height + UIApplication.sharedApplication().statusBarFrame.height
+        windowRect.origin.y += self.navigationController!.navigationBar.frame.height + UIApplication.shared.statusBarFrame.height
 
-        var circle = CircleMenu.UpSemicircle
+        var circle = CircleMenu.upSemicircle
         if touchPoint.x - windowRect.origin.x < self.circleRadius {
             // 右向きの円しか使えない
             if touchPoint.y - margin - windowRect.origin.y < self.circleRadius {
                 // 右下向きの円しか使えない
-                circle = CircleMenu.RightDownQuadrant
+                circle = CircleMenu.rightDownQuadrant
             } else if windowRect.height - touchPoint.y < self.circleRadius {
                 // 右上向きの円しか使えない
-                circle = CircleMenu.RightUpQuadrant
+                circle = CircleMenu.rightUpQuadrant
             } else {
-                circle = CircleMenu.RightSemicircle
+                circle = CircleMenu.rightSemicircle
             }
         } else if windowRect.width - touchPoint.x < self.circleRadius {
             // 左向きの円しか使えない
             if touchPoint.y - margin - windowRect.origin.y < self.circleRadius {
                 // 左下向きの円しか使えない
-                circle = CircleMenu.LeftDownQuadrant
+                circle = CircleMenu.leftDownQuadrant
             } else if windowRect.height - touchPoint.y < self.circleRadius {
                 // 左上向きの円しか使えない
-                circle = CircleMenu.LeftUpQuadrant
+                circle = CircleMenu.leftUpQuadrant
             } else {
-                circle = CircleMenu.LeftSemicircle
+                circle = CircleMenu.leftSemicircle
             }
         } else if touchPoint.y - margin - windowRect.origin.y < self.circleRadius {
             // 下向きの円しか使えない
-            circle = CircleMenu.DownSemicircle
+            circle = CircleMenu.downSemicircle
         } else {
             // 他のパターンでは全て上半円を使う
-            circle = CircleMenu.UpSemicircle
+            circle = CircleMenu.upSemicircle
         }
 
         showItems(circle, point: touchPoint)
         showSelectedCircle(touchPoint)
     }
 
-    private func showSelectedCircle(point: CGPoint) {
+    fileprivate func showSelectedCircle(_ point: CGPoint) {
         let circleLayer = CAShapeLayer()
-        circleLayer.strokeColor = UIColor.babyBlueColor().CGColor
-        circleLayer.fillColor = UIColor(red: 1.0, green: 1.0, blue: 1.0, alpha: 0.0).CGColor
+        circleLayer.strokeColor = UIColor.flatPowderBlue.cgColor
+        circleLayer.fillColor = UIColor(red: 1.0, green: 1.0, blue: 1.0, alpha: 0.0).cgColor
         circleLayer.lineWidth = 2.0
 
         self.view.layer.addSublayer(circleLayer)
 
         let circleAnimation = CABasicAnimation(keyPath: "path")
-        circleAnimation.fromValue = UIBezierPath(arcCenter: point, radius: 25.0, startAngle: 0, endAngle: 2.0 * CGFloat(M_PI), clockwise: true).CGPath
-        circleAnimation.toValue = UIBezierPath(arcCenter: point, radius: 15.0, startAngle: 0, endAngle: 2.0 * CGFloat(M_PI), clockwise: true).CGPath
+        circleAnimation.fromValue = UIBezierPath(arcCenter: point, radius: 25.0, startAngle: 0, endAngle: 2.0 * CGFloat(M_PI), clockwise: true).cgPath
+        circleAnimation.toValue = UIBezierPath(arcCenter: point, radius: 15.0, startAngle: 0, endAngle: 2.0 * CGFloat(M_PI), clockwise: true).cgPath
         let opacityAnimation = CABasicAnimation(keyPath: "opacity")
         opacityAnimation.fromValue = 0.0
         opacityAnimation.toValue = 0.7
         let animationGroup = CAAnimationGroup()
         animationGroup.duration = 0.3
         animationGroup.animations = [circleAnimation, opacityAnimation]
-        animationGroup.removedOnCompletion = false
+        animationGroup.isRemovedOnCompletion = false
         animationGroup.fillMode = kCAFillModeForwards
-        circleLayer.addAnimation(animationGroup, forKey: nil)
+        circleLayer.add(animationGroup, forKey: nil)
 
     }
 
@@ -165,72 +165,72 @@ class ContextMenuViewController: UIViewController {
     // 0を起点として，PI/(n - 1)ごと
     // ただし，itemが1のことはありえない．デフォルトのリストは削除させないので，最低でも4つのリストが存在する．
     //----------------------------------------------
-    private func showItems(menu: CircleMenu, point: CGPoint) {
+    fileprivate func showItems(_ menu: CircleMenu, point: CGPoint) {
         let itemCount = items.count
         if itemCount < 2 {
             return
         }
 
         switch menu {
-        case .UpSemicircle:
+        case .upSemicircle:
             let singleRadius = CGFloat(M_PI / Double(itemCount - 1))
-            for (index, item) in items.enumerate() {
+            for (index, item) in items.enumerated() {
                 let delta_x = circleRadius * cos(CGFloat(index) * singleRadius)
                 let delta_y = circleRadius * sin(CGFloat(index) * singleRadius)
                 displayItem(item, point: CGPoint(x: point.x + delta_x, y: point.y - delta_y), startPos: point)
             }
             break
-        case .DownSemicircle:
+        case .downSemicircle:
             let singleRadius = CGFloat(M_PI / Double(itemCount - 1))
-            for (index, item) in items.enumerate() {
+            for (index, item) in items.enumerated() {
                 let delta_x = circleRadius * cos(CGFloat(index) * singleRadius - CGFloat(M_PI))
                 let delta_y = circleRadius * sin(CGFloat(index) * singleRadius - CGFloat(M_PI))
                 displayItem(item, point: CGPoint(x: point.x + delta_x, y: point.y - delta_y), startPos: point)
             }
             break
-        case .RightSemicircle:
+        case .rightSemicircle:
             let singleRadius = CGFloat(M_PI / Double(itemCount - 1))
-            for (index, item) in items.enumerate() {
+            for (index, item) in items.enumerated() {
                 let delta_x = circleRadius * cos(CGFloat(index) * singleRadius - CGFloat(M_PI / 2.0))
                 let delta_y = circleRadius * sin(CGFloat(index) * singleRadius - CGFloat(M_PI / 2.0))
                 displayItem(item, point: CGPoint(x: point.x + delta_x, y: point.y - delta_y), startPos: point)
             }
             break
-        case .LeftSemicircle:
+        case .leftSemicircle:
             let singleRadius = CGFloat(M_PI / Double(itemCount - 1))
-            for (index, item) in items.enumerate() {
+            for (index, item) in items.enumerated() {
                 let delta_x = circleRadius * cos(CGFloat(index) * singleRadius + CGFloat(M_PI / 2.0))
                 let delta_y = circleRadius * sin(CGFloat(index) * singleRadius + CGFloat(M_PI / 2.0))
                 displayItem(item, point: CGPoint(x: point.x + delta_x, y: point.y - delta_y), startPos: point)
             }
             break
-        case .RightUpQuadrant:
+        case .rightUpQuadrant:
             let singleRadius = CGFloat(M_PI / (2.0 * Double(itemCount - 1)))
-            for (index, item) in items.enumerate() {
+            for (index, item) in items.enumerated() {
                 let delta_x = circleRadius * cos(CGFloat(index) * singleRadius)
                 let delta_y = circleRadius * sin(CGFloat(index) * singleRadius)
                 displayItem(item, point: CGPoint(x: point.x + delta_x, y: point.y - delta_y), startPos: point)
             }
             break
-        case .RightDownQuadrant:
+        case .rightDownQuadrant:
             let singleRadius = CGFloat(M_PI / (2.0 * Double(itemCount - 1)))
-            for (index, item) in items.enumerate() {
+            for (index, item) in items.enumerated() {
                 let delta_x = circleRadius * cos(CGFloat(index) * singleRadius - CGFloat(M_PI / 2.0))
                 let delta_y = circleRadius * sin(CGFloat(index) * singleRadius - CGFloat(M_PI / 2.0))
                 displayItem(item, point: CGPoint(x: point.x + delta_x, y: point.y - delta_y), startPos: point)
             }
             break
-        case .LeftUpQuadrant:
+        case .leftUpQuadrant:
             let singleRadius = CGFloat(M_PI / (2.0 * Double(itemCount - 1)))
-            for (index, item) in items.enumerate() {
+            for (index, item) in items.enumerated() {
                 let delta_x = circleRadius * cos(CGFloat(index) * singleRadius + CGFloat(M_PI / 2.0))
                 let delta_y = circleRadius * sin(CGFloat(index) * singleRadius + CGFloat(M_PI / 2.0))
                 displayItem(item, point: CGPoint(x: point.x + delta_x, y: point.y - delta_y), startPos: point)
             }
             break
-        case .LeftDownQuadrant:
+        case .leftDownQuadrant:
             let singleRadius = CGFloat(M_PI / (2.0 * Double(itemCount - 1)))
-            for (index, item) in items.enumerate() {
+            for (index, item) in items.enumerated() {
                 let delta_x = circleRadius * cos(CGFloat(index) * singleRadius - CGFloat(M_PI))
                 let delta_y = circleRadius * sin(CGFloat(index) * singleRadius - CGFloat(M_PI))
                 displayItem(item, point: CGPoint(x: point.x + delta_x, y: point.y - delta_y), startPos: point)
@@ -241,34 +241,36 @@ class ContextMenuViewController: UIViewController {
 
     // 現状ではタップで遷移させている
     // もしD&Dで実現するならラベルも出せる
-    private func displayItem(item: ContextItem, point: CGPoint, startPos: CGPoint) {
-        let circleImageButton = UIButton(type: UIButtonType.Custom)
-        circleImageButton.setBackgroundImage(item.image, forState: .Normal)
-        circleImageButton.setBackgroundImage(item.highlightedImage, forState: .Highlighted)
-        circleImageButton.setBackgroundImage(item.highlightedImage, forState: .Selected)
+    fileprivate func displayItem(_ item: ContextItem, point: CGPoint, startPos: CGPoint) {
+        let circleImageButton = UIButton(type: UIButtonType.custom)
+        circleImageButton.setBackgroundImage(item.image, for: UIControlState())
+        circleImageButton.setBackgroundImage(item.highlightedImage, for: .highlighted)
+        circleImageButton.setBackgroundImage(item.highlightedImage, for: .selected)
         circleImageButton.frame = CGRect(x: startPos.x, y: startPos.y, width: itemRadius, height: itemRadius)
         circleImageButton.alpha = 0.0
         circleImageButton.layer.cornerRadius = circleImageButton.frame.size.width * 0.5
-        circleImageButton.layer.borderColor = UIColor.whiteColor().CGColor
+        circleImageButton.layer.borderColor = UIColor.white.cgColor
         circleImageButton.layer.borderWidth = 1.0
         circleImageButton.clipsToBounds = true
 
         // animation
-        UIView.animateWithDuration(0.3, delay: 0.0, usingSpringWithDamping: 0.7, initialSpringVelocity: 0.0, options: UIViewAnimationOptions.AllowAnimatedContent, animations: {
+        UIView.animate(withDuration: 0.3, delay: 0.0, usingSpringWithDamping: 0.7, initialSpringVelocity: 0.0, options: UIViewAnimationOptions.allowAnimatedContent, animations: {
                 circleImageButton.alpha = 1.0
                 circleImageButton.frame = CGRect(x: point.x - self.itemRadius / 2.0, y: point.y - self.itemRadius / 2.0, width: self.itemRadius, height: self.itemRadius)
             }, completion: nil)
 
         self.view.addSubview(circleImageButton)
 
-        circleImageButton.rx_tap
-            .subscribeNext { _ in
+        circleImageButton
+            .rx
+            .tap
+            .subscribe(onNext: { () in
                 self.selectedItem(item)
-            }
+            }, onError: nil, onCompleted: nil, onDisposed: nil)
             .addDisposableTo(disposeBag)
     }
 
-    private func selectedItem(item: ContextItem) {
+    fileprivate func selectedItem(_ item: ContextItem) {
         guard let task = self.selectedTask else {
             return
         }
@@ -278,16 +280,16 @@ class ContextMenuViewController: UIViewController {
 
     func end() {
         self.view.removeFromSuperview()
-        self.parent?.tableView.scrollEnabled = true
+        self.contextParent?.tableView.isScrollEnabled = true
         delegate.closeContextMenu()
     }
 
-    func tapped(sender: UIGestureRecognizer) {
+    func tapped(_ sender: UIGestureRecognizer) {
         end()
     }
 
-    private func bindViewModel() {
-        self.view.userInteractionEnabled = true
+    fileprivate func bindViewModel() {
+        self.view.isUserInteractionEnabled = true
         self.view.addGestureRecognizer(UITapGestureRecognizer(target: self, action: #selector(ContextMenuViewController.tapped(_:))))
     }
 }

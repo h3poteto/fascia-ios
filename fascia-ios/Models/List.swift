@@ -18,8 +18,8 @@ class List: Mappable {
     var isHidden: Bool?
     var listTasks: Array<Task>  = []
 
-    required init?(_ map: Map) {
-        mapping(map)
+    required init?(map: Map) {
+        mapping(map: map)
     }
 
     func mapping(map: Map) {

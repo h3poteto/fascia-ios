@@ -8,9 +8,9 @@
 
 import ObjectMapper
 
-enum TaskError: ErrorType {
-    case ParserError
-    case MappingError
+enum TaskError: Error {
+    case parserError
+    case mappingError
 }
 
 class Task: Mappable {
@@ -21,8 +21,8 @@ class Task: Mappable {
     var title: String?
     var pullRequest: Bool?
 
-    required init?(_ map: Map) {
-        mapping(map)
+    required init?(map: Map) {
+        mapping(map: map)
     }
 
     func mapping(map: Map) {

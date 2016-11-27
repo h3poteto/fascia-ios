@@ -10,11 +10,15 @@ excluded: # Lint対象から外すファイルのあるパスを記述、CocoaPo
 # パラメータ（ここではline_lengthの値）をカスタマイズする、warningを出す値でerrorは出なくなる
 line_length: 360
 
+type_body_length:
+  - 400
+  - 500
+
 force_cast: warning
 
 function_body_length:
   warning: 100
-  error: 150
+  error: 200
 
 cyclomatic_complexity:
   warning: 20

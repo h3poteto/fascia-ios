@@ -9,6 +9,7 @@
 import UIKit
 import RxSwift
 import RxCocoa
+import ChameleonFramework
 
 class NewListColorTableViewCell: UITableViewCell {
     @IBOutlet private weak var colorImage: UIImageView!
@@ -17,11 +18,11 @@ class NewListColorTableViewCell: UITableViewCell {
         didSet {
             guard let vModel = self.viewModel else { return }
             vModel.color.asObservable()
-                .subscribeNext { (colorStr) in
+                .subscribe(onNext: { (colorStr) in
                     guard let colorString = colorStr else { return }
-                    let color = UIColor(hex: colorString)
+                    let color = UIColor(hexString: colorString)
                     self.colorImage.backgroundColor = color
-                }
+                }, onError: nil, onCompleted: nil, onDisposed: nil)
                 .addDisposableTo(disposeBag)
         }
     }
@@ -30,14 +31,14 @@ class NewListColorTableViewCell: UITableViewCell {
         super.awakeFromNib()
     }
 
-    override func setSelected(selected: Bool, animated: Bool) {
+    override func setSelected(_ selected: Bool, animated: Bool) {
         super.setSelected(selected, animated: animated)
 
         guard let color = viewModel?.color.value else {
             return
         }
         if selected {
-            colorImage.backgroundColor = UIColor(hex: color)
+            colorImage.backgroundColor = UIColor(hexString: color)
         }
         // Configure the view for the selected state
     }

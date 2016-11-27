@@ -11,13 +11,14 @@ import RxSwift
 import RxCocoa
 import CSNotificationView
 import SESlideTableViewCell
+import ChameleonFramework
 
 class ListsTableViewController: UITableViewController, UIGestureRecognizerDelegate, ContextMenuDelegate {
-    @IBOutlet private weak var refresh: UIRefreshControl!
-    private let newListButton = UIBarButtonItem(barButtonSystemItem: UIBarButtonSystemItem.Add, target: nil, action: nil)
+    @IBOutlet fileprivate weak var refresh: UIRefreshControl!
+    fileprivate let newListButton = UIBarButtonItem(barButtonSystemItem: UIBarButtonSystemItem.add, target: nil, action: nil)
     var viewModel: ListsViewModel!
-    private let hud = HUDManager()
-    private let disposeBag = DisposeBag()
+    fileprivate let hud = HUDManager()
+    fileprivate let disposeBag = DisposeBag()
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -34,14 +35,14 @@ class ListsTableViewController: UITableViewController, UIGestureRecognizerDelega
         // Dispose of any resources that can be recreated.
     }
 
-    override func numberOfSectionsInTableView(tableView: UITableView) -> Int {
+    override func numberOfSections(in tableView: UITableView) -> Int {
         guard let lists = viewModel.lists else {
             return 0
         }
         return lists.lists.count + 1
     }
 
-    override func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+    override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         guard let lists = viewModel.lists else {
             return 0
         }
@@ -64,17 +65,17 @@ class ListsTableViewController: UITableViewController, UIGestureRecognizerDelega
         }
     }
 
-    override func tableView(tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat {
+    override func tableView(_ tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat {
         return 48.0
     }
 
-    override func tableView(tableView: UITableView, heightForFooterInSection section: Int) -> CGFloat {
+    override func tableView(_ tableView: UITableView, heightForFooterInSection section: Int) -> CGFloat {
         return 4.0
     }
 
-    override func tableView(tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
+    override func tableView(_ tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
         let nib = UINib(nibName: "ListSectionTableViewCell", bundle: nil)
-        guard let sectionView = nib.instantiateWithOwner(nil, options: nil)[0] as? ListSectionTableViewCell else {
+        guard let sectionView = nib.instantiate(withOwner: nil, options: nil)[0] as? ListSectionTableViewCell else {
             return nil
         }
         guard let lists = viewModel.lists else {
@@ -95,12 +96,14 @@ class ListsTableViewController: UITableViewController, UIGestureRecognizerDelega
             let sectionVM = ListSectionViewModel(model: lists.lists[section - 1])
             bindListSectionViewModel(sectionVM)
             sectionView.viewModel = sectionVM
-            let button = UIButton(type: UIButtonType.Custom)
-            button.setTitle("Edit", forState: .Normal)
-            button.setTitleColor(UIColor.whiteColor(), forState: .Normal)
-            button.rx_tap
-                .subscribeNext({ () in
-                    sectionView.setSlideState(SESlideTableViewCellSlideState.Center, animated: true)
+            let button = UIButton(type: UIButtonType.custom)
+            button.setTitle("Edit", for: UIControlState())
+            button.setTitleColor(UIColor.white, for: UIControlState())
+            button
+                .rx
+                .tap
+                .subscribe(onNext: { () in
+                    sectionView.setSlideState(SESlideTableViewCellSlideState.center, animated: true)
                     guard let editListNavigation = UIStoryboard.instantiateViewController("EditListNavigationController", storyboardName: "Lists") as? UINavigationController else {
                         return
                     }
@@ -108,17 +111,17 @@ class ListsTableViewController: UITableViewController, UIGestureRecognizerDelega
                     let vm = EditListViewModel(model: lists.lists[section - 1])
                     self.bindEditListViewModel(vm)
                     editListView?.viewModel = vm
-                    self.showViewController(editListNavigation, sender: nil)
-                })
+                    self.show(editListNavigation, sender: nil)
+                }, onError: nil, onCompleted: nil, onDisposed: nil)
                 .addDisposableTo(disposeBag)
 
-            sectionView.addRightButton(button, buttonWidth: 60.0, backgroundColor: UIColor.coolGrayColor())
+            sectionView.addRightButton(button, buttonWidth: 60.0, backgroundColor: UIColor.flatGray)
             return sectionView
         }
     }
 
-    override func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
-        let defaultCell = UITableViewCell(style: .Default, reuseIdentifier: "Cell")
+    override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+        let defaultCell = UITableViewCell(style: .default, reuseIdentifier: "Cell")
         guard let lists = viewModel.lists else {
             return defaultCell
         }
@@ -127,24 +130,24 @@ class ListsTableViewController: UITableViewController, UIGestureRecognizerDelega
         }
         switch (indexPath.section, indexPath.row) {
         case (0, 0..<(noneList.listTasks.count)):
-            guard let cell = tableView.dequeueReusableCellWithIdentifier("TaskTableViewCell", forIndexPath: indexPath) as? TaskTableViewCell else {
+            guard let cell = tableView.dequeueReusableCell(withIdentifier: "TaskTableViewCell", for: indexPath) as? TaskTableViewCell else {
                 return defaultCell
             }
             cell.viewModel = TaskCellViewModel(model: noneList.listTasks[indexPath.row], list: noneList)
             return cell
         case (0, noneList.listTasks.count):
-            guard let addCell = tableView.dequeueReusableCellWithIdentifier("AddTaskTableViewCell", forIndexPath: indexPath) as? AddTaskTableViewCell else {
+            guard let addCell = tableView.dequeueReusableCell(withIdentifier: "AddTaskTableViewCell", for: indexPath) as? AddTaskTableViewCell else {
                 return defaultCell
             }
             return addCell
         case (1..<(lists.lists.count + 1), 0..<(lists.lists[indexPath.section - 1].listTasks.count)):
-            guard let cell = tableView.dequeueReusableCellWithIdentifier("TaskTableViewCell", forIndexPath: indexPath) as? TaskTableViewCell else {
+            guard let cell = tableView.dequeueReusableCell(withIdentifier: "TaskTableViewCell", for: indexPath) as? TaskTableViewCell else {
                 return defaultCell
             }
             cell.viewModel = TaskCellViewModel(model: lists.lists[indexPath.section - 1].listTasks[indexPath.row], list: lists.lists[indexPath.section - 1])
             return cell
         case (1..<(lists.lists.count + 1), lists.lists[indexPath.section - 1].listTasks.count):
-            guard let addCell = tableView.dequeueReusableCellWithIdentifier("AddTaskTableViewCell", forIndexPath: indexPath) as? AddTaskTableViewCell else {
+            guard let addCell = tableView.dequeueReusableCell(withIdentifier: "AddTaskTableViewCell", for: indexPath) as? AddTaskTableViewCell else {
                 return defaultCell
             }
             return addCell
@@ -153,7 +156,7 @@ class ListsTableViewController: UITableViewController, UIGestureRecognizerDelega
         }
     }
 
-    override func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
+    override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         // AddCellだったときだけ処理する
         guard let lists = viewModel.lists else {
             return
@@ -166,18 +169,18 @@ class ListsTableViewController: UITableViewController, UIGestureRecognizerDelega
             prepareNewTaskView(noneList)
                 .observeOn(Scheduler.sharedInstance.mainScheduler)
                 .subscribeOn(Scheduler.sharedInstance.mainScheduler)
-                .subscribeNext({ (navigation) in
-                    self.showViewController(navigation, sender: nil)
-                })
+                .subscribe(onNext: { (navigation) in
+                    self.show(navigation, sender: nil)
+                }, onError: nil, onCompleted: nil, onDisposed: nil)
                 .addDisposableTo(disposeBag)
             return
         case (1..<(lists.lists.count + 1), lists.lists[indexPath.section - 1].listTasks.count):
             prepareNewTaskView(lists.lists[indexPath.section - 1])
                 .observeOn(Scheduler.sharedInstance.mainScheduler)
                 .subscribeOn(Scheduler.sharedInstance.mainScheduler)
-                .subscribeNext({ (navigation) in
-                    self.showViewController(navigation, sender: nil)
-                })
+                .subscribe(onNext: { (navigation) in
+                    self.show(navigation, sender: nil)
+                }, onError: nil, onCompleted: nil, onDisposed: nil)
                 .addDisposableTo(disposeBag)
             return
         default:
@@ -185,16 +188,16 @@ class ListsTableViewController: UITableViewController, UIGestureRecognizerDelega
         }
     }
 
-    func cellLongPressed(recognizer: UILongPressGestureRecognizer) {
+    func cellLongPressed(_ recognizer: UILongPressGestureRecognizer) {
         if viewModel.contextMenuVisible {
             return
         }
         // 押された位置でcellのPathを取得
-        let point = recognizer.locationInView(tableView)
-        let indexPath = tableView.indexPathForRowAtPoint(point)
-        self.tableView.selectRowAtIndexPath(indexPath, animated: true, scrollPosition: .None)
+        let point = recognizer.location(in: tableView)
+        let indexPath = tableView.indexPathForRow(at: point)
+        self.tableView.selectRow(at: indexPath, animated: true, scrollPosition: .none)
 
-        if indexPath != nil && recognizer.state == UIGestureRecognizerState.Began {
+        if indexPath != nil && recognizer.state == UIGestureRecognizerState.began {
             guard let lists = viewModel.lists else {
                 return
             }
@@ -227,7 +230,7 @@ class ListsTableViewController: UITableViewController, UIGestureRecognizerDelega
     //------------------------------------------
     // ContextMenuDelegate
     //------------------------------------------
-    func itemTap(item: ContextItem, task: Task) {
+    func itemTap(_ item: ContextItem, task: Task) {
         viewModel.moveRequest(item, task: task)
     }
 
@@ -236,28 +239,28 @@ class ListsTableViewController: UITableViewController, UIGestureRecognizerDelega
         guard let indexPath = self.tableView.indexPathForSelectedRow else {
             return
         }
-        self.tableView.deselectRowAtIndexPath(indexPath, animated: true)
+        self.tableView.deselectRow(at: indexPath, animated: true)
     }
     //------------------------------------------
 
 
-    private func showSignInView() {
+    fileprivate func showSignInView() {
         if let signIn = UIStoryboard.instantiateViewController("SignInViewController", storyboardName: "Main") as? UIViewController {
-            self.presentViewController(signIn, animated: true, completion: nil)
+            self.present(signIn, animated: true, completion: nil)
         }
     }
 
-    private func showNewListView() {
+    fileprivate func showNewListView() {
         if let newListNavigation = UIStoryboard.instantiateViewController("NewListNavigationController", storyboardName: "Lists") as? UINavigationController {
             let newListView = newListNavigation.viewControllers.first as? NewListTableViewController
             let vm = NewListViewModel(model: NewList(), project: viewModel.project)
             newListView?.viewModel = vm
             bindNewListViewModel(vm)
-            showViewController(newListNavigation, sender: nil)
+            show(newListNavigation, sender: nil)
         }
     }
 
-    private func prepareNewTaskView(list: List) -> Observable<UINavigationController> {
+    fileprivate func prepareNewTaskView(_ list: List) -> Observable<UINavigationController> {
         return Observable.create({ observe -> Disposable in
             if let newTaskNavigation = UIStoryboard.instantiateViewController("NewTaskNavigationController", storyboardName: "Lists") as? UINavigationController {
                 let newTaskView = newTaskNavigation.viewControllers.first as? NewTaskTableViewController
@@ -267,213 +270,216 @@ class ListsTableViewController: UITableViewController, UIGestureRecognizerDelega
                 observe.onNext(newTaskNavigation)
             }
             observe.onCompleted()
-            return NopDisposable.instance
+            return Disposables.create()
         })
     }
 
-    private func bindViewModel() {
+    fileprivate func bindViewModel() {
         viewModel.listsUpdated
-            .driveNext { (lists) in
+            .drive(onNext: { (lists) in
                 self.viewModel.lists = lists
                 self.tableView.reloadData()
-            }
+            }, onCompleted: nil, onDisposed: nil)
             .addDisposableTo(disposeBag)
 
         viewModel.isLoading
-            .drive(self.refresh.rx_refreshing)
+            .drive(self.refresh.rx.refreshing)
             .addDisposableTo(disposeBag)
         hud.bind(viewModel.isLoading)
 
-        viewModel.error
-            .driveNext { (errorType) in
+        viewModel.err
+            .drive(onNext: { (errorType) in
                 self.refresh.endRefreshing()
                 guard let errorType = errorType else {
                     return
                 }
                 switch errorType {
-                case FasciaAPIError.AuthenticateError:
+                case FasciaAPIError.authenticateError:
                     self.showSignInView()
                     break
-                case FasciaAPIError.DoubleRequestError:
+                case FasciaAPIError.doubleRequestError:
                     break
-                case FasciaAPIError.ClientError:
-                    CSNotificationView.showInViewController(self, style: CSNotificationViewStyle.Error, message: "The request is invalid.")
+                case FasciaAPIError.clientError:
+                    CSNotificationView.show(in: self, style: CSNotificationViewStyle.error, message: "The request is invalid.")
                     break
-                case FasciaAPIError.ServerError:
-                    CSNotificationView.showInViewController(self, style: .Error, message: "We're sorry, but something went wrong.")
+                case FasciaAPIError.serverError:
+                    CSNotificationView.show(in: self, style: .error, message: "We're sorry, but something went wrong.")
                     break
                 default:
-                    CSNotificationView.showInViewController(self, style: .Error, message: "Network error.")
+                    CSNotificationView.show(in: self, style: .error, message: "Network error.")
                     break
                 }
-            }
+            }, onCompleted: nil, onDisposed: nil)
             .addDisposableTo(disposeBag)
 
-        refresh.rx_controlEvent(.ValueChanged).startWith({ print("start lists loading") }())
-            .subscribeNext { () in
+        refresh.rx.controlEvent(.valueChanged).startWith({ print("start lists loading") }())
+            .subscribe(onNext: { () in
                 self.viewModel.fetch()
-            }
+            }, onError: nil, onCompleted: nil, onDisposed: nil)
             .addDisposableTo(disposeBag)
 
-        newListButton.rx_tap
-            .subscribeNext { () in
+        newListButton
+            .rx
+            .tap
+            .subscribe(onNext: { () in
                 self.showNewListView()
-            }
+            }, onError: nil, onCompleted: nil, onDisposed: nil)
             .addDisposableTo(disposeBag)
 
     }
 
-    private func bindListSectionViewModel(vm: ListSectionViewModel) {
+    fileprivate func bindListSectionViewModel(_ vm: ListSectionViewModel) {
         vm.listsUpdated
-            .driveNext { (lists) in
+            .drive(onNext: { (lists) in
                 if lists != nil {
                     self.viewModel.lists = lists
                     self.tableView.reloadData()
                 }
-            }
+            }, onCompleted: nil, onDisposed: nil)
             .addDisposableTo(disposeBag)
 
         vm.isLoading
-            .drive(self.refresh.rx_refreshing)
+            .drive(self.refresh.rx.refreshing)
             .addDisposableTo(disposeBag)
 
-        vm.error
-            .driveNext { (errorType) in
+        vm.err
+            .drive(onNext: { (errorType) in
                 self.refresh.endRefreshing()
                 guard let errorType = errorType else {
                     return
                 }
                 switch errorType {
-                case FasciaAPIError.AuthenticateError:
+                case FasciaAPIError.authenticateError:
                     self.showSignInView()
                     break
-                case FasciaAPIError.DoubleRequestError:
+                case FasciaAPIError.doubleRequestError:
                     break
-                case FasciaAPIError.ClientError:
-                    CSNotificationView.showInViewController(self, style: CSNotificationViewStyle.Error, message: "The request is invalid.")
+                case FasciaAPIError.clientError:
+                    CSNotificationView.show(in: self, style: CSNotificationViewStyle.error, message: "The request is invalid.")
                     break
-                case FasciaAPIError.ServerError:
-                    CSNotificationView.showInViewController(self, style: .Error, message: "We're sorry, but something went wrong.")
+                case FasciaAPIError.serverError:
+                    CSNotificationView.show(in: self, style: .error, message: "We're sorry, but something went wrong.")
                     break
                 default:
-                    CSNotificationView.showInViewController(self, style: .Error, message: "Network error.")
+                    CSNotificationView.show(in: self, style: .error, message: "Network error.")
                     break
                 }
-            }
+            }, onCompleted: nil, onDisposed: nil)
             .addDisposableTo(disposeBag)
     }
 
-    private func bindNewListViewModel(vm: NewListViewModel) {
+    fileprivate func bindNewListViewModel(_ vm: NewListViewModel) {
         vm.dataUpdated
-            .driveNext { (list) in
+            .drive(onNext: { (list) in
                 if list != nil {
-                    CSNotificationView.showInViewController(self, style: .Success, message: "List save complete")
+                    CSNotificationView.show(in: self, style: .success, message: "List save complete")
                     self.viewModel.fetch()
                 }
-            }
+            }, onCompleted: nil, onDisposed: nil)
             .addDisposableTo(disposeBag)
         vm.isLoading
-            .drive(self.refresh.rx_refreshing)
+            .drive(self.refresh.rx.refreshing)
             .addDisposableTo(disposeBag)
 
-        vm.error
-            .driveNext { (errorType) in
+        vm.err
+            .drive(onNext: { (errorType) in
                 guard let errorType = errorType else {
                     return
                 }
                 switch errorType {
-                case FasciaAPIError.AuthenticateError:
+                case FasciaAPIError.authenticateError:
                     self.showSignInView()
                     break
-                case FasciaAPIError.DoubleRequestError:
+                case FasciaAPIError.doubleRequestError:
                     break
-                case FasciaAPIError.ClientError:
-                    CSNotificationView.showInViewController(self, style: .Error, message: "The request is invalid")
+                case FasciaAPIError.clientError:
+                    CSNotificationView.show(in: self, style: .error, message: "The request is invalid")
                     break
-                case FasciaAPIError.ServerError, ProjectError.ParserError, ProjectError.MappingError:
-                    CSNotificationView.showInViewController(self, style: .Error, message: "We're sorry, but something went wrong.")
+                case FasciaAPIError.serverError, ProjectError.parserError, ProjectError.mappingError:
+                    CSNotificationView.show(in: self, style: .error, message: "We're sorry, but something went wrong.")
                     break
                 default:
-                    CSNotificationView.showInViewController(self, style: .Error, message: "Network error.")
+                    CSNotificationView.show(in: self, style: .error, message: "Network error.")
                     break
                 }
-            }
+            }, onCompleted: nil, onDisposed: nil)
             .addDisposableTo(disposeBag)
     }
 
-    private func bindEditListViewModel(vm: EditListViewModel) {
+    fileprivate func bindEditListViewModel(_ vm: EditListViewModel) {
         vm.dataUpdated
-            .driveNext { (list) in
+            .drive(onNext: { (list) in
                 if list != nil {
-                    CSNotificationView.showInViewController(self, style: .Success, message: "List save complete")
+                    CSNotificationView.show(in: self, style: .success, message: "List save complete")
                     self.viewModel.fetch()
                 }
-            }
+            }, onCompleted: nil, onDisposed: nil)
             .addDisposableTo(disposeBag)
         vm.isLoading
-            .drive(self.refresh.rx_refreshing)
+            .drive(self.refresh.rx.refreshing)
             .addDisposableTo(disposeBag)
 
-        vm.error
-            .driveNext { (errorType) in
+        vm.err
+            .drive(onNext: { (errorType) in
                 guard let errorType = errorType else {
                     return
                 }
                 switch errorType {
-                case FasciaAPIError.AuthenticateError:
+                case FasciaAPIError.authenticateError:
                     self.showSignInView()
                     break
-                case FasciaAPIError.DoubleRequestError:
+                case FasciaAPIError.doubleRequestError:
                     break
-                case FasciaAPIError.ClientError:
-                    CSNotificationView.showInViewController(self, style: .Error, message: "The request is invalid")
+                case FasciaAPIError.clientError:
+                    CSNotificationView.show(in: self, style: .error, message: "The request is invalid")
                     break
-                case FasciaAPIError.ServerError, ProjectError.ParserError, ProjectError.MappingError:
-                    CSNotificationView.showInViewController(self, style: .Error, message: "We're sorry, but something went wrong.")
+                case FasciaAPIError.serverError, ProjectError.parserError, ProjectError.mappingError:
+                    CSNotificationView.show(in: self, style: .error, message: "We're sorry, but something went wrong.")
                     break
                 default:
-                    CSNotificationView.showInViewController(self, style: .Error, message: "Network error.")
+                    CSNotificationView.show(in: self, style: .error, message: "Network error.")
                     break
                 }
-            }
+            }, onCompleted: nil, onDisposed: nil)
+
             .addDisposableTo(disposeBag)
     }
 
-    private func bindNewTaskViewModel(vm: NewTaskViewModel) {
+    fileprivate func bindNewTaskViewModel(_ vm: NewTaskViewModel) {
         vm.dataUpdated
-            .driveNext { (task) in
+            .drive(onNext: { (task) in
                 if task != nil {
-                    CSNotificationView.showInViewController(self, style: .Success, message: "Task save complete")
+                    CSNotificationView.show(in: self, style: .success, message: "Task save complete")
                     self.viewModel.fetch()
                 }
-            }
+            }, onCompleted: nil, onDisposed: nil)
             .addDisposableTo(disposeBag)
         vm.isLoading
-            .drive(self.refresh.rx_refreshing)
+            .drive(self.refresh.rx.refreshing)
             .addDisposableTo(disposeBag)
 
-        vm.error
-            .driveNext { (errorType) in
+        vm.err
+            .drive(onNext: { (errorType) in
                 guard let errorType = errorType else {
                     return
                 }
                 switch errorType {
-                case FasciaAPIError.AuthenticateError:
+                case FasciaAPIError.authenticateError:
                     self.showSignInView()
                     break
-                case FasciaAPIError.DoubleRequestError:
+                case FasciaAPIError.doubleRequestError:
                     break
-                case FasciaAPIError.ClientError:
-                    CSNotificationView.showInViewController(self, style: .Error, message: "The request is invalid")
+                case FasciaAPIError.clientError:
+                    CSNotificationView.show(in: self, style: .error, message: "The request is invalid")
                     break
-                case FasciaAPIError.ServerError, ProjectError.ParserError, ProjectError.MappingError:
-                    CSNotificationView.showInViewController(self, style: .Error, message: "We're sorry, but something went wrong.")
+                case FasciaAPIError.serverError, ProjectError.parserError, ProjectError.mappingError:
+                    CSNotificationView.show(in: self, style: .error, message: "We're sorry, but something went wrong.")
                     break
                 default:
-                    CSNotificationView.showInViewController(self, style: .Error, message: "Network error.")
+                    CSNotificationView.show(in: self, style: .error, message: "Network error.")
                     break
                 }
-            }
+            }, onCompleted: nil, onDisposed: nil)
             .addDisposableTo(disposeBag)
     }
 }

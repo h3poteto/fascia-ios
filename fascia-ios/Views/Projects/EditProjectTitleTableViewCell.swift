@@ -11,9 +11,9 @@ import RxSwift
 import RxCocoa
 
 class EditProjectTitleTableViewCell: UITableViewCell {
-    @IBOutlet private weak var titleLabel: UILabel!
-    @IBOutlet private weak var titleText: UITextField!
-    private let disposeBag = DisposeBag()
+    @IBOutlet fileprivate weak var titleLabel: UILabel!
+    @IBOutlet fileprivate weak var titleText: UITextField!
+    fileprivate let disposeBag = DisposeBag()
     var viewModel: EditProjectViewModel? {
         didSet {
             guard let vModel = self.viewModel else { return }
@@ -23,7 +23,7 @@ class EditProjectTitleTableViewCell: UITableViewCell {
                     guard let title = title else { return "" }
                     return title
                 }
-                .bindTo(self.titleText.rx_text)
+                .bindTo(self.titleText.rx.text)
                 .addDisposableTo(disposeBag)
         }
     }
@@ -33,17 +33,19 @@ class EditProjectTitleTableViewCell: UITableViewCell {
         bindViewModel()
     }
 
-    override func setSelected(selected: Bool, animated: Bool) {
+    override func setSelected(_ selected: Bool, animated: Bool) {
         super.setSelected(selected, animated: animated)
 
         // Configure the view for the selected state
     }
 
-    private func bindViewModel() {
-        titleText.rx_text
-            .subscribeNext { (text) in
+    fileprivate func bindViewModel() {
+        titleText
+            .rx
+            .text
+            .subscribe(onNext: { (text) in
                 self.viewModel?.update(text, description: nil)
-            }
+            }, onError: nil, onCompleted: nil)
             .addDisposableTo(disposeBag)
     }
 

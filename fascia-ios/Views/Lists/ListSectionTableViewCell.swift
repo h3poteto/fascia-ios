@@ -12,21 +12,21 @@ import RxCocoa
 import SESlideTableViewCell
 
 class ListSectionTableViewCell: SESlideTableViewCell {
-    @IBOutlet private weak var listTitle: UILabel!
-    @IBOutlet private weak var expandImageView: UIImageView!
-    private let disposeBag = DisposeBag()
+    @IBOutlet fileprivate weak var listTitle: UILabel!
+    @IBOutlet fileprivate weak var expandImageView: UIImageView!
+    fileprivate let disposeBag = DisposeBag()
     var viewModel: ListSectionViewModel? {
         didSet {
             guard let vModel = self.viewModel else { return }
-            vModel.title.bindTo(self.listTitle.rx_text).addDisposableTo(disposeBag)
+            vModel.title.bindTo(self.listTitle.rx.text).addDisposableTo(disposeBag)
             vModel.isVisible
-                .subscribeNext { (visible) in
+                .subscribe(onNext: { (visible) in
                     if visible {
                         self.expandImageView.image = UIImage(named: "Expand")
                     } else {
                         self.expandImageView.image = UIImage(named: "Contract")
                     }
-                }
+                }, onError: nil, onCompleted: nil, onDisposed: nil)
                 .addDisposableTo(disposeBag)
         }
     }
@@ -36,13 +36,13 @@ class ListSectionTableViewCell: SESlideTableViewCell {
         // Initialization code
     }
 
-    override func setSelected(selected: Bool, animated: Bool) {
+    override func setSelected(_ selected: Bool, animated: Bool) {
         super.setSelected(selected, animated: animated)
 
         // Configure the view for the selected state
     }
 
-    override func touchesEnded(touches: Set<UITouch>, withEvent event: UIEvent?) {
+    override func touchesEnded(_ touches: Set<UITouch>, with event: UIEvent?) {
         viewModel?.changeVisible()
     }
 }
