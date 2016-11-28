@@ -8,17 +8,17 @@
 
 import ObjectMapper
 
-enum ListsError: ErrorType {
-    case ParserError
-    case MappingError
+enum ListsError: Error {
+    case parserError
+    case mappingError
 }
 
 class Lists: Mappable {
     var lists: Array<List> = []
     var noneList: List?
 
-    required init?(_ map: Map) {
-        mapping(map)
+    required init?(map: Map) {
+        mapping(map: map)
     }
 
     func mapping(map: Map) {

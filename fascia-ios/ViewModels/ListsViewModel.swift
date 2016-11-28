@@ -8,15 +8,15 @@
 
 import RxSwift
 import RxCocoa
-import Colours
+import ChameleonFramework
 
 class ListsViewModel {
-    final private let action = ListsAction()
+    final fileprivate let action = ListsAction()
     final var lists: Lists?
     var project: Project!
-    final private(set) var listsUpdated: Driver<Lists?> = Driver.never()
-    final private(set) var isLoading: Driver<Bool> = Driver.never()
-    final private(set) var error: Driver<ErrorType?> = Driver.never()
+    final fileprivate(set) var listsUpdated: Driver<Lists?> = Driver.never()
+    final fileprivate(set) var isLoading: Driver<Bool> = Driver.never()
+    final fileprivate(set) var err: Driver<Error?> = Driver.never()
     var contextMenuVisible = false
 
     init(project: Project) {
@@ -24,14 +24,14 @@ class ListsViewModel {
         listsUpdated = Driver
             .combineLatest(
                 action.lists.asDriver(),
-                action.error.asDriver().map({
+                action.err.asDriver().map({
                     $0 != nil
                 }), resultSelector: {
                     ($1) ? nil : $0
             })
 
         isLoading = action.isLoading.asDriver()
-        error = action.error.asDriver()
+        err = action.err.asDriver()
     }
 
     func fetch() {
@@ -43,19 +43,19 @@ class ListsViewModel {
         guard let noneList = self.lists?.noneList else {
             return []
         }
-        let noneListColor = UIColor(hex: noneList.color!)
+        let noneListColor = UIColor(hexString: noneList.color!)!
         items.append(ContextItem(
             title: noneList.title!,
             image: UIImage.imageWithString(
                 String(noneList.title![noneList.title!.startIndex]),
-                foregroundColor: noneListColor.blackOrWhiteContrastingColor(),
+                foregroundColor: ContrastColorOf(noneListColor, returnFlat: false),
                 backgroundColor: noneListColor,
-                shadowColor: noneListColor.complementaryColor())!,
+                shadowColor: ComplementaryFlatColorOf(noneListColor))!,
             highlightedImage: UIImage.imageWithString(
                 String(noneList.title![noneList.title!.startIndex]),
-                foregroundColor: noneListColor.blackOrWhiteContrastingColor(),
-                backgroundColor: noneListColor.darkenedColor(0.25),
-                shadowColor: noneListColor.complementaryColor())!,
+                foregroundColor: UIColor(contrastingBlackOrWhiteColorOn: noneListColor, isFlat: false),
+                backgroundColor: noneListColor.darken(byPercentage: 0.25)!,
+                shadowColor: ComplementaryFlatColorOf(noneListColor))!,
             object: noneList
             )
         )
@@ -64,20 +64,20 @@ class ListsViewModel {
             return []
         }
         for list in lists {
-            let listColor = UIColor(hex: list.color!)
-            let contrastColor = listColor.blackOrWhiteContrastingColor()
+            let listColor = UIColor(hexString: list.color!)!
+            let contrastColor = ContrastColorOf(listColor, returnFlat: false)
             items.append(ContextItem(
                 title: list.title!,
                 image: UIImage.imageWithString(
                     String(list.title![list.title!.startIndex]),
                     foregroundColor: contrastColor,
                     backgroundColor: listColor,
-                    shadowColor: listColor.complementaryColor())!,
+                    shadowColor: ComplementaryFlatColorOf(listColor))!,
                 highlightedImage: UIImage.imageWithString(
                     String(list.title![list.title!.startIndex]),
                     foregroundColor: contrastColor,
-                    backgroundColor: listColor.darkenedColor(0.25),
-                    shadowColor: listColor.complementaryColor())!,
+                    backgroundColor: listColor.darken(byPercentage: 0.25)!,
+                    shadowColor: ComplementaryFlatColorOf(listColor))!,
                 object: list
                 )
             )
@@ -85,7 +85,7 @@ class ListsViewModel {
         return items
     }
 
-    func moveRequest(item: ContextItem, task: Task) {
+    func moveRequest(_ item: ContextItem, task: Task) {
         guard let list = item.object as? List else {
             return
         }

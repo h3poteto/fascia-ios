@@ -12,8 +12,8 @@ class EditProject: Mappable {
     var title: String?
     var projectDescription: String?
 
-    required init?(_ map: Map) {
-        mapping(map)
+    required init?(map: Map) {
+        mapping(map: map)
     }
 
     init() {

@@ -12,25 +12,25 @@ import RxSwift
 import RxCocoa
 
 class HUDManager {
-    private let disposeBag = DisposeBag()
+    fileprivate let disposeBag = DisposeBag()
 
     init() {
-        SVProgressHUD.setDefaultStyle(.Dark)
-        SVProgressHUD.setBackgroundColor(UIColor.blackColor())
-        SVProgressHUD.setForegroundColor(UIColor.whiteColor())
+        SVProgressHUD.setDefaultStyle(.dark)
+        SVProgressHUD.setBackgroundColor(UIColor.black)
+        SVProgressHUD.setForegroundColor(UIColor.white)
     }
 
-    func bind(loadingTarget: Driver<Bool>) {
+    func bind(_ loadingTarget: Driver<Bool>) {
         loadingTarget
-            .driveNext { (loading) in
+            .drive(onNext: { (loading) in
                 if loading {
-                    UIApplication.sharedApplication().networkActivityIndicatorVisible = true
+                    UIApplication.shared.isNetworkActivityIndicatorVisible = true
                     SVProgressHUD.show()
                 } else {
-                    UIApplication.sharedApplication().networkActivityIndicatorVisible = false
+                    UIApplication.shared.isNetworkActivityIndicatorVisible = false
                     SVProgressHUD.dismiss()
                 }
-            }
+            }, onCompleted: nil, onDisposed: nil)
             .addDisposableTo(disposeBag)
     }
 }

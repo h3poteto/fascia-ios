@@ -13,8 +13,8 @@ class EditList: Mappable {
     var color: String?
     var action: String?
 
-    required init?(_ map: Map) {
-        mapping(map)
+    required init?(map: Map) {
+        mapping(map: map)
     }
 
     init() {

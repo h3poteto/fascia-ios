@@ -7,13 +7,14 @@
 //
 
 import ObjectMapper
+import ChameleonFramework
 
 class NewList: Mappable {
     var title: String?
-    var color: String? = (UIColor.pastelBlueColor().hexString() as NSString).substringFromIndex(1)
+    var color: String? = (UIColor.flatSkyBlue.hexValue() as NSString).substring(from: 1)
 
-    required init?(_ map: Map) {
-        mapping(map)
+    required init?(map: Map) {
+        mapping(map: map)
     }
 
     init() {

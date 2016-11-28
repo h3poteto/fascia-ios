@@ -10,19 +10,20 @@ import UIKit
 import RxSwift
 import RxCocoa
 import SESlideTableViewCell
+import ChameleonFramework
 
 class ProjectTableViewCell: SESlideTableViewCell {
-    @IBOutlet private weak var tilteLabel: UILabel!
-    @IBOutlet private weak var githubLabel: UIImageView!
-    @IBOutlet private weak var projectImage: UIImageView!
+    @IBOutlet fileprivate weak var tilteLabel: UILabel!
+    @IBOutlet fileprivate weak var githubLabel: UIImageView!
+    @IBOutlet fileprivate weak var projectImage: UIImageView!
 
     let disposeBag = DisposeBag()
 
     var viewModel: ProjectCellViewModel? {
         didSet {
             guard let vModel = self.viewModel else { return }
-            vModel.title.bindTo(self.tilteLabel.rx_text).addDisposableTo(disposeBag)
-            vModel.hideRepository.bindTo(self.githubLabel.rx_hidden).addDisposableTo(disposeBag)
+            vModel.title.bindTo(self.tilteLabel.rx.text).addDisposableTo(disposeBag)
+            vModel.hideRepository.bindTo(self.githubLabel.rx.isHidden).addDisposableTo(disposeBag)
         }
     }
 
@@ -31,19 +32,19 @@ class ProjectTableViewCell: SESlideTableViewCell {
         // Initialization code
     }
 
-    override func setSelected(selected: Bool, animated: Bool) {
+    override func setSelected(_ selected: Bool, animated: Bool) {
         super.setSelected(selected, animated: animated)
 
         if selected {
-            projectImage.backgroundColor = UIColor(hex: "42B8DD")
+            projectImage.backgroundColor = UIColor(hexString: "42B8DD")
         }
     }
 
-    override func setHighlighted(highlighted: Bool, animated: Bool) {
+    override func setHighlighted(_ highlighted: Bool, animated: Bool) {
         super.setHighlighted(highlighted, animated: animated)
 
         if highlighted {
-            projectImage.backgroundColor = UIColor(hex: "42B8DD")
+            projectImage.backgroundColor = UIColor(hexString: "42B8DD")
         }
     }
 

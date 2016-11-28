@@ -8,8 +8,8 @@
 
 import ObjectMapper
 
-enum RepositoryError: ErrorType {
-    case ParserError
+enum RepositoryError: Error {
+    case parserError
 }
 
 class Repository: Mappable {
@@ -19,18 +19,18 @@ class Repository: Mappable {
     var ownerName: String?
     var privateRepository: Bool?
 
-    class func buildWithArray(repositories: [[String: AnyObject]]) -> [Repository] {
+    class func buildWithArray(_ repositories: [[String: AnyObject]]) -> [Repository] {
         var arr: [Repository] = []
         for dict in repositories {
-            if let repository = Mapper<Repository>().map(dict) {
+            if let repository = Mapper<Repository>().map(JSON: dict) {
                 arr.append(repository)
             }
         }
         return arr
     }
 
-    required init?(_ map: Map) {
-        mapping(map)
+    required init?(map: Map) {
+        mapping(map: map)
     }
 
     func mapping(map: Map) {

@@ -12,9 +12,9 @@ import RxCocoa
 import CSNotificationView
 
 class NewTaskTableViewController: UITableViewController {
-    @IBOutlet private weak var cancelButton: UIBarButtonItem!
-    @IBOutlet private weak var saveButton: UIBarButtonItem!
-    private let disposeBag = DisposeBag()
+    @IBOutlet fileprivate weak var cancelButton: UIBarButtonItem!
+    @IBOutlet fileprivate weak var saveButton: UIBarButtonItem!
+    fileprivate let disposeBag = DisposeBag()
     var viewModel: NewTaskViewModel!
 
     override func viewDidLoad() {
@@ -31,28 +31,28 @@ class NewTaskTableViewController: UITableViewController {
 
     // MARK: - Table view data source
 
-    override func numberOfSectionsInTableView(tableView: UITableView) -> Int {
+    override func numberOfSections(in tableView: UITableView) -> Int {
         // #warning Incomplete implementation, return the number of sections
         return 1
     }
 
-    override func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+    override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         // #warning Incomplete implementation, return the number of rows
         return 2
     }
 
 
-    override func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
-        let defaultCell = UITableViewCell(style: .Default, reuseIdentifier: "Cell")
+    override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+        let defaultCell = UITableViewCell(style: .default, reuseIdentifier: "Cell")
         switch(indexPath.row) {
         case 0:
-            guard let cell = tableView.dequeueReusableCellWithIdentifier("NewTaskTitleTableViewCell", forIndexPath: indexPath) as? NewTaskTitleTableViewCell else {
+            guard let cell = tableView.dequeueReusableCell(withIdentifier: "NewTaskTitleTableViewCell", for: indexPath) as? NewTaskTitleTableViewCell else {
                 return defaultCell
             }
             cell.viewModel = self.viewModel
             return cell
         case 1:
-            guard let cell = tableView.dequeueReusableCellWithIdentifier("NewTaskDescriptionTableViewCell", forIndexPath: indexPath) as? NewTaskDescriptionTableViewCell else {
+            guard let cell = tableView.dequeueReusableCell(withIdentifier: "NewTaskDescriptionTableViewCell", for: indexPath) as? NewTaskDescriptionTableViewCell else {
                 return defaultCell
             }
             cell.viewModel = self.viewModel
@@ -63,33 +63,37 @@ class NewTaskTableViewController: UITableViewController {
     }
 
 
-    private func bindViewModel() {
-        cancelButton.rx_tap
-            .subscribeNext { () in
-                self.dismissViewControllerAnimated(true, completion: nil)
-            }
+    fileprivate func bindViewModel() {
+        cancelButton
+            .rx
+            .tap
+            .subscribe(onNext: { () in
+                self.dismiss(animated: true, completion: nil)
+            }, onError: nil, onCompleted: nil, onDisposed: nil)
             .addDisposableTo(disposeBag)
 
-        saveButton.rx_tap
-            .subscribeNext { () in
+        saveButton
+            .rx
+            .tap
+            .subscribe(onNext: { () in
                 self.viewModel.save()
                     .subscribe(onNext: { (result) in
                             if result {
-                                self.dismissViewControllerAnimated(true, completion: nil)
+                                self.dismiss(animated: true, completion: nil)
                             }
                         }, onError: { (errorType) in
                             switch errorType {
-                            case NewTaskValidationError.TitleError:
-                                CSNotificationView.showInViewController(self, style: .Error, message: "Title is invalid")
+                            case NewTaskValidationError.titleError:
+                                CSNotificationView.show(in: self, style: .error, message: "Title is invalid")
                                 break
                             default:
-                                CSNotificationView.showInViewController(self, style: .Error, message: "Some items are invalid")
+                                CSNotificationView.show(in: self, style: .error, message: "Some items are invalid")
                                 break
                             }
                         }, onCompleted: nil, onDisposed: nil
                     )
                     .addDisposableTo(self.disposeBag)
-            }
+            }, onError: nil, onCompleted: nil, onDisposed: nil)
             .addDisposableTo(disposeBag)
     }
 

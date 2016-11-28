@@ -13,24 +13,24 @@ import ObjectMapper
 class ListsAction {
     final let isLoading = Variable(false)
     final var lists: Variable<Lists?> = Variable(nil)
-    final let error: Variable<ErrorType?> = Variable(nil)
+    final let err: Variable<Error?> = Variable(nil)
     final let disposeBag = DisposeBag()
 
-    func request(projectID: Int) {
+    func request(_ projectID: Int) {
         if isLoading.value {
             return
         }
         isLoading.value = true
-        error.value = nil
-        FasciaAPIService.sharedInstance.call("/projects/\(projectID)/lists", method: .GET, params: nil)
+        err.value = nil
+        FasciaAPIService.sharedInstance.call("/projects/\(projectID)/lists", method: .get, params: nil)
             .subscribeOn(Scheduler.sharedInstance.backgroundScheduler)
             .observeOn(Scheduler.sharedInstance.mainScheduler)
             .map { (response, data) throws -> Lists in
-                guard let json = try NSJSONSerialization.JSONObjectWithData(data, options: .AllowFragments) as? [String: AnyObject] else {
-                    throw ListsError.ParserError
+                guard let json = try JSONSerialization.jsonObject(with: data as Data, options: .allowFragments) as? [String: AnyObject] else {
+                    throw ListsError.parserError
                 }
-                guard let lists = Mapper<Lists>().map(json) else {
-                    throw ListsError.MappingError
+                guard let lists = Mapper<Lists>().map(JSON: json) else {
+                    throw ListsError.mappingError
                 }
                 return lists
             }
@@ -39,7 +39,7 @@ class ListsAction {
                     print(lists.noneList)
                     self.lists.value = lists
                 }, onError: { (errorType) in
-                    self.error.value = errorType
+                    self.err.value = errorType
                     self.isLoading.value = false
                 }, onCompleted: {
                     self.isLoading.value = false
@@ -47,25 +47,25 @@ class ListsAction {
             .addDisposableTo(disposeBag)
     }
 
-    func moveRequest(projectID: Int, taskID: Int, listID: Int, toListID: Int) {
+    func moveRequest(_ projectID: Int, taskID: Int, listID: Int, toListID: Int) {
         if isLoading.value {
             return
         }
         isLoading.value = true
-        error.value = nil
+        err.value = nil
         let params = [
             "to_list_id": toListID,
             "prev_to_task_id": 0
         ]
-        FasciaAPIService.sharedInstance.call("/projects/\(projectID)/lists/\(listID)/tasks/\(taskID)/move_task", method: .POST, params: params)
+        FasciaAPIService.sharedInstance.call("/projects/\(projectID)/lists/\(listID)/tasks/\(taskID)/move_task", method: .post, params: params as [String : AnyObject]?)
             .subscribeOn(Scheduler.sharedInstance.backgroundScheduler)
             .observeOn(Scheduler.sharedInstance.mainScheduler)
             .map { (response, data) throws -> Lists in
-                guard let json = try NSJSONSerialization.JSONObjectWithData(data, options: .AllowFragments) as? [String: AnyObject] else {
-                    throw ListsError.ParserError
+                guard let json = try JSONSerialization.jsonObject(with: data as Data, options: .allowFragments) as? [String: AnyObject] else {
+                    throw ListsError.parserError
                 }
-                guard let lists = Mapper<Lists>().map(json) else {
-                    throw ListsError.MappingError
+                guard let lists = Mapper<Lists>().map(JSON: json) else {
+                    throw ListsError.mappingError
                 }
                 return lists
             }
@@ -74,7 +74,7 @@ class ListsAction {
                     print(lists.noneList)
                     self.lists.value = lists
                 }, onError: { (errorType) in
-                    self.error.value = errorType
+                    self.err.value = errorType
                     self.isLoading.value = false
                 }, onCompleted: {
                     self.isLoading.value = false

@@ -8,26 +8,26 @@
 
 import ObjectMapper
 
-enum ListOptionError: ErrorType {
-    case MappingError
-    case ParserError
+enum ListOptionError: Error {
+    case mappingError
+    case parserError
 }
 
 class ListOption: Mappable {
     var id: Int?
     var action: String?
 
-    class func buildWithArray(listOptions: [[String: AnyObject]]) -> [ListOption] {
+    class func buildWithArray(_ listOptions: [[String: AnyObject]]) -> [ListOption] {
         var arr: [ListOption] = []
         for dict in listOptions {
-            if let listOption = Mapper<ListOption>().map(dict) {
+            if let listOption = Mapper<ListOption>().map(JSON: dict) {
                 arr.append(listOption)
             }
         }
         return arr
     }
 
-    class func findAction(listOptions: [ListOption], id: Int) -> ListOption? {
+    class func findAction(_ listOptions: [ListOption], id: Int) -> ListOption? {
         var option: ListOption?
         for o in listOptions {
             if o.id != nil && o.id == id {
@@ -37,8 +37,8 @@ class ListOption: Mappable {
         return option
     }
 
-    required init?(_ map: Map) {
-        mapping(map)
+    required init?(map: Map) {
+        mapping(map: map)
     }
 
     init() {

@@ -10,13 +10,13 @@ import RxSwift
 import RxCocoa
 
 class ListSectionViewModel {
-    final private let action = ListVisibleAction()
+    final fileprivate let action = ListVisibleAction()
     let list: Variable<List>
     let title: Observable<String>
     let isVisible: Observable<Bool>
-    final private(set) var listsUpdated: Driver<Lists?> = Driver.never()
-    final private(set) var isLoading: Driver<Bool> = Driver.never()
-    final private(set) var error: Driver<ErrorType?> = Driver.never()
+    final fileprivate(set) var listsUpdated: Driver<Lists?> = Driver.never()
+    final fileprivate(set) var isLoading: Driver<Bool> = Driver.never()
+    final fileprivate(set) var err: Driver<Error?> = Driver.never()
 
     init(model: List) {
         self.list = Variable(model)
@@ -30,13 +30,13 @@ class ListSectionViewModel {
         self.listsUpdated = Driver
             .combineLatest(
                 action.lists.asDriver(),
-                action.error.asDriver().map({
+                action.err.asDriver().map({
                     $0 != nil
                 }), resultSelector: {
                     ($1) ? nil : $0
             })
         self.isLoading = action.isLoading.asDriver()
-        self.error = action.error.asDriver()
+        self.err = action.err.asDriver()
     }
 
     func changeVisible() {

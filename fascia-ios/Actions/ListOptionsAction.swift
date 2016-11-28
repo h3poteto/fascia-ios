@@ -12,7 +12,7 @@ import RxCocoa
 class ListOptionsAction {
     final let isLoading = Variable(false)
     final let listOptions = Variable([ListOption]())
-    final let error: Variable<ErrorType?> = Variable(nil)
+    final let err: Variable<Error?> = Variable(nil)
     final let disposeBag = DisposeBag()
 
     func request() {
@@ -20,13 +20,13 @@ class ListOptionsAction {
             return
         }
         isLoading.value = false
-        error.value = nil
-        FasciaAPIService.sharedInstance.call("/list_options", method: .GET, params: nil)
+        err.value = nil
+        FasciaAPIService.sharedInstance.call("/list_options", method: .get, params: nil)
             .observeOn(Scheduler.sharedInstance.mainScheduler)
             .subscribeOn(Scheduler.sharedInstance.backgroundScheduler)
             .map { (response, data) throws -> [ListOption] in
-                guard let json = try NSJSONSerialization.JSONObjectWithData(data, options: .AllowFragments) as? [[String: AnyObject]] else {
-                    throw ListOptionError.ParserError
+                guard let json = try JSONSerialization.jsonObject(with: data as Data, options: .allowFragments) as? [[String: AnyObject]] else {
+                    throw ListOptionError.parserError
                 }
                 return ListOption.buildWithArray(json)
             }
@@ -34,7 +34,7 @@ class ListOptionsAction {
                 print(listOptions)
                 self.listOptions.value = listOptions
                 }, onError: { (errorType) in
-                    self.error.value = errorType
+                    self.err.value = errorType
                     self.isLoading.value = false
                 }, onCompleted: {
                     self.isLoading.value = false

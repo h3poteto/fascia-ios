@@ -10,20 +10,20 @@ import RxSwift
 import RxCocoa
 import ObjectMapper
 
-enum NewListValidationError: ErrorType {
-    case TitleError
-    case ColorError
+enum NewListValidationError: Error {
+    case titleError
+    case colorError
 }
 
 class NewListViewModel {
-    private let action = NewListAction()
-    private(set) var newList: Variable<NewList>
-    final private var project: Project!
-    final private(set) var title: Variable<String?> = Variable(nil)
-    final private(set) var color: Variable<String?> = Variable(nil)
-    final private(set) var dataUpdated: Driver<List?> = Driver.never()
-    final private(set) var isLoading: Driver<Bool> = Driver.never()
-    final private(set) var error: Driver<ErrorType?> = Driver.never()
+    fileprivate let action = NewListAction()
+    fileprivate(set) var newList: Variable<NewList>
+    final fileprivate var project: Project!
+    final fileprivate(set) var title: Variable<String?> = Variable(nil)
+    final fileprivate(set) var color: Variable<String?> = Variable(nil)
+    final fileprivate(set) var dataUpdated: Driver<List?> = Driver.never()
+    final fileprivate(set) var isLoading: Driver<Bool> = Driver.never()
+    final fileprivate(set) var err: Driver<Error?> = Driver.never()
 
     init(model: NewList, project: Project) {
         newList = Variable(model)
@@ -32,7 +32,7 @@ class NewListViewModel {
         dataUpdated = Driver
             .combineLatest(
                 action.list.asDriver(),
-                action.error.asDriver().map({
+                action.err.asDriver().map({
                     $0 != nil
                 }),
                 resultSelector: {
@@ -40,12 +40,12 @@ class NewListViewModel {
             })
 
         isLoading = action.isLoading.asDriver()
-        error = action.error.asDriver()
+        err = action.err.asDriver()
         color.value = newList.value.color
         title.value = newList.value.title
     }
 
-    func update(title: String?, color: String?) {
+    func update(_ title: String?, color: String?) {
         if title != nil {
             self.title.value = title
             newList.value.title = title
@@ -58,21 +58,21 @@ class NewListViewModel {
 
     func save() -> Observable<Bool> {
         return valid()
-            .doOnNext({ (valid) in
+            .do(onNext: { (valid) in
                 if valid {
                     self.fetch()
                 }
-            })
+            }, onError: nil, onCompleted: nil, onSubscribe: nil, onDispose: nil)
     }
 
     func valid() -> Observable<Bool> {
         return newList.asObservable()
             .flatMap({ (list) -> Observable<Bool> in
-                if list.title?.characters.count < 1 {
-                    throw NewListValidationError.TitleError
+                if (list.title?.characters.count)! < 1 {
+                    throw NewListValidationError.titleError
                 }
                 if list.color?.characters.count != 6 {
-                    throw NewListValidationError.ColorError
+                    throw NewListValidationError.colorError
                 }
                 return Observable.just(true)
             })
@@ -80,6 +80,6 @@ class NewListViewModel {
 
     func fetch() {
         let params = Mapper<NewList>().toJSON(newList.value)
-        action.request(project.id!, params: params)
+        action.request(project.id!, params: params as [String : AnyObject])
     }
 }

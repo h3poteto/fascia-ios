@@ -23,12 +23,12 @@ class SideMenuTableViewController: UITableViewController {
 
     // MARK: - Table view data source
 
-    override func numberOfSectionsInTableView(tableView: UITableView) -> Int {
+    override func numberOfSections(in tableView: UITableView) -> Int {
         // #warning Incomplete implementation, return the number of sections
         return 2
     }
 
-    override func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+    override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         // #warning Incomplete implementation, return the number of rows
         switch section {
         case 0:
@@ -39,24 +39,24 @@ class SideMenuTableViewController: UITableViewController {
     }
 
 
-    override func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
+    override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         switch (indexPath.section, indexPath.row) {
         case (0, 0):
-            let cell = tableView.dequeueReusableCellWithIdentifier("SideMenuTitleCell", forIndexPath: indexPath)
+            let cell = tableView.dequeueReusableCell(withIdentifier: "SideMenuTitleCell", for: indexPath)
             return cell
         case (1, 0):
-            let cell = tableView.dequeueReusableCellWithIdentifier("SideMenuProjectsCell", forIndexPath: indexPath)
+            let cell = tableView.dequeueReusableCell(withIdentifier: "SideMenuProjectsCell", for: indexPath)
             return cell
         case (1, 1):
-            let cell = tableView.dequeueReusableCellWithIdentifier("SideMenuSignInCell", forIndexPath: indexPath)
+            let cell = tableView.dequeueReusableCell(withIdentifier: "SideMenuSignInCell", for: indexPath)
             return cell
         default:
-            let cell = tableView.dequeueReusableCellWithIdentifier("SideMenuSignInCell", forIndexPath: indexPath)
+            let cell = tableView.dequeueReusableCell(withIdentifier: "SideMenuSignInCell", for: indexPath)
             return cell
         }
     }
 
-    override func tableView(tableView: UITableView, heightForRowAtIndexPath indexPath: NSIndexPath) -> CGFloat {
+    override func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
         switch (indexPath.section) {
         case 0:
             return 60.0
@@ -65,16 +65,16 @@ class SideMenuTableViewController: UITableViewController {
         }
     }
 
-    override func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
+    override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         switch (indexPath.section, indexPath.row) {
         case (1, 0):
             if let projects = UIStoryboard.instantiateViewController("ProjectsTableViewController", storyboardName: "Projects") as? UITableViewController {
-                showViewController(projects, sender: nil)
+                show(projects, sender: nil)
             }
             break
         case (1, 1):
             if let signIn = UIStoryboard.instantiateViewController("SignInViewController", storyboardName: "Main") as? UIViewController {
-                showViewController(signIn, sender: true)
+                show(signIn, sender: true)
             }
             break
         default:

@@ -10,19 +10,19 @@ import RxSwift
 import RxCocoa
 import ObjectMapper
 
-enum EditProjectValidationError: ErrorType {
-    case TitleError
+enum EditProjectValidationError: Error {
+    case titleError
 }
 
 class EditProjectViewModel {
-    private let action = EditProjectAction()
-    private(set) var editProject: Variable<EditProject>
-    private var project: Project
-    final private(set) var title: Variable<String?> = Variable(nil)
-    final private(set) var description: Variable<String?> = Variable(nil)
-    final private(set) var dataUpdated: Driver<Project?> = Driver.never()
-    final private(set) var isLoading: Driver<Bool> = Driver.never()
-    final private(set) var error: Driver<ErrorType?> = Driver.never()
+    fileprivate let action = EditProjectAction()
+    fileprivate(set) var editProject: Variable<EditProject>
+    fileprivate var project: Project
+    final fileprivate(set) var title: Variable<String?> = Variable(nil)
+    final fileprivate(set) var description: Variable<String?> = Variable(nil)
+    final fileprivate(set) var dataUpdated: Driver<Project?> = Driver.never()
+    final fileprivate(set) var isLoading: Driver<Bool> = Driver.never()
+    final fileprivate(set) var err: Driver<Error?> = Driver.never()
 
     init(project: Project) {
         self.project = project
@@ -33,7 +33,7 @@ class EditProjectViewModel {
         dataUpdated = Driver
             .combineLatest(
                 action.project.asDriver(),
-                action.error.asDriver().map({
+                action.err.asDriver().map({
                     $0 != nil
                 }),
                 resultSelector: {
@@ -41,12 +41,12 @@ class EditProjectViewModel {
             })
 
         isLoading = action.isLoading.asDriver()
-        error = action.error.asDriver()
+        err = action.err.asDriver()
         title = Variable(self.project.title)
         description = Variable(self.project.projectDescription)
     }
 
-    func update(title: String?, description: String?) {
+    func update(_ title: String?, description: String?) {
         if title != nil {
             self.title.value = title
             self.editProject.value.title = title
@@ -59,25 +59,25 @@ class EditProjectViewModel {
 
     func save() -> Observable<Bool> {
         return valid()
-            .doOnNext({ (result) throws -> Void in
+            .do(onNext: { (result) in
                 if result {
                     self.fetch(self.editProject.value)
                 }
-            })
+            }, onError: nil, onCompleted: nil, onSubscribe: nil, onDispose: nil)
     }
 
     func valid() -> Observable<Bool> {
         return editProject.asObservable()
             .flatMap({ (project) -> Observable<Bool> in
-                if project.title?.characters.count < 1 {
-                    throw EditProjectValidationError.TitleError
+                if (project.title?.characters.count)! < 1 {
+                    throw EditProjectValidationError.titleError
                 }
                 return Observable.just(true)
             })
     }
-    func fetch(editProject: EditProject) {
+    func fetch(_ editProject: EditProject) {
         print(editProject)
         let params = Mapper<EditProject>().toJSON(editProject)
-        action.request(project.id!, params: params)
+        action.request(project.id!, params: params as [String : AnyObject])
     }
 }

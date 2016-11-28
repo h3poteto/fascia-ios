@@ -12,13 +12,14 @@ import RxCocoa
 import CSNotificationView
 import SideMenu
 import SESlideTableViewCell
+import ChameleonFramework
 
 class ProjectsTableViewController: UITableViewController, SideMenuable {
-    @IBOutlet private weak var refresh: UIRefreshControl!
-    @IBOutlet private weak var newProjectButton: UIBarButtonItem!
-    private var viewModel = ProjectsViewModel()
+    @IBOutlet fileprivate weak var refresh: UIRefreshControl!
+    @IBOutlet fileprivate weak var newProjectButton: UIBarButtonItem!
+    fileprivate var viewModel = ProjectsViewModel()
     var disposeBag = DisposeBag()
-    var openSideMenu: UIBarButtonItem = UIBarButtonItem(image: UIImage(named: "SideMenu"), style: UIBarButtonItemStyle.Plain, target: nil, action: nil)
+    var openSideMenu: UIBarButtonItem = UIBarButtonItem(image: UIImage(named: "SideMenu"), style: UIBarButtonItemStyle.plain, target: nil, action: nil)
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -33,114 +34,118 @@ class ProjectsTableViewController: UITableViewController, SideMenuable {
 
     // MARK: - Table view data source
 
-    override func numberOfSectionsInTableView(tableView: UITableView) -> Int {
+    override func numberOfSections(in tableView: UITableView) -> Int {
         // #warning Incomplete implementation, return the number of sections
         return 1
     }
 
-    override func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+    override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         // #warning Incomplete implementation, return the number of rows
         return viewModel.projects.count
     }
 
-    override func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
-        guard let cell = tableView.dequeueReusableCellWithIdentifier("ProjectTableViewCell", forIndexPath: indexPath) as? ProjectTableViewCell else {
-            return tableView.dequeueReusableCellWithIdentifier("Cell", forIndexPath: indexPath)
+    override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+        guard let cell = tableView.dequeueReusableCell(withIdentifier: "ProjectTableViewCell", for: indexPath) as? ProjectTableViewCell else {
+            return tableView.dequeueReusableCell(withIdentifier: "Cell", for: indexPath)
         }
         let project = viewModel.projects[indexPath.row]
         cell.viewModel = ProjectCellViewModel(model: project)
-        let button = UIButton(type: UIButtonType.Custom)
-        button.setTitle("Edit", forState: .Normal)
-        button.setTitleColor(UIColor.whiteColor(), forState: .Normal)
-        button.rx_tap
-            .subscribeNext({ () in
-                cell.setSlideState(SESlideTableViewCellSlideState.Center, animated: true)
+        let button = UIButton(type: UIButtonType.custom)
+        button.setTitle("Edit", for: UIControlState())
+        button.setTitleColor(UIColor.white, for: UIControlState())
+        button
+            .rx
+            .tap
+            .subscribe(onNext: { () in
+                cell.setSlideState(SESlideTableViewCellSlideState.center, animated: true)
                 guard let editProjectNavigation = UIStoryboard.instantiateViewController("EditProjectNavigationController", storyboardName: "Projects") as? UINavigationController else {
                     return
                 }
                 let editProject = editProjectNavigation.viewControllers.first as? EditProjectTableViewController
-                guard let indexPath = tableView.indexPathForCell(cell) else { return }
+                guard let indexPath = tableView.indexPath(for: cell) else { return }
                 let vm = EditProjectViewModel(project: self.viewModel.projects[indexPath.row])
                 self.bindEditProjectViewModel(vm)
                 editProject?.viewModel = vm
-                self.showViewController(editProjectNavigation, sender: nil)
-            })
+                self.show(editProjectNavigation, sender: nil)
+            }, onError: nil, onCompleted: nil, onDisposed: nil)
             .addDisposableTo(disposeBag)
 
-        cell.addRightButton(button, buttonWidth: 60.0, backgroundColor: UIColor.coolGrayColor())
+        cell.addRightButton(button, buttonWidth: 60.0, backgroundColor: UIColor.flatGray)
         return cell
     }
 
-    override func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
+    override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         if let listsView = UIStoryboard.instantiateViewController("ListsTableViewController", storyboardName: "Lists") as? ListsTableViewController {
             listsView.viewModel = ListsViewModel(project: viewModel.projects[indexPath.row])
             self.navigationController?.pushViewController(listsView, animated: true)
         }
     }
 
-    private func showSignInView() {
+    fileprivate func showSignInView() {
         if let signIn = UIStoryboard.instantiateViewController("SignInViewController", storyboardName: "Main") as? SignInViewController {
             signIn.rx_viewDidDisappear
-                .subscribeNext({ () in
+                .subscribe(onNext: { () in
                     self.viewModel.fetch()
-                })
+                }, onError: nil, onCompleted: nil, onDisposed: nil)
                 .addDisposableTo(disposeBag)
-            self.presentViewController(signIn, animated: true, completion: nil)
+            self.present(signIn, animated: true, completion: nil)
         }
     }
 
-    private func bindViewModel() {
+    fileprivate func bindViewModel() {
         viewModel.dataUpdated
-            .driveNext { (projects) in
+            .drive(onNext: { (projects) in
                 self.viewModel.projects = projects
                 self.tableView.reloadData()
-            }
+            }, onCompleted: nil, onDisposed: nil)
             .addDisposableTo(disposeBag)
 
         viewModel.isLoading
-            .drive(self.refresh.rx_refreshing)
+            .drive(self.refresh.rx.refreshing)
             .addDisposableTo(disposeBag)
 
-        viewModel.error
-            .driveNext { (errorType) in
+        viewModel.err
+            .drive(onNext: { (errorType) in
                 self.refresh.endRefreshing()
                 guard let errorType = errorType else {
                     return
                 }
                 switch errorType {
-                case FasciaAPIError.AuthenticateError:
+                case FasciaAPIError.authenticateError:
                     self.showSignInView()
                     break
-                case FasciaAPIError.DoubleRequestError:
+                case FasciaAPIError.doubleRequestError:
                     break
-                case FasciaAPIError.ClientError:
-                    CSNotificationView.showInViewController(self, style: CSNotificationViewStyle.Error, message: "The request is invalid.")
+                case FasciaAPIError.clientError:
+                    CSNotificationView.show(in: self, style: CSNotificationViewStyle.error, message: "The request is invalid.")
                     break
-                case FasciaAPIError.ServerError:
-                    CSNotificationView.showInViewController(self, style: .Error, message: "We're sorry, but something went wrong.")
+                case FasciaAPIError.serverError:
+                    CSNotificationView.show(in: self, style: .error, message: "We're sorry, but something went wrong.")
                     break
                 default:
-                    CSNotificationView.showInViewController(self, style: .Error, message: "Network error.")
+                    CSNotificationView.show(in: self, style: .error, message: "Network error.")
                     break
                 }
-            }
+            }, onCompleted: nil, onDisposed: nil)
             .addDisposableTo(disposeBag)
 
-        refresh.rx_controlEvent(.ValueChanged).startWith({ print("start init loading") }())
-            .subscribeNext { () in
+        refresh.rx.controlEvent(.valueChanged).startWith({ print("start init loading") }())
+            .subscribe(onNext: { () in
                 self.viewModel.fetch()
-            }
+            }, onError: nil, onCompleted: nil, onDisposed: nil)
             .addDisposableTo(disposeBag)
 
-        newProjectButton.rx_tap
-            .subscribeNext { () in
+        newProjectButton
+            .rx
+            .tap
+            .subscribe(onNext: { () in
                 self.showNewProject()
-            }
+            }, onError: nil, onCompleted: nil, onDisposed: nil)
             .addDisposableTo(disposeBag)
 
     }
 
-    private func showNewProject() {
+    fileprivate func showNewProject() {
         guard let newProjectNavigation = UIStoryboard.instantiateViewController("NewProjectNavigationViewController", storyboardName: "Projects") as? UINavigationController else {
             return
         }
@@ -148,78 +153,78 @@ class ProjectsTableViewController: UITableViewController, SideMenuable {
         let vm = NewProjectViewModel(model: NewProject())
         newProjectView?.viewModel = vm
         bindNewProjectViewModel(vm)
-        self.presentViewController(newProjectNavigation, animated: true, completion: nil)
+        self.present(newProjectNavigation, animated: true, completion: nil)
     }
 
     // 新規プロジェクト作成のViewModelとのつなぎ込みで，このviewに関係あるものをここで設定
     // 管理的にはここに居ないほうがわかりやすかもしれない
-    private func bindNewProjectViewModel(vm: NewProjectViewModel) {
+    fileprivate func bindNewProjectViewModel(_ vm: NewProjectViewModel) {
         vm.dataUpdated
-            .driveNext { (project) in
+            .drive(onNext: { (project) in
                 if project != nil {
-                    CSNotificationView.showInViewController(self, style: .Success, message: "Save complete")
+                    CSNotificationView.show(in: self, style: .success, message: "Save complete")
                     self.viewModel.fetch()
                 }
-            }
+            }, onCompleted: nil, onDisposed: nil)
             .addDisposableTo(disposeBag)
 
-        vm.error
-            .driveNext { (errorType) in
+        vm.err
+            .drive(onNext: { (errorType) in
                 guard let errorType = errorType else {
                     return
                 }
                 switch errorType {
-                case FasciaAPIError.AuthenticateError:
+                case FasciaAPIError.authenticateError:
                     self.showSignInView()
                     break
-                case FasciaAPIError.DoubleRequestError:
+                case FasciaAPIError.doubleRequestError:
                     break
-                case FasciaAPIError.ClientError:
-                    CSNotificationView.showInViewController(self, style: .Error, message: "The request is invalid")
+                case FasciaAPIError.clientError:
+                    CSNotificationView.show(in: self, style: .error, message: "The request is invalid")
                     break
-                case FasciaAPIError.ServerError, ProjectError.ParserError, ProjectError.MappingError:
-                    CSNotificationView.showInViewController(self, style: .Error, message: "We're sorry, but something went wrong.")
+                case FasciaAPIError.serverError, ProjectError.parserError, ProjectError.mappingError:
+                    CSNotificationView.show(in: self, style: .error, message: "We're sorry, but something went wrong.")
                     break
                 default:
-                    CSNotificationView.showInViewController(self, style: .Error, message: "Network error.")
+                    CSNotificationView.show(in: self, style: .error, message: "Network error.")
                     break
                 }
-            }
+            }, onCompleted: nil, onDisposed: nil)
             .addDisposableTo(disposeBag)
     }
 
-    private func bindEditProjectViewModel(vm: EditProjectViewModel) {
+    fileprivate func bindEditProjectViewModel(_ vm: EditProjectViewModel) {
         vm.dataUpdated
-            .driveNext { (project) in
+            .drive(onNext: { (project) in
                 if project != nil {
-                    CSNotificationView.showInViewController(self, style: .Success, message: "Save complete")
+                    CSNotificationView.show(in: self, style: .success, message: "Save complete")
                     self.viewModel.fetch()
                 }
-            }
+            }, onCompleted: nil, onDisposed: nil)
             .addDisposableTo(disposeBag)
 
-        vm.error
-            .driveNext { (errorType) in
+        vm.err
+            .drive(onNext: { (errorType) in
                 guard let errorType = errorType else {
                     return
                 }
                 switch errorType {
-                case FasciaAPIError.AuthenticateError:
+                case FasciaAPIError.authenticateError:
                     self.showSignInView()
                     break
-                case FasciaAPIError.DoubleRequestError:
+                case FasciaAPIError.doubleRequestError:
                     break
-                case FasciaAPIError.ClientError:
-                    CSNotificationView.showInViewController(self, style: .Error, message: "The request is invalid")
+                case FasciaAPIError.clientError:
+                    CSNotificationView.show(in: self, style: .error, message: "The request is invalid")
                     break
-                case FasciaAPIError.ServerError, ProjectError.ParserError, ProjectError.MappingError:
-                    CSNotificationView.showInViewController(self, style: .Error, message: "We're sorry, but something went wrong.")
+                case FasciaAPIError.serverError, ProjectError.parserError, ProjectError.mappingError:
+                    CSNotificationView.show(in: self, style: .error, message: "We're sorry, but something went wrong.")
                     break
                 default:
-                    CSNotificationView.showInViewController(self, style: .Error, message: "Network error.")
+                    CSNotificationView.show(in: self, style: .error, message: "Network error.")
                     break
                 }
-            }
+            }, onCompleted: nil, onDisposed: nil)
             .addDisposableTo(disposeBag)
     }
 

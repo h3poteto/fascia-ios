@@ -8,7 +8,7 @@
 
 import RxSwift
 import RxCocoa
-import Colours
+import ChameleonFramework
 
 class TaskCellViewModel {
     let task: Variable<Task>
@@ -20,7 +20,7 @@ class TaskCellViewModel {
         self.title = self.task.asObservable().map({ (task) -> String in
             return task.title!
         })
-        self.color = Variable(UIColor(hex: list.color!))
+        self.color = Variable(UIColor(hexString: list.color!)!)
             //UIColor(hexString: list.color!, alpha: 1.0))
     }
 }

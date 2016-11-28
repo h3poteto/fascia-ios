@@ -11,17 +11,17 @@ import RxSwift
 import RxCocoa
 
 class TaskTableViewCell: UITableViewCell {
-    @IBOutlet private weak var taskLabel: UILabel!
-    @IBOutlet private weak var taskColorImage: UIImageView!
-    private let disposeBag = DisposeBag()
+    @IBOutlet fileprivate weak var taskLabel: UILabel!
+    @IBOutlet fileprivate weak var taskColorImage: UIImageView!
+    fileprivate let disposeBag = DisposeBag()
     var viewModel: TaskCellViewModel? {
         didSet {
             guard let vModel = self.viewModel else { return }
-            vModel.title.bindTo(self.taskLabel.rx_text).addDisposableTo(disposeBag)
+            vModel.title.bindTo(self.taskLabel.rx.text).addDisposableTo(disposeBag)
             vModel.color.asObservable()
-                .subscribeNext { (color) in
+                .subscribe(onNext: { (color) in
                     self.taskColorImage.backgroundColor = color
-                }
+                }, onError: nil, onCompleted: nil, onDisposed: nil)
                 .addDisposableTo(disposeBag)
         }
     }
@@ -31,7 +31,7 @@ class TaskTableViewCell: UITableViewCell {
         // Initialization code
     }
 
-    override func setSelected(selected: Bool, animated: Bool) {
+    override func setSelected(_ selected: Bool, animated: Bool) {
         super.setSelected(selected, animated: animated)
 
         guard let color = viewModel?.color else {
@@ -42,7 +42,7 @@ class TaskTableViewCell: UITableViewCell {
         }
     }
 
-    override func setHighlighted(highlighted: Bool, animated: Bool) {
+    override func setHighlighted(_ highlighted: Bool, animated: Bool) {
         super.setHighlighted(highlighted, animated: animated)
         guard let color = viewModel?.color else {
             return

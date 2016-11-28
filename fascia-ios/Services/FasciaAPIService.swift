@@ -11,11 +11,11 @@ import Alamofire
 import RxSwift
 import RxCocoa
 
-enum FasciaAPIError: ErrorType {
-    case AuthenticateError
-    case ClientError
-    case ServerError
-    case DoubleRequestError
+enum FasciaAPIError: Error {
+    case authenticateError
+    case clientError
+    case serverError
+    case doubleRequestError
 }
 
 class FasciaAPIService {
@@ -25,9 +25,9 @@ class FasciaAPIService {
 #else
     let APIHost = "https://fascia.io"
 #endif
-    private var manager: Manager
-    private let disposeBag = DisposeBag()
-    private static let CookieKey = "fascia-session"
+    fileprivate var manager: SessionManager
+    fileprivate let disposeBag = DisposeBag()
+    fileprivate static let CookieKey = "fascia-session"
     let signInURL: String?
 
     init() {
@@ -35,48 +35,48 @@ class FasciaAPIService {
         signInURL = APIHost + "/webviews/sign_in"
     }
 
-    func call(path: String, method: Alamofire.Method, params: [String: AnyObject]?) -> Observable<(NSHTTPURLResponse, NSData)> {
-        return manager.rx_responseData(method, NSURL(string: APIHost + path)!, parameters: params, encoding: .URL, headers: nil)
+    func call(_ path: String, method: HTTPMethod, params: [String: AnyObject]?) -> Observable<(HTTPURLResponse, NSData)> {
+        return manager.rx.responseData(method, URL(string: APIHost + path) as! URLConvertible, parameters: params, encoding: URLEncoding.default, headers: nil)
             .observeOn(MainScheduler.instance)
-            .map({ (response, json) -> (NSHTTPURLResponse, NSData) in
+            .map({ (response, json) -> (HTTPURLResponse, NSData) in
                 switch response.statusCode {
                 case 401:
-                    throw FasciaAPIError.AuthenticateError
+                    throw FasciaAPIError.authenticateError
                 case 401..<500:
-                    throw FasciaAPIError.ClientError
+                    throw FasciaAPIError.clientError
                 case 500..<600:
-                    throw FasciaAPIError.ServerError
+                    throw FasciaAPIError.serverError
                 default:
                     break
                 }
-                return (response, json)
+                return (response, json as NSData)
             })
     }
 
-    func saveSession(response: NSHTTPURLResponse) {
+    func saveSession(_ response: HTTPURLResponse) {
         guard let headers = response.allHeaderFields as? [String:String] else {
             return
         }
-        let cookies = NSHTTPCookie.cookiesWithResponseHeaderFields(headers, forURL: (response.URL)!)
+        let cookies = HTTPCookie.cookies(withResponseHeaderFields: headers, for: (response.url)!)
         for i in 0 ..< cookies.count {
-            NSHTTPCookieStorage.sharedHTTPCookieStorage().setCookie(cookies[i])
+            HTTPCookieStorage.shared.setCookie(cookies[i])
         }
-        let cookiesData: NSData = NSKeyedArchiver.archivedDataWithRootObject(NSHTTPCookieStorage.sharedHTTPCookieStorage().cookies!)
-        NSUserDefaults.standardUserDefaults().setObject(cookiesData, forKey: FasciaAPIService.CookieKey)
+        let cookiesData: NSData = NSKeyedArchiver.archivedData(withRootObject: HTTPCookieStorage.shared.cookies!) as NSData
+        UserDefaults.standard.set(cookiesData, forKey: FasciaAPIService.CookieKey)
     }
 
-    private class func configureManager() -> Manager {
-        if let cookiesData = NSUserDefaults.standardUserDefaults().objectForKey(CookieKey) as? NSData {
-            if let cookies = NSKeyedUnarchiver.unarchiveObjectWithData(cookiesData) as? [NSHTTPCookie] {
-                for cookie: NSHTTPCookie in cookies {
-                    NSHTTPCookieStorage.sharedHTTPCookieStorage().setCookie(cookie)
+    fileprivate class func configureManager() -> SessionManager {
+        if let cookiesData = UserDefaults.standard.object(forKey: CookieKey) as? NSData {
+            if let cookies = NSKeyedUnarchiver.unarchiveObject(with: cookiesData as Data) as? [HTTPCookie] {
+                for cookie: HTTPCookie in cookies {
+                    HTTPCookieStorage.shared.setCookie(cookie)
                 }
             }
         }
-        let cfg = NSURLSessionConfiguration.defaultSessionConfiguration()
-        cfg.HTTPCookieStorage = NSHTTPCookieStorage.sharedHTTPCookieStorage()
+        let cfg = URLSessionConfiguration.default
+        cfg.httpCookieStorage = HTTPCookieStorage.shared
         cfg.timeoutIntervalForResource = 30
         cfg.timeoutIntervalForRequest = 10
-        return Manager(configuration: cfg)
+        return SessionManager(configuration: cfg)
     }
 }

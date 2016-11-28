@@ -10,11 +10,12 @@ import UIKit
 import RxSwift
 import RxCocoa
 import CSNotificationView
+import ChameleonFramework
 
 class NewListTableViewController: UITableViewController, UIPopoverPresentationControllerDelegate {
-    @IBOutlet private weak var saveButton: UIBarButtonItem!
-    @IBOutlet private weak var cancelButton: UIBarButtonItem!
-    private let disposeBag = DisposeBag()
+    @IBOutlet fileprivate weak var saveButton: UIBarButtonItem!
+    @IBOutlet fileprivate weak var cancelButton: UIBarButtonItem!
+    fileprivate let disposeBag = DisposeBag()
     var viewModel: NewListViewModel!
 
     override func viewDidLoad() {
@@ -29,26 +30,26 @@ class NewListTableViewController: UITableViewController, UIPopoverPresentationCo
 
     // MARK: - Table view data source
 
-    override func numberOfSectionsInTableView(tableView: UITableView) -> Int {
+    override func numberOfSections(in tableView: UITableView) -> Int {
         // #warning Incomplete implementation, return the number of sections
         return 1
     }
 
-    override func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+    override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         // #warning Incomplete implementation, return the number of rows
         return 2
     }
 
-    override func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
+    override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         switch (indexPath.section, indexPath.row) {
         case (0, 0):
-            if let cell = tableView.dequeueReusableCellWithIdentifier("NewListTitleTableViewCell", forIndexPath: indexPath) as? NewListTitleTableViewCell {
+            if let cell = tableView.dequeueReusableCell(withIdentifier: "NewListTitleTableViewCell", for: indexPath) as? NewListTitleTableViewCell {
                 cell.viewModel = self.viewModel
                 return cell
             }
             break
         case (0, 1):
-            if let cell = tableView.dequeueReusableCellWithIdentifier("NewListColorTableViewCell", forIndexPath: indexPath) as? NewListColorTableViewCell {
+            if let cell = tableView.dequeueReusableCell(withIdentifier: "NewListColorTableViewCell", for: indexPath) as? NewListColorTableViewCell {
                 cell.viewModel = self.viewModel
                 return cell
             }
@@ -56,11 +57,11 @@ class NewListTableViewController: UITableViewController, UIPopoverPresentationCo
         default:
             break
         }
-        let cell = tableView.dequeueReusableCellWithIdentifier("NewListTitleTableViewCell", forIndexPath: indexPath)
+        let cell = tableView.dequeueReusableCell(withIdentifier: "NewListTitleTableViewCell", for: indexPath)
         return cell
     }
 
-    override func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
+    override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         switch (indexPath.section, indexPath.row) {
         case (0, 1):
             guard let colorPicker = UIStoryboard.instantiateViewController("ColorPickerViewController", storyboardName: "Lists") as? ColorPickerViewController else {
@@ -69,15 +70,15 @@ class NewListTableViewController: UITableViewController, UIPopoverPresentationCo
             guard let color = viewModel.color.value else {
                 return
             }
-            colorPicker.viewModel = ColorPickerViewModel(color: UIColor(hex: color))
+            colorPicker.viewModel = ColorPickerViewModel(color: UIColor(hexString: color)!)
             colorPicker.rx_color()
-                .subscribeNext({ (color) in
-                    let colorStr = (color.hexString() as NSString).substringFromIndex(1)
+                .subscribe(onNext: { (color) in
+                    let colorStr = (color.hexValue() as NSString).substring(from: 1)
                     self.viewModel.update(nil, color: colorStr)
-                })
+                }, onError: nil, onCompleted: nil, onDisposed: nil)
                 .addDisposableTo(disposeBag)
             // 選択状態を解除してからviewModelのupdateをかけないと，select時のbackgroundColorとしてsetされてしまう
-            self.tableView.deselectRowAtIndexPath(indexPath, animated: true)
+            self.tableView.deselectRow(at: indexPath, animated: true)
             self.navigationController?.pushViewController(colorPicker, animated: true)
             break
         default:
@@ -85,36 +86,41 @@ class NewListTableViewController: UITableViewController, UIPopoverPresentationCo
         }
     }
 
-    private func bindViewModel() {
-        cancelButton.rx_tap
-            .subscribeNext { () in
-                self.dismissViewControllerAnimated(true, completion: nil)
-            }
+    fileprivate func bindViewModel() {
+        cancelButton
+            .rx
+            .tap
+            .subscribe(onNext: { () in
+                self.dismiss(animated: true, completion: nil)
+            }, onError: nil, onCompleted: nil)
             .addDisposableTo(disposeBag)
 
-        saveButton.rx_tap
-            .subscribeNext { () in
+        saveButton
+            .rx
+            .tap
+            .subscribe(onNext: { () in
                 self.viewModel.save()
                     .subscribe(onNext: { (result) in
                             if result {
-                                self.dismissViewControllerAnimated(true, completion: nil)
+                                self.dismiss(animated: true, completion: nil)
                             }
                         }, onError: { (errorType) in
                             switch errorType {
-                            case NewListValidationError.TitleError:
-                                CSNotificationView.showInViewController(self, style: .Error, message: "Title is invalid")
+                            case NewListValidationError.titleError:
+                                CSNotificationView.show(in: self, style: .error, message: "Title is invalid")
                                 break
-                            case NewListValidationError.ColorError:
-                                CSNotificationView.showInViewController(self, style: .Error, message: "Color is invalid")
+                            case NewListValidationError.colorError:
+                                CSNotificationView.show(in: self, style: .error, message: "Color is invalid")
                                 break
                             default:
-                                CSNotificationView.showInViewController(self, style: .Error, message: "Some items are invalid")
+                                CSNotificationView.show(in: self, style: .error, message: "Some items are invalid")
                                 break
                             }
                         }, onCompleted: nil, onDisposed: nil
                     )
                     .addDisposableTo(self.disposeBag)
-            }
+            }, onError: nil, onCompleted: nil)
+
             .addDisposableTo(disposeBag)
     }
 }

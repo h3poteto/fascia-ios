@@ -10,19 +10,19 @@ import RxSwift
 import RxCocoa
 import ObjectMapper
 
-enum NewTaskValidationError: ErrorType {
-    case TitleError
+enum NewTaskValidationError: Error {
+    case titleError
 }
 
 class NewTaskViewModel {
-    private let action = NewTaskAction()
-    private(set) var newTask: Variable<NewTask>
-    private var list: List
-    private(set) var title: Variable<String?> = Variable(nil)
-    private(set) var description: Variable<String?> = Variable(nil)
-    final private(set) var dataUpdated: Driver<Task?> = Driver.never()
-    final private(set) var isLoading: Driver<Bool> = Driver.never()
-    final private(set) var error: Driver<ErrorType?> = Driver.never()
+    fileprivate let action = NewTaskAction()
+    fileprivate(set) var newTask: Variable<NewTask>
+    fileprivate var list: List
+    fileprivate(set) var title: Variable<String?> = Variable(nil)
+    fileprivate(set) var description: Variable<String?> = Variable(nil)
+    final fileprivate(set) var dataUpdated: Driver<Task?> = Driver.never()
+    final fileprivate(set) var isLoading: Driver<Bool> = Driver.never()
+    final fileprivate(set) var err: Driver<Error?> = Driver.never()
 
     init(model: NewTask, list: List) {
         self.newTask = Variable(model)
@@ -31,7 +31,7 @@ class NewTaskViewModel {
         dataUpdated = Driver
             .combineLatest(
                 action.task.asDriver(),
-                action.error.asDriver().map({
+                action.err.asDriver().map({
                     $0 != nil
                 }),
                 resultSelector: {
@@ -39,10 +39,10 @@ class NewTaskViewModel {
             })
 
         isLoading = action.isLoading.asDriver()
-        error = action.error.asDriver()
+        err = action.err.asDriver()
     }
 
-    func update(title: String?, description: String?) {
+    func update(_ title: String?, description: String?) {
         if title != nil {
             self.title.value = title
             newTask.value.title = title
@@ -55,18 +55,18 @@ class NewTaskViewModel {
 
     func save() -> Observable<Bool> {
         return valid()
-            .doOnNext({ (valid) in
+            .do(onNext: { (valid) in
                 if valid {
                     self.fetch()
                 }
-            })
+            }, onError: nil, onCompleted: nil, onSubscribe: nil, onDispose: nil)
     }
 
     func valid() -> Observable<Bool> {
         return newTask.asObservable()
             .flatMap({ (task) throws -> Observable<Bool> in
-                if task.title?.characters.count < 1 {
-                    throw NewTaskValidationError.TitleError
+                if (task.title?.characters.count)! < 1 {
+                    throw NewTaskValidationError.titleError
                 }
                 return Observable.just(true)
             })
@@ -74,6 +74,6 @@ class NewTaskViewModel {
 
     func fetch() {
         let params = Mapper<NewTask>().toJSON(newTask.value)
-        action.request(list.projectID!, listID: list.id!, params: params)
+        action.request(list.projectID!, listID: list.id!, params: params as [String : AnyObject])
     }
 }

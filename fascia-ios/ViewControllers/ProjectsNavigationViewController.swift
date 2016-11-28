@@ -13,18 +13,20 @@ import RxCocoa
 
 protocol SideMenuable {
     var openSideMenu: UIBarButtonItem { get }
-    func sideMenuSetup(parentController: UIViewController)
+    func sideMenuSetup(_ parentController: UIViewController)
     var disposeBag: DisposeBag { get }
 }
 
 
 extension SideMenuable {
-    func sideMenuSetup(parentController: UIViewController) {
+    func sideMenuSetup(_ parentController: UIViewController) {
         parentController.navigationItem.leftBarButtonItem = openSideMenu
-        openSideMenu.rx_tap
-            .subscribeNext { () in
-                parentController.presentViewController(SideMenuManager.menuLeftNavigationController!, animated: true, completion: nil)
-            }
+        openSideMenu
+            .rx
+            .tap
+            .subscribe(onNext: { () in
+                parentController.present(SideMenuManager.menuLeftNavigationController!, animated: true, completion: nil)
+            }, onError: nil, onCompleted: nil, onDisposed: nil)
             .addDisposableTo(disposeBag)
     }
 }
