@@ -11,7 +11,7 @@ import RxSwift
 import RxCocoa
 
 extension UIViewController {
-    fileprivate func trigger(selector: Selector) -> Observable<Void> {
+    private func trigger(selector: Selector) -> Observable<Void> {
         return rx.sentMessage(selector).map { _ in () }.shareReplay(1)
     }
 
