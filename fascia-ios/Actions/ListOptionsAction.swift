@@ -28,7 +28,7 @@ class ListOptionsAction {
                 guard let json = try JSONSerialization.jsonObject(with: data as Data, options: .allowFragments) as? [[String: AnyObject]] else {
                     throw ListOptionError.parserError
                 }
-                return ListOption.buildWithArray(json)
+                return ListOption.buildWithArray(listOptions: json)
             }
             .subscribe(onNext: { (listOptions) -> Void in
                 print(listOptions)

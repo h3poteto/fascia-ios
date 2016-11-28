@@ -29,7 +29,7 @@ class RepositoryAction {
                 guard let json = try JSONSerialization.jsonObject(with: data as Data, options: .allowFragments) as? [[String: AnyObject]] else {
                     throw RepositoryError.parserError
                 }
-                return Repository.buildWithArray(json)
+                return Repository.buildWithArray(repositories: json)
             })
             .subscribe(onNext: { (repositories) in
                     print(repositories)

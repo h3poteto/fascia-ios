@@ -28,7 +28,7 @@ class ProjectsAction {
                 guard let json = try JSONSerialization.jsonObject(with: data as Data, options: .allowFragments) as? [[String: AnyObject]] else {
                     throw ProjectError.parserError
                 }
-                return Project.buildWithArray(json)
+                return Project.buildWithArray(projects: json)
             })
             .subscribe(onNext: { (projects) -> Void in
                     print(projects)

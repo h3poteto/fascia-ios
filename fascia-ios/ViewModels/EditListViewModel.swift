@@ -56,7 +56,7 @@ class EditListViewModel {
         listOptionAction.listOptions.asObservable()
             .subscribe(onNext: { (listOptions) in
                 guard let id = self.list.listOptionID else { return }
-                let option = ListOption.findAction(listOptions, id: id)
+                let option = ListOption.findAction(listOptions: listOptions, id: id)
                 self.editList.value
                     .action = option?.action
                 self.action.value = option?.action
