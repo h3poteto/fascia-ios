@@ -56,7 +56,7 @@ class SignInViewController: UIViewController, UIWebViewDelegate, SideMenuable {
     }
 
     fileprivate func bindViewModel() {
-        hud.bind(viewModel.isLoading.asDriver())
+        hud.bind(loadingTarget: viewModel.isLoading.asDriver())
     }
 
 }

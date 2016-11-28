@@ -35,7 +35,7 @@ class FasciaAPIService {
         signInURL = APIHost + "/webviews/sign_in"
     }
 
-    func call(_ path: String, method: HTTPMethod, params: [String: AnyObject]?) -> Observable<(HTTPURLResponse, NSData)> {
+    func call(path: String, method: HTTPMethod, params: [String: AnyObject]?) -> Observable<(HTTPURLResponse, NSData)> {
         return manager.rx.responseData(method, URL(string: APIHost + path) as! URLConvertible, parameters: params, encoding: URLEncoding.default, headers: nil)
             .observeOn(MainScheduler.instance)
             .map({ (response, json) -> (HTTPURLResponse, NSData) in
@@ -53,7 +53,7 @@ class FasciaAPIService {
             })
     }
 
-    func saveSession(_ response: HTTPURLResponse) {
+    func saveSession(response: HTTPURLResponse) {
         guard let headers = response.allHeaderFields as? [String:String] else {
             return
         }

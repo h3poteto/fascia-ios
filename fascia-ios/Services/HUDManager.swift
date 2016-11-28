@@ -20,7 +20,7 @@ class HUDManager {
         SVProgressHUD.setForegroundColor(UIColor.white)
     }
 
-    func bind(_ loadingTarget: Driver<Bool>) {
+    func bind(loadingTarget: Driver<Bool>) {
         loadingTarget
             .drive(onNext: { (loading) in
                 if loading {

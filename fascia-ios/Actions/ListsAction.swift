@@ -22,7 +22,7 @@ class ListsAction {
         }
         isLoading.value = true
         err.value = nil
-        FasciaAPIService.sharedInstance.call("/projects/\(projectID)/lists", method: .get, params: nil)
+        FasciaAPIService.sharedInstance.call(path: "/projects/\(projectID)/lists", method: .get, params: nil)
             .subscribeOn(Scheduler.sharedInstance.backgroundScheduler)
             .observeOn(Scheduler.sharedInstance.mainScheduler)
             .map { (response, data) throws -> Lists in
@@ -57,7 +57,7 @@ class ListsAction {
             "to_list_id": toListID,
             "prev_to_task_id": 0
         ]
-        FasciaAPIService.sharedInstance.call("/projects/\(projectID)/lists/\(listID)/tasks/\(taskID)/move_task", method: .post, params: params as [String : AnyObject]?)
+        FasciaAPIService.sharedInstance.call(path: "/projects/\(projectID)/lists/\(listID)/tasks/\(taskID)/move_task", method: .post, params: params as [String : AnyObject]?)
             .subscribeOn(Scheduler.sharedInstance.backgroundScheduler)
             .observeOn(Scheduler.sharedInstance.mainScheduler)
             .map { (response, data) throws -> Lists in

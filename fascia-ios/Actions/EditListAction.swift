@@ -22,7 +22,7 @@ class EditListAction {
         }
         isLoading.value = true
         err.value = nil
-        FasciaAPIService.sharedInstance.call("/projects/\(projectID)/lists/\(listID)", method: .post, params: params)
+        FasciaAPIService.sharedInstance.call(path: "/projects/\(projectID)/lists/\(listID)", method: .post, params: params)
             .subscribeOn(Scheduler.sharedInstance.backgroundScheduler)
             .observeOn(Scheduler.sharedInstance.mainScheduler)
             .map { (response, data) throws -> List in
