@@ -748,12 +748,14 @@
 				BUNDLE_NAME = Fascia;
 				CODE_SIGN_IDENTITY = "iPhone Distribution: Akira Fukushima (HB4N6B2YVM)";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Distribution: Akira Fukushima (HB4N6B2YVM)";
+				DEVELOPMENT_TEAM = HB4N6B2YVM;
 				INFOPLIST_FILE = "fascia-ios/Info.plist";
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				OTHER_SWIFT_FLAGS = "$(inherited) \"-D\" \"COCOAPODS\" \"-D\" \"ADHOC\"";
 				PRODUCT_BUNDLE_IDENTIFIER = io.fascia;
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				PROVISIONING_PROFILE = "c34a5165-6cd1-4996-ac12-e46824367752";
+				PROVISIONING_PROFILE = "61951688-b774-4a30-8f14-8861cec21e91";
+				PROVISIONING_PROFILE_SPECIFIER = FasciaAdHoc;
 				SWIFT_VERSION = 3.0;
 			};
 			name = AdHoc;
@@ -866,8 +868,8 @@
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				BUNDLE_NAME = FasciaDev;
-				CODE_SIGN_IDENTITY = "iPhone Developer";
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				CODE_SIGN_IDENTITY = "iPhone Developer: Akira Fukushima (9PQ8S3P587)";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer: Akira Fukushima (9PQ8S3P587)";
 				INFOPLIST_FILE = "fascia-ios/Info.plist";
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				OTHER_SWIFT_FLAGS = "$(inherited) \"-D\" \"COCOAPODS\" \"-D\" \"DEBUG\"";
@@ -885,8 +887,8 @@
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				BUNDLE_NAME = Fascia;
-				CODE_SIGN_IDENTITY = "iPhone Distribution";
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Distribution";
+				CODE_SIGN_IDENTITY = "iPhone Distribution: Akira Fukushima (HB4N6B2YVM)";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Distribution: Akira Fukushima (HB4N6B2YVM)";
 				INFOPLIST_FILE = "fascia-ios/Info.plist";
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				OTHER_SWIFT_FLAGS = "$(inherited) \"-D\" \"COCOAPODS\" \"-D\" \"RELEASE\"";
