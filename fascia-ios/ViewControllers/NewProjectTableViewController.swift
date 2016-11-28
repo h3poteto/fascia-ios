@@ -74,7 +74,6 @@ class NewProjectTableViewController: UITableViewController {
         }
     }
 
-
     override func tableView(_ tableView: UITableView, willSelectRowAt indexPath: IndexPath) -> IndexPath? {
         switch (indexPath.section, indexPath.row) {
         case (1, 1):

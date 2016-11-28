@@ -243,7 +243,6 @@ class ListsTableViewController: UITableViewController, UIGestureRecognizerDelega
     }
     //------------------------------------------
 
-
     fileprivate func showSignInView() {
         if let signIn = UIStoryboard.instantiateViewController("SignInViewController", storyboardName: "Main") as? UIViewController {
             self.present(signIn, animated: true, completion: nil)

@@ -36,7 +36,7 @@ class ListsAction {
             }
             .subscribe(onNext: { (lists) in
                     print(lists.lists)
-                    print(lists.noneList)
+                    print(lists.noneList ?? "")
                     self.lists.value = lists
                 }, onError: { (errorType) in
                     self.err.value = errorType
@@ -71,7 +71,7 @@ class ListsAction {
             }
             .subscribe(onNext: { (lists) in
                     print(lists.lists)
-                    print(lists.noneList)
+                    print(lists.noneList ?? "")
                     self.lists.value = lists
                 }, onError: { (errorType) in
                     self.err.value = errorType

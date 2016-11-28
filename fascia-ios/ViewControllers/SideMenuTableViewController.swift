@@ -38,7 +38,6 @@ class SideMenuTableViewController: UITableViewController {
         }
     }
 
-
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         switch (indexPath.section, indexPath.row) {
         case (0, 0):

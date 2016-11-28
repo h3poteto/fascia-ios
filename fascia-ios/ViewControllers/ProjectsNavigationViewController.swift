@@ -17,7 +17,6 @@ protocol SideMenuable {
     var disposeBag: DisposeBag { get }
 }
 
-
 extension SideMenuable {
     func sideMenuSetup(_ parentController: UIViewController) {
         parentController.navigationItem.leftBarButtonItem = openSideMenu
@@ -30,7 +29,6 @@ extension SideMenuable {
             .addDisposableTo(disposeBag)
     }
 }
-
 
 class ProjectsNavigationViewController: UINavigationController {
 

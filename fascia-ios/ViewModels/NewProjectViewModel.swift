@@ -38,8 +38,6 @@ class NewProjectViewModel {
 
         isLoading = action.isLoading.asDriver()
         err = action.err.asDriver()
-
-
     }
 
     func update(_ title: String?, description: String?, repository: Repository?) {

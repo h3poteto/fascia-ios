@@ -17,7 +17,6 @@ class RepositoriesViewModel {
     final fileprivate(set) var err: Driver<Error?> = Driver.never()
     var selectedRepository: Variable<Repository?> = Variable(nil)
 
-
     init() {
         dataUpdated = Driver
             .combineLatest(

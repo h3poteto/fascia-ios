@@ -111,7 +111,6 @@ class EditListTableViewController: UITableViewController {
         present(alert, animated: true, completion: nil)
     }
 
-
     fileprivate func bindViewModel() {
         cancelButton
             .rx

@@ -44,7 +44,6 @@ class SignInViewController: UIViewController, UIWebViewDelegate, SideMenuable {
         viewModel.isLoading.value = false
     }
 
-
     func webView(_ webView: UIWebView, shouldStartLoadWith request: URLRequest, navigationType: UIWebViewNavigationType) -> Bool {
         if request.url?.host == URL(string: viewModel.signInURL!)?.host && request.url?.path == "/webviews/callback" {
             viewModel.update()

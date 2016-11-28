@@ -41,7 +41,6 @@ class NewTaskTableViewController: UITableViewController {
         return 2
     }
 
-
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let defaultCell = UITableViewCell(style: .default, reuseIdentifier: "Cell")
         switch(indexPath.row) {
@@ -61,7 +60,6 @@ class NewTaskTableViewController: UITableViewController {
             return defaultCell
         }
     }
-
 
     fileprivate func bindViewModel() {
         cancelButton

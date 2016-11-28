@@ -36,7 +36,6 @@ class EditListViewModel {
         edit.color = model.color
         editList = Variable(edit)
 
-
         dataUpdated = Driver
             .combineLatest(
                 editListAction.list.asDriver(),
