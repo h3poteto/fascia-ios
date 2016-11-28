@@ -77,6 +77,6 @@ class NewProjectViewModel {
     func fetch(_ newProject: NewProject) {
         print(newProject)
         let params = Mapper<NewProject>().toJSON(newProject)
-        action.request(params as [String : AnyObject])
+        action.request(parameter: params as [String : AnyObject])
     }
 }

@@ -16,7 +16,7 @@ class ListVisibleAction {
     final let err: Variable<Error?> = Variable(nil)
     final let disposeBag = DisposeBag()
 
-    func hide(_ list: List) {
+    func hide(list: List) {
         if isLoading.value {
             return
         }
@@ -45,7 +45,7 @@ class ListVisibleAction {
             .addDisposableTo(disposeBag)
     }
 
-    func display(_ list: List) {
+    func display(list: List) {
         if isLoading.value {
             return
         }

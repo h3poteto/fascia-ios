@@ -74,6 +74,6 @@ class NewTaskViewModel {
 
     func fetch() {
         let params = Mapper<NewTask>().toJSON(newTask.value)
-        action.request(list.projectID!, listID: list.id!, params: params as [String : AnyObject])
+        action.request(projectID: list.projectID!, listID: list.id!, params: params as [String : AnyObject])
     }
 }

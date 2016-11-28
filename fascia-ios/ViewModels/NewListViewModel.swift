@@ -80,6 +80,6 @@ class NewListViewModel {
 
     func fetch() {
         let params = Mapper<NewList>().toJSON(newList.value)
-        action.request(project.id!, params: params as [String : AnyObject])
+        action.request(projectID: project.id!, params: params as [String : AnyObject])
     }
 }

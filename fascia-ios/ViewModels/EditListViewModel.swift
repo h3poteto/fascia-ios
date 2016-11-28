@@ -105,6 +105,6 @@ class EditListViewModel {
 
     func fetch() {
         let params = Mapper<EditList>().toJSON(editList.value)
-        editListAction.request(list.projectID!, listID: list.id!, params: params as [String : AnyObject])
+        editListAction.request(projectID: list.projectID!, listID: list.id!, params: params as [String : AnyObject])
     }
 }

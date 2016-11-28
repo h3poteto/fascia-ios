@@ -78,6 +78,6 @@ class EditProjectViewModel {
     func fetch(_ editProject: EditProject) {
         print(editProject)
         let params = Mapper<EditProject>().toJSON(editProject)
-        action.request(project.id!, params: params as [String : AnyObject])
+        action.request(projectID: project.id!, params: params as [String : AnyObject])
     }
 }

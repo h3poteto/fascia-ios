@@ -44,9 +44,9 @@ class ListSectionViewModel {
             return
         }
         if hidden {
-            action.display(list.value)
+            action.display(list: list.value)
         } else {
-            action.hide(list.value)
+            action.hide(list: list.value)
         }
     }
 }

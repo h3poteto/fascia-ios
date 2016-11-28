@@ -16,7 +16,7 @@ class ListsAction {
     final let err: Variable<Error?> = Variable(nil)
     final let disposeBag = DisposeBag()
 
-    func request(_ projectID: Int) {
+    func request(projectID: Int) {
         if isLoading.value {
             return
         }
@@ -47,7 +47,7 @@ class ListsAction {
             .addDisposableTo(disposeBag)
     }
 
-    func moveRequest(_ projectID: Int, taskID: Int, listID: Int, toListID: Int) {
+    func moveRequest(projectID: Int, taskID: Int, listID: Int, toListID: Int) {
         if isLoading.value {
             return
         }

@@ -35,7 +35,7 @@ class ListsViewModel {
     }
 
     func fetch() {
-        action.request(project.id!)
+        action.request(projectID: project.id!)
     }
 
     func contextItems() -> [ContextItem] {
@@ -89,6 +89,6 @@ class ListsViewModel {
         guard let list = item.object as? List else {
             return
         }
-        action.moveRequest(project.id!, taskID: task.id!, listID: task.listID!, toListID: list.id!)
+        action.moveRequest(projectID: project.id!, taskID: task.id!, listID: task.listID!, toListID: list.id!)
     }
 }
