@@ -11,7 +11,7 @@ import RxSwift
 import RxCocoa
 
 protocol ContextMenuDelegate {
-    func itemTap(_ item: ContextItem, task: Task) -> Void
+    func itemTap(item: ContextItem, task: Task) -> Void
     func closeContextMenu() -> Void
 }
 
@@ -129,11 +129,11 @@ class ContextMenuViewController: UIViewController {
             circle = CircleMenu.upSemicircle
         }
 
-        showItems(circle, point: touchPoint)
-        showSelectedCircle(touchPoint)
+        showItems(menu: circle, point: touchPoint)
+        showSelectedCircle(point: touchPoint)
     }
 
-    fileprivate func showSelectedCircle(_ point: CGPoint) {
+    fileprivate func showSelectedCircle(point: CGPoint) {
         let circleLayer = CAShapeLayer()
         circleLayer.strokeColor = UIColor.flatPowderBlue.cgColor
         circleLayer.fillColor = UIColor(red: 1.0, green: 1.0, blue: 1.0, alpha: 0.0).cgColor
@@ -165,7 +165,7 @@ class ContextMenuViewController: UIViewController {
     // 0を起点として，PI/(n - 1)ごと
     // ただし，itemが1のことはありえない．デフォルトのリストは削除させないので，最低でも4つのリストが存在する．
     //----------------------------------------------
-    fileprivate func showItems(_ menu: CircleMenu, point: CGPoint) {
+    fileprivate func showItems(menu: CircleMenu, point: CGPoint) {
         let itemCount = items.count
         if itemCount < 2 {
             return
@@ -177,7 +177,7 @@ class ContextMenuViewController: UIViewController {
             for (index, item) in items.enumerated() {
                 let delta_x = circleRadius * cos(CGFloat(index) * singleRadius)
                 let delta_y = circleRadius * sin(CGFloat(index) * singleRadius)
-                displayItem(item, point: CGPoint(x: point.x + delta_x, y: point.y - delta_y), startPos: point)
+                displayItem(item: item, point: CGPoint(x: point.x + delta_x, y: point.y - delta_y), startPos: point)
             }
             break
         case .downSemicircle:
@@ -185,7 +185,7 @@ class ContextMenuViewController: UIViewController {
             for (index, item) in items.enumerated() {
                 let delta_x = circleRadius * cos(CGFloat(index) * singleRadius - CGFloat(M_PI))
                 let delta_y = circleRadius * sin(CGFloat(index) * singleRadius - CGFloat(M_PI))
-                displayItem(item, point: CGPoint(x: point.x + delta_x, y: point.y - delta_y), startPos: point)
+                displayItem(item: item, point: CGPoint(x: point.x + delta_x, y: point.y - delta_y), startPos: point)
             }
             break
         case .rightSemicircle:
@@ -193,7 +193,7 @@ class ContextMenuViewController: UIViewController {
             for (index, item) in items.enumerated() {
                 let delta_x = circleRadius * cos(CGFloat(index) * singleRadius - CGFloat(M_PI / 2.0))
                 let delta_y = circleRadius * sin(CGFloat(index) * singleRadius - CGFloat(M_PI / 2.0))
-                displayItem(item, point: CGPoint(x: point.x + delta_x, y: point.y - delta_y), startPos: point)
+                displayItem(item: item, point: CGPoint(x: point.x + delta_x, y: point.y - delta_y), startPos: point)
             }
             break
         case .leftSemicircle:
@@ -201,7 +201,7 @@ class ContextMenuViewController: UIViewController {
             for (index, item) in items.enumerated() {
                 let delta_x = circleRadius * cos(CGFloat(index) * singleRadius + CGFloat(M_PI / 2.0))
                 let delta_y = circleRadius * sin(CGFloat(index) * singleRadius + CGFloat(M_PI / 2.0))
-                displayItem(item, point: CGPoint(x: point.x + delta_x, y: point.y - delta_y), startPos: point)
+                displayItem(item: item, point: CGPoint(x: point.x + delta_x, y: point.y - delta_y), startPos: point)
             }
             break
         case .rightUpQuadrant:
@@ -209,7 +209,7 @@ class ContextMenuViewController: UIViewController {
             for (index, item) in items.enumerated() {
                 let delta_x = circleRadius * cos(CGFloat(index) * singleRadius)
                 let delta_y = circleRadius * sin(CGFloat(index) * singleRadius)
-                displayItem(item, point: CGPoint(x: point.x + delta_x, y: point.y - delta_y), startPos: point)
+                displayItem(item: item, point: CGPoint(x: point.x + delta_x, y: point.y - delta_y), startPos: point)
             }
             break
         case .rightDownQuadrant:
@@ -217,7 +217,7 @@ class ContextMenuViewController: UIViewController {
             for (index, item) in items.enumerated() {
                 let delta_x = circleRadius * cos(CGFloat(index) * singleRadius - CGFloat(M_PI / 2.0))
                 let delta_y = circleRadius * sin(CGFloat(index) * singleRadius - CGFloat(M_PI / 2.0))
-                displayItem(item, point: CGPoint(x: point.x + delta_x, y: point.y - delta_y), startPos: point)
+                displayItem(item: item, point: CGPoint(x: point.x + delta_x, y: point.y - delta_y), startPos: point)
             }
             break
         case .leftUpQuadrant:
@@ -225,7 +225,7 @@ class ContextMenuViewController: UIViewController {
             for (index, item) in items.enumerated() {
                 let delta_x = circleRadius * cos(CGFloat(index) * singleRadius + CGFloat(M_PI / 2.0))
                 let delta_y = circleRadius * sin(CGFloat(index) * singleRadius + CGFloat(M_PI / 2.0))
-                displayItem(item, point: CGPoint(x: point.x + delta_x, y: point.y - delta_y), startPos: point)
+                displayItem(item: item, point: CGPoint(x: point.x + delta_x, y: point.y - delta_y), startPos: point)
             }
             break
         case .leftDownQuadrant:
@@ -233,7 +233,7 @@ class ContextMenuViewController: UIViewController {
             for (index, item) in items.enumerated() {
                 let delta_x = circleRadius * cos(CGFloat(index) * singleRadius - CGFloat(M_PI))
                 let delta_y = circleRadius * sin(CGFloat(index) * singleRadius - CGFloat(M_PI))
-                displayItem(item, point: CGPoint(x: point.x + delta_x, y: point.y - delta_y), startPos: point)
+                displayItem(item: item, point: CGPoint(x: point.x + delta_x, y: point.y - delta_y), startPos: point)
             }
             break
         }
@@ -241,7 +241,7 @@ class ContextMenuViewController: UIViewController {
 
     // 現状ではタップで遷移させている
     // もしD&Dで実現するならラベルも出せる
-    fileprivate func displayItem(_ item: ContextItem, point: CGPoint, startPos: CGPoint) {
+    fileprivate func displayItem(item: ContextItem, point: CGPoint, startPos: CGPoint) {
         let circleImageButton = UIButton(type: UIButtonType.custom)
         circleImageButton.setBackgroundImage(item.image, for: UIControlState())
         circleImageButton.setBackgroundImage(item.highlightedImage, for: .highlighted)
@@ -265,16 +265,16 @@ class ContextMenuViewController: UIViewController {
             .rx
             .tap
             .subscribe(onNext: { () in
-                self.selectedItem(item)
+                self.selectedItem(item: item)
             }, onError: nil, onCompleted: nil, onDisposed: nil)
             .addDisposableTo(disposeBag)
     }
 
-    fileprivate func selectedItem(_ item: ContextItem) {
+    fileprivate func selectedItem(item: ContextItem) {
         guard let task = self.selectedTask else {
             return
         }
-        delegate.itemTap(item, task: task)
+        delegate.itemTap(item: item, task: task)
         end()
     }
 

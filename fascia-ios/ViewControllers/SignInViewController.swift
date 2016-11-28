@@ -21,7 +21,7 @@ class SignInViewController: UIViewController, UIWebViewDelegate, SideMenuable {
 
     override func viewDidLoad() {
         super.viewDidLoad()
-        sideMenuSetup(self)
+        sideMenuSetup(parentController: self)
         bindViewModel()
         guard let signInURL = viewModel.signInURL else {
             return

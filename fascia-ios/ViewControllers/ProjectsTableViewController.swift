@@ -23,7 +23,7 @@ class ProjectsTableViewController: UITableViewController, SideMenuable {
 
     override func viewDidLoad() {
         super.viewDidLoad()
-        sideMenuSetup(self)
+        sideMenuSetup(parentController: self)
         bindViewModel()
     }
 

@@ -86,7 +86,7 @@ class ListsTableViewController: UITableViewController, UIGestureRecognizerDelega
                 return sectionView
             }
             let sectionVM = ListSectionViewModel(model: noneList)
-            bindListSectionViewModel(sectionVM)
+            bindListSectionViewModel(vm: sectionVM)
             sectionView.viewModel = sectionVM
             return sectionView
         } else {
@@ -94,7 +94,7 @@ class ListsTableViewController: UITableViewController, UIGestureRecognizerDelega
                 return sectionView
             }
             let sectionVM = ListSectionViewModel(model: lists.lists[section - 1])
-            bindListSectionViewModel(sectionVM)
+            bindListSectionViewModel(vm: sectionVM)
             sectionView.viewModel = sectionVM
             let button = UIButton(type: UIButtonType.custom)
             button.setTitle("Edit", for: UIControlState())
@@ -109,7 +109,7 @@ class ListsTableViewController: UITableViewController, UIGestureRecognizerDelega
                     }
                     let editListView = editListNavigation.viewControllers.first as? EditListTableViewController
                     let vm = EditListViewModel(model: lists.lists[section - 1])
-                    self.bindEditListViewModel(vm)
+                    self.bindEditListViewModel(vm: vm)
                     editListView?.viewModel = vm
                     self.show(editListNavigation, sender: nil)
                 }, onError: nil, onCompleted: nil, onDisposed: nil)
@@ -166,7 +166,7 @@ class ListsTableViewController: UITableViewController, UIGestureRecognizerDelega
         }
         switch (indexPath.section, indexPath.row) {
         case (0, noneList.listTasks.count):
-            prepareNewTaskView(noneList)
+            prepareNewTaskView(list: noneList)
                 .observeOn(Scheduler.sharedInstance.mainScheduler)
                 .subscribeOn(Scheduler.sharedInstance.mainScheduler)
                 .subscribe(onNext: { (navigation) in
@@ -175,7 +175,7 @@ class ListsTableViewController: UITableViewController, UIGestureRecognizerDelega
                 .addDisposableTo(disposeBag)
             return
         case (1..<(lists.lists.count + 1), lists.lists[indexPath.section - 1].listTasks.count):
-            prepareNewTaskView(lists.lists[indexPath.section - 1])
+            prepareNewTaskView(list: lists.lists[indexPath.section - 1])
                 .observeOn(Scheduler.sharedInstance.mainScheduler)
                 .subscribeOn(Scheduler.sharedInstance.mainScheduler)
                 .subscribe(onNext: { (navigation) in
@@ -230,7 +230,7 @@ class ListsTableViewController: UITableViewController, UIGestureRecognizerDelega
     //------------------------------------------
     // ContextMenuDelegate
     //------------------------------------------
-    func itemTap(_ item: ContextItem, task: Task) {
+    func itemTap(item: ContextItem, task: Task) {
         viewModel.moveRequest(item: item, task: task)
     }
 
@@ -254,18 +254,18 @@ class ListsTableViewController: UITableViewController, UIGestureRecognizerDelega
             let newListView = newListNavigation.viewControllers.first as? NewListTableViewController
             let vm = NewListViewModel(model: NewList(), project: viewModel.project)
             newListView?.viewModel = vm
-            bindNewListViewModel(vm)
+            bindNewListViewModel(vm: vm)
             show(newListNavigation, sender: nil)
         }
     }
 
-    fileprivate func prepareNewTaskView(_ list: List) -> Observable<UINavigationController> {
+    fileprivate func prepareNewTaskView(list: List) -> Observable<UINavigationController> {
         return Observable.create({ observe -> Disposable in
             if let newTaskNavigation = UIStoryboard.instantiateViewController(identifier: "NewTaskNavigationController", storyboardName: "Lists") as? UINavigationController {
                 let newTaskView = newTaskNavigation.viewControllers.first as? NewTaskTableViewController
                 let vm = NewTaskViewModel(model: NewTask(), list: list)
                 newTaskView?.viewModel = vm
-                self.bindNewTaskViewModel(vm)
+                self.bindNewTaskViewModel(vm: vm)
                 observe.onNext(newTaskNavigation)
             }
             observe.onCompleted()
@@ -327,7 +327,7 @@ class ListsTableViewController: UITableViewController, UIGestureRecognizerDelega
 
     }
 
-    fileprivate func bindListSectionViewModel(_ vm: ListSectionViewModel) {
+    fileprivate func bindListSectionViewModel(vm: ListSectionViewModel) {
         vm.listsUpdated
             .drive(onNext: { (lists) in
                 if lists != nil {
@@ -367,7 +367,7 @@ class ListsTableViewController: UITableViewController, UIGestureRecognizerDelega
             .addDisposableTo(disposeBag)
     }
 
-    fileprivate func bindNewListViewModel(_ vm: NewListViewModel) {
+    fileprivate func bindNewListViewModel(vm: NewListViewModel) {
         vm.dataUpdated
             .drive(onNext: { (list) in
                 if list != nil {
@@ -405,7 +405,7 @@ class ListsTableViewController: UITableViewController, UIGestureRecognizerDelega
             .addDisposableTo(disposeBag)
     }
 
-    fileprivate func bindEditListViewModel(_ vm: EditListViewModel) {
+    fileprivate func bindEditListViewModel(vm: EditListViewModel) {
         vm.dataUpdated
             .drive(onNext: { (list) in
                 if list != nil {
@@ -444,7 +444,7 @@ class ListsTableViewController: UITableViewController, UIGestureRecognizerDelega
             .addDisposableTo(disposeBag)
     }
 
-    fileprivate func bindNewTaskViewModel(_ vm: NewTaskViewModel) {
+    fileprivate func bindNewTaskViewModel(vm: NewTaskViewModel) {
         vm.dataUpdated
             .drive(onNext: { (task) in
                 if task != nil {

@@ -13,12 +13,12 @@ import RxCocoa
 
 protocol SideMenuable {
     var openSideMenu: UIBarButtonItem { get }
-    func sideMenuSetup(_ parentController: UIViewController)
+    func sideMenuSetup(parentController: UIViewController)
     var disposeBag: DisposeBag { get }
 }
 
 extension SideMenuable {
-    func sideMenuSetup(_ parentController: UIViewController) {
+    func sideMenuSetup(parentController: UIViewController) {
         parentController.navigationItem.leftBarButtonItem = openSideMenu
         openSideMenu
             .rx
