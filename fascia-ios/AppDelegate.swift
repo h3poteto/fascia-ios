@@ -20,7 +20,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         // Fabricの初期化
         Fabric.with([Crashlytics.self])
         // InitialViewControllerも用意してあるので，walkthroughとか表示するならこのコードを消すだけで遷移できる
-        guard let projects = UIStoryboard.instantiateViewController("ProjectsNavigationViewController", storyboardName: "Projects") as? ProjectsNavigationViewController else {
+        guard let projects = UIStoryboard.instantiateViewController(identifier: "ProjectsNavigationViewController", storyboardName: "Projects") as? ProjectsNavigationViewController else {
             return true
         }
         self.window?.rootViewController = projects

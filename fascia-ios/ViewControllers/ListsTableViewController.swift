@@ -104,7 +104,7 @@ class ListsTableViewController: UITableViewController, UIGestureRecognizerDelega
                 .tap
                 .subscribe(onNext: { () in
                     sectionView.setSlideState(SESlideTableViewCellSlideState.center, animated: true)
-                    guard let editListNavigation = UIStoryboard.instantiateViewController("EditListNavigationController", storyboardName: "Lists") as? UINavigationController else {
+                    guard let editListNavigation = UIStoryboard.instantiateViewController(identifier: "EditListNavigationController", storyboardName: "Lists") as? UINavigationController else {
                         return
                     }
                     let editListView = editListNavigation.viewControllers.first as? EditListTableViewController
@@ -244,13 +244,13 @@ class ListsTableViewController: UITableViewController, UIGestureRecognizerDelega
     //------------------------------------------
 
     fileprivate func showSignInView() {
-        if let signIn = UIStoryboard.instantiateViewController("SignInViewController", storyboardName: "Main") as? UIViewController {
+        if let signIn = UIStoryboard.instantiateViewController(identifier: "SignInViewController", storyboardName: "Main") as? UIViewController {
             self.present(signIn, animated: true, completion: nil)
         }
     }
 
     fileprivate func showNewListView() {
-        if let newListNavigation = UIStoryboard.instantiateViewController("NewListNavigationController", storyboardName: "Lists") as? UINavigationController {
+        if let newListNavigation = UIStoryboard.instantiateViewController(identifier: "NewListNavigationController", storyboardName: "Lists") as? UINavigationController {
             let newListView = newListNavigation.viewControllers.first as? NewListTableViewController
             let vm = NewListViewModel(model: NewList(), project: viewModel.project)
             newListView?.viewModel = vm
@@ -261,7 +261,7 @@ class ListsTableViewController: UITableViewController, UIGestureRecognizerDelega
 
     fileprivate func prepareNewTaskView(_ list: List) -> Observable<UINavigationController> {
         return Observable.create({ observe -> Disposable in
-            if let newTaskNavigation = UIStoryboard.instantiateViewController("NewTaskNavigationController", storyboardName: "Lists") as? UINavigationController {
+            if let newTaskNavigation = UIStoryboard.instantiateViewController(identifier: "NewTaskNavigationController", storyboardName: "Lists") as? UINavigationController {
                 let newTaskView = newTaskNavigation.viewControllers.first as? NewTaskTableViewController
                 let vm = NewTaskViewModel(model: NewTask(), list: list)
                 newTaskView?.viewModel = vm

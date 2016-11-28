@@ -58,7 +58,7 @@ class ProjectsTableViewController: UITableViewController, SideMenuable {
             .tap
             .subscribe(onNext: { () in
                 cell.setSlideState(SESlideTableViewCellSlideState.center, animated: true)
-                guard let editProjectNavigation = UIStoryboard.instantiateViewController("EditProjectNavigationController", storyboardName: "Projects") as? UINavigationController else {
+                guard let editProjectNavigation = UIStoryboard.instantiateViewController(identifier: "EditProjectNavigationController", storyboardName: "Projects") as? UINavigationController else {
                     return
                 }
                 let editProject = editProjectNavigation.viewControllers.first as? EditProjectTableViewController
@@ -75,14 +75,14 @@ class ProjectsTableViewController: UITableViewController, SideMenuable {
     }
 
     override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        if let listsView = UIStoryboard.instantiateViewController("ListsTableViewController", storyboardName: "Lists") as? ListsTableViewController {
+        if let listsView = UIStoryboard.instantiateViewController(identifier: "ListsTableViewController", storyboardName: "Lists") as? ListsTableViewController {
             listsView.viewModel = ListsViewModel(project: viewModel.projects[indexPath.row])
             self.navigationController?.pushViewController(listsView, animated: true)
         }
     }
 
     fileprivate func showSignInView() {
-        if let signIn = UIStoryboard.instantiateViewController("SignInViewController", storyboardName: "Main") as? SignInViewController {
+        if let signIn = UIStoryboard.instantiateViewController(identifier: "SignInViewController", storyboardName: "Main") as? SignInViewController {
             signIn.rx_viewDidDisappear
                 .subscribe(onNext: { () in
                     self.viewModel.fetch()
@@ -146,7 +146,7 @@ class ProjectsTableViewController: UITableViewController, SideMenuable {
     }
 
     fileprivate func showNewProject() {
-        guard let newProjectNavigation = UIStoryboard.instantiateViewController("NewProjectNavigationViewController", storyboardName: "Projects") as? UINavigationController else {
+        guard let newProjectNavigation = UIStoryboard.instantiateViewController(identifier: "NewProjectNavigationViewController", storyboardName: "Projects") as? UINavigationController else {
             return
         }
         let newProjectView = newProjectNavigation.viewControllers.first as? NewProjectTableViewController

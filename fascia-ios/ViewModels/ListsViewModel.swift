@@ -47,12 +47,12 @@ class ListsViewModel {
         items.append(ContextItem(
             title: noneList.title!,
             image: UIImage.imageWithString(
-                String(noneList.title![noneList.title!.startIndex]),
+                text: String(noneList.title![noneList.title!.startIndex]),
                 foregroundColor: ContrastColorOf(noneListColor, returnFlat: false),
                 backgroundColor: noneListColor,
                 shadowColor: ComplementaryFlatColorOf(noneListColor))!,
             highlightedImage: UIImage.imageWithString(
-                String(noneList.title![noneList.title!.startIndex]),
+                text: String(noneList.title![noneList.title!.startIndex]),
                 foregroundColor: UIColor(contrastingBlackOrWhiteColorOn: noneListColor, isFlat: false),
                 backgroundColor: noneListColor.darken(byPercentage: 0.25)!,
                 shadowColor: ComplementaryFlatColorOf(noneListColor))!,
@@ -69,12 +69,12 @@ class ListsViewModel {
             items.append(ContextItem(
                 title: list.title!,
                 image: UIImage.imageWithString(
-                    String(list.title![list.title!.startIndex]),
+                    text: String(list.title![list.title!.startIndex]),
                     foregroundColor: contrastColor,
                     backgroundColor: listColor,
                     shadowColor: ComplementaryFlatColorOf(listColor))!,
                 highlightedImage: UIImage.imageWithString(
-                    String(list.title![list.title!.startIndex]),
+                    text: String(list.title![list.title!.startIndex]),
                     foregroundColor: contrastColor,
                     backgroundColor: listColor.darken(byPercentage: 0.25)!,
                     shadowColor: ComplementaryFlatColorOf(listColor))!,

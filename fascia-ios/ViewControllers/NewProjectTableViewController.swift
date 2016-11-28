@@ -86,7 +86,7 @@ class NewProjectTableViewController: UITableViewController {
     override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         switch (indexPath.section, indexPath.row) {
         case (1, 1):
-            if let repositories = UIStoryboard.instantiateViewController("RepositoriesTableViewController", storyboardName: "Projects") as? RepositoriesTableViewController {
+            if let repositories = UIStoryboard.instantiateViewController(identifier: "RepositoriesTableViewController", storyboardName: "Projects") as? RepositoriesTableViewController {
                 repositories.viewModel = self.repositoryViewModel
                 self.navigationController?.pushViewController(repositories, animated: true)
             }
@@ -97,7 +97,7 @@ class NewProjectTableViewController: UITableViewController {
     }
 
     fileprivate func showSignInView() {
-        if let signIn = UIStoryboard.instantiateViewController("SignInViewController", storyboardName: "Main") as? UIViewController {
+        if let signIn = UIStoryboard.instantiateViewController(identifier: "SignInViewController", storyboardName: "Main") as? UIViewController {
             self.present(signIn, animated: true, completion: nil)
         }
     }

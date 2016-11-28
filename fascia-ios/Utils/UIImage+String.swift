@@ -9,7 +9,7 @@
 import UIKit
 
 extension UIImage {
-    class func imageWithString(_ text: String, foregroundColor: UIColor, backgroundColor: UIColor, shadowColor: UIColor) -> UIImage? {
+    class func imageWithString(text: String, foregroundColor: UIColor, backgroundColor: UIColor, shadowColor: UIColor) -> UIImage? {
         let size = CGSize(width: 24, height: 24)
         UIGraphicsBeginImageContextWithOptions(size, true, 0)
 

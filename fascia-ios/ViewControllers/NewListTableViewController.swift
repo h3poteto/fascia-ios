@@ -64,7 +64,7 @@ class NewListTableViewController: UITableViewController, UIPopoverPresentationCo
     override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         switch (indexPath.section, indexPath.row) {
         case (0, 1):
-            guard let colorPicker = UIStoryboard.instantiateViewController("ColorPickerViewController", storyboardName: "Lists") as? ColorPickerViewController else {
+            guard let colorPicker = UIStoryboard.instantiateViewController(identifier: "ColorPickerViewController", storyboardName: "Lists") as? ColorPickerViewController else {
                 return
             }
             guard let color = viewModel.color.value else {
