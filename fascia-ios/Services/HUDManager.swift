@@ -12,7 +12,7 @@ import RxSwift
 import RxCocoa
 
 class HUDManager {
-    fileprivate let disposeBag = DisposeBag()
+    private let disposeBag = DisposeBag()
 
     init() {
         SVProgressHUD.setDefaultStyle(.dark)

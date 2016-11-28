@@ -25,5 +25,5 @@ class Scheduler {
 
     // MARK: - Initializers
 
-    fileprivate init() {}
+    private init() {}
 }

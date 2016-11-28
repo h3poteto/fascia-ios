@@ -25,9 +25,9 @@ class FasciaAPIService {
 #else
     let APIHost = "https://fascia.io"
 #endif
-    fileprivate var manager: SessionManager
-    fileprivate let disposeBag = DisposeBag()
-    fileprivate static let CookieKey = "fascia-session"
+    private var manager: SessionManager
+    private let disposeBag = DisposeBag()
+    private static let CookieKey = "fascia-session"
     let signInURL: String?
 
     init() {
@@ -65,7 +65,7 @@ class FasciaAPIService {
         UserDefaults.standard.set(cookiesData, forKey: FasciaAPIService.CookieKey)
     }
 
-    fileprivate class func configureManager() -> SessionManager {
+    private class func configureManager() -> SessionManager {
         if let cookiesData = UserDefaults.standard.object(forKey: CookieKey) as? NSData {
             if let cookies = NSKeyedUnarchiver.unarchiveObject(with: cookiesData as Data) as? [HTTPCookie] {
                 for cookie: HTTPCookie in cookies {
