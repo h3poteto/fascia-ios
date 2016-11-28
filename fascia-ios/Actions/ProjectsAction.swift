@@ -13,7 +13,7 @@ class ProjectsAction {
     final let isLoading = Variable(false)
     final var projects = Variable([Project]())
     final let err: Variable<Error?> = Variable(nil)
-    final let disposeBag = DisposeBag()
+    private let disposeBag = DisposeBag()
 
     func request() {
         if isLoading.value {

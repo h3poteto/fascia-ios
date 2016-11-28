@@ -14,7 +14,7 @@ class RepositoryAction {
     final let isLoading = Variable(false)
     final var repositories = Variable([Repository]())
     final let err: Variable<Error?> = Variable(nil)
-    fileprivate let disposeBag = DisposeBag()
+    private let disposeBag = DisposeBag()
 
     func request() {
         if isLoading.value {

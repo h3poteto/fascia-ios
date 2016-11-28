@@ -14,7 +14,7 @@ class NewListAction {
     final let isLoading = Variable(false)
     final let list: Variable<List?> = Variable(nil)
     final let err: Variable<Error?> = Variable(nil)
-    final let disposeBag = DisposeBag()
+    private let disposeBag = DisposeBag()
 
     func request(projectID: Int, params: [String: AnyObject]) {
         if isLoading.value {

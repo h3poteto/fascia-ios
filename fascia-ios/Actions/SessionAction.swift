@@ -10,7 +10,7 @@ import RxSwift
 import RxCocoa
 
 class SessionAction {
-    fileprivate let disposeBag = DisposeBag()
+    private let disposeBag = DisposeBag()
 
     func updateSession() {
         FasciaAPIService.sharedInstance.call(path: "/session", method: .post, params: nil)
