@@ -85,7 +85,7 @@ class ListsViewModel {
         return items
     }
 
-    func moveRequest(_ item: ContextItem, task: Task) {
+    func moveRequest(item: ContextItem, task: Task) {
         guard let list = item.object as? List else {
             return
         }

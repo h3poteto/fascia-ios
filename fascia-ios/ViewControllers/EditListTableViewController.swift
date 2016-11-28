@@ -82,7 +82,7 @@ class EditListTableViewController: UITableViewController {
                 .rx_color()
                 .subscribe(onNext: { (color) in
                     let colorStr = (color.hexValue() as NSString).substring(from: 1)
-                    self.viewModel.update(nil, color: colorStr, option: nil)
+                    self.viewModel.update(title: nil, color: colorStr, option: nil)
                 }, onError: nil, onCompleted: nil, onDisposed: nil)
                 .addDisposableTo(disposeBag)
             // 選択状態を解除してからviewModelのupdateをかけないと，select時のbackgroundColorとしてsetされてしまう
@@ -102,7 +102,7 @@ class EditListTableViewController: UITableViewController {
         let alert = UIAlertController(title: "Action", message: nil, preferredStyle: .actionSheet)
         viewModel.listOptions.forEach { (listOption) in
             let action = UIAlertAction(title: listOption.action, style: .default, handler: { (optionAction) in
-                self.viewModel.update(nil, color: nil, option: listOption)
+                self.viewModel.update(title: nil, color: nil, option: listOption)
             })
             alert.addAction(action)
         }

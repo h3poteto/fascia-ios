@@ -42,7 +42,7 @@ class NewTaskViewModel {
         err = action.err.asDriver()
     }
 
-    func update(_ title: String?, description: String?) {
+    func update(title: String?, description: String?) {
         if title != nil {
             self.title.value = title
             newTask.value.title = title

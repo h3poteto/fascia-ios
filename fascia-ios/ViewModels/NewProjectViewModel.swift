@@ -40,7 +40,7 @@ class NewProjectViewModel {
         err = action.err.asDriver()
     }
 
-    func update(_ title: String?, description: String?, repository: Repository?) {
+    func update(title: String?, description: String?, repository: Repository?) {
         if title != nil {
             newProject.value.title = title
             self.title.value = title
@@ -59,7 +59,7 @@ class NewProjectViewModel {
         return valid()
             .do(onNext: { (result) in
                 if result {
-                    self.fetch(self.newProject.value)
+                    self.fetch(newProject: self.newProject.value)
                 }
             }, onError: nil, onCompleted: nil, onSubscribe: nil, onDispose: nil)
     }
@@ -74,7 +74,7 @@ class NewProjectViewModel {
             })
     }
 
-    func fetch(_ newProject: NewProject) {
+    func fetch(newProject: NewProject) {
         print(newProject)
         let params = Mapper<NewProject>().toJSON(newProject)
         action.request(parameter: params as [String : AnyObject])

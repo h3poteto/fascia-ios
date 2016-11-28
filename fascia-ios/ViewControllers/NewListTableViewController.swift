@@ -74,7 +74,7 @@ class NewListTableViewController: UITableViewController, UIPopoverPresentationCo
             colorPicker.rx_color()
                 .subscribe(onNext: { (color) in
                     let colorStr = (color.hexValue() as NSString).substring(from: 1)
-                    self.viewModel.update(nil, color: colorStr)
+                    self.viewModel.update(title: nil, color: colorStr)
                 }, onError: nil, onCompleted: nil, onDisposed: nil)
                 .addDisposableTo(disposeBag)
             // 選択状態を解除してからviewModelのupdateをかけないと，select時のbackgroundColorとしてsetされてしまう

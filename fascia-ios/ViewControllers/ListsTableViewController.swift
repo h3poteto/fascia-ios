@@ -231,7 +231,7 @@ class ListsTableViewController: UITableViewController, UIGestureRecognizerDelega
     // ContextMenuDelegate
     //------------------------------------------
     func itemTap(_ item: ContextItem, task: Task) {
-        viewModel.moveRequest(item, task: task)
+        viewModel.moveRequest(item: item, task: task)
     }
 
     func closeContextMenu() {

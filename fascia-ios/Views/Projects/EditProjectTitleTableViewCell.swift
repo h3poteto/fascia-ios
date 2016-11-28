@@ -44,7 +44,7 @@ class EditProjectTitleTableViewCell: UITableViewCell {
             .rx
             .text
             .subscribe(onNext: { (text) in
-                self.viewModel?.update(text, description: nil)
+                self.viewModel?.update(title: text, description: nil)
             }, onError: nil, onCompleted: nil)
             .addDisposableTo(disposeBag)
     }

@@ -43,7 +43,7 @@ class EditListTitleTableViewCell: UITableViewCell {
             .rx
             .text
             .subscribe(onNext: { (text) in
-                self.viewModel?.update(text, color: nil, option: nil)
+                self.viewModel?.update(title: text, color: nil, option: nil)
             }, onError: nil, onCompleted: nil, onDisposed: nil)
             .addDisposableTo(disposeBag)
     }

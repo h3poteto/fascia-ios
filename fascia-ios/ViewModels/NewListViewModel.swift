@@ -45,7 +45,7 @@ class NewListViewModel {
         title.value = newList.value.title
     }
 
-    func update(_ title: String?, color: String?) {
+    func update(title: String?, color: String?) {
         if title != nil {
             self.title.value = title
             newList.value.title = title

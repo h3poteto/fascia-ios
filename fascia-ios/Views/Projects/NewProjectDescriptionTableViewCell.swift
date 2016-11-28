@@ -35,7 +35,7 @@ class NewProjectDescriptionTableViewCell: UITableViewCell {
             .rx
             .text
             .subscribe(onNext: { (text) in
-                self.parentViewModel?.update(nil, description: text, repository: nil)
+                self.parentViewModel?.update(title: nil, description: text, repository: nil)
             }, onError: nil, onCompleted: nil, onDisposed: nil)
             .addDisposableTo(disposeBag)
     }

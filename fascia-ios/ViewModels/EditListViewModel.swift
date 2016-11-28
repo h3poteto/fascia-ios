@@ -66,7 +66,7 @@ class EditListViewModel {
         listOptionAction.request()
     }
 
-    func update(_ title: String?, color: String?, option: ListOption?) {
+    func update(title: String?, color: String?, option: ListOption?) {
         if title != nil {
             self.title.value = title
             editList.value.title = title
