@@ -11,9 +11,9 @@ import RxSwift
 import RxCocoa
 
 class NewProjectRepositoryTableViewCell: UITableViewCell {
-    @IBOutlet fileprivate weak var repositoryLabel: UILabel!
-    @IBOutlet fileprivate weak var selectRepositoryLabel: UILabel!
-    fileprivate let disposeBag = DisposeBag()
+    @IBOutlet private weak var repositoryLabel: UILabel!
+    @IBOutlet private weak var selectRepositoryLabel: UILabel!
+    private let disposeBag = DisposeBag()
     var parentViewModel: NewProjectViewModel? {
         didSet {
             guard let vModel = self.parentViewModel else { return }

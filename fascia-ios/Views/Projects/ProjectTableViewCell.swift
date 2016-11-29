@@ -13,9 +13,9 @@ import SESlideTableViewCell
 import ChameleonFramework
 
 class ProjectTableViewCell: SESlideTableViewCell {
-    @IBOutlet fileprivate weak var tilteLabel: UILabel!
-    @IBOutlet fileprivate weak var githubLabel: UIImageView!
-    @IBOutlet fileprivate weak var projectImage: UIImageView!
+    @IBOutlet private weak var tilteLabel: UILabel!
+    @IBOutlet private weak var githubLabel: UIImageView!
+    @IBOutlet private weak var projectImage: UIImageView!
 
     let disposeBag = DisposeBag()
 

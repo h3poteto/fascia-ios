@@ -11,10 +11,10 @@ import RxSwift
 import RxCocoa
 
 class NewProjectDescriptionTableViewCell: UITableViewCell {
-    @IBOutlet fileprivate weak var descriptionLabel: UILabel!
-    @IBOutlet fileprivate weak var descriptionText: UITextField!
+    @IBOutlet private weak var descriptionLabel: UILabel!
+    @IBOutlet private weak var descriptionText: UITextField!
 
-    fileprivate let disposeBag = DisposeBag()
+    private let disposeBag = DisposeBag()
 
     var parentViewModel: NewProjectViewModel?
 
@@ -30,7 +30,7 @@ class NewProjectDescriptionTableViewCell: UITableViewCell {
         // Configure the view for the selected state
     }
 
-    fileprivate func bindViewModel() {
+    private func bindViewModel() {
         descriptionText
             .rx
             .text

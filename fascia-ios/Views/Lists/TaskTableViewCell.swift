@@ -11,9 +11,9 @@ import RxSwift
 import RxCocoa
 
 class TaskTableViewCell: UITableViewCell {
-    @IBOutlet fileprivate weak var taskLabel: UILabel!
-    @IBOutlet fileprivate weak var taskColorImage: UIImageView!
-    fileprivate let disposeBag = DisposeBag()
+    @IBOutlet private weak var taskLabel: UILabel!
+    @IBOutlet private weak var taskColorImage: UIImageView!
+    private let disposeBag = DisposeBag()
     var viewModel: TaskCellViewModel? {
         didSet {
             guard let vModel = self.viewModel else { return }

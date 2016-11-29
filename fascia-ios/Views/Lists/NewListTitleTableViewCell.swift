@@ -11,10 +11,10 @@ import RxSwift
 import RxCocoa
 
 class NewListTitleTableViewCell: UITableViewCell {
-    @IBOutlet fileprivate weak var titleLabel: UILabel!
-    @IBOutlet fileprivate weak var titleText: UITextField!
+    @IBOutlet private weak var titleLabel: UILabel!
+    @IBOutlet private weak var titleText: UITextField!
     var viewModel: NewListViewModel?
-    fileprivate let disposeBag = DisposeBag()
+    private let disposeBag = DisposeBag()
 
     override func awakeFromNib() {
         super.awakeFromNib()
@@ -28,7 +28,7 @@ class NewListTitleTableViewCell: UITableViewCell {
         // Configure the view for the selected state
     }
 
-    fileprivate func bindViewModel() {
+    private func bindViewModel() {
         titleText
             .rx
             .text

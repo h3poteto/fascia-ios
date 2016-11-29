@@ -11,10 +11,10 @@ import RxSwift
 import RxCocoa
 
 class NewTaskDescriptionTableViewCell: UITableViewCell {
-    @IBOutlet fileprivate weak var descriptionLabel: UILabel!
-    @IBOutlet fileprivate weak var descriptionText: UITextField!
+    @IBOutlet private weak var descriptionLabel: UILabel!
+    @IBOutlet private weak var descriptionText: UITextField!
     var viewModel: NewTaskViewModel?
-    fileprivate let disposeBag = DisposeBag()
+    private let disposeBag = DisposeBag()
 
     override func awakeFromNib() {
         super.awakeFromNib()
@@ -27,7 +27,7 @@ class NewTaskDescriptionTableViewCell: UITableViewCell {
         // Configure the view for the selected state
     }
 
-    fileprivate func bindViewModel() {
+    private func bindViewModel() {
         descriptionText
             .rx
             .text

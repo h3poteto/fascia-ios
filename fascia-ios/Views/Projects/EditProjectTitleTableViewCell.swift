@@ -11,9 +11,9 @@ import RxSwift
 import RxCocoa
 
 class EditProjectTitleTableViewCell: UITableViewCell {
-    @IBOutlet fileprivate weak var titleLabel: UILabel!
-    @IBOutlet fileprivate weak var titleText: UITextField!
-    fileprivate let disposeBag = DisposeBag()
+    @IBOutlet private weak var titleLabel: UILabel!
+    @IBOutlet private weak var titleText: UITextField!
+    private let disposeBag = DisposeBag()
     var viewModel: EditProjectViewModel? {
         didSet {
             guard let vModel = self.viewModel else { return }
@@ -39,7 +39,7 @@ class EditProjectTitleTableViewCell: UITableViewCell {
         // Configure the view for the selected state
     }
 
-    fileprivate func bindViewModel() {
+    private func bindViewModel() {
         titleText
             .rx
             .text

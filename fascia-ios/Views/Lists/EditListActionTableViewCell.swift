@@ -11,8 +11,8 @@ import RxSwift
 import RxCocoa
 
 class EditListActionTableViewCell: UITableViewCell {
-    @IBOutlet fileprivate weak var actionLabel: UILabel!
-    fileprivate let disposeBag = DisposeBag()
+    @IBOutlet private weak var actionLabel: UILabel!
+    private let disposeBag = DisposeBag()
     var viewModel: EditListViewModel? {
         didSet {
             guard let vModel = viewModel else { return }

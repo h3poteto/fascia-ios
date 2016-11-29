@@ -11,8 +11,8 @@ import RxSwift
 import RxCocoa
 
 class RepositoryTableViewCell: UITableViewCell {
-    @IBOutlet fileprivate weak var nameLabel: UILabel!
-    @IBOutlet fileprivate weak var privateImage: UIImageView!
+    @IBOutlet private weak var nameLabel: UILabel!
+    @IBOutlet private weak var privateImage: UIImageView!
 
     let disposeBag = DisposeBag()
 
