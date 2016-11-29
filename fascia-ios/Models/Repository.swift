@@ -19,7 +19,7 @@ class Repository: Mappable {
     var ownerName: String?
     var privateRepository: Bool?
 
-    class func buildWithArray(_ repositories: [[String: AnyObject]]) -> [Repository] {
+    class func buildWithArray(repositories: [[String: AnyObject]]) -> [Repository] {
         var arr: [Repository] = []
         for dict in repositories {
             if let repository = Mapper<Repository>().map(JSON: dict) {

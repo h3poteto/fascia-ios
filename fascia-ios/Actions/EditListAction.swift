@@ -6,7 +6,6 @@
 //  Copyright © 2016年 h3poteto. All rights reserved.
 //
 
-
 import RxSwift
 import RxCocoa
 import ObjectMapper
@@ -15,15 +14,15 @@ class EditListAction {
     final let isLoading = Variable(false)
     final let list: Variable<List?> = Variable(nil)
     final let err: Variable<Error?> = Variable(nil)
-    final let disposeBag = DisposeBag()
+    private let disposeBag = DisposeBag()
 
-    func request(_ projectID: Int, listID: Int, params: [String: AnyObject]) {
+    func request(projectID: Int, listID: Int, params: [String: AnyObject]) {
         if isLoading.value {
             return
         }
         isLoading.value = true
         err.value = nil
-        FasciaAPIService.sharedInstance.call("/projects/\(projectID)/lists/\(listID)", method: .post, params: params)
+        FasciaAPIService.sharedInstance.call(path: "/projects/\(projectID)/lists/\(listID)", method: .post, params: params)
             .subscribeOn(Scheduler.sharedInstance.backgroundScheduler)
             .observeOn(Scheduler.sharedInstance.mainScheduler)
             .map { (response, data) throws -> List in

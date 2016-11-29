@@ -13,9 +13,9 @@ import CSNotificationView
 import ChameleonFramework
 
 class EditListTableViewController: UITableViewController {
-    @IBOutlet fileprivate weak var cancelButton: UIBarButtonItem!
-    @IBOutlet fileprivate weak var saveButton: UIBarButtonItem!
-    fileprivate let disposeBag = DisposeBag()
+    @IBOutlet private weak var cancelButton: UIBarButtonItem!
+    @IBOutlet private weak var saveButton: UIBarButtonItem!
+    private let disposeBag = DisposeBag()
     var viewModel: EditListViewModel!
 
     override func viewDidLoad() {
@@ -71,7 +71,7 @@ class EditListTableViewController: UITableViewController {
     override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         switch (indexPath.section, indexPath.row) {
         case (0, 1):
-            guard let colorPicker = UIStoryboard.instantiateViewController("ColorPickerViewController", storyboardName: "Lists") as? ColorPickerViewController else {
+            guard let colorPicker = UIStoryboard.instantiateViewController(identifier: "ColorPickerViewController", storyboardName: "Lists") as? ColorPickerViewController else {
                 return
             }
             guard let color = viewModel.color.value else {
@@ -82,7 +82,7 @@ class EditListTableViewController: UITableViewController {
                 .rx_color()
                 .subscribe(onNext: { (color) in
                     let colorStr = (color.hexValue() as NSString).substring(from: 1)
-                    self.viewModel.update(nil, color: colorStr, option: nil)
+                    self.viewModel.update(title: nil, color: colorStr, option: nil)
                 }, onError: nil, onCompleted: nil, onDisposed: nil)
                 .addDisposableTo(disposeBag)
             // 選択状態を解除してからviewModelのupdateをかけないと，select時のbackgroundColorとしてsetされてしまう
@@ -98,11 +98,11 @@ class EditListTableViewController: UITableViewController {
         }
     }
 
-    fileprivate func listOptionAlert() {
+    private func listOptionAlert() {
         let alert = UIAlertController(title: "Action", message: nil, preferredStyle: .actionSheet)
         viewModel.listOptions.forEach { (listOption) in
             let action = UIAlertAction(title: listOption.action, style: .default, handler: { (optionAction) in
-                self.viewModel.update(nil, color: nil, option: listOption)
+                self.viewModel.update(title: nil, color: nil, option: listOption)
             })
             alert.addAction(action)
         }
@@ -111,8 +111,7 @@ class EditListTableViewController: UITableViewController {
         present(alert, animated: true, completion: nil)
     }
 
-
-    fileprivate func bindViewModel() {
+    private func bindViewModel() {
         cancelButton
             .rx
             .tap

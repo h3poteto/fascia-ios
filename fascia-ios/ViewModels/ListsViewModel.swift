@@ -11,12 +11,12 @@ import RxCocoa
 import ChameleonFramework
 
 class ListsViewModel {
-    final fileprivate let action = ListsAction()
+    final private let action = ListsAction()
     final var lists: Lists?
     var project: Project!
-    final fileprivate(set) var listsUpdated: Driver<Lists?> = Driver.never()
-    final fileprivate(set) var isLoading: Driver<Bool> = Driver.never()
-    final fileprivate(set) var err: Driver<Error?> = Driver.never()
+    final private(set) var listsUpdated: Driver<Lists?> = Driver.never()
+    final private(set) var isLoading: Driver<Bool> = Driver.never()
+    final private(set) var err: Driver<Error?> = Driver.never()
     var contextMenuVisible = false
 
     init(project: Project) {
@@ -35,7 +35,7 @@ class ListsViewModel {
     }
 
     func fetch() {
-        action.request(project.id!)
+        action.request(projectID: project.id!)
     }
 
     func contextItems() -> [ContextItem] {
@@ -47,12 +47,12 @@ class ListsViewModel {
         items.append(ContextItem(
             title: noneList.title!,
             image: UIImage.imageWithString(
-                String(noneList.title![noneList.title!.startIndex]),
+                text: String(noneList.title![noneList.title!.startIndex]),
                 foregroundColor: ContrastColorOf(noneListColor, returnFlat: false),
                 backgroundColor: noneListColor,
                 shadowColor: ComplementaryFlatColorOf(noneListColor))!,
             highlightedImage: UIImage.imageWithString(
-                String(noneList.title![noneList.title!.startIndex]),
+                text: String(noneList.title![noneList.title!.startIndex]),
                 foregroundColor: UIColor(contrastingBlackOrWhiteColorOn: noneListColor, isFlat: false),
                 backgroundColor: noneListColor.darken(byPercentage: 0.25)!,
                 shadowColor: ComplementaryFlatColorOf(noneListColor))!,
@@ -69,12 +69,12 @@ class ListsViewModel {
             items.append(ContextItem(
                 title: list.title!,
                 image: UIImage.imageWithString(
-                    String(list.title![list.title!.startIndex]),
+                    text: String(list.title![list.title!.startIndex]),
                     foregroundColor: contrastColor,
                     backgroundColor: listColor,
                     shadowColor: ComplementaryFlatColorOf(listColor))!,
                 highlightedImage: UIImage.imageWithString(
-                    String(list.title![list.title!.startIndex]),
+                    text: String(list.title![list.title!.startIndex]),
                     foregroundColor: contrastColor,
                     backgroundColor: listColor.darken(byPercentage: 0.25)!,
                     shadowColor: ComplementaryFlatColorOf(listColor))!,
@@ -85,10 +85,10 @@ class ListsViewModel {
         return items
     }
 
-    func moveRequest(_ item: ContextItem, task: Task) {
+    func moveRequest(item: ContextItem, task: Task) {
         guard let list = item.object as? List else {
             return
         }
-        action.moveRequest(project.id!, taskID: task.id!, listID: task.listID!, toListID: list.id!)
+        action.moveRequest(projectID: project.id!, taskID: task.id!, listID: task.listID!, toListID: list.id!)
     }
 }

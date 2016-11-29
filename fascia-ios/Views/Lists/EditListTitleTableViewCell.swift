@@ -11,8 +11,8 @@ import RxSwift
 import RxCocoa
 
 class EditListTitleTableViewCell: UITableViewCell {
-    @IBOutlet fileprivate weak var titleText: UITextField!
-    fileprivate let disposeBag = DisposeBag()
+    @IBOutlet private weak var titleText: UITextField!
+    private let disposeBag = DisposeBag()
     var viewModel: EditListViewModel? {
         didSet {
             guard let vModel = viewModel else { return }
@@ -38,12 +38,12 @@ class EditListTitleTableViewCell: UITableViewCell {
         // Configure the view for the selected state
     }
 
-    fileprivate func bindViewModel() {
+    private func bindViewModel() {
         titleText
             .rx
             .text
             .subscribe(onNext: { (text) in
-                self.viewModel?.update(text, color: nil, option: nil)
+                self.viewModel?.update(title: text, color: nil, option: nil)
             }, onError: nil, onCompleted: nil, onDisposed: nil)
             .addDisposableTo(disposeBag)
     }

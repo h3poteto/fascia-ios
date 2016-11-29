@@ -17,7 +17,7 @@ class ListOption: Mappable {
     var id: Int?
     var action: String?
 
-    class func buildWithArray(_ listOptions: [[String: AnyObject]]) -> [ListOption] {
+    class func buildWithArray(listOptions: [[String: AnyObject]]) -> [ListOption] {
         var arr: [ListOption] = []
         for dict in listOptions {
             if let listOption = Mapper<ListOption>().map(JSON: dict) {
@@ -27,7 +27,7 @@ class ListOption: Mappable {
         return arr
     }
 
-    class func findAction(_ listOptions: [ListOption], id: Int) -> ListOption? {
+    class func findAction(listOptions: [ListOption], id: Int) -> ListOption? {
         var option: ListOption?
         for o in listOptions {
             if o.id != nil && o.id == id {

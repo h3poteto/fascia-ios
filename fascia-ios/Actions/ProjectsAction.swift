@@ -13,7 +13,7 @@ class ProjectsAction {
     final let isLoading = Variable(false)
     final var projects = Variable([Project]())
     final let err: Variable<Error?> = Variable(nil)
-    final let disposeBag = DisposeBag()
+    private let disposeBag = DisposeBag()
 
     func request() {
         if isLoading.value {
@@ -21,14 +21,14 @@ class ProjectsAction {
         }
         isLoading.value = true
         err.value = nil
-        FasciaAPIService.sharedInstance.call("/projects", method: .get, params: nil)
+        FasciaAPIService.sharedInstance.call(path: "/projects", method: .get, params: nil)
             .subscribeOn(Scheduler.sharedInstance.backgroundScheduler)
             .observeOn(Scheduler.sharedInstance.mainScheduler)
             .map({ (response, data) throws -> [Project] in
                 guard let json = try JSONSerialization.jsonObject(with: data as Data, options: .allowFragments) as? [[String: AnyObject]] else {
                     throw ProjectError.parserError
                 }
-                return Project.buildWithArray(json)
+                return Project.buildWithArray(projects: json)
             })
             .subscribe(onNext: { (projects) -> Void in
                     print(projects)

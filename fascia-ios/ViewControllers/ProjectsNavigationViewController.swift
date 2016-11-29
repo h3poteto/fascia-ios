@@ -13,13 +13,12 @@ import RxCocoa
 
 protocol SideMenuable {
     var openSideMenu: UIBarButtonItem { get }
-    func sideMenuSetup(_ parentController: UIViewController)
+    func sideMenuSetup(parentController: UIViewController)
     var disposeBag: DisposeBag { get }
 }
 
-
 extension SideMenuable {
-    func sideMenuSetup(_ parentController: UIViewController) {
+    func sideMenuSetup(parentController: UIViewController) {
         parentController.navigationItem.leftBarButtonItem = openSideMenu
         openSideMenu
             .rx
@@ -31,13 +30,12 @@ extension SideMenuable {
     }
 }
 
-
 class ProjectsNavigationViewController: UINavigationController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
 
-        guard let leftNav = UIStoryboard.instantiateViewController("UISideMenuNavigationController", storyboardName: "Main") as? UISideMenuNavigationController else {
+        guard let leftNav = UIStoryboard.instantiateViewController(identifier: "UISideMenuNavigationController", storyboardName: "Main") as? UISideMenuNavigationController else {
             return
         }
         SideMenuManager.menuLeftNavigationController = leftNav

@@ -13,7 +13,7 @@ class ListOptionsAction {
     final let isLoading = Variable(false)
     final let listOptions = Variable([ListOption]())
     final let err: Variable<Error?> = Variable(nil)
-    final let disposeBag = DisposeBag()
+    private let disposeBag = DisposeBag()
 
     func request() {
         if isLoading.value {
@@ -21,14 +21,14 @@ class ListOptionsAction {
         }
         isLoading.value = false
         err.value = nil
-        FasciaAPIService.sharedInstance.call("/list_options", method: .get, params: nil)
+        FasciaAPIService.sharedInstance.call(path: "/list_options", method: .get, params: nil)
             .observeOn(Scheduler.sharedInstance.mainScheduler)
             .subscribeOn(Scheduler.sharedInstance.backgroundScheduler)
             .map { (response, data) throws -> [ListOption] in
                 guard let json = try JSONSerialization.jsonObject(with: data as Data, options: .allowFragments) as? [[String: AnyObject]] else {
                     throw ListOptionError.parserError
                 }
-                return ListOption.buildWithArray(json)
+                return ListOption.buildWithArray(listOptions: json)
             }
             .subscribe(onNext: { (listOptions) -> Void in
                 print(listOptions)

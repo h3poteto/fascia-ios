@@ -12,10 +12,10 @@ import RxCocoa
 import CSNotificationView
 
 class EditProjectTableViewController: UITableViewController {
-    @IBOutlet fileprivate weak var saveButton: UIBarButtonItem!
-    @IBOutlet fileprivate weak var cancelButton: UIBarButtonItem!
+    @IBOutlet private weak var saveButton: UIBarButtonItem!
+    @IBOutlet private weak var cancelButton: UIBarButtonItem!
     var viewModel: EditProjectViewModel!
-    fileprivate let disposeBag = DisposeBag()
+    private let disposeBag = DisposeBag()
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -39,7 +39,6 @@ class EditProjectTableViewController: UITableViewController {
         return 2
     }
 
-
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         switch (indexPath.section, indexPath.row) {
         case (0, 0):
@@ -59,7 +58,7 @@ class EditProjectTableViewController: UITableViewController {
         }
     }
 
-    fileprivate func bindViewModel() {
+    private func bindViewModel() {
         cancelButton
             .rx
             .tap

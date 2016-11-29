@@ -14,7 +14,7 @@ class RepositoryAction {
     final let isLoading = Variable(false)
     final var repositories = Variable([Repository]())
     final let err: Variable<Error?> = Variable(nil)
-    fileprivate let disposeBag = DisposeBag()
+    private let disposeBag = DisposeBag()
 
     func request() {
         if isLoading.value {
@@ -22,14 +22,14 @@ class RepositoryAction {
         }
         isLoading.value = true
         err.value = nil
-        FasciaAPIService.sharedInstance.call("/github/repositories", method: .get, params: nil)
+        FasciaAPIService.sharedInstance.call(path: "/github/repositories", method: .get, params: nil)
             .subscribeOn(Scheduler.sharedInstance.backgroundScheduler)
             .observeOn(Scheduler.sharedInstance.mainScheduler)
             .map({ (response, data) -> [Repository] in
                 guard let json = try JSONSerialization.jsonObject(with: data as Data, options: .allowFragments) as? [[String: AnyObject]] else {
                     throw RepositoryError.parserError
                 }
-                return Repository.buildWithArray(json)
+                return Repository.buildWithArray(repositories: json)
             })
             .subscribe(onNext: { (repositories) in
                     print(repositories)

@@ -12,9 +12,9 @@ import RxCocoa
 import SESlideTableViewCell
 
 class ListSectionTableViewCell: SESlideTableViewCell {
-    @IBOutlet fileprivate weak var listTitle: UILabel!
-    @IBOutlet fileprivate weak var expandImageView: UIImageView!
-    fileprivate let disposeBag = DisposeBag()
+    @IBOutlet private weak var listTitle: UILabel!
+    @IBOutlet private weak var expandImageView: UIImageView!
+    private let disposeBag = DisposeBag()
     var viewModel: ListSectionViewModel? {
         didSet {
             guard let vModel = self.viewModel else { return }

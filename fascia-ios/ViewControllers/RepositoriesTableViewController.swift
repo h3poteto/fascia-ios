@@ -12,7 +12,7 @@ import RxCocoa
 
 class RepositoriesTableViewController: UITableViewController {
     var viewModel: RepositoriesViewModel!
-    fileprivate let disposeBag = DisposeBag()
+    private let disposeBag = DisposeBag()
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -51,7 +51,7 @@ class RepositoriesTableViewController: UITableViewController {
         self.navigationController?.popViewController(animated: true)
     }
 
-    fileprivate func bindViewModel() {
+    private func bindViewModel() {
         viewModel.dataUpdated
             .drive(onNext: { (repositories) in
                 self.tableView.reloadData()

@@ -10,7 +10,7 @@ import RxSwift
 import RxCocoa
 
 class ProjectsViewModel: NSObject {
-    fileprivate final let action = ProjectsAction()
+    private final let action = ProjectsAction()
     final var projects = [Project]()
     final fileprivate(set) var dataUpdated: Driver<[Project]> = Driver.never()
     final fileprivate(set) var isLoading: Driver<Bool> = Driver.never()

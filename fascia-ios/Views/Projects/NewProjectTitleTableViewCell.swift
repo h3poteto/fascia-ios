@@ -11,10 +11,10 @@ import RxSwift
 import RxCocoa
 
 class NewProjectTitleTableViewCell: UITableViewCell {
-    @IBOutlet fileprivate weak var titleLabel: UILabel!
-    @IBOutlet fileprivate weak var titleText: UITextField!
+    @IBOutlet private weak var titleLabel: UILabel!
+    @IBOutlet private weak var titleText: UITextField!
 
-    fileprivate let disposeBag = DisposeBag()
+    private let disposeBag = DisposeBag()
 
     var parentViewModel: NewProjectViewModel? {
         didSet {
@@ -42,12 +42,12 @@ class NewProjectTitleTableViewCell: UITableViewCell {
         // Configure the view for the selected state
     }
 
-    fileprivate func bindViewModel() {
+    private func bindViewModel() {
         titleText
             .rx
             .text
             .subscribe(onNext: { (text) in
-                self.parentViewModel?.update(text, description: nil, repository: nil)
+                self.parentViewModel?.update(title: text, description: nil, repository: nil)
             }, onError: nil, onCompleted: nil, onDisposed: nil)
             .addDisposableTo(disposeBag)
     }

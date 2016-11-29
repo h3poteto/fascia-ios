@@ -12,8 +12,8 @@ import RxCocoa
 import ChameleonFramework
 
 class EditListColorTableViewCell: UITableViewCell {
-    @IBOutlet fileprivate weak var colorImage: UIImageView!
-    fileprivate let disposeBag = DisposeBag()
+    @IBOutlet private weak var colorImage: UIImageView!
+    private let disposeBag = DisposeBag()
     var viewModel: EditListViewModel? {
         didSet {
             guard let vModel = self.viewModel else { return }

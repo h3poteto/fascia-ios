@@ -15,14 +15,14 @@ enum NewTaskValidationError: Error {
 }
 
 class NewTaskViewModel {
-    fileprivate let action = NewTaskAction()
-    fileprivate(set) var newTask: Variable<NewTask>
-    fileprivate var list: List
-    fileprivate(set) var title: Variable<String?> = Variable(nil)
-    fileprivate(set) var description: Variable<String?> = Variable(nil)
-    final fileprivate(set) var dataUpdated: Driver<Task?> = Driver.never()
-    final fileprivate(set) var isLoading: Driver<Bool> = Driver.never()
-    final fileprivate(set) var err: Driver<Error?> = Driver.never()
+    private let action = NewTaskAction()
+    private(set) var newTask: Variable<NewTask>
+    private var list: List
+    private(set) var title: Variable<String?> = Variable(nil)
+    private(set) var description: Variable<String?> = Variable(nil)
+    final private(set) var dataUpdated: Driver<Task?> = Driver.never()
+    final private(set) var isLoading: Driver<Bool> = Driver.never()
+    final private(set) var err: Driver<Error?> = Driver.never()
 
     init(model: NewTask, list: List) {
         self.newTask = Variable(model)
@@ -42,7 +42,7 @@ class NewTaskViewModel {
         err = action.err.asDriver()
     }
 
-    func update(_ title: String?, description: String?) {
+    func update(title: String?, description: String?) {
         if title != nil {
             self.title.value = title
             newTask.value.title = title
@@ -74,6 +74,6 @@ class NewTaskViewModel {
 
     func fetch() {
         let params = Mapper<NewTask>().toJSON(newTask.value)
-        action.request(list.projectID!, listID: list.id!, params: params as [String : AnyObject])
+        action.request(projectID: list.projectID!, listID: list.id!, params: params as [String : AnyObject])
     }
 }

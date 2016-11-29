@@ -6,7 +6,6 @@
 //  Copyright © 2016年 h3poteto. All rights reserved.
 //
 
-
 import ObjectMapper
 
 class NewProject: Mappable {

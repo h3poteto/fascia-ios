@@ -15,15 +15,15 @@ import SESlideTableViewCell
 import ChameleonFramework
 
 class ProjectsTableViewController: UITableViewController, SideMenuable {
-    @IBOutlet fileprivate weak var refresh: UIRefreshControl!
-    @IBOutlet fileprivate weak var newProjectButton: UIBarButtonItem!
-    fileprivate var viewModel = ProjectsViewModel()
+    @IBOutlet private weak var refresh: UIRefreshControl!
+    @IBOutlet private weak var newProjectButton: UIBarButtonItem!
+    private var viewModel = ProjectsViewModel()
     var disposeBag = DisposeBag()
     var openSideMenu: UIBarButtonItem = UIBarButtonItem(image: UIImage(named: "SideMenu"), style: UIBarButtonItemStyle.plain, target: nil, action: nil)
 
     override func viewDidLoad() {
         super.viewDidLoad()
-        sideMenuSetup(self)
+        sideMenuSetup(parentController: self)
         bindViewModel()
     }
 
@@ -58,7 +58,7 @@ class ProjectsTableViewController: UITableViewController, SideMenuable {
             .tap
             .subscribe(onNext: { () in
                 cell.setSlideState(SESlideTableViewCellSlideState.center, animated: true)
-                guard let editProjectNavigation = UIStoryboard.instantiateViewController("EditProjectNavigationController", storyboardName: "Projects") as? UINavigationController else {
+                guard let editProjectNavigation = UIStoryboard.instantiateViewController(identifier: "EditProjectNavigationController", storyboardName: "Projects") as? UINavigationController else {
                     return
                 }
                 let editProject = editProjectNavigation.viewControllers.first as? EditProjectTableViewController
@@ -75,14 +75,14 @@ class ProjectsTableViewController: UITableViewController, SideMenuable {
     }
 
     override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        if let listsView = UIStoryboard.instantiateViewController("ListsTableViewController", storyboardName: "Lists") as? ListsTableViewController {
+        if let listsView = UIStoryboard.instantiateViewController(identifier: "ListsTableViewController", storyboardName: "Lists") as? ListsTableViewController {
             listsView.viewModel = ListsViewModel(project: viewModel.projects[indexPath.row])
             self.navigationController?.pushViewController(listsView, animated: true)
         }
     }
 
-    fileprivate func showSignInView() {
-        if let signIn = UIStoryboard.instantiateViewController("SignInViewController", storyboardName: "Main") as? SignInViewController {
+    private func showSignInView() {
+        if let signIn = UIStoryboard.instantiateViewController(identifier: "SignInViewController", storyboardName: "Main") as? SignInViewController {
             signIn.rx_viewDidDisappear
                 .subscribe(onNext: { () in
                     self.viewModel.fetch()
@@ -92,7 +92,7 @@ class ProjectsTableViewController: UITableViewController, SideMenuable {
         }
     }
 
-    fileprivate func bindViewModel() {
+    private func bindViewModel() {
         viewModel.dataUpdated
             .drive(onNext: { (projects) in
                 self.viewModel.projects = projects
@@ -145,8 +145,8 @@ class ProjectsTableViewController: UITableViewController, SideMenuable {
 
     }
 
-    fileprivate func showNewProject() {
-        guard let newProjectNavigation = UIStoryboard.instantiateViewController("NewProjectNavigationViewController", storyboardName: "Projects") as? UINavigationController else {
+    private func showNewProject() {
+        guard let newProjectNavigation = UIStoryboard.instantiateViewController(identifier: "NewProjectNavigationViewController", storyboardName: "Projects") as? UINavigationController else {
             return
         }
         let newProjectView = newProjectNavigation.viewControllers.first as? NewProjectTableViewController
@@ -158,7 +158,7 @@ class ProjectsTableViewController: UITableViewController, SideMenuable {
 
     // 新規プロジェクト作成のViewModelとのつなぎ込みで，このviewに関係あるものをここで設定
     // 管理的にはここに居ないほうがわかりやすかもしれない
-    fileprivate func bindNewProjectViewModel(_ vm: NewProjectViewModel) {
+    private func bindNewProjectViewModel(_ vm: NewProjectViewModel) {
         vm.dataUpdated
             .drive(onNext: { (project) in
                 if project != nil {
@@ -193,7 +193,7 @@ class ProjectsTableViewController: UITableViewController, SideMenuable {
             .addDisposableTo(disposeBag)
     }
 
-    fileprivate func bindEditProjectViewModel(_ vm: EditProjectViewModel) {
+    private func bindEditProjectViewModel(_ vm: EditProjectViewModel) {
         vm.dataUpdated
             .drive(onNext: { (project) in
                 if project != nil {

@@ -15,13 +15,13 @@ enum NewProjectValidationError: Error {
 }
 
 class NewProjectViewModel {
-    fileprivate final let action = NewProjectAction()
-    fileprivate(set) var newProject: Variable<NewProject>
-    final fileprivate(set) var title: Variable<String?> = Variable(nil)
+    final private let action = NewProjectAction()
+    private(set) var newProject: Variable<NewProject>
+    final private(set) var title: Variable<String?> = Variable(nil)
     var repository: Variable<Repository?> = Variable(nil)
-    final fileprivate(set) var dataUpdated: Driver<Project?> = Driver.never()
-    final fileprivate(set) var isLoading: Driver<Bool> = Driver.never()
-    final fileprivate(set) var err: Driver<Error?> = Driver.never()
+    final private(set) var dataUpdated: Driver<Project?> = Driver.never()
+    final private(set) var isLoading: Driver<Bool> = Driver.never()
+    final private(set) var err: Driver<Error?> = Driver.never()
 
     init(model: NewProject) {
         self.newProject = Variable(model)
@@ -38,11 +38,9 @@ class NewProjectViewModel {
 
         isLoading = action.isLoading.asDriver()
         err = action.err.asDriver()
-
-
     }
 
-    func update(_ title: String?, description: String?, repository: Repository?) {
+    func update(title: String?, description: String?, repository: Repository?) {
         if title != nil {
             newProject.value.title = title
             self.title.value = title
@@ -61,7 +59,7 @@ class NewProjectViewModel {
         return valid()
             .do(onNext: { (result) in
                 if result {
-                    self.fetch(self.newProject.value)
+                    self.fetch(newProject: self.newProject.value)
                 }
             }, onError: nil, onCompleted: nil, onSubscribe: nil, onDispose: nil)
     }
@@ -76,9 +74,9 @@ class NewProjectViewModel {
             })
     }
 
-    func fetch(_ newProject: NewProject) {
+    func fetch(newProject: NewProject) {
         print(newProject)
         let params = Mapper<NewProject>().toJSON(newProject)
-        action.request(params as [String : AnyObject])
+        action.request(parameter: params as [String : AnyObject])
     }
 }

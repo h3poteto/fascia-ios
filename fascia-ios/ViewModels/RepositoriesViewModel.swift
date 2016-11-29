@@ -10,13 +10,12 @@ import RxSwift
 import RxCocoa
 
 class RepositoriesViewModel {
-    fileprivate final let action = RepositoryAction()
+    private final let action = RepositoryAction()
     final var repositories = [Repository]()
-    final fileprivate(set) var dataUpdated: Driver<[Repository]> = Driver.never()
-    final fileprivate(set) var isLoading: Driver<Bool> = Driver.never()
-    final fileprivate(set) var err: Driver<Error?> = Driver.never()
+    final private(set) var dataUpdated: Driver<[Repository]> = Driver.never()
+    final private(set) var isLoading: Driver<Bool> = Driver.never()
+    final private(set) var err: Driver<Error?> = Driver.never()
     var selectedRepository: Variable<Repository?> = Variable(nil)
-
 
     init() {
         dataUpdated = Driver

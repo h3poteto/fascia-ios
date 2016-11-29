@@ -22,7 +22,7 @@ class Project: Mappable {
     var showPullRequests: Bool?
     var repositoryID: Int?
 
-    class func buildWithArray(_ projects: [[String: AnyObject]]) -> [Project] {
+    class func buildWithArray(projects: [[String: AnyObject]]) -> [Project] {
         var arr: [Project] = []
         for dict in projects {
             if let project = Mapper<Project>().map(JSON: dict) {

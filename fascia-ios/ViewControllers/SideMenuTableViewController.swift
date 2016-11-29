@@ -38,7 +38,6 @@ class SideMenuTableViewController: UITableViewController {
         }
     }
 
-
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         switch (indexPath.section, indexPath.row) {
         case (0, 0):
@@ -68,12 +67,12 @@ class SideMenuTableViewController: UITableViewController {
     override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         switch (indexPath.section, indexPath.row) {
         case (1, 0):
-            if let projects = UIStoryboard.instantiateViewController("ProjectsTableViewController", storyboardName: "Projects") as? UITableViewController {
+            if let projects = UIStoryboard.instantiateViewController(identifier: "ProjectsTableViewController", storyboardName: "Projects") as? UITableViewController {
                 show(projects, sender: nil)
             }
             break
         case (1, 1):
-            if let signIn = UIStoryboard.instantiateViewController("SignInViewController", storyboardName: "Main") as? UIViewController {
+            if let signIn = UIStoryboard.instantiateViewController(identifier: "SignInViewController", storyboardName: "Main") as? UIViewController {
                 show(signIn, sender: true)
             }
             break

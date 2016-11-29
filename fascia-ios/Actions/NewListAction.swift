@@ -14,15 +14,15 @@ class NewListAction {
     final let isLoading = Variable(false)
     final let list: Variable<List?> = Variable(nil)
     final let err: Variable<Error?> = Variable(nil)
-    final let disposeBag = DisposeBag()
+    private let disposeBag = DisposeBag()
 
-    func request(_ projectID: Int, params: [String: AnyObject]) {
+    func request(projectID: Int, params: [String: AnyObject]) {
         if isLoading.value {
             return
         }
         isLoading.value = true
         err.value = nil
-        FasciaAPIService.sharedInstance.call("/projects/\(projectID)/lists", method: .post, params: params)
+        FasciaAPIService.sharedInstance.call(path: "/projects/\(projectID)/lists", method: .post, params: params)
             .subscribeOn(Scheduler.sharedInstance.backgroundScheduler)
             .observeOn(Scheduler.sharedInstance.mainScheduler)
             .map { (response, data) throws -> List in

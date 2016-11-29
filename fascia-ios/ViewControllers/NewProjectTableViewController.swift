@@ -12,9 +12,9 @@ import RxCocoa
 import CSNotificationView
 
 class NewProjectTableViewController: UITableViewController {
-    @IBOutlet fileprivate weak var saveButton: UIBarButtonItem!
-    @IBOutlet fileprivate weak var cancelButton: UIBarButtonItem!
-    fileprivate let disposeBag = DisposeBag()
+    @IBOutlet private weak var saveButton: UIBarButtonItem!
+    @IBOutlet private weak var cancelButton: UIBarButtonItem!
+    private let disposeBag = DisposeBag()
     var viewModel: NewProjectViewModel!
     var repositoryViewModel = RepositoriesViewModel()
 
@@ -74,7 +74,6 @@ class NewProjectTableViewController: UITableViewController {
         }
     }
 
-
     override func tableView(_ tableView: UITableView, willSelectRowAt indexPath: IndexPath) -> IndexPath? {
         switch (indexPath.section, indexPath.row) {
         case (1, 1):
@@ -87,7 +86,7 @@ class NewProjectTableViewController: UITableViewController {
     override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         switch (indexPath.section, indexPath.row) {
         case (1, 1):
-            if let repositories = UIStoryboard.instantiateViewController("RepositoriesTableViewController", storyboardName: "Projects") as? RepositoriesTableViewController {
+            if let repositories = UIStoryboard.instantiateViewController(identifier: "RepositoriesTableViewController", storyboardName: "Projects") as? RepositoriesTableViewController {
                 repositories.viewModel = self.repositoryViewModel
                 self.navigationController?.pushViewController(repositories, animated: true)
             }
@@ -97,13 +96,13 @@ class NewProjectTableViewController: UITableViewController {
         }
     }
 
-    fileprivate func showSignInView() {
-        if let signIn = UIStoryboard.instantiateViewController("SignInViewController", storyboardName: "Main") as? UIViewController {
+    private func showSignInView() {
+        if let signIn = UIStoryboard.instantiateViewController(identifier: "SignInViewController", storyboardName: "Main") as? UIViewController {
             self.present(signIn, animated: true, completion: nil)
         }
     }
 
-    fileprivate func bindViewModel() {
+    private func bindViewModel() {
         cancelButton
             .rx
             .tap
@@ -137,7 +136,7 @@ class NewProjectTableViewController: UITableViewController {
             .addDisposableTo(disposeBag)
     }
 
-    fileprivate func bindRepositoryViewModel() {
+    private func bindRepositoryViewModel() {
         repositoryViewModel.fetch()
         repositoryViewModel.dataUpdated
             .drive(onNext: { (repositories) in
@@ -164,7 +163,7 @@ class NewProjectTableViewController: UITableViewController {
         repositoryViewModel.selectedRepository.asDriver()
             .drive(onNext: { (repository) in
                 self.viewModel.repository.value = repository
-                self.viewModel.update(repository?.name, description: nil, repository: repository)
+                self.viewModel.update(title: repository?.name, description: nil, repository: repository)
             }, onCompleted: nil, onDisposed: nil)
             .addDisposableTo(disposeBag)
     }

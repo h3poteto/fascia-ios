@@ -14,15 +14,15 @@ class NewProjectAction {
     final let isLoading = Variable(false)
     final let project: Variable<Project?> = Variable(nil)
     final let err: Variable<Error?> = Variable(nil)
-    final let disposeBag = DisposeBag()
+    private let disposeBag = DisposeBag()
 
-    func request(_ parameter: [String: AnyObject]) {
+    func request(parameter: [String: AnyObject]) {
         if isLoading.value {
             return
         }
         isLoading.value = true
         err.value = nil
-        FasciaAPIService.sharedInstance.call("/projects", method: .post, params: parameter)
+        FasciaAPIService.sharedInstance.call(path: "/projects", method: .post, params: parameter)
             .subscribeOn(Scheduler.sharedInstance.backgroundScheduler)
             .map({ (response, data) throws -> Project in
                 guard let json = try JSONSerialization.jsonObject(with: data as Data, options: .allowFragments) as? [String: AnyObject] else {

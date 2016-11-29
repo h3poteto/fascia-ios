@@ -16,18 +16,18 @@ enum EditListValidationError: Error {
 }
 
 class EditListViewModel {
-    fileprivate let editListAction = EditListAction()
-    fileprivate let listOptionAction = ListOptionsAction()
-    fileprivate let disposeBag = DisposeBag()
-    fileprivate(set) var editList: Variable<EditList>
-    fileprivate var list: List
+    private let editListAction = EditListAction()
+    private let listOptionAction = ListOptionsAction()
+    private let disposeBag = DisposeBag()
+    private(set) var editList: Variable<EditList>
+    private var list: List
     var listOptions = [ListOption]()
-    final fileprivate(set) var title: Variable<String?> = Variable(nil)
-    final fileprivate(set) var color: Variable<String?> = Variable(nil)
-    final fileprivate(set) var action: Variable<String?> = Variable(nil)
-    final fileprivate(set) var dataUpdated: Driver<List?> = Driver.never()
-    final fileprivate(set) var isLoading: Driver<Bool> = Driver.never()
-    final fileprivate(set) var err: Driver<Error?> = Driver.never()
+    final private(set) var title: Variable<String?> = Variable(nil)
+    final private(set) var color: Variable<String?> = Variable(nil)
+    final private(set) var action: Variable<String?> = Variable(nil)
+    final private(set) var dataUpdated: Driver<List?> = Driver.never()
+    final private(set) var isLoading: Driver<Bool> = Driver.never()
+    final private(set) var err: Driver<Error?> = Driver.never()
 
     init(model: List) {
         self.list = model
@@ -35,7 +35,6 @@ class EditListViewModel {
         edit.title = model.title
         edit.color = model.color
         editList = Variable(edit)
-
 
         dataUpdated = Driver
             .combineLatest(
@@ -57,7 +56,7 @@ class EditListViewModel {
         listOptionAction.listOptions.asObservable()
             .subscribe(onNext: { (listOptions) in
                 guard let id = self.list.listOptionID else { return }
-                let option = ListOption.findAction(listOptions, id: id)
+                let option = ListOption.findAction(listOptions: listOptions, id: id)
                 self.editList.value
                     .action = option?.action
                 self.action.value = option?.action
@@ -67,7 +66,7 @@ class EditListViewModel {
         listOptionAction.request()
     }
 
-    func update(_ title: String?, color: String?, option: ListOption?) {
+    func update(title: String?, color: String?, option: ListOption?) {
         if title != nil {
             self.title.value = title
             editList.value.title = title
@@ -106,6 +105,6 @@ class EditListViewModel {
 
     func fetch() {
         let params = Mapper<EditList>().toJSON(editList.value)
-        editListAction.request(list.projectID!, listID: list.id!, params: params as [String : AnyObject])
+        editListAction.request(projectID: list.projectID!, listID: list.id!, params: params as [String : AnyObject])
     }
 }

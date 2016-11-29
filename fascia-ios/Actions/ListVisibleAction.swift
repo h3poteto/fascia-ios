@@ -14,15 +14,15 @@ class ListVisibleAction {
     final let isLoading = Variable(false)
     final var lists: Variable<Lists?> = Variable(nil)
     final let err: Variable<Error?> = Variable(nil)
-    final let disposeBag = DisposeBag()
+    private let disposeBag = DisposeBag()
 
-    func hide(_ list: List) {
+    func hide(list: List) {
         if isLoading.value {
             return
         }
         isLoading.value = true
         err.value = nil
-        FasciaAPIService.sharedInstance.call("/projects/\(list.projectID!)/lists/\(list.id!)/hide", method: .post, params: nil)
+        FasciaAPIService.sharedInstance.call(path: "/projects/\(list.projectID!)/lists/\(list.id!)/hide", method: .post, params: nil)
             .subscribeOn(Scheduler.sharedInstance.backgroundScheduler)
             .observeOn(Scheduler.sharedInstance.mainScheduler)
             .map { (response, data) -> Lists in
@@ -45,13 +45,13 @@ class ListVisibleAction {
             .addDisposableTo(disposeBag)
     }
 
-    func display(_ list: List) {
+    func display(list: List) {
         if isLoading.value {
             return
         }
         isLoading.value = true
         err.value = nil
-        FasciaAPIService.sharedInstance.call("/projects/\(list.projectID!)/lists/\(list.id!)/display", method: .post, params: nil)
+        FasciaAPIService.sharedInstance.call(path: "/projects/\(list.projectID!)/lists/\(list.id!)/display", method: .post, params: nil)
             .subscribeOn(Scheduler.sharedInstance.backgroundScheduler)
             .observeOn(Scheduler.sharedInstance.mainScheduler)
             .map { (response, data) -> Lists in

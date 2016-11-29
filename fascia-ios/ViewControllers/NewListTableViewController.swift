@@ -13,9 +13,9 @@ import CSNotificationView
 import ChameleonFramework
 
 class NewListTableViewController: UITableViewController, UIPopoverPresentationControllerDelegate {
-    @IBOutlet fileprivate weak var saveButton: UIBarButtonItem!
-    @IBOutlet fileprivate weak var cancelButton: UIBarButtonItem!
-    fileprivate let disposeBag = DisposeBag()
+    @IBOutlet private weak var saveButton: UIBarButtonItem!
+    @IBOutlet private weak var cancelButton: UIBarButtonItem!
+    private let disposeBag = DisposeBag()
     var viewModel: NewListViewModel!
 
     override func viewDidLoad() {
@@ -64,7 +64,7 @@ class NewListTableViewController: UITableViewController, UIPopoverPresentationCo
     override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         switch (indexPath.section, indexPath.row) {
         case (0, 1):
-            guard let colorPicker = UIStoryboard.instantiateViewController("ColorPickerViewController", storyboardName: "Lists") as? ColorPickerViewController else {
+            guard let colorPicker = UIStoryboard.instantiateViewController(identifier: "ColorPickerViewController", storyboardName: "Lists") as? ColorPickerViewController else {
                 return
             }
             guard let color = viewModel.color.value else {
@@ -74,7 +74,7 @@ class NewListTableViewController: UITableViewController, UIPopoverPresentationCo
             colorPicker.rx_color()
                 .subscribe(onNext: { (color) in
                     let colorStr = (color.hexValue() as NSString).substring(from: 1)
-                    self.viewModel.update(nil, color: colorStr)
+                    self.viewModel.update(title: nil, color: colorStr)
                 }, onError: nil, onCompleted: nil, onDisposed: nil)
                 .addDisposableTo(disposeBag)
             // 選択状態を解除してからviewModelのupdateをかけないと，select時のbackgroundColorとしてsetされてしまう
@@ -86,7 +86,7 @@ class NewListTableViewController: UITableViewController, UIPopoverPresentationCo
         }
     }
 
-    fileprivate func bindViewModel() {
+    private func bindViewModel() {
         cancelButton
             .rx
             .tap

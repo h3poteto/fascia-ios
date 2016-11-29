@@ -12,16 +12,16 @@ import RxSwift
 import RxCocoa
 
 class SignInViewController: UIViewController, UIWebViewDelegate, SideMenuable {
-    fileprivate let viewModel = SignInViewModel()
-    fileprivate var hud = HUDManager()
+    private let viewModel = SignInViewModel()
+    private var hud = HUDManager()
     var disposeBag = DisposeBag()
     var openSideMenu: UIBarButtonItem = UIBarButtonItem(image: UIImage(named: "SideMenu"), style: UIBarButtonItemStyle.plain, target: nil, action: nil)
 
-    @IBOutlet fileprivate weak var webView: UIWebView!
+    @IBOutlet private weak var webView: UIWebView!
 
     override func viewDidLoad() {
         super.viewDidLoad()
-        sideMenuSetup(self)
+        sideMenuSetup(parentController: self)
         bindViewModel()
         guard let signInURL = viewModel.signInURL else {
             return
@@ -44,7 +44,6 @@ class SignInViewController: UIViewController, UIWebViewDelegate, SideMenuable {
         viewModel.isLoading.value = false
     }
 
-
     func webView(_ webView: UIWebView, shouldStartLoadWith request: URLRequest, navigationType: UIWebViewNavigationType) -> Bool {
         if request.url?.host == URL(string: viewModel.signInURL!)?.host && request.url?.path == "/webviews/callback" {
             viewModel.update()
@@ -56,8 +55,8 @@ class SignInViewController: UIViewController, UIWebViewDelegate, SideMenuable {
         return true
     }
 
-    fileprivate func bindViewModel() {
-        hud.bind(viewModel.isLoading.asDriver())
+    private func bindViewModel() {
+        hud.bind(loadingTarget: viewModel.isLoading.asDriver())
     }
 
 }
