@@ -11,12 +11,12 @@ import RxCocoa
 import ChameleonFramework
 
 class ListsViewModel {
-    final fileprivate let action = ListsAction()
+    final private let action = ListsAction()
     final var lists: Lists?
     var project: Project!
-    final fileprivate(set) var listsUpdated: Driver<Lists?> = Driver.never()
-    final fileprivate(set) var isLoading: Driver<Bool> = Driver.never()
-    final fileprivate(set) var err: Driver<Error?> = Driver.never()
+    final private(set) var listsUpdated: Driver<Lists?> = Driver.never()
+    final private(set) var isLoading: Driver<Bool> = Driver.never()
+    final private(set) var err: Driver<Error?> = Driver.never()
     var contextMenuVisible = false
 
     init(project: Project) {

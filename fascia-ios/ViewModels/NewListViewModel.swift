@@ -16,14 +16,14 @@ enum NewListValidationError: Error {
 }
 
 class NewListViewModel {
-    fileprivate let action = NewListAction()
-    fileprivate(set) var newList: Variable<NewList>
-    final fileprivate var project: Project!
-    final fileprivate(set) var title: Variable<String?> = Variable(nil)
-    final fileprivate(set) var color: Variable<String?> = Variable(nil)
-    final fileprivate(set) var dataUpdated: Driver<List?> = Driver.never()
-    final fileprivate(set) var isLoading: Driver<Bool> = Driver.never()
-    final fileprivate(set) var err: Driver<Error?> = Driver.never()
+    private let action = NewListAction()
+    private(set) var newList: Variable<NewList>
+    final private var project: Project!
+    final private(set) var title: Variable<String?> = Variable(nil)
+    final private(set) var color: Variable<String?> = Variable(nil)
+    final private(set) var dataUpdated: Driver<List?> = Driver.never()
+    final private(set) var isLoading: Driver<Bool> = Driver.never()
+    final private(set) var err: Driver<Error?> = Driver.never()
 
     init(model: NewList, project: Project) {
         newList = Variable(model)

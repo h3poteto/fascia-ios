@@ -15,13 +15,13 @@ enum NewProjectValidationError: Error {
 }
 
 class NewProjectViewModel {
-    fileprivate final let action = NewProjectAction()
-    fileprivate(set) var newProject: Variable<NewProject>
-    final fileprivate(set) var title: Variable<String?> = Variable(nil)
+    final private let action = NewProjectAction()
+    private(set) var newProject: Variable<NewProject>
+    final private(set) var title: Variable<String?> = Variable(nil)
     var repository: Variable<Repository?> = Variable(nil)
-    final fileprivate(set) var dataUpdated: Driver<Project?> = Driver.never()
-    final fileprivate(set) var isLoading: Driver<Bool> = Driver.never()
-    final fileprivate(set) var err: Driver<Error?> = Driver.never()
+    final private(set) var dataUpdated: Driver<Project?> = Driver.never()
+    final private(set) var isLoading: Driver<Bool> = Driver.never()
+    final private(set) var err: Driver<Error?> = Driver.never()
 
     init(model: NewProject) {
         self.newProject = Variable(model)

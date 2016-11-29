@@ -15,14 +15,14 @@ enum NewTaskValidationError: Error {
 }
 
 class NewTaskViewModel {
-    fileprivate let action = NewTaskAction()
-    fileprivate(set) var newTask: Variable<NewTask>
-    fileprivate var list: List
-    fileprivate(set) var title: Variable<String?> = Variable(nil)
-    fileprivate(set) var description: Variable<String?> = Variable(nil)
-    final fileprivate(set) var dataUpdated: Driver<Task?> = Driver.never()
-    final fileprivate(set) var isLoading: Driver<Bool> = Driver.never()
-    final fileprivate(set) var err: Driver<Error?> = Driver.never()
+    private let action = NewTaskAction()
+    private(set) var newTask: Variable<NewTask>
+    private var list: List
+    private(set) var title: Variable<String?> = Variable(nil)
+    private(set) var description: Variable<String?> = Variable(nil)
+    final private(set) var dataUpdated: Driver<Task?> = Driver.never()
+    final private(set) var isLoading: Driver<Bool> = Driver.never()
+    final private(set) var err: Driver<Error?> = Driver.never()
 
     init(model: NewTask, list: List) {
         self.newTask = Variable(model)

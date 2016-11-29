@@ -10,8 +10,8 @@ import RxSwift
 import RxCocoa
 
 class SignInViewModel {
-    fileprivate final let action = SessionAction()
-    final fileprivate(set) var isLoading = Variable(false)
+    private final let action = SessionAction()
+    final private(set) var isLoading = Variable(false)
     final let signInURL = FasciaAPIService.sharedInstance.signInURL
 
     func update() {

@@ -16,18 +16,18 @@ enum EditListValidationError: Error {
 }
 
 class EditListViewModel {
-    fileprivate let editListAction = EditListAction()
-    fileprivate let listOptionAction = ListOptionsAction()
-    fileprivate let disposeBag = DisposeBag()
-    fileprivate(set) var editList: Variable<EditList>
-    fileprivate var list: List
+    private let editListAction = EditListAction()
+    private let listOptionAction = ListOptionsAction()
+    private let disposeBag = DisposeBag()
+    private(set) var editList: Variable<EditList>
+    private var list: List
     var listOptions = [ListOption]()
-    final fileprivate(set) var title: Variable<String?> = Variable(nil)
-    final fileprivate(set) var color: Variable<String?> = Variable(nil)
-    final fileprivate(set) var action: Variable<String?> = Variable(nil)
-    final fileprivate(set) var dataUpdated: Driver<List?> = Driver.never()
-    final fileprivate(set) var isLoading: Driver<Bool> = Driver.never()
-    final fileprivate(set) var err: Driver<Error?> = Driver.never()
+    final private(set) var title: Variable<String?> = Variable(nil)
+    final private(set) var color: Variable<String?> = Variable(nil)
+    final private(set) var action: Variable<String?> = Variable(nil)
+    final private(set) var dataUpdated: Driver<List?> = Driver.never()
+    final private(set) var isLoading: Driver<Bool> = Driver.never()
+    final private(set) var err: Driver<Error?> = Driver.never()
 
     init(model: List) {
         self.list = model
