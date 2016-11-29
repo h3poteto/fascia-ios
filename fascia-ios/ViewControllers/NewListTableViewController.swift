@@ -13,9 +13,9 @@ import CSNotificationView
 import ChameleonFramework
 
 class NewListTableViewController: UITableViewController, UIPopoverPresentationControllerDelegate {
-    @IBOutlet fileprivate weak var saveButton: UIBarButtonItem!
-    @IBOutlet fileprivate weak var cancelButton: UIBarButtonItem!
-    fileprivate let disposeBag = DisposeBag()
+    @IBOutlet private weak var saveButton: UIBarButtonItem!
+    @IBOutlet private weak var cancelButton: UIBarButtonItem!
+    private let disposeBag = DisposeBag()
     var viewModel: NewListViewModel!
 
     override func viewDidLoad() {
@@ -86,7 +86,7 @@ class NewListTableViewController: UITableViewController, UIPopoverPresentationCo
         }
     }
 
-    fileprivate func bindViewModel() {
+    private func bindViewModel() {
         cancelButton
             .rx
             .tap

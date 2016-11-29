@@ -13,9 +13,9 @@ import CSNotificationView
 import ChameleonFramework
 
 class EditListTableViewController: UITableViewController {
-    @IBOutlet fileprivate weak var cancelButton: UIBarButtonItem!
-    @IBOutlet fileprivate weak var saveButton: UIBarButtonItem!
-    fileprivate let disposeBag = DisposeBag()
+    @IBOutlet private weak var cancelButton: UIBarButtonItem!
+    @IBOutlet private weak var saveButton: UIBarButtonItem!
+    private let disposeBag = DisposeBag()
     var viewModel: EditListViewModel!
 
     override func viewDidLoad() {
@@ -98,7 +98,7 @@ class EditListTableViewController: UITableViewController {
         }
     }
 
-    fileprivate func listOptionAlert() {
+    private func listOptionAlert() {
         let alert = UIAlertController(title: "Action", message: nil, preferredStyle: .actionSheet)
         viewModel.listOptions.forEach { (listOption) in
             let action = UIAlertAction(title: listOption.action, style: .default, handler: { (optionAction) in
@@ -111,7 +111,7 @@ class EditListTableViewController: UITableViewController {
         present(alert, animated: true, completion: nil)
     }
 
-    fileprivate func bindViewModel() {
+    private func bindViewModel() {
         cancelButton
             .rx
             .tap

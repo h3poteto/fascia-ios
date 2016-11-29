@@ -12,9 +12,9 @@ import RxCocoa
 import CSNotificationView
 
 class NewProjectTableViewController: UITableViewController {
-    @IBOutlet fileprivate weak var saveButton: UIBarButtonItem!
-    @IBOutlet fileprivate weak var cancelButton: UIBarButtonItem!
-    fileprivate let disposeBag = DisposeBag()
+    @IBOutlet private weak var saveButton: UIBarButtonItem!
+    @IBOutlet private weak var cancelButton: UIBarButtonItem!
+    private let disposeBag = DisposeBag()
     var viewModel: NewProjectViewModel!
     var repositoryViewModel = RepositoriesViewModel()
 
@@ -96,13 +96,13 @@ class NewProjectTableViewController: UITableViewController {
         }
     }
 
-    fileprivate func showSignInView() {
+    private func showSignInView() {
         if let signIn = UIStoryboard.instantiateViewController(identifier: "SignInViewController", storyboardName: "Main") as? UIViewController {
             self.present(signIn, animated: true, completion: nil)
         }
     }
 
-    fileprivate func bindViewModel() {
+    private func bindViewModel() {
         cancelButton
             .rx
             .tap
@@ -136,7 +136,7 @@ class NewProjectTableViewController: UITableViewController {
             .addDisposableTo(disposeBag)
     }
 
-    fileprivate func bindRepositoryViewModel() {
+    private func bindRepositoryViewModel() {
         repositoryViewModel.fetch()
         repositoryViewModel.dataUpdated
             .drive(onNext: { (repositories) in

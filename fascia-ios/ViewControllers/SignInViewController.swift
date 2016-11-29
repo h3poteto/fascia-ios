@@ -12,12 +12,12 @@ import RxSwift
 import RxCocoa
 
 class SignInViewController: UIViewController, UIWebViewDelegate, SideMenuable {
-    fileprivate let viewModel = SignInViewModel()
-    fileprivate var hud = HUDManager()
+    private let viewModel = SignInViewModel()
+    private var hud = HUDManager()
     var disposeBag = DisposeBag()
     var openSideMenu: UIBarButtonItem = UIBarButtonItem(image: UIImage(named: "SideMenu"), style: UIBarButtonItemStyle.plain, target: nil, action: nil)
 
-    @IBOutlet fileprivate weak var webView: UIWebView!
+    @IBOutlet private weak var webView: UIWebView!
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -55,7 +55,7 @@ class SignInViewController: UIViewController, UIWebViewDelegate, SideMenuable {
         return true
     }
 
-    fileprivate func bindViewModel() {
+    private func bindViewModel() {
         hud.bind(loadingTarget: viewModel.isLoading.asDriver())
     }
 

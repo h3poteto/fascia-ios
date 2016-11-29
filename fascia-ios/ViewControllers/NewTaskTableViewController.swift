@@ -12,9 +12,9 @@ import RxCocoa
 import CSNotificationView
 
 class NewTaskTableViewController: UITableViewController {
-    @IBOutlet fileprivate weak var cancelButton: UIBarButtonItem!
-    @IBOutlet fileprivate weak var saveButton: UIBarButtonItem!
-    fileprivate let disposeBag = DisposeBag()
+    @IBOutlet private weak var cancelButton: UIBarButtonItem!
+    @IBOutlet private weak var saveButton: UIBarButtonItem!
+    private let disposeBag = DisposeBag()
     var viewModel: NewTaskViewModel!
 
     override func viewDidLoad() {
@@ -61,7 +61,7 @@ class NewTaskTableViewController: UITableViewController {
         }
     }
 
-    fileprivate func bindViewModel() {
+    private func bindViewModel() {
         cancelButton
             .rx
             .tap

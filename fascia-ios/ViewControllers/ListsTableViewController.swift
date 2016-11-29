@@ -14,11 +14,11 @@ import SESlideTableViewCell
 import ChameleonFramework
 
 class ListsTableViewController: UITableViewController, UIGestureRecognizerDelegate, ContextMenuDelegate {
-    @IBOutlet fileprivate weak var refresh: UIRefreshControl!
-    fileprivate let newListButton = UIBarButtonItem(barButtonSystemItem: UIBarButtonSystemItem.add, target: nil, action: nil)
+    @IBOutlet private weak var refresh: UIRefreshControl!
+    private let newListButton = UIBarButtonItem(barButtonSystemItem: UIBarButtonSystemItem.add, target: nil, action: nil)
     var viewModel: ListsViewModel!
-    fileprivate let hud = HUDManager()
-    fileprivate let disposeBag = DisposeBag()
+    private let hud = HUDManager()
+    private let disposeBag = DisposeBag()
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -243,13 +243,13 @@ class ListsTableViewController: UITableViewController, UIGestureRecognizerDelega
     }
     //------------------------------------------
 
-    fileprivate func showSignInView() {
+    private func showSignInView() {
         if let signIn = UIStoryboard.instantiateViewController(identifier: "SignInViewController", storyboardName: "Main") as? UIViewController {
             self.present(signIn, animated: true, completion: nil)
         }
     }
 
-    fileprivate func showNewListView() {
+    private func showNewListView() {
         if let newListNavigation = UIStoryboard.instantiateViewController(identifier: "NewListNavigationController", storyboardName: "Lists") as? UINavigationController {
             let newListView = newListNavigation.viewControllers.first as? NewListTableViewController
             let vm = NewListViewModel(model: NewList(), project: viewModel.project)
@@ -259,7 +259,7 @@ class ListsTableViewController: UITableViewController, UIGestureRecognizerDelega
         }
     }
 
-    fileprivate func prepareNewTaskView(list: List) -> Observable<UINavigationController> {
+    private func prepareNewTaskView(list: List) -> Observable<UINavigationController> {
         return Observable.create({ observe -> Disposable in
             if let newTaskNavigation = UIStoryboard.instantiateViewController(identifier: "NewTaskNavigationController", storyboardName: "Lists") as? UINavigationController {
                 let newTaskView = newTaskNavigation.viewControllers.first as? NewTaskTableViewController
@@ -273,7 +273,7 @@ class ListsTableViewController: UITableViewController, UIGestureRecognizerDelega
         })
     }
 
-    fileprivate func bindViewModel() {
+    private func bindViewModel() {
         viewModel.listsUpdated
             .drive(onNext: { (lists) in
                 self.viewModel.lists = lists
@@ -327,7 +327,7 @@ class ListsTableViewController: UITableViewController, UIGestureRecognizerDelega
 
     }
 
-    fileprivate func bindListSectionViewModel(vm: ListSectionViewModel) {
+    private func bindListSectionViewModel(vm: ListSectionViewModel) {
         vm.listsUpdated
             .drive(onNext: { (lists) in
                 if lists != nil {
@@ -367,7 +367,7 @@ class ListsTableViewController: UITableViewController, UIGestureRecognizerDelega
             .addDisposableTo(disposeBag)
     }
 
-    fileprivate func bindNewListViewModel(vm: NewListViewModel) {
+    private func bindNewListViewModel(vm: NewListViewModel) {
         vm.dataUpdated
             .drive(onNext: { (list) in
                 if list != nil {
@@ -405,7 +405,7 @@ class ListsTableViewController: UITableViewController, UIGestureRecognizerDelega
             .addDisposableTo(disposeBag)
     }
 
-    fileprivate func bindEditListViewModel(vm: EditListViewModel) {
+    private func bindEditListViewModel(vm: EditListViewModel) {
         vm.dataUpdated
             .drive(onNext: { (list) in
                 if list != nil {
@@ -444,7 +444,7 @@ class ListsTableViewController: UITableViewController, UIGestureRecognizerDelega
             .addDisposableTo(disposeBag)
     }
 
-    fileprivate func bindNewTaskViewModel(vm: NewTaskViewModel) {
+    private func bindNewTaskViewModel(vm: NewTaskViewModel) {
         vm.dataUpdated
             .drive(onNext: { (task) in
                 if task != nil {
