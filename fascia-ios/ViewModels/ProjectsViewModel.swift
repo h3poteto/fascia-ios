@@ -12,9 +12,9 @@ import RxCocoa
 class ProjectsViewModel: NSObject {
     private final let action = ProjectsAction()
     final var projects = [Project]()
-    final fileprivate(set) var dataUpdated: Driver<[Project]> = Driver.never()
-    final fileprivate(set) var isLoading: Driver<Bool> = Driver.never()
-    final fileprivate(set) var err: Driver<Error?> = Driver.never()
+    final private(set) var dataUpdated: Driver<[Project]> = Driver.never()
+    final private(set) var isLoading: Driver<Bool> = Driver.never()
+    final private(set) var err: Driver<Error?> = Driver.never()
 
     override init() {
         super.init()

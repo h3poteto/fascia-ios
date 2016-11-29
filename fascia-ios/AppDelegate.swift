@@ -50,7 +50,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         // Called when the application is about to terminate. Save data if appropriate. See also applicationDidEnterBackground:.
     }
 
-    fileprivate func setupSideMenu() {
+    private func setupSideMenu() {
         SideMenuManager.menuFadeStatusBar = true
         SideMenuManager.menuPresentMode = .viewSlideInOut
         SideMenuManager.menuAnimationBackgroundColor = UIColor(patternImage: UIImage(named: "Background")!)
