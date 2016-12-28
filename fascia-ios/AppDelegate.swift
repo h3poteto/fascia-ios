@@ -25,6 +25,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         }
         self.window?.rootViewController = projects
         setupSideMenu()
+        sessionUpdate()
         return true
     }
 
@@ -54,5 +55,10 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         SideMenuManager.menuFadeStatusBar = true
         SideMenuManager.menuPresentMode = .viewSlideInOut
         SideMenuManager.menuAnimationBackgroundColor = UIColor(patternImage: UIImage(named: "Background")!)
+    }
+
+    private func sessionUpdate() {
+        let sessionAction = SessionAction()
+        sessionAction.updateSession()
     }
 }
