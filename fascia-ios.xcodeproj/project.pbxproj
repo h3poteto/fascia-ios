@@ -870,6 +870,7 @@
 				BUNDLE_NAME = FasciaDev;
 				CODE_SIGN_IDENTITY = "iPhone Developer: Akira Fukushima (9PQ8S3P587)";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer: Akira Fukushima (9PQ8S3P587)";
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
 				INFOPLIST_FILE = "fascia-ios/Info.plist";
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				OTHER_SWIFT_FLAGS = "$(inherited) \"-D\" \"COCOAPODS\" \"-D\" \"DEBUG\"";
