@@ -19,11 +19,14 @@ class ListsTableViewController: UITableViewController, UIGestureRecognizerDelega
     var viewModel: ListsViewModel!
     private let hud = HUDManager()
     private let disposeBag = DisposeBag()
+    var tableTitle: String?
 
     override func viewDidLoad() {
         super.viewDidLoad()
         self.navigationItem.rightBarButtonItem = newListButton
         bindViewModel()
+
+        self.title = tableTitle
 
         let longPressRecognizer = UILongPressGestureRecognizer(target: self, action: #selector(ListsTableViewController.cellLongPressed(_:)))
         longPressRecognizer.delegate = self

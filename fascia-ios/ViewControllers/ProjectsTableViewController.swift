@@ -77,6 +77,7 @@ class ProjectsTableViewController: UITableViewController, SideMenuable {
     override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         if let listsView = UIStoryboard.instantiateViewController(identifier: "ListsTableViewController", storyboardName: "Lists") as? ListsTableViewController {
             listsView.viewModel = ListsViewModel(project: viewModel.projects[indexPath.row])
+            listsView.tableTitle = viewModel.projects[indexPath.row].title
             self.navigationController?.pushViewController(listsView, animated: true)
         }
     }
