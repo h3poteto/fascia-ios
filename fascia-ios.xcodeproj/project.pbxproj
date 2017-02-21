@@ -59,6 +59,7 @@
 		E975D0CD1CDDE8DE00F587CD /* ListSectionTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = E975D0CB1CDDE8DE00F587CD /* ListSectionTableViewCell.xib */; };
 		E975D0CF1CDDE9CC00F587CD /* ListSectionViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = E975D0CE1CDDE9CC00F587CD /* ListSectionViewModel.swift */; };
 		E975D0D11CDE434700F587CD /* ListVisibleAction.swift in Sources */ = {isa = PBXBuildFile; fileRef = E975D0D01CDE434700F587CD /* ListVisibleAction.swift */; };
+		E9ABF2C91E5C86DD009459BB /* SessionService.swift in Sources */ = {isa = PBXBuildFile; fileRef = E9ABF2C81E5C86DD009459BB /* SessionService.swift */; };
 		E9BE0AC21CDCE6C700E2CC13 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = E9BE0AC11CDCE6C700E2CC13 /* Main.storyboard */; };
 		E9BE0AC41CDCE80E00E2CC13 /* Lists.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = E9BE0AC31CDCE80E00E2CC13 /* Lists.storyboard */; };
 		E9BE0AC61CDCE87200E2CC13 /* ListsTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E9BE0AC51CDCE87200E2CC13 /* ListsTableViewController.swift */; };
@@ -158,6 +159,7 @@
 		E975D0CB1CDDE8DE00F587CD /* ListSectionTableViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = ListSectionTableViewCell.xib; path = Views/Lists/ListSectionTableViewCell.xib; sourceTree = "<group>"; };
 		E975D0CE1CDDE9CC00F587CD /* ListSectionViewModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = ListSectionViewModel.swift; path = ViewModels/ListSectionViewModel.swift; sourceTree = "<group>"; };
 		E975D0D01CDE434700F587CD /* ListVisibleAction.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = ListVisibleAction.swift; path = Actions/ListVisibleAction.swift; sourceTree = "<group>"; };
+		E9ABF2C81E5C86DD009459BB /* SessionService.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = SessionService.swift; path = Services/SessionService.swift; sourceTree = "<group>"; };
 		E9BE0AC11CDCE6C700E2CC13 /* Main.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; name = Main.storyboard; path = Resources/Main.storyboard; sourceTree = "<group>"; };
 		E9BE0AC31CDCE80E00E2CC13 /* Lists.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; name = Lists.storyboard; path = Resources/Lists.storyboard; sourceTree = "<group>"; };
 		E9BE0AC51CDCE87200E2CC13 /* ListsTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = ListsTableViewController.swift; path = ViewControllers/ListsTableViewController.swift; sourceTree = "<group>"; };
@@ -371,6 +373,7 @@
 				E9E4FF061CC7DC2E00517729 /* FasciaAPIService.swift */,
 				E928659A1CD8DDC100D2EF07 /* HUDManager.swift */,
 				E9749C961CCD075F00335B53 /* Scheduler.swift */,
+				E9ABF2C81E5C86DD009459BB /* SessionService.swift */,
 			);
 			name = Services;
 			sourceTree = "<group>";
@@ -658,6 +661,7 @@
 				E975D0D11CDE434700F587CD /* ListVisibleAction.swift in Sources */,
 				E9BE0ACA1CDCE96600E2CC13 /* ListsViewModel.swift in Sources */,
 				E9571ADE1CD36781007A819F /* NewProjectViewModel.swift in Sources */,
+				E9ABF2C91E5C86DD009459BB /* SessionService.swift in Sources */,
 				E9CF1D451CD9FE7600BD5DDE /* NewProjectRepositoryTableViewCell.swift in Sources */,
 				E95A8BDC1CF88902002382AE /* EditListAction.swift in Sources */,
 				E9571AE11CD36B88007A819F /* ProjectTableViewCell.swift in Sources */,
