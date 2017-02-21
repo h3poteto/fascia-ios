@@ -15,6 +15,7 @@ import Crashlytics
 class AppDelegate: UIResponder, UIApplicationDelegate {
 
     var window: UIWindow?
+    private var sessionService = SessionService()
 
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplicationLaunchOptionsKey: Any]?) -> Bool {
         // Fabricの初期化
@@ -25,7 +26,6 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         }
         self.window?.rootViewController = projects
         setupSideMenu()
-        sessionUpdate()
         return true
     }
 
@@ -45,6 +45,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 
     func applicationDidBecomeActive(_ application: UIApplication) {
         // Restart any tasks that were paused (or not yet started) while the application was inactive. If the application was previously in the background, optionally refresh the user interface.
+        self.sessionService.fetch()
     }
 
     func applicationWillTerminate(_ application: UIApplication) {
@@ -55,10 +56,5 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         SideMenuManager.menuFadeStatusBar = true
         SideMenuManager.menuPresentMode = .viewSlideInOut
         SideMenuManager.menuAnimationBackgroundColor = UIColor(patternImage: UIImage(named: "Background")!)
-    }
-
-    private func sessionUpdate() {
-        let sessionAction = SessionAction()
-        sessionAction.updateSession()
     }
 }
