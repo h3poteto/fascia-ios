@@ -86,6 +86,12 @@ class TaskTableViewController: UITableViewController {
         return cell
     }
 
+    private func showSignInView() {
+        if let signIn = UIStoryboard.instantiateViewController(identifier: "SignInViewController", storyboardName: "Main") as? UIViewController {
+            self.present(signIn, animated: true, completion: nil)
+        }
+    }
+
     private func bindViewModel() {
         viewModel.taskUpdated
             .drive(onNext: { (task) in
@@ -108,7 +114,7 @@ class TaskTableViewController: UITableViewController {
                 }
                 switch errorType {
                 case FasciaAPIError.authenticateError:
-                    // show sign in view
+                    self.showSignInView()
                     break
                 case FasciaAPIError.doubleRequestError:
                     break
