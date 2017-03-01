@@ -4,7 +4,7 @@ PODS:
   - ChameleonFramework/Swift (2.1.0):
     - ChameleonFramework/Default
   - Color-Picker-for-iOS (2.0.2)
-  - Crashlytics (3.8.3):
+  - Crashlytics (3.8.4):
     - Fabric (~> 1.6.3)
   - CSNotificationView (0.5.4)
   - Fabric (1.6.11)
@@ -49,7 +49,7 @@ SPEC CHECKSUMS:
   Alamofire: aa2e09d871c9160ac53c90e83c68064a94e3dfbe
   ChameleonFramework: d21a3cc247abfe5e37609a283a8238b03575cf64
   Color-Picker-for-iOS: 4980589b3e3cfe7198f227dd50be9adb02d8bc0b
-  Crashlytics: 2b6dbe138a42395577cfa73dfa1aa7248cadf39e
+  Crashlytics: 79e236942ca1e7fc641df1feb9a275360a78ab6a
   CSNotificationView: 0792f5220163c2befaf1a9716aa3d5a7d6bd4fb1
   Fabric: 5911403591946b8228ab1c51d98f1d7137e863c6
   ObjectMapper: 41e43e1a89f8060ef5ea5d04ba852e269a621d68
@@ -62,4 +62,4 @@ SPEC CHECKSUMS:
 
 PODFILE CHECKSUM: 8cdb3b3f3b303bf9d166c8382e1960df1353bbaf
 
-COCOAPODS: 1.0.0.beta.8
+COCOAPODS: 1.2.0.beta.3
