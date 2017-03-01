@@ -160,7 +160,6 @@ class ListsTableViewController: UITableViewController, UIGestureRecognizerDelega
     }
 
     override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        // AddCellだったときだけ処理する
         guard let lists = viewModel.lists else {
             return
         }
@@ -168,6 +167,8 @@ class ListsTableViewController: UITableViewController, UIGestureRecognizerDelega
             return
         }
         switch (indexPath.section, indexPath.row) {
+        // 各リストの最下部にはタスク追加ボタンを配置してある
+        // それらのハンドリング処理
         case (0, noneList.listTasks.count):
             prepareNewTaskView(list: noneList)
                 .observeOn(Scheduler.sharedInstance.mainScheduler)
@@ -186,7 +187,18 @@ class ListsTableViewController: UITableViewController, UIGestureRecognizerDelega
                 }, onError: nil, onCompleted: nil, onDisposed: nil)
                 .addDisposableTo(disposeBag)
             return
+        // 各タスクの詳細画面を表示
+        case (0, 0..<(noneList.listTasks.count - 1)):
+            if let taskView = UIStoryboard.instantiateViewController(identifier: "TaskTableViewController", storyboardName: "Task") as? TaskTableViewController {
+                taskView.viewModel = TaskViewModel(project: viewModel.project, list: noneList, task: noneList.listTasks[indexPath.row])
+                self.navigationController?.pushViewController(taskView, animated: true)
+            }
+            return
         default:
+            if let taskView = UIStoryboard.instantiateViewController(identifier: "TaskTableViewController", storyboardName: "Task") as? TaskTableViewController {
+                taskView.viewModel = TaskViewModel(project: viewModel.project, list: lists.lists[indexPath.section - 1], task: lists.lists[indexPath.section - 1].listTasks[indexPath.row])
+                self.navigationController?.pushViewController(taskView, animated: true)
+            }
             return
         }
     }

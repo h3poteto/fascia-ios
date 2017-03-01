@@ -20,6 +20,7 @@ class Task: Mappable {
     var issueNumber: Int?
     var title: String?
     var pullRequest: Bool?
+    var taskDescription: String?
 
     required init?(map: Map) {
         mapping(map: map)
@@ -32,11 +33,12 @@ class Task: Mappable {
         issueNumber <- map["IssueNumber"]
         title       <- map["Title"]
         pullRequest <- map["PullRequest"]
+        taskDescription <- map["Description"]
     }
 }
 
 extension Task: CustomStringConvertible {
     internal var description: String {
-        return "{id:\(id), listID:\(listID), userID:\(userID), issueNumber:\(issueNumber), title:\(title), pullRequest:\(pullRequest)}"
+        return "{id:\(id), listID:\(listID), userID:\(userID), issueNumber:\(issueNumber), title:\(title), pullRequest:\(pullRequest), description:\(taskDescription)}"
     }
 }

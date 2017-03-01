@@ -13,6 +13,12 @@
 		E92DCF531CF9992400D9E348 /* AddTaskTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = E92DCF521CF9992400D9E348 /* AddTaskTableViewCell.swift */; };
 		E92DCF561CF9993B00D9E348 /* NewListColorTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = E92DCF541CF9993B00D9E348 /* NewListColorTableViewCell.swift */; };
 		E92DCF571CF9993B00D9E348 /* NewListTitleTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = E92DCF551CF9993B00D9E348 /* NewListTitleTableViewCell.swift */; };
+		E93D82AC1E6338CC00A10D79 /* TaskTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E93D82AB1E6338CC00A10D79 /* TaskTableViewController.swift */; };
+		E93D82AE1E633DFF00A10D79 /* TaskViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = E93D82AD1E633DFF00A10D79 /* TaskViewModel.swift */; };
+		E93D82B01E633E5800A10D79 /* TaskAction.swift in Sources */ = {isa = PBXBuildFile; fileRef = E93D82AF1E633E5800A10D79 /* TaskAction.swift */; };
+		E93D82B51E648A2200A10D79 /* Task.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = E93D82B41E648A2200A10D79 /* Task.storyboard */; };
+		E93D82B71E648C1100A10D79 /* TaskTitleTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = E93D82B61E648C1100A10D79 /* TaskTitleTableViewCell.swift */; };
+		E93D82B91E65B8EB00A10D79 /* TaskDescriptionTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = E93D82B81E65B8EB00A10D79 /* TaskDescriptionTableViewCell.swift */; };
 		E945E3311CEE2025002D1F01 /* NewTaskTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E945E3301CEE2025002D1F01 /* NewTaskTableViewController.swift */; };
 		E945E3331CEE2220002D1F01 /* NewTaskTitleTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = E945E3321CEE2220002D1F01 /* NewTaskTitleTableViewCell.swift */; };
 		E945E3351CEE25E2002D1F01 /* NewTaskDescriptionTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = E945E3341CEE25E2002D1F01 /* NewTaskDescriptionTableViewCell.swift */; };
@@ -113,6 +119,12 @@
 		E92DCF521CF9992400D9E348 /* AddTaskTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = AddTaskTableViewCell.swift; path = Views/Lists/AddTaskTableViewCell.swift; sourceTree = "<group>"; };
 		E92DCF541CF9993B00D9E348 /* NewListColorTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = NewListColorTableViewCell.swift; path = Views/Lists/NewListColorTableViewCell.swift; sourceTree = "<group>"; };
 		E92DCF551CF9993B00D9E348 /* NewListTitleTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = NewListTitleTableViewCell.swift; path = Views/Lists/NewListTitleTableViewCell.swift; sourceTree = "<group>"; };
+		E93D82AB1E6338CC00A10D79 /* TaskTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = TaskTableViewController.swift; path = ViewControllers/TaskTableViewController.swift; sourceTree = "<group>"; };
+		E93D82AD1E633DFF00A10D79 /* TaskViewModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = TaskViewModel.swift; path = ViewModels/TaskViewModel.swift; sourceTree = "<group>"; };
+		E93D82AF1E633E5800A10D79 /* TaskAction.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = TaskAction.swift; path = Actions/TaskAction.swift; sourceTree = "<group>"; };
+		E93D82B41E648A2200A10D79 /* Task.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; name = Task.storyboard; path = Resources/Task.storyboard; sourceTree = "<group>"; };
+		E93D82B61E648C1100A10D79 /* TaskTitleTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = TaskTitleTableViewCell.swift; path = Views/Task/TaskTitleTableViewCell.swift; sourceTree = "<group>"; };
+		E93D82B81E65B8EB00A10D79 /* TaskDescriptionTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = TaskDescriptionTableViewCell.swift; path = Views/Task/TaskDescriptionTableViewCell.swift; sourceTree = "<group>"; };
 		E945E3301CEE2025002D1F01 /* NewTaskTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = NewTaskTableViewController.swift; path = ViewControllers/NewTaskTableViewController.swift; sourceTree = "<group>"; };
 		E945E3321CEE2220002D1F01 /* NewTaskTitleTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = NewTaskTitleTableViewCell.swift; path = Views/Lists/NewTaskTitleTableViewCell.swift; sourceTree = "<group>"; };
 		E945E3341CEE25E2002D1F01 /* NewTaskDescriptionTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = NewTaskDescriptionTableViewCell.swift; path = Views/Lists/NewTaskDescriptionTableViewCell.swift; sourceTree = "<group>"; };
@@ -236,6 +248,15 @@
 			name = Frameworks;
 			sourceTree = "<group>";
 		};
+		E93D82B11E6489A600A10D79 /* Task */ = {
+			isa = PBXGroup;
+			children = (
+				E93D82B61E648C1100A10D79 /* TaskTitleTableViewCell.swift */,
+				E93D82B81E65B8EB00A10D79 /* TaskDescriptionTableViewCell.swift */,
+			);
+			name = Task;
+			sourceTree = "<group>";
+		};
 		E9571AD81CD332BB007A819F /* Actions */ = {
 			isa = PBXGroup;
 			children = (
@@ -250,6 +271,7 @@
 				E945E3461CF200DE002D1F01 /* EditProjectAction.swift */,
 				E95A8BDB1CF88902002382AE /* EditListAction.swift */,
 				E95A8BDD1CF8ABD5002382AE /* ListOptionsAction.swift */,
+				E93D82AF1E633E5800A10D79 /* TaskAction.swift */,
 			);
 			name = Actions;
 			sourceTree = "<group>";
@@ -312,6 +334,7 @@
 				E9E4FEFB1CC53DC400517729 /* Projects.storyboard */,
 				E9BE0AC11CDCE6C700E2CC13 /* Main.storyboard */,
 				E9BE0AC31CDCE80E00E2CC13 /* Lists.storyboard */,
+				E93D82B41E648A2200A10D79 /* Task.storyboard */,
 			);
 			name = Resources;
 			sourceTree = "<group>";
@@ -319,6 +342,7 @@
 		E9E4FEF31CC53C2100517729 /* Views */ = {
 			isa = PBXGroup;
 			children = (
+				E93D82B11E6489A600A10D79 /* Task */,
 				E975D0BF1CDDC20F00F587CD /* Lists */,
 				E9571ADF1CD36B2E007A819F /* Projects */,
 			);
@@ -342,6 +366,7 @@
 				E95A8BCB1CF75849002382AE /* EditListTableViewController.swift */,
 				E945E33C1CF00575002D1F01 /* ColorPickerViewController.swift */,
 				E945E3301CEE2025002D1F01 /* NewTaskTableViewController.swift */,
+				E93D82AB1E6338CC00A10D79 /* TaskTableViewController.swift */,
 			);
 			name = ViewControllers;
 			sourceTree = "<group>";
@@ -363,6 +388,7 @@
 				E95A8BD51CF88356002382AE /* EditListViewModel.swift */,
 				E945E3361CEF5247002D1F01 /* NewTaskViewModel.swift */,
 				E945E33E1CF0CBF7002D1F01 /* ColorPickerViewModel.swift */,
+				E93D82AD1E633DFF00A10D79 /* TaskViewModel.swift */,
 			);
 			name = ViewModels;
 			sourceTree = "<group>";
@@ -525,6 +551,7 @@
 				E9BE0AC41CDCE80E00E2CC13 /* Lists.storyboard in Resources */,
 				E975D0CD1CDDE8DE00F587CD /* ListSectionTableViewCell.xib in Resources */,
 				E9E4FEFC1CC53DC400517729 /* Projects.storyboard in Resources */,
+				E93D82B51E648A2200A10D79 /* Task.storyboard in Resources */,
 				E9BE0AC21CDCE6C700E2CC13 /* Main.storyboard in Resources */,
 				E9E4FEF81CC53D3100517729 /* Launch Screen.storyboard in Resources */,
 				E9F4C66C1CC52C19003DD8DC /* Assets.xcassets in Resources */,
@@ -612,6 +639,7 @@
 				E92DCF571CF9993B00D9E348 /* NewListTitleTableViewCell.swift in Sources */,
 				E906403A1CE22F91008367F0 /* UIImage+String.swift in Sources */,
 				E9749C971CCD075F00335B53 /* Scheduler.swift in Sources */,
+				E93D82AC1E6338CC00A10D79 /* TaskTableViewController.swift in Sources */,
 				E945E3371CEF5247002D1F01 /* NewTaskViewModel.swift in Sources */,
 				E95A8BE01CF8AC3B002382AE /* ListOption.swift in Sources */,
 				E92DCF561CF9993B00D9E348 /* NewListColorTableViewCell.swift in Sources */,
@@ -627,7 +655,9 @@
 				E9C86B261CEB590800765615 /* NewListAction.swift in Sources */,
 				E9571ADA1CD332FC007A819F /* ProjectsAction.swift in Sources */,
 				E96975A21CCE78F000DC5852 /* Project.swift in Sources */,
+				E93D82AE1E633DFF00A10D79 /* TaskViewModel.swift in Sources */,
 				E9F4C6651CC52C19003DD8DC /* AppDelegate.swift in Sources */,
+				E93D82B01E633E5800A10D79 /* TaskAction.swift in Sources */,
 				E9571ADC1CD35E86007A819F /* NewProjectTableViewController.swift in Sources */,
 				E9CF1D411CD8F72400BD5DDE /* RepositoryAction.swift in Sources */,
 				E9BE0AC61CDCE87200E2CC13 /* ListsTableViewController.swift in Sources */,
@@ -638,6 +668,7 @@
 				E96CC3CC1CD58F1F007DDB65 /* SignInViewModel.swift in Sources */,
 				E9CF1D471CDA027C00BD5DDE /* RepositoriesTableViewController.swift in Sources */,
 				E975D0BE1CDCF3B900F587CD /* Task.swift in Sources */,
+				E93D82B91E65B8EB00A10D79 /* TaskDescriptionTableViewCell.swift in Sources */,
 				E975D0BC1CDCEE4C00F587CD /* Lists.swift in Sources */,
 				E95A8BD21CF75B45002382AE /* EditListActionTableViewCell.swift in Sources */,
 				E945E34B1CF3547B002D1F01 /* EditProjectDescriptionTableViewCell.swift in Sources */,
@@ -656,6 +687,7 @@
 				E928659B1CD8DDC100D2EF07 /* HUDManager.swift in Sources */,
 				E9F3974F1CDF92590078957B /* ContextMenuViewController.swift in Sources */,
 				E96CC3CA1CD58E50007DDB65 /* SessionAction.swift in Sources */,
+				E93D82B71E648C1100A10D79 /* TaskTitleTableViewCell.swift in Sources */,
 				E945E3311CEE2025002D1F01 /* NewTaskTableViewController.swift in Sources */,
 				E9EE5D081CEA2B98003D176B /* NewListViewModel.swift in Sources */,
 				E975D0D11CDE434700F587CD /* ListVisibleAction.swift in Sources */,
