@@ -15,6 +15,7 @@ import ChameleonFramework
 class NewListTableViewController: UITableViewController, UIPopoverPresentationControllerDelegate {
     @IBOutlet private weak var saveButton: UIBarButtonItem!
     @IBOutlet private weak var cancelButton: UIBarButtonItem!
+    private let hud = HUDManager()
     private let disposeBag = DisposeBag()
     var viewModel: NewListViewModel!
 
@@ -87,6 +88,8 @@ class NewListTableViewController: UITableViewController, UIPopoverPresentationCo
     }
 
     private func bindViewModel() {
+        hud.bind(loadingTarget: viewModel.isLoading)
+
         cancelButton
             .rx
             .tap

@@ -65,7 +65,10 @@ class NewTaskViewModel {
     func valid() -> Observable<Bool> {
         return newTask.asObservable()
             .flatMap({ (task) throws -> Observable<Bool> in
-                if (task.title?.characters.count)! < 1 {
+                guard let title = task.title else {
+                    throw NewTaskValidationError.titleError
+                }
+                if title.characters.count < 1 {
                     throw NewTaskValidationError.titleError
                 }
                 return Observable.just(true)

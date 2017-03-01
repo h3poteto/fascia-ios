@@ -14,6 +14,7 @@ import CSNotificationView
 class NewProjectTableViewController: UITableViewController {
     @IBOutlet private weak var saveButton: UIBarButtonItem!
     @IBOutlet private weak var cancelButton: UIBarButtonItem!
+    private let hud = HUDManager()
     private let disposeBag = DisposeBag()
     var viewModel: NewProjectViewModel!
     var repositoryViewModel = RepositoriesViewModel()
@@ -103,6 +104,8 @@ class NewProjectTableViewController: UITableViewController {
     }
 
     private func bindViewModel() {
+        hud.bind(loadingTarget: viewModel.isLoading)
+
         cancelButton
             .rx
             .tap

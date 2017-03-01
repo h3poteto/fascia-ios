@@ -299,6 +299,7 @@ class ListsTableViewController: UITableViewController, UIGestureRecognizerDelega
         viewModel.isLoading
             .drive(self.refresh.rx.refreshing)
             .addDisposableTo(disposeBag)
+
         hud.bind(loadingTarget: viewModel.isLoading)
 
         viewModel.err

@@ -15,6 +15,7 @@ class EditProjectTableViewController: UITableViewController {
     @IBOutlet private weak var saveButton: UIBarButtonItem!
     @IBOutlet private weak var cancelButton: UIBarButtonItem!
     var viewModel: EditProjectViewModel!
+    private let hud = HUDManager()
     private let disposeBag = DisposeBag()
 
     override func viewDidLoad() {
@@ -59,6 +60,8 @@ class EditProjectTableViewController: UITableViewController {
     }
 
     private func bindViewModel() {
+        hud.bind(loadingTarget: viewModel.isLoading)
+
         cancelButton
             .rx
             .tap
