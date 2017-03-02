@@ -14,6 +14,7 @@ import CSNotificationView
 class NewTaskTableViewController: UITableViewController {
     @IBOutlet private weak var cancelButton: UIBarButtonItem!
     @IBOutlet private weak var saveButton: UIBarButtonItem!
+    private let hud = HUDManager()
     private let disposeBag = DisposeBag()
     var viewModel: NewTaskViewModel!
 
@@ -62,6 +63,8 @@ class NewTaskTableViewController: UITableViewController {
     }
 
     private func bindViewModel() {
+        hud.bind(loadingTarget: viewModel.isLoading)
+
         cancelButton
             .rx
             .tap
