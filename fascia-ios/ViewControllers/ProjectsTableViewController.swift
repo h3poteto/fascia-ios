@@ -70,6 +70,7 @@ class ProjectsTableViewController: UITableViewController, SideMenuable {
             }, onError: nil, onCompleted: nil, onDisposed: nil)
             .addDisposableTo(disposeBag)
 
+        cell.removeAllRightButtons()
         cell.addRightButton(button, buttonWidth: 60.0, backgroundColor: UIColor.flatGray)
         return cell
     }
