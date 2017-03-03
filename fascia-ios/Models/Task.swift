@@ -7,6 +7,7 @@
 //
 
 import ObjectMapper
+import MMMarkdown
 
 enum TaskError: Error {
     case parserError
@@ -21,6 +22,7 @@ class Task: Mappable {
     var title: String?
     var pullRequest: Bool?
     var taskDescription: String?
+    var taskMarkedDescription: NSAttributedString?
 
     required init?(map: Map) {
         mapping(map: map)
@@ -34,6 +36,27 @@ class Task: Mappable {
         title       <- map["Title"]
         pullRequest <- map["PullRequest"]
         taskDescription <- map["Description"]
+    }
+
+    func parseMarkdown() {
+        self.taskMarkedDescription = marked(str: self.taskDescription)
+    }
+
+    private func marked(str: String?) -> NSAttributedString? {
+        guard let str = str else {
+            return nil
+        }
+        guard let htmlString = try? MMMarkdown.htmlString(withMarkdown: str, extensions: MMMarkdownExtensions.gitHubFlavored) else {
+            return nil
+        }
+        guard let data = htmlString.data(using: String.Encoding.unicode) else {
+            return nil
+        }
+        let attribute = [NSDocumentTypeDocumentAttribute: NSHTMLTextDocumentType]
+        guard let attributeText = try? NSAttributedString(data: data, options: attribute, documentAttributes: nil) else {
+            return nil
+        }
+        return attributeText
     }
 }
 

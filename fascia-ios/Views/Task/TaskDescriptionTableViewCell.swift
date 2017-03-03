@@ -18,11 +18,11 @@ class TaskDescriptionTableViewCell: UITableViewCell {
             guard let vModel = viewModel else { return }
             vModel.taskUpdated
                 .asObservable()
-                .map { (task) -> String in
-                    guard let description = task?.taskDescription else { return "" }
+                .map({ (task) -> NSAttributedString in
+                    guard let description = task?.taskMarkedDescription else { return NSAttributedString(string: "") }
                     return description
-                }
-                .bindTo(descriptionLabel.rx.text)
+                })
+                .bindTo(descriptionLabel.rx.attributedText)
                 .addDisposableTo(disposeBag)
         }
     }
