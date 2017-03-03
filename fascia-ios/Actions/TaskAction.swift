@@ -32,6 +32,7 @@ class TaskAction {
                 guard let task = Mapper<Task>().map(JSON: json) else {
                     throw TaskError.mappingError
                 }
+                task.parseMarkdown()
                 return task
             }
             .subscribe(onNext: { (task) in

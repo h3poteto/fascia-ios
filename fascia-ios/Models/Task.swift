@@ -7,6 +7,7 @@
 //
 
 import ObjectMapper
+import Down
 
 enum TaskError: Error {
     case parserError
@@ -21,6 +22,7 @@ class Task: Mappable {
     var title: String?
     var pullRequest: Bool?
     var taskDescription: String?
+    var taskMarkedDescription: NSAttributedString?
 
     required init?(map: Map) {
         mapping(map: map)
@@ -34,6 +36,22 @@ class Task: Mappable {
         title       <- map["Title"]
         pullRequest <- map["PullRequest"]
         taskDescription <- map["Description"]
+    }
+
+    func parseMarkdown() {
+        self.taskMarkedDescription = marked(str: self.taskDescription)
+    }
+
+    private func marked(str: String?) -> NSAttributedString? {
+        guard let str = str else {
+            return nil
+        }
+        let down = Down(markdownString: str)
+        let attributedString = try? down.toAttributedString(DownOptions.HardBreaks)
+        guard let attr = attributedString else {
+            return nil
+        }
+        return attr
     }
 }
 

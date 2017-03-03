@@ -13,6 +13,7 @@ import CSNotificationView
 
 class TaskTableViewController: UITableViewController {
     @IBOutlet private weak var refresh: UIRefreshControl!
+    private let hud = HUDManager()
     private let disposeBag = DisposeBag()
     var viewModel: TaskViewModel!
 
@@ -93,6 +94,8 @@ class TaskTableViewController: UITableViewController {
     }
 
     private func bindViewModel() {
+        hud.bind(loadingTarget: viewModel.isLoading)
+
         viewModel.taskUpdated
             .drive(onNext: { (task) in
                 if let task = task {
@@ -131,7 +134,7 @@ class TaskTableViewController: UITableViewController {
             }, onCompleted: nil, onDisposed: nil)
             .addDisposableTo(disposeBag)
 
-        refresh.rx.controlEvent(.valueChanged).startWith({ print("start lists loading") }())
+        refresh.rx.controlEvent(.valueChanged).startWith({ print("start task loading") }())
             .subscribe(onNext: { () in
                 self.viewModel.fetch()
             }, onError: nil, onCompleted: nil, onDisposed: nil)
