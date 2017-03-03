@@ -13,6 +13,7 @@ import CSNotificationView
 
 class TaskTableViewController: UITableViewController {
     @IBOutlet private weak var refresh: UIRefreshControl!
+    private let hud = HUDManager()
     private let disposeBag = DisposeBag()
     var viewModel: TaskViewModel!
 
@@ -93,6 +94,8 @@ class TaskTableViewController: UITableViewController {
     }
 
     private func bindViewModel() {
+        hud.bind(loadingTarget: viewModel.isLoading)
+
         viewModel.taskUpdated
             .drive(onNext: { (task) in
                 if let task = task {

@@ -16,6 +16,7 @@ target "fascia-ios" do
   pod 'SESlideTableViewCell'
   pod 'Fabric'
   pod 'Crashlytics'
+  pod 'MMMarkdown'
 
   post_install do | installer |
     installer.pods_project.targets.each do |target|
