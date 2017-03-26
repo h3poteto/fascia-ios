@@ -189,7 +189,7 @@ class ListsTableViewController: UITableViewController, UIGestureRecognizerDelega
                 .addDisposableTo(disposeBag)
             return
         // 各タスクの詳細画面を表示
-        case (0, 0..<(noneList.listTasks.count - 1)):
+        case (0, 0..<(noneList.listTasks.count)):
             if let taskView = UIStoryboard.instantiateViewController(identifier: "TaskTableViewController", storyboardName: "Task") as? TaskTableViewController {
                 taskView.viewModel = TaskViewModel(project: viewModel.project, list: noneList, task: noneList.listTasks[indexPath.row])
                 self.navigationController?.pushViewController(taskView, animated: true)
