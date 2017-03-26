@@ -277,7 +277,7 @@ class ListsTableViewController: UITableViewController, UIGestureRecognizerDelega
 
     private func prepareNewTaskView(list: List) -> Observable<UINavigationController> {
         return Observable.create({ observe -> Disposable in
-            if let newTaskNavigation = UIStoryboard.instantiateViewController(identifier: "NewTaskNavigationController", storyboardName: "Lists") as? UINavigationController {
+            if let newTaskNavigation = UIStoryboard.instantiateViewController(identifier: "NewTaskNavigationController", storyboardName: "Task") as? UINavigationController {
                 let newTaskView = newTaskNavigation.viewControllers.first as? NewTaskTableViewController
                 let vm = NewTaskViewModel(model: NewTask(), list: list)
                 newTaskView?.viewModel = vm

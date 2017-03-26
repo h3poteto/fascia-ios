@@ -20,8 +20,6 @@
 		E93D82B71E648C1100A10D79 /* TaskTitleTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = E93D82B61E648C1100A10D79 /* TaskTitleTableViewCell.swift */; };
 		E93D82B91E65B8EB00A10D79 /* TaskDescriptionTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = E93D82B81E65B8EB00A10D79 /* TaskDescriptionTableViewCell.swift */; };
 		E945E3311CEE2025002D1F01 /* NewTaskTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E945E3301CEE2025002D1F01 /* NewTaskTableViewController.swift */; };
-		E945E3331CEE2220002D1F01 /* NewTaskTitleTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = E945E3321CEE2220002D1F01 /* NewTaskTitleTableViewCell.swift */; };
-		E945E3351CEE25E2002D1F01 /* NewTaskDescriptionTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = E945E3341CEE25E2002D1F01 /* NewTaskDescriptionTableViewCell.swift */; };
 		E945E3371CEF5247002D1F01 /* NewTaskViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = E945E3361CEF5247002D1F01 /* NewTaskViewModel.swift */; };
 		E945E3391CEF52C1002D1F01 /* NewTask.swift in Sources */ = {isa = PBXBuildFile; fileRef = E945E3381CEF52C1002D1F01 /* NewTask.swift */; };
 		E945E33B1CEF5A67002D1F01 /* NewTaskAction.swift in Sources */ = {isa = PBXBuildFile; fileRef = E945E33A1CEF5A67002D1F01 /* NewTaskAction.swift */; };
@@ -65,6 +63,8 @@
 		E975D0CD1CDDE8DE00F587CD /* ListSectionTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = E975D0CB1CDDE8DE00F587CD /* ListSectionTableViewCell.xib */; };
 		E975D0CF1CDDE9CC00F587CD /* ListSectionViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = E975D0CE1CDDE9CC00F587CD /* ListSectionViewModel.swift */; };
 		E975D0D11CDE434700F587CD /* ListVisibleAction.swift in Sources */ = {isa = PBXBuildFile; fileRef = E975D0D01CDE434700F587CD /* ListVisibleAction.swift */; };
+		E9A32F171E880F0900DAF9CC /* NewTaskDescriptionTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = E9A32F161E880F0900DAF9CC /* NewTaskDescriptionTableViewCell.swift */; };
+		E9A32F191E880F4700DAF9CC /* NewTaskTitleTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = E9A32F181E880F4700DAF9CC /* NewTaskTitleTableViewCell.swift */; };
 		E9ABF2C91E5C86DD009459BB /* SessionService.swift in Sources */ = {isa = PBXBuildFile; fileRef = E9ABF2C81E5C86DD009459BB /* SessionService.swift */; };
 		E9BE0AC21CDCE6C700E2CC13 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = E9BE0AC11CDCE6C700E2CC13 /* Main.storyboard */; };
 		E9BE0AC41CDCE80E00E2CC13 /* Lists.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = E9BE0AC31CDCE80E00E2CC13 /* Lists.storyboard */; };
@@ -126,8 +126,6 @@
 		E93D82B61E648C1100A10D79 /* TaskTitleTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = TaskTitleTableViewCell.swift; path = Views/Task/TaskTitleTableViewCell.swift; sourceTree = "<group>"; };
 		E93D82B81E65B8EB00A10D79 /* TaskDescriptionTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = TaskDescriptionTableViewCell.swift; path = Views/Task/TaskDescriptionTableViewCell.swift; sourceTree = "<group>"; };
 		E945E3301CEE2025002D1F01 /* NewTaskTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = NewTaskTableViewController.swift; path = ViewControllers/NewTaskTableViewController.swift; sourceTree = "<group>"; };
-		E945E3321CEE2220002D1F01 /* NewTaskTitleTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = NewTaskTitleTableViewCell.swift; path = Views/Lists/NewTaskTitleTableViewCell.swift; sourceTree = "<group>"; };
-		E945E3341CEE25E2002D1F01 /* NewTaskDescriptionTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = NewTaskDescriptionTableViewCell.swift; path = Views/Lists/NewTaskDescriptionTableViewCell.swift; sourceTree = "<group>"; };
 		E945E3361CEF5247002D1F01 /* NewTaskViewModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = NewTaskViewModel.swift; path = ViewModels/NewTaskViewModel.swift; sourceTree = "<group>"; };
 		E945E3381CEF52C1002D1F01 /* NewTask.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = NewTask.swift; path = Models/NewTask.swift; sourceTree = "<group>"; };
 		E945E33A1CEF5A67002D1F01 /* NewTaskAction.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = NewTaskAction.swift; path = Actions/NewTaskAction.swift; sourceTree = "<group>"; };
@@ -171,6 +169,8 @@
 		E975D0CB1CDDE8DE00F587CD /* ListSectionTableViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = ListSectionTableViewCell.xib; path = Views/Lists/ListSectionTableViewCell.xib; sourceTree = "<group>"; };
 		E975D0CE1CDDE9CC00F587CD /* ListSectionViewModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = ListSectionViewModel.swift; path = ViewModels/ListSectionViewModel.swift; sourceTree = "<group>"; };
 		E975D0D01CDE434700F587CD /* ListVisibleAction.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = ListVisibleAction.swift; path = Actions/ListVisibleAction.swift; sourceTree = "<group>"; };
+		E9A32F161E880F0900DAF9CC /* NewTaskDescriptionTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = NewTaskDescriptionTableViewCell.swift; path = Views/Task/NewTaskDescriptionTableViewCell.swift; sourceTree = "<group>"; };
+		E9A32F181E880F4700DAF9CC /* NewTaskTitleTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = NewTaskTitleTableViewCell.swift; path = Views/Task/NewTaskTitleTableViewCell.swift; sourceTree = "<group>"; };
 		E9ABF2C81E5C86DD009459BB /* SessionService.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = SessionService.swift; path = Services/SessionService.swift; sourceTree = "<group>"; };
 		E9BE0AC11CDCE6C700E2CC13 /* Main.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; name = Main.storyboard; path = Resources/Main.storyboard; sourceTree = "<group>"; };
 		E9BE0AC31CDCE80E00E2CC13 /* Lists.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; name = Lists.storyboard; path = Resources/Lists.storyboard; sourceTree = "<group>"; };
@@ -253,6 +253,8 @@
 			children = (
 				E93D82B61E648C1100A10D79 /* TaskTitleTableViewCell.swift */,
 				E93D82B81E65B8EB00A10D79 /* TaskDescriptionTableViewCell.swift */,
+				E9A32F181E880F4700DAF9CC /* NewTaskTitleTableViewCell.swift */,
+				E9A32F161E880F0900DAF9CC /* NewTaskDescriptionTableViewCell.swift */,
 			);
 			name = Task;
 			sourceTree = "<group>";
@@ -299,8 +301,6 @@
 				E92DCF541CF9993B00D9E348 /* NewListColorTableViewCell.swift */,
 				E92DCF551CF9993B00D9E348 /* NewListTitleTableViewCell.swift */,
 				E92DCF521CF9992400D9E348 /* AddTaskTableViewCell.swift */,
-				E945E3321CEE2220002D1F01 /* NewTaskTitleTableViewCell.swift */,
-				E945E3341CEE25E2002D1F01 /* NewTaskDescriptionTableViewCell.swift */,
 				E95A8BCD1CF75A61002382AE /* EditListTitleTableViewCell.swift */,
 				E95A8BCF1CF75B1F002382AE /* EditListColorTableViewCell.swift */,
 				E95A8BD11CF75B45002382AE /* EditListActionTableViewCell.swift */,
@@ -645,6 +645,8 @@
 				E92DCF561CF9993B00D9E348 /* NewListColorTableViewCell.swift in Sources */,
 				E95A8BDA1CF88533002382AE /* EditList.swift in Sources */,
 				E9EE5D021CEA179B003D176B /* NewListTableViewController.swift in Sources */,
+				E9A32F191E880F4700DAF9CC /* NewTaskTitleTableViewCell.swift in Sources */,
+				E9A32F171E880F0900DAF9CC /* NewTaskDescriptionTableViewCell.swift in Sources */,
 				E945E3411CF1F83E002D1F01 /* EditProjectTableViewController.swift in Sources */,
 				E945E3391CEF52C1002D1F01 /* NewTask.swift in Sources */,
 				E945E3491CF20328002D1F01 /* EditProject.swift in Sources */,
@@ -675,7 +677,6 @@
 				E975D0CF1CDDE9CC00F587CD /* ListSectionViewModel.swift in Sources */,
 				E945E3431CF1F92D002D1F01 /* EditProjectTitleTableViewCell.swift in Sources */,
 				E9CF1D491CDA0D8300BD5DDE /* RepositoryTableViewCell.swift in Sources */,
-				E945E3331CEE2220002D1F01 /* NewTaskTitleTableViewCell.swift in Sources */,
 				E9571AE71CD3AB92007A819F /* NewProjectDescriptionTableViewCell.swift in Sources */,
 				E9CF1D3F1CD8F10100BD5DDE /* Repository.swift in Sources */,
 				E9571AE91CD3C4FD007A819F /* NewProjectAction.swift in Sources */,
@@ -699,7 +700,6 @@
 				E9571AE11CD36B88007A819F /* ProjectTableViewCell.swift in Sources */,
 				E95A8BD01CF75B1F002382AE /* EditListColorTableViewCell.swift in Sources */,
 				E945E33B1CEF5A67002D1F01 /* NewTaskAction.swift in Sources */,
-				E945E3351CEE25E2002D1F01 /* NewTaskDescriptionTableViewCell.swift in Sources */,
 				E95A8BD61CF88356002382AE /* EditListViewModel.swift in Sources */,
 				E9CF1D431CD9EE8B00BD5DDE /* RepositoriesViewModel.swift in Sources */,
 				E9E4FF001CC68ED600517729 /* ProjectsTableViewController.swift in Sources */,

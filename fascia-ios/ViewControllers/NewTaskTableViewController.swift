@@ -20,7 +20,7 @@ class NewTaskTableViewController: UITableViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
-
+        self.tableView.estimatedRowHeight = 44
         bindViewModel()
 
     }
@@ -34,24 +34,64 @@ class NewTaskTableViewController: UITableViewController {
 
     override func numberOfSections(in tableView: UITableView) -> Int {
         // #warning Incomplete implementation, return the number of sections
-        return 1
+        return 2
     }
 
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         // #warning Incomplete implementation, return the number of rows
-        return 2
+        return 1
+    }
+
+    override func tableView(_ tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat {
+        return 38.0
+    }
+
+    override func tableView(_ tableView: UITableView, heightForFooterInSection section: Int) -> CGFloat {
+        return 4.0
+    }
+
+    override func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
+        var height = CGFloat(44.0)
+        switch(indexPath.section) {
+        case 0:
+            height = 44.0
+            break
+        case 1:
+            height = 160.0
+            break
+        default:
+            height = 44.0
+            break
+        }
+        return height
+    }
+
+    override func tableView(_ tableView: UITableView, titleForHeaderInSection section: Int) -> String? {
+        var sectionTitle = String?("")
+        switch (section) {
+        case 0:
+            sectionTitle = "Title"
+            break
+        case 1:
+            sectionTitle = "Description"
+            break
+        default:
+            sectionTitle = ""
+            break
+        }
+        return sectionTitle
     }
 
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let defaultCell = UITableViewCell(style: .default, reuseIdentifier: "Cell")
-        switch(indexPath.row) {
-        case 0:
+        switch(indexPath.section, indexPath.row) {
+        case (0, 0):
             guard let cell = tableView.dequeueReusableCell(withIdentifier: "NewTaskTitleTableViewCell", for: indexPath) as? NewTaskTitleTableViewCell else {
                 return defaultCell
             }
             cell.viewModel = self.viewModel
             return cell
-        case 1:
+        case (1, 0):
             guard let cell = tableView.dequeueReusableCell(withIdentifier: "NewTaskDescriptionTableViewCell", for: indexPath) as? NewTaskDescriptionTableViewCell else {
                 return defaultCell
             }
