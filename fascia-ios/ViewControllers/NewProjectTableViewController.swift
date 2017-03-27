@@ -35,19 +35,44 @@ class NewProjectTableViewController: UITableViewController {
 
     override func numberOfSections(in tableView: UITableView) -> Int {
         // #warning Incomplete implementation, return the number of sections
-        return 2
+        return 3
     }
 
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        // #warning Incomplete implementation, return the number of rows
-        switch section {
-        case 0:
-            return 1
-        case 1:
-            return 2
+        return 1
+    }
+
+    override func tableView(_ tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat {
+        return 38.0
+    }
+
+    override func tableView(_ tableView: UITableView, heightForFooterInSection section: Int) -> CGFloat {
+        return 4.0
+    }
+
+    override func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
+        switch (indexPath.section, indexPath.row) {
+        case (1, 0):
+            return 105
         default:
-            return 0
+            return 44
         }
+    }
+
+    override func tableView(_ tableView: UITableView, titleForHeaderInSection section: Int) -> String? {
+        var sectionTitle = String?("")
+        switch (section) {
+        case 0:
+            sectionTitle = "Title"
+            break
+        case 1:
+            sectionTitle = "Description"
+            break
+        default:
+            sectionTitle = "Repository"
+            break
+        }
+        return sectionTitle
     }
 
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
@@ -64,7 +89,7 @@ class NewProjectTableViewController: UITableViewController {
             }
             cell.parentViewModel = viewModel
             return cell
-        case (1, 1):
+        case (2, 0):
             guard let cell = tableView.dequeueReusableCell(withIdentifier: "NewProjectRepositoryTableViewCell", for: indexPath) as? NewProjectRepositoryTableViewCell else {
                 return tableView.dequeueReusableCell(withIdentifier: "Cell", for: indexPath)
             }
@@ -77,7 +102,7 @@ class NewProjectTableViewController: UITableViewController {
 
     override func tableView(_ tableView: UITableView, willSelectRowAt indexPath: IndexPath) -> IndexPath? {
         switch (indexPath.section, indexPath.row) {
-        case (1, 1):
+        case (2, 0):
             return indexPath
         default:
             return nil
@@ -86,7 +111,7 @@ class NewProjectTableViewController: UITableViewController {
 
     override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         switch (indexPath.section, indexPath.row) {
-        case (1, 1):
+        case (2, 0):
             if let repositories = UIStoryboard.instantiateViewController(identifier: "RepositoriesTableViewController", storyboardName: "Projects") as? RepositoriesTableViewController {
                 repositories.viewModel = self.repositoryViewModel
                 self.navigationController?.pushViewController(repositories, animated: true)
