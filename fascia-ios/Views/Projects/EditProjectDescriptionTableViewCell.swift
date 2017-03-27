@@ -11,8 +11,7 @@ import RxSwift
 import RxCocoa
 
 class EditProjectDescriptionTableViewCell: UITableViewCell {
-    @IBOutlet private weak var descriptionLabel: UILabel!
-    @IBOutlet private weak var descriptionText: UITextField!
+    @IBOutlet private weak var descriptionText: UITextView!
     private let disposeBag = DisposeBag()
     var viewModel: EditProjectViewModel? {
         didSet {

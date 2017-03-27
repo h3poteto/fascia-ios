@@ -1,18 +1,17 @@
 //
-//  NewTaskDescriptionTableViewCell.swift
+//  NewTaskTitleTableViewCell.swift
 //  fascia-ios
 //
-//  Created by akirafukushima on 2016/05/20.
-//  Copyright © 2016年 h3poteto. All rights reserved.
+//  Created by akirafukushima on 2017/03/27.
+//  Copyright © 2017年 h3poteto. All rights reserved.
 //
 
 import UIKit
 import RxSwift
 import RxCocoa
 
-class NewTaskDescriptionTableViewCell: UITableViewCell {
-    @IBOutlet private weak var descriptionLabel: UILabel!
-    @IBOutlet private weak var descriptionText: UITextField!
+class NewTaskTitleTableViewCell: UITableViewCell {
+    @IBOutlet private weak var titleText: UITextField!
     var viewModel: NewTaskViewModel?
     private let disposeBag = DisposeBag()
 
@@ -28,11 +27,11 @@ class NewTaskDescriptionTableViewCell: UITableViewCell {
     }
 
     private func bindViewModel() {
-        descriptionText
+        titleText
             .rx
             .text
             .subscribe(onNext: { (text) in
-                self.viewModel?.update(title: nil, description: text)
+                self.viewModel?.update(title: text, description: nil)
             }, onError: nil, onCompleted: nil, onDisposed: nil)
             .addDisposableTo(disposeBag)
     }

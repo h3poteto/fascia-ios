@@ -33,12 +33,36 @@ class NewListTableViewController: UITableViewController, UIPopoverPresentationCo
 
     override func numberOfSections(in tableView: UITableView) -> Int {
         // #warning Incomplete implementation, return the number of sections
-        return 1
+        return 2
     }
 
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         // #warning Incomplete implementation, return the number of rows
-        return 2
+        return 1
+    }
+
+    override func tableView(_ tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat {
+        return 38.0
+    }
+
+    override func tableView(_ tableView: UITableView, heightForFooterInSection section: Int) -> CGFloat {
+        return 4.0
+    }
+
+    override func tableView(_ tableView: UITableView, titleForHeaderInSection section: Int) -> String? {
+        var sectionTitle = String?("")
+        switch (section) {
+        case 0:
+            sectionTitle = "Title"
+            break
+        case 1:
+            sectionTitle = "Color"
+            break
+        default:
+            sectionTitle = ""
+            break
+        }
+        return sectionTitle
     }
 
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
@@ -49,7 +73,7 @@ class NewListTableViewController: UITableViewController, UIPopoverPresentationCo
                 return cell
             }
             break
-        case (0, 1):
+        case (1, 0):
             if let cell = tableView.dequeueReusableCell(withIdentifier: "NewListColorTableViewCell", for: indexPath) as? NewListColorTableViewCell {
                 cell.viewModel = self.viewModel
                 return cell
@@ -64,7 +88,7 @@ class NewListTableViewController: UITableViewController, UIPopoverPresentationCo
 
     override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         switch (indexPath.section, indexPath.row) {
-        case (0, 1):
+        case (1, 0):
             guard let colorPicker = UIStoryboard.instantiateViewController(identifier: "ColorPickerViewController", storyboardName: "Lists") as? ColorPickerViewController else {
                 return
             }

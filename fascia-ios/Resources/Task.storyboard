@@ -98,6 +98,7 @@
                         </connections>
                     </tableView>
                     <refreshControl key="refreshControl" opaque="NO" multipleTouchEnabled="YES" contentMode="center" enabled="NO" contentHorizontalAlignment="center" contentVerticalAlignment="center" id="27v-d3-O7t">
+                        <rect key="frame" x="0.0" y="0.0" width="1000" height="1000"/>
                         <autoresizingMask key="autoresizingMask"/>
                     </refreshControl>
                     <connections>
@@ -107,6 +108,102 @@
                 <placeholder placeholderIdentifier="IBFirstResponder" id="8Fo-eB-LVx" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="145" y="152"/>
+        </scene>
+        <!--NewTask-->
+        <scene sceneID="z84-yM-Yfd">
+            <objects>
+                <tableViewController storyboardIdentifier="NewTaskTableViewController" title="NewTask" id="ske-JP-aM9" customClass="NewTaskTableViewController" customModule="fascia_ios" customModuleProvider="target" sceneMemberID="viewController">
+                    <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="grouped" separatorStyle="default" rowHeight="44" sectionHeaderHeight="18" sectionFooterHeight="18" id="rQd-hb-bRj">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <color key="backgroundColor" cocoaTouchSystemColor="groupTableViewBackgroundColor"/>
+                        <prototypes>
+                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" restorationIdentifier="NewTaskTitleTableViewCell" selectionStyle="default" indentationWidth="10" reuseIdentifier="NewTaskTitleTableViewCell" id="SzU-b0-7MP" customClass="NewTaskTitleTableViewCell" customModule="fascia_ios" customModuleProvider="target">
+                                <rect key="frame" x="0.0" y="56" width="375" height="44"/>
+                                <autoresizingMask key="autoresizingMask"/>
+                                <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="SzU-b0-7MP" id="6vw-0c-B4k">
+                                    <rect key="frame" x="0.0" y="0.0" width="375" height="43"/>
+                                    <autoresizingMask key="autoresizingMask"/>
+                                    <subviews>
+                                        <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="F09-ao-5V2">
+                                            <rect key="frame" x="8" y="0.0" width="359" height="43"/>
+                                            <nil key="textColor"/>
+                                            <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                            <textInputTraits key="textInputTraits"/>
+                                        </textField>
+                                    </subviews>
+                                    <constraints>
+                                        <constraint firstItem="F09-ao-5V2" firstAttribute="leading" secondItem="6vw-0c-B4k" secondAttribute="leading" constant="8" id="Mq5-m7-50r"/>
+                                        <constraint firstAttribute="trailing" secondItem="F09-ao-5V2" secondAttribute="trailing" constant="8" id="MuH-Vo-o1I"/>
+                                        <constraint firstAttribute="bottom" secondItem="F09-ao-5V2" secondAttribute="bottom" id="d3P-QY-n9e"/>
+                                        <constraint firstItem="F09-ao-5V2" firstAttribute="top" secondItem="6vw-0c-B4k" secondAttribute="top" id="v4O-lE-zHD"/>
+                                    </constraints>
+                                </tableViewCellContentView>
+                                <connections>
+                                    <outlet property="titleText" destination="F09-ao-5V2" id="3IP-5Q-EXE"/>
+                                </connections>
+                            </tableViewCell>
+                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" restorationIdentifier="NewTaskDescriptionTableViewCell" selectionStyle="default" indentationWidth="10" reuseIdentifier="NewTaskDescriptionTableViewCell" id="7b1-bB-uEg" customClass="NewTaskDescriptionTableViewCell" customModule="fascia_ios" customModuleProvider="target">
+                                <rect key="frame" x="0.0" y="100" width="375" height="44"/>
+                                <autoresizingMask key="autoresizingMask"/>
+                                <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="7b1-bB-uEg" id="oY9-KU-gXq">
+                                    <rect key="frame" x="0.0" y="0.0" width="375" height="43"/>
+                                    <autoresizingMask key="autoresizingMask"/>
+                                    <subviews>
+                                        <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" textAlignment="natural" translatesAutoresizingMaskIntoConstraints="NO" id="WMY-56-R8q">
+                                            <rect key="frame" x="8" y="0.0" width="359" height="43"/>
+                                            <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                            <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                            <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
+                                        </textView>
+                                    </subviews>
+                                    <constraints>
+                                        <constraint firstItem="WMY-56-R8q" firstAttribute="leading" secondItem="oY9-KU-gXq" secondAttribute="leading" constant="8" id="I6Q-KS-i8T"/>
+                                        <constraint firstAttribute="bottom" secondItem="WMY-56-R8q" secondAttribute="bottom" id="Xp0-So-9JV"/>
+                                        <constraint firstAttribute="trailing" secondItem="WMY-56-R8q" secondAttribute="trailing" constant="8" id="Xpy-0l-jlU"/>
+                                        <constraint firstItem="WMY-56-R8q" firstAttribute="top" secondItem="oY9-KU-gXq" secondAttribute="top" id="arS-Yd-cWk"/>
+                                    </constraints>
+                                </tableViewCellContentView>
+                                <connections>
+                                    <outlet property="descriptionText" destination="WMY-56-R8q" id="PxU-oG-dhs"/>
+                                </connections>
+                            </tableViewCell>
+                        </prototypes>
+                        <connections>
+                            <outlet property="dataSource" destination="ske-JP-aM9" id="MW1-7O-RvM"/>
+                            <outlet property="delegate" destination="ske-JP-aM9" id="obL-fM-Bbd"/>
+                        </connections>
+                    </tableView>
+                    <toolbarItems/>
+                    <navigationItem key="navigationItem" title="New Task" id="5Ch-Uc-YQb">
+                        <barButtonItem key="leftBarButtonItem" systemItem="cancel" id="7cQ-tm-FBo"/>
+                        <barButtonItem key="rightBarButtonItem" systemItem="save" id="uwe-Pl-bqA"/>
+                    </navigationItem>
+                    <simulatedToolbarMetrics key="simulatedBottomBarMetrics"/>
+                    <connections>
+                        <outlet property="cancelButton" destination="7cQ-tm-FBo" id="8Ox-Zs-lHT"/>
+                        <outlet property="saveButton" destination="uwe-Pl-bqA" id="X1w-hd-DI4"/>
+                    </connections>
+                </tableViewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="3ct-OP-JoM" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="849" y="843"/>
+        </scene>
+        <!--Navigation Controller-->
+        <scene sceneID="KlB-Lq-LPT">
+            <objects>
+                <navigationController storyboardIdentifier="NewTaskNavigationController" id="bOR-mb-Qcs" sceneMemberID="viewController">
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" id="1uX-KC-48i">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="44"/>
+                        <autoresizingMask key="autoresizingMask"/>
+                    </navigationBar>
+                    <connections>
+                        <segue destination="ske-JP-aM9" kind="relationship" relationship="rootViewController" id="xJz-SI-P6d"/>
+                    </connections>
+                </navigationController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="XQB-TY-ORb" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="145" y="844"/>
         </scene>
     </scenes>
 </document>
