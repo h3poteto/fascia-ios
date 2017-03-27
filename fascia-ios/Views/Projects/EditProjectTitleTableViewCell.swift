@@ -11,7 +11,6 @@ import RxSwift
 import RxCocoa
 
 class EditProjectTitleTableViewCell: UITableViewCell {
-    @IBOutlet private weak var titleLabel: UILabel!
     @IBOutlet private weak var titleText: UITextField!
     private let disposeBag = DisposeBag()
     var viewModel: EditProjectViewModel? {

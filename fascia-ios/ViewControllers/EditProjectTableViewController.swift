@@ -32,12 +32,44 @@ class EditProjectTableViewController: UITableViewController {
 
     override func numberOfSections(in tableView: UITableView) -> Int {
         // #warning Incomplete implementation, return the number of sections
-        return 1
+        return 2
     }
 
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         // #warning Incomplete implementation, return the number of rows
-        return 2
+        return 1
+    }
+
+    override func tableView(_ tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat {
+        return 38.0
+    }
+
+    override func tableView(_ tableView: UITableView, heightForFooterInSection section: Int) -> CGFloat {
+        return 4.0
+    }
+
+    override func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
+        switch (indexPath.section, indexPath.row) {
+        case (1, 0):
+            return 105
+        default:
+            return 44
+        }
+    }
+
+    override func tableView(_ tableView: UITableView, titleForHeaderInSection section: Int) -> String? {
+        var sectionTitle: String?
+        switch (section) {
+        case 0:
+            sectionTitle = "Title"
+            break
+        case 1:
+            sectionTitle = "Description"
+            break
+        default:
+            break
+        }
+        return sectionTitle
     }
 
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
@@ -48,7 +80,7 @@ class EditProjectTableViewController: UITableViewController {
             }
             cell.viewModel = self.viewModel
             return cell
-        case (0, 1):
+        case (1, 0):
             guard let cell = tableView.dequeueReusableCell(withIdentifier: "EditProjectDescriptionTableViewCell", for: indexPath) as? EditProjectDescriptionTableViewCell else {
                 return tableView.dequeueReusableCell(withIdentifier: "Cell", for: indexPath)
             }
