@@ -34,12 +34,39 @@ class EditListTableViewController: UITableViewController {
 
     override func numberOfSections(in tableView: UITableView) -> Int {
         // #warning Incomplete implementation, return the number of sections
-        return 1
+        return 3
     }
 
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         // #warning Incomplete implementation, return the number of rows
-        return 3
+        return 1
+    }
+
+    override func tableView(_ tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat {
+        return 38.0
+    }
+
+    override func tableView(_ tableView: UITableView, heightForFooterInSection section: Int) -> CGFloat {
+        return 4.0
+    }
+
+    override func tableView(_ tableView: UITableView, titleForHeaderInSection section: Int) -> String? {
+        var sectionTitle = String?("")
+        switch (section) {
+        case 0:
+            sectionTitle = "Title"
+            break
+        case 1:
+            sectionTitle = "Color"
+            break
+        case 2:
+            sectionTitle = "Action"
+            break
+        default:
+            sectionTitle = ""
+            break
+        }
+        return sectionTitle
     }
 
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
@@ -50,13 +77,13 @@ class EditListTableViewController: UITableViewController {
                 return cell
             }
             break
-        case (0, 1):
+        case (1, 0):
             if let cell = tableView.dequeueReusableCell(withIdentifier: "EditListColorTableViewCell", for: indexPath) as? EditListColorTableViewCell {
                 cell.viewModel = self.viewModel
                 return cell
             }
             break
-        case (0, 2):
+        case (2, 0):
             if let cell = tableView.dequeueReusableCell(withIdentifier: "EditListActionTableViewCell", for: indexPath) as? EditListActionTableViewCell {
                 cell.viewModel = self.viewModel
                 return cell
@@ -71,7 +98,7 @@ class EditListTableViewController: UITableViewController {
 
     override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         switch (indexPath.section, indexPath.row) {
-        case (0, 1):
+        case (1, 0):
             guard let colorPicker = UIStoryboard.instantiateViewController(identifier: "ColorPickerViewController", storyboardName: "Lists") as? ColorPickerViewController else {
                 return
             }
@@ -90,7 +117,7 @@ class EditListTableViewController: UITableViewController {
             self.tableView.deselectRow(at: indexPath, animated: true)
             self.navigationController?.pushViewController(colorPicker, animated: true)
             break
-        case (0, 2):
+        case (2, 0):
             listOptionAlert()
             self.tableView.deselectRow(at: indexPath, animated: true)
             break
