@@ -54,8 +54,17 @@
                                                 <constraint firstAttribute="width" constant="20" id="ycc-25-m6W"/>
                                             </constraints>
                                         </imageView>
+                                        <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="fascia" translatesAutoresizingMaskIntoConstraints="NO" id="RTr-zZ-WjR">
+                                            <rect key="frame" x="335" y="8" width="28" height="28"/>
+                                            <constraints>
+                                                <constraint firstAttribute="width" constant="28" id="eTP-ce-8Aq"/>
+                                                <constraint firstAttribute="height" constant="28" id="zeg-2Y-eA8"/>
+                                            </constraints>
+                                        </imageView>
                                     </subviews>
                                     <constraints>
+                                        <constraint firstAttribute="trailing" secondItem="RTr-zZ-WjR" secondAttribute="trailing" constant="12" id="1hY-IW-vAx"/>
+                                        <constraint firstItem="RTr-zZ-WjR" firstAttribute="centerY" secondItem="Q4m-PW-8x7" secondAttribute="centerY" id="33c-73-zbm"/>
                                         <constraint firstItem="aVo-i3-5gc" firstAttribute="centerY" secondItem="Q4m-PW-8x7" secondAttribute="centerY" id="4zp-fi-dPv"/>
                                         <constraint firstItem="gUG-uD-n6q" firstAttribute="centerY" secondItem="Q4m-PW-8x7" secondAttribute="centerY" id="CJJ-Vc-LYu"/>
                                         <constraint firstItem="gUG-uD-n6q" firstAttribute="leading" secondItem="Q4m-PW-8x7" secondAttribute="leadingMargin" constant="12" id="HHc-dp-BxX"/>
@@ -71,6 +80,7 @@
                                     </variation>
                                 </tableViewCellContentView>
                                 <connections>
+                                    <outlet property="fasciaLabel" destination="RTr-zZ-WjR" id="d78-Fd-aFp"/>
                                     <outlet property="githubLabel" destination="aVo-i3-5gc" id="wUA-Qv-PCp"/>
                                     <outlet property="projectImage" destination="gUG-uD-n6q" id="SCf-fi-jBy"/>
                                     <outlet property="tilteLabel" destination="TBa-Wn-C5S" id="FhH-q8-RX2"/>
@@ -408,5 +418,6 @@
     <resources>
         <image name="GitHub" width="25" height="25"/>
         <image name="Lock" width="25" height="25"/>
+        <image name="fascia" width="30" height="30"/>
     </resources>
 </document>

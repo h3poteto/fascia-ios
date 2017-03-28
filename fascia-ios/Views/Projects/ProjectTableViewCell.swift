@@ -16,6 +16,7 @@ class ProjectTableViewCell: SESlideTableViewCell {
     @IBOutlet private weak var tilteLabel: UILabel!
     @IBOutlet private weak var githubLabel: UIImageView!
     @IBOutlet private weak var projectImage: UIImageView!
+    @IBOutlet private weak var fasciaLabel: UIImageView!
 
     let disposeBag = DisposeBag()
 
@@ -23,7 +24,11 @@ class ProjectTableViewCell: SESlideTableViewCell {
         didSet {
             guard let vModel = self.viewModel else { return }
             vModel.title.bindTo(self.tilteLabel.rx.text).addDisposableTo(disposeBag)
-            vModel.hideRepository.bindTo(self.githubLabel.rx.isHidden).addDisposableTo(disposeBag)
+            vModel.githubRepository.subscribe(onNext: { (github) in
+                self.githubLabel.isHidden = github
+                self.fasciaLabel.isHidden = !github
+            }, onError: nil, onCompleted: nil, onDisposed: nil)
+            .addDisposableTo(disposeBag)
         }
     }
 
