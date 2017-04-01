@@ -33,6 +33,6 @@ class NewProject: Mappable {
 
 extension NewProject: CustomStringConvertible {
     internal var description: String {
-        return "{title:\(title), description:\(projectDescription), repositoryID:\(repositoryID), repositoryOwner:\(repositoryOwner), repositoryName:\(repositoryName)}"
+        return "{title:\(String(describing: title)), description:\(String(describing: projectDescription)), repositoryID:\(String(describing: repositoryID)), repositoryOwner:\(String(describing: repositoryOwner)), repositoryName:\(String(describing: repositoryName))}"
     }
 }

@@ -27,6 +27,6 @@ class EditProject: Mappable {
 
 extension EditProject: CustomStringConvertible {
     var description: String {
-        return "{title: \(title), description: \(projectDescription)}"
+        return "{title: \(String(describing: title)), description: \(String(describing: projectDescription))}"
     }
 }

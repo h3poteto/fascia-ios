@@ -30,6 +30,6 @@ class EditList: Mappable {
 
 extension EditList: CustomStringConvertible {
     var description: String {
-        return "{title: \(title), color: \(color), action: \(action)}"
+        return "{title: \(String(describing: title)), color: \(String(describing: color)), action: \(String(describing: action))}"
     }
 }

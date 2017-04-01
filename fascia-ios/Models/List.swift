@@ -36,6 +36,6 @@ class List: Mappable {
 
 extension List: CustomStringConvertible {
     internal var description: String {
-        return "{id:\(id), projectID:\(projectID), userID:\(userID), title:\(title), color:\(color), listOptionID:\(listOptionID), isHidden:\(isHidden)}"
+        return "{id:\(String(describing: id)), projectID:\(String(describing: projectID)), userID:\(String(describing: userID)), title:\(String(describing: title)), color:\(String(describing: color)), listOptionID:\(String(describing: listOptionID)), isHidden:\(String(describing: isHidden))}"
     }
 }

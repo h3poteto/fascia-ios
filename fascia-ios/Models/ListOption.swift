@@ -52,6 +52,6 @@ class ListOption: Mappable {
 
 extension ListOption: CustomStringConvertible {
     var description: String {
-        return "{id: \(id), action: \(action)}"
+        return "{id: \(String(describing: id)), action: \(String(describing: action))}"
     }
 }

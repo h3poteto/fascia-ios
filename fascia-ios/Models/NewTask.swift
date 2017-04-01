@@ -27,6 +27,6 @@ class NewTask: Mappable {
 
 extension NewTask: CustomStringConvertible {
     var description: String {
-        return "{title: \(title), description: \(taskDescription)}"
+        return "{title: \(String(describing: title)), description: \(String(describing: taskDescription))}"
     }
 }
