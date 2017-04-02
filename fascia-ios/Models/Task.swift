@@ -57,6 +57,6 @@ class Task: Mappable {
 
 extension Task: CustomStringConvertible {
     internal var description: String {
-        return "{id:\(id), listID:\(listID), userID:\(userID), issueNumber:\(issueNumber), title:\(title), pullRequest:\(pullRequest), description:\(taskDescription)}"
+        return "{id:\(String(describing: id)), listID:\(String(describing: listID)), userID:\(String(describing: userID)), issueNumber:\(String(describing: issueNumber)), title:\(String(describing: title)), pullRequest:\(String(describing: pullRequest)), description:\(String(describing: taskDescription))}"
     }
 }

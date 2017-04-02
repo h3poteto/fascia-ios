@@ -44,6 +44,6 @@ class Repository: Mappable {
 
 extension Repository: CustomStringConvertible {
     internal var description: String {
-        return "{id:\(id), name:\(name), full_name:\(fullName), owner:\(ownerName), private:\(privateRepository)}"
+        return "{id:\(String(describing: id)), name:\(String(describing: name)), full_name:\(String(describing: fullName)), owner:\(String(describing: ownerName)), private:\(String(describing: privateRepository))}"
     }
 }

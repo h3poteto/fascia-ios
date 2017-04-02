@@ -36,7 +36,7 @@ class FasciaAPIService {
     }
 
     func call(path: String, method: HTTPMethod, params: [String: AnyObject]?) -> Observable<(HTTPURLResponse, NSData)> {
-        return manager.rx.responseData(method, URL(string: APIHost + path) as! URLConvertible, parameters: params, encoding: URLEncoding.default, headers: nil)
+        return manager.rx.responseData(method, URL(string: APIHost + path)!, parameters: params, encoding: URLEncoding.default, headers: nil)
             .observeOn(MainScheduler.instance)
             .map({ (response, json) -> (HTTPURLResponse, NSData) in
                 switch response.statusCode {

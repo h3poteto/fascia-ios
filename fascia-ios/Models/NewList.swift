@@ -28,6 +28,6 @@ class NewList: Mappable {
 
 extension NewList: CustomStringConvertible {
     var description: String {
-        return "{title: \(title), color: \(color)}"
+        return "{title: \(String(describing: title)), color: \(String(describing: color))}"
     }
 }
