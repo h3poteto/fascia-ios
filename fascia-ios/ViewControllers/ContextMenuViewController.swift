@@ -284,7 +284,7 @@ class ContextMenuViewController: UIViewController {
         delegate.closeContextMenu()
     }
 
-    func tapped(_ sender: UIGestureRecognizer) {
+    @objc func tapped(_ sender: UIGestureRecognizer) {
         end()
     }
 

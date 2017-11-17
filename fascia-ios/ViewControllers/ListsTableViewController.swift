@@ -204,7 +204,7 @@ class ListsTableViewController: UITableViewController, UIGestureRecognizerDelega
         }
     }
 
-    func cellLongPressed(_ recognizer: UILongPressGestureRecognizer) {
+    @objc func cellLongPressed(_ recognizer: UILongPressGestureRecognizer) {
         if viewModel.contextMenuVisible {
             return
         }

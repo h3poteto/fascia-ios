@@ -41,7 +41,7 @@ class ColorPickerViewController: UIViewController {
         // Dispose of any resources that can be recreated.
     }
 
-    func colorChanged(_ sender: HRColorPickerView) {
+    @objc func colorChanged(_ sender: HRColorPickerView) {
         self.viewModel?.color = sender.color
     }
 
