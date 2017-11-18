@@ -24,8 +24,8 @@ class NewProjectRepositoryTableViewCell: UITableViewCell {
                     }
                     return name
                 })
-                .bindTo(self.selectRepositoryLabel.rx.text)
-                .addDisposableTo(disposeBag)
+                .bind(to: self.selectRepositoryLabel.rx.text)
+                .disposed(by: disposeBag)
         }
     }
 

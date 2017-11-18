@@ -267,7 +267,7 @@ class ContextMenuViewController: UIViewController {
             .subscribe(onNext: { () in
                 self.selectedItem(item: item)
             }, onError: nil, onCompleted: nil, onDisposed: nil)
-            .addDisposableTo(disposeBag)
+            .disposed(by: disposeBag)
     }
 
     private func selectedItem(item: ContextItem) {
@@ -284,7 +284,7 @@ class ContextMenuViewController: UIViewController {
         delegate.closeContextMenu()
     }
 
-    func tapped(_ sender: UIGestureRecognizer) {
+    @objc func tapped(_ sender: UIGestureRecognizer) {
         end()
     }
 

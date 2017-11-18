@@ -41,7 +41,7 @@ class ColorPickerViewController: UIViewController {
         // Dispose of any resources that can be recreated.
     }
 
-    func colorChanged(_ sender: HRColorPickerView) {
+    @objc func colorChanged(_ sender: HRColorPickerView) {
         self.viewModel?.color = sender.color
     }
 
@@ -64,7 +64,7 @@ class ColorPickerViewController: UIViewController {
             .subscribe(onNext: { () in
                 self.navigationController?.popViewController(animated: true)
             }, onError: nil, onCompleted: nil, onDisposed: nil)
-            .addDisposableTo(disposeBag)
+            .disposed(by: disposeBag)
     }
     /*
     // MARK: - Navigation

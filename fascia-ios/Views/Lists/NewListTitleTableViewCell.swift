@@ -34,6 +34,6 @@ class NewListTitleTableViewCell: UITableViewCell {
             .subscribe(onNext: {(title) in
                 self.viewModel?.update(title: title, color: nil)
             }, onError: nil, onCompleted: nil)
-            .addDisposableTo(disposeBag)
+            .disposed(by: disposeBag)
     }
 }

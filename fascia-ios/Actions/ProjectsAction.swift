@@ -24,7 +24,7 @@ class ProjectsAction {
         FasciaAPIService.sharedInstance.call(path: "/projects", method: .get, params: nil)
             .subscribeOn(Scheduler.sharedInstance.backgroundScheduler)
             .observeOn(Scheduler.sharedInstance.mainScheduler)
-            .map({ (response, data) throws -> [Project] in
+            .map({ (_, data) throws -> [Project] in
                 guard let json = try JSONSerialization.jsonObject(with: data as Data, options: .allowFragments) as? [[String: AnyObject]] else {
                     throw ProjectError.parserError
                 }
@@ -39,6 +39,6 @@ class ProjectsAction {
                 }, onCompleted: {
                     self.isLoading.value = false
                 }, onDisposed: nil)
-            .addDisposableTo(self.disposeBag)
+            .disposed(by: disposeBag)
     }
 }

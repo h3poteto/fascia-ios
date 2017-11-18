@@ -24,7 +24,7 @@ class ListOptionsAction {
         FasciaAPIService.sharedInstance.call(path: "/list_options", method: .get, params: nil)
             .observeOn(Scheduler.sharedInstance.mainScheduler)
             .subscribeOn(Scheduler.sharedInstance.backgroundScheduler)
-            .map { (response, data) throws -> [ListOption] in
+            .map { (_, data) throws -> [ListOption] in
                 guard let json = try JSONSerialization.jsonObject(with: data as Data, options: .allowFragments) as? [[String: AnyObject]] else {
                     throw ListOptionError.parserError
                 }
@@ -39,6 +39,6 @@ class ListOptionsAction {
                 }, onCompleted: {
                     self.isLoading.value = false
                 }, onDisposed: nil)
-            .addDisposableTo(self.disposeBag)
+            .disposed(by: disposeBag)
     }
 }

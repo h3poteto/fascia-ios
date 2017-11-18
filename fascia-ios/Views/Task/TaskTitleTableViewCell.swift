@@ -22,8 +22,8 @@ class TaskTitleTableViewCell: UITableViewCell {
                     guard let title = task?.title else { return "" }
                     return title
                 }
-                .bindTo(titleLabel.rx.text)
-                .addDisposableTo(disposeBag)
+                .bind(to: titleLabel.rx.text)
+                .disposed(by: disposeBag)
         }
     }
 

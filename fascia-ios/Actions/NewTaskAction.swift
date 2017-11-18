@@ -43,6 +43,6 @@ class NewTaskAction {
                     self.isLoading.value = false
                 }, onDisposed: nil
             )
-            .addDisposableTo(disposeBag)
+            .disposed(by: disposeBag)
     }
 }

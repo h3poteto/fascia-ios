@@ -17,12 +17,12 @@ class TaskTableViewCell: UITableViewCell {
     var viewModel: TaskCellViewModel? {
         didSet {
             guard let vModel = self.viewModel else { return }
-            vModel.title.bindTo(self.taskLabel.rx.text).addDisposableTo(disposeBag)
+            vModel.title.bind(to: self.taskLabel.rx.text).disposed(by: disposeBag)
             vModel.color.asObservable()
                 .subscribe(onNext: { (color) in
                     self.taskColorImage.backgroundColor = color
                 }, onError: nil, onCompleted: nil, onDisposed: nil)
-                .addDisposableTo(disposeBag)
+                .disposed(by: disposeBag)
         }
     }
 

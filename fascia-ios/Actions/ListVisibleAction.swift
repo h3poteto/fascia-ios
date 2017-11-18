@@ -25,7 +25,7 @@ class ListVisibleAction {
         FasciaAPIService.sharedInstance.call(path: "/projects/\(list.projectID!)/lists/\(list.id!)/hide", method: .post, params: nil)
             .subscribeOn(Scheduler.sharedInstance.backgroundScheduler)
             .observeOn(Scheduler.sharedInstance.mainScheduler)
-            .map { (response, data) -> Lists in
+            .map { (_, data) -> Lists in
                 guard let json = try JSONSerialization.jsonObject(with: data as Data, options: .allowFragments) as? [String: AnyObject] else {
                     throw ListsError.parserError
                 }
@@ -42,7 +42,7 @@ class ListVisibleAction {
                 }, onCompleted: {
                     self.isLoading.value = false
                 }, onDisposed: nil)
-            .addDisposableTo(disposeBag)
+            .disposed(by: disposeBag)
     }
 
     func display(list: List) {
@@ -54,7 +54,7 @@ class ListVisibleAction {
         FasciaAPIService.sharedInstance.call(path: "/projects/\(list.projectID!)/lists/\(list.id!)/display", method: .post, params: nil)
             .subscribeOn(Scheduler.sharedInstance.backgroundScheduler)
             .observeOn(Scheduler.sharedInstance.mainScheduler)
-            .map { (response, data) -> Lists in
+            .map { (_, data) -> Lists in
                 guard let json = try JSONSerialization.jsonObject(with: data as Data, options: .allowFragments) as? [String: AnyObject] else {
                     throw ListsError.parserError
                 }
@@ -72,6 +72,6 @@ class ListVisibleAction {
                     self.isLoading.value = false
                 }, onDisposed: nil
             )
-            .addDisposableTo(disposeBag)
+            .disposed(by: disposeBag)
     }
 }

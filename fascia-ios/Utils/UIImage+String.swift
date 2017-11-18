@@ -29,11 +29,11 @@ extension UIImage {
         style.lineBreakMode = NSLineBreakMode.byClipping
 
         let attributes = [
-            NSFontAttributeName: font!,
-            NSParagraphStyleAttributeName: style,
-            NSShadowAttributeName: shadow,
-            NSForegroundColorAttributeName: foregroundColor,
-            NSBackgroundColorAttributeName: backgroundColor
+            NSAttributedStringKey.font: font!,
+            NSAttributedStringKey.paragraphStyle: style,
+            NSAttributedStringKey.shadow: shadow,
+            NSAttributedStringKey.foregroundColor: foregroundColor,
+            NSAttributedStringKey.backgroundColor: backgroundColor
         ]
 
         text.draw(in: CGRect(x: 0, y: 2, width: size.width, height: size.height), withAttributes: attributes)

@@ -16,13 +16,13 @@ class SessionAction {
         FasciaAPIService.sharedInstance.call(path: "/session", method: .post, params: nil)
             .subscribeOn(Scheduler.sharedInstance.backgroundScheduler)
             .observeOn(Scheduler.sharedInstance.mainScheduler)
-            .subscribe(onNext: { (response, data) in
+            .subscribe(onNext: { (response, _) in
                     FasciaAPIService.sharedInstance.saveSession(response: response)
                 }, onError: { (errorType) in
                     print(errorType)
                 }, onCompleted: {
                 }, onDisposed: nil)
-            .addDisposableTo(self.disposeBag)
+            .disposed(by: self.disposeBag)
 
     }
 }

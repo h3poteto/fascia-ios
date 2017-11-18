@@ -111,7 +111,7 @@ class NewTaskTableViewController: UITableViewController {
             .subscribe(onNext: { () in
                 self.dismiss(animated: true, completion: nil)
             }, onError: nil, onCompleted: nil, onDisposed: nil)
-            .addDisposableTo(disposeBag)
+            .disposed(by: disposeBag)
 
         saveButton
             .rx
@@ -133,9 +133,9 @@ class NewTaskTableViewController: UITableViewController {
                             }
                         }, onCompleted: nil, onDisposed: nil
                     )
-                    .addDisposableTo(self.disposeBag)
+                    .disposed(by: self.disposeBag)
             }, onError: nil, onCompleted: nil, onDisposed: nil)
-            .addDisposableTo(disposeBag)
+            .disposed(by: disposeBag)
     }
 
 }

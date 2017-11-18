@@ -103,11 +103,11 @@ class TaskTableViewController: UITableViewController {
                     self.tableView.reloadData()
                 }
             }, onCompleted: nil, onDisposed: nil)
-            .addDisposableTo(disposeBag)
+            .disposed(by: disposeBag)
 
         viewModel.isLoading
-            .drive(self.refresh.rx.refreshing)
-            .addDisposableTo(disposeBag)
+            .drive(self.refresh.rx.isRefreshing)
+            .disposed(by: disposeBag)
 
         viewModel.err
             .drive(onNext: { (errorType) in
@@ -132,12 +132,12 @@ class TaskTableViewController: UITableViewController {
                     break
                 }
             }, onCompleted: nil, onDisposed: nil)
-            .addDisposableTo(disposeBag)
+            .disposed(by: disposeBag)
 
         refresh.rx.controlEvent(.valueChanged).startWith({ print("start task loading") }())
             .subscribe(onNext: { () in
                 self.viewModel.fetch()
             }, onError: nil, onCompleted: nil, onDisposed: nil)
-            .addDisposableTo(disposeBag)
+            .disposed(by: disposeBag)
     }
 }

@@ -44,7 +44,7 @@ class ListsAction {
                 }, onCompleted: {
                     self.isLoading.value = false
                 }, onDisposed: nil)
-            .addDisposableTo(disposeBag)
+            .disposed(by: disposeBag)
     }
 
     func moveRequest(projectID: Int, taskID: Int, listID: Int, toListID: Int) {
@@ -60,7 +60,7 @@ class ListsAction {
         FasciaAPIService.sharedInstance.call(path: "/projects/\(projectID)/lists/\(listID)/tasks/\(taskID)/move_task", method: .post, params: params as [String : AnyObject]?)
             .subscribeOn(Scheduler.sharedInstance.backgroundScheduler)
             .observeOn(Scheduler.sharedInstance.mainScheduler)
-            .map { (response, data) throws -> Lists in
+            .map { (_, data) throws -> Lists in
                 guard let json = try JSONSerialization.jsonObject(with: data as Data, options: .allowFragments) as? [String: AnyObject] else {
                     throw ListsError.parserError
                 }
@@ -79,6 +79,6 @@ class ListsAction {
                 }, onCompleted: {
                     self.isLoading.value = false
                 }, onDisposed: nil)
-            .addDisposableTo(disposeBag)
+            .disposed(by: disposeBag)
     }
 }

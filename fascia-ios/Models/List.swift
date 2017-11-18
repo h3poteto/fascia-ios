@@ -16,7 +16,7 @@ class List: Mappable {
     var color: String?
     var listOptionID: Int?
     var isHidden: Bool?
-    var listTasks: Array<Task>  = []
+    var listTasks: [Task]  = []
 
     required init?(map: Map) {
         mapping(map: map)
