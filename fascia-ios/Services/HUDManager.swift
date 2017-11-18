@@ -31,6 +31,6 @@ class HUDManager {
                     SVProgressHUD.dismiss()
                 }
             }, onCompleted: nil, onDisposed: nil)
-            .addDisposableTo(disposeBag)
+            .disposed(by: disposeBag)
     }
 }

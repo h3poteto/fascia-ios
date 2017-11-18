@@ -267,7 +267,7 @@ class ContextMenuViewController: UIViewController {
             .subscribe(onNext: { () in
                 self.selectedItem(item: item)
             }, onError: nil, onCompleted: nil, onDisposed: nil)
-            .addDisposableTo(disposeBag)
+            .disposed(by: disposeBag)
     }
 
     private func selectedItem(item: ContextItem) {

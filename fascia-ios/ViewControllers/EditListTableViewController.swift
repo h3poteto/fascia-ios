@@ -112,7 +112,7 @@ class EditListTableViewController: UITableViewController {
                     let colorStr = (color.hexValue() as NSString).substring(from: 1)
                     self.viewModel.update(title: nil, color: colorStr, option: nil)
                 }, onError: nil, onCompleted: nil, onDisposed: nil)
-                .addDisposableTo(disposeBag)
+                .disposed(by: disposeBag)
             // 選択状態を解除してからviewModelのupdateをかけないと，select時のbackgroundColorとしてsetされてしまう
             self.tableView.deselectRow(at: indexPath, animated: true)
             self.navigationController?.pushViewController(colorPicker, animated: true)
@@ -148,7 +148,7 @@ class EditListTableViewController: UITableViewController {
             .subscribe(onNext: { () in
                 self.dismiss(animated: true, completion: nil)
             }, onError: nil, onCompleted: nil, onDisposed: nil)
-            .addDisposableTo(disposeBag)
+            .disposed(by: disposeBag)
 
         saveButton
             .rx
@@ -173,8 +173,8 @@ class EditListTableViewController: UITableViewController {
                             }
                         }, onCompleted: nil, onDisposed: nil
                     )
-                    .addDisposableTo(self.disposeBag)
+                    .disposed(by: self.disposeBag)
             }, onError: nil, onCompleted: nil, onDisposed: nil)
-            .addDisposableTo(disposeBag)
+            .disposed(by: disposeBag)
     }
 }

@@ -68,7 +68,7 @@ class ProjectsTableViewController: UITableViewController, SideMenuable {
                 editProject?.viewModel = vm
                 self.show(editProjectNavigation, sender: nil)
             }, onError: nil, onCompleted: nil, onDisposed: nil)
-            .addDisposableTo(disposeBag)
+            .disposed(by: disposeBag)
 
         cell.removeAllRightButtons()
         cell.addRightButton(button, buttonWidth: 60.0, backgroundColor: UIColor.flatGray)
@@ -89,7 +89,7 @@ class ProjectsTableViewController: UITableViewController, SideMenuable {
                 .subscribe(onNext: { () in
                     self.viewModel.fetch()
                 }, onError: nil, onCompleted: nil, onDisposed: nil)
-                .addDisposableTo(disposeBag)
+            .disposed(by: disposeBag)
             self.present(signIn, animated: true, completion: nil)
         }
     }
@@ -100,11 +100,11 @@ class ProjectsTableViewController: UITableViewController, SideMenuable {
                 self.viewModel.projects = projects
                 self.tableView.reloadData()
             }, onCompleted: nil, onDisposed: nil)
-            .addDisposableTo(disposeBag)
+            .disposed(by: disposeBag)
 
         viewModel.isLoading
-            .drive(self.refresh.rx.refreshing)
-            .addDisposableTo(disposeBag)
+            .drive(self.refresh.rx.isRefreshing)
+            .disposed(by: disposeBag)
 
         viewModel.err
             .drive(onNext: { (errorType) in
@@ -129,13 +129,13 @@ class ProjectsTableViewController: UITableViewController, SideMenuable {
                     break
                 }
             }, onCompleted: nil, onDisposed: nil)
-            .addDisposableTo(disposeBag)
+            .disposed(by: disposeBag)
 
         refresh.rx.controlEvent(.valueChanged).startWith({ print("start init loading") }())
             .subscribe(onNext: { () in
                 self.viewModel.fetch()
             }, onError: nil, onCompleted: nil, onDisposed: nil)
-            .addDisposableTo(disposeBag)
+            .disposed(by: disposeBag)
 
         newProjectButton
             .rx
@@ -143,7 +143,7 @@ class ProjectsTableViewController: UITableViewController, SideMenuable {
             .subscribe(onNext: { () in
                 self.showNewProject()
             }, onError: nil, onCompleted: nil, onDisposed: nil)
-            .addDisposableTo(disposeBag)
+            .disposed(by: disposeBag)
 
     }
 
@@ -168,7 +168,7 @@ class ProjectsTableViewController: UITableViewController, SideMenuable {
                     self.viewModel.fetch()
                 }
             }, onCompleted: nil, onDisposed: nil)
-            .addDisposableTo(disposeBag)
+            .disposed(by: disposeBag)
 
         vm.err
             .drive(onNext: { (errorType) in
@@ -192,7 +192,7 @@ class ProjectsTableViewController: UITableViewController, SideMenuable {
                     break
                 }
             }, onCompleted: nil, onDisposed: nil)
-            .addDisposableTo(disposeBag)
+            .disposed(by: disposeBag)
     }
 
     private func bindEditProjectViewModel(_ vm: EditProjectViewModel) {
@@ -203,7 +203,7 @@ class ProjectsTableViewController: UITableViewController, SideMenuable {
                     self.viewModel.fetch()
                 }
             }, onCompleted: nil, onDisposed: nil)
-            .addDisposableTo(disposeBag)
+            .disposed(by: disposeBag)
 
         vm.err
             .drive(onNext: { (errorType) in
@@ -227,7 +227,7 @@ class ProjectsTableViewController: UITableViewController, SideMenuable {
                     break
                 }
             }, onCompleted: nil, onDisposed: nil)
-            .addDisposableTo(disposeBag)
+            .disposed(by: disposeBag)
     }
 
 }

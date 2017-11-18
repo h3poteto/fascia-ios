@@ -53,10 +53,10 @@ class RepositoriesTableViewController: UITableViewController {
 
     private func bindViewModel() {
         viewModel.dataUpdated
-            .drive(onNext: { (repositories) in
+            .drive(onNext: { (_) in
                 self.tableView.reloadData()
             }, onCompleted: nil, onDisposed: nil)
-            .addDisposableTo(disposeBag)
+            .disposed(by: disposeBag)
     }
 
 }

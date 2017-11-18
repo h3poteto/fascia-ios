@@ -22,8 +22,8 @@ class EditListTitleTableViewCell: UITableViewCell {
                     guard let text = text else { return "" }
                     return text
                 }
-                .bindTo(titleText.rx.text)
-                .addDisposableTo(disposeBag)
+                .bind(to: titleText.rx.text)
+                .disposed(by: disposeBag)
         }
     }
 
@@ -45,7 +45,7 @@ class EditListTitleTableViewCell: UITableViewCell {
             .subscribe(onNext: { (text) in
                 self.viewModel?.update(title: text, color: nil, option: nil)
             }, onError: nil, onCompleted: nil, onDisposed: nil)
-            .addDisposableTo(disposeBag)
+            .disposed(by: disposeBag)
     }
 
 }

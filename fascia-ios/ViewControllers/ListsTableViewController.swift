@@ -116,7 +116,7 @@ class ListsTableViewController: UITableViewController, UIGestureRecognizerDelega
                     editListView?.viewModel = vm
                     self.show(editListNavigation, sender: nil)
                 }, onError: nil, onCompleted: nil, onDisposed: nil)
-                .addDisposableTo(disposeBag)
+                .disposed(by: disposeBag)
 
             sectionView.removeAllRightButtons()
             sectionView.addRightButton(button, buttonWidth: 60.0, backgroundColor: UIColor.flatGray)
@@ -177,7 +177,7 @@ class ListsTableViewController: UITableViewController, UIGestureRecognizerDelega
                 .subscribe(onNext: { (navigation) in
                     self.show(navigation, sender: nil)
                 }, onError: nil, onCompleted: nil, onDisposed: nil)
-                .addDisposableTo(disposeBag)
+                .disposed(by: disposeBag)
             return
         case (1..<(lists.lists.count + 1), lists.lists[indexPath.section - 1].listTasks.count):
             prepareNewTaskView(list: lists.lists[indexPath.section - 1])
@@ -186,7 +186,7 @@ class ListsTableViewController: UITableViewController, UIGestureRecognizerDelega
                 .subscribe(onNext: { (navigation) in
                     self.show(navigation, sender: nil)
                 }, onError: nil, onCompleted: nil, onDisposed: nil)
-                .addDisposableTo(disposeBag)
+                .disposed(by: disposeBag)
             return
         // 各タスクの詳細画面を表示
         case (0, 0..<(noneList.listTasks.count)):
@@ -295,11 +295,11 @@ class ListsTableViewController: UITableViewController, UIGestureRecognizerDelega
                 self.viewModel.lists = lists
                 self.tableView.reloadData()
             }, onCompleted: nil, onDisposed: nil)
-            .addDisposableTo(disposeBag)
+            .disposed(by: disposeBag)
 
         viewModel.isLoading
-            .drive(self.refresh.rx.refreshing)
-            .addDisposableTo(disposeBag)
+            .drive(self.refresh.rx.isRefreshing)
+            .disposed(by: disposeBag)
 
         hud.bind(loadingTarget: viewModel.isLoading)
 
@@ -326,13 +326,13 @@ class ListsTableViewController: UITableViewController, UIGestureRecognizerDelega
                     break
                 }
             }, onCompleted: nil, onDisposed: nil)
-            .addDisposableTo(disposeBag)
+            .disposed(by: disposeBag)
 
         refresh.rx.controlEvent(.valueChanged).startWith({ print("start lists loading") }())
             .subscribe(onNext: { () in
                 self.viewModel.fetch()
             }, onError: nil, onCompleted: nil, onDisposed: nil)
-            .addDisposableTo(disposeBag)
+            .disposed(by: disposeBag)
 
         newListButton
             .rx
@@ -340,7 +340,7 @@ class ListsTableViewController: UITableViewController, UIGestureRecognizerDelega
             .subscribe(onNext: { () in
                 self.showNewListView()
             }, onError: nil, onCompleted: nil, onDisposed: nil)
-            .addDisposableTo(disposeBag)
+            .disposed(by: disposeBag)
 
     }
 
@@ -352,11 +352,11 @@ class ListsTableViewController: UITableViewController, UIGestureRecognizerDelega
                     self.tableView.reloadData()
                 }
             }, onCompleted: nil, onDisposed: nil)
-            .addDisposableTo(disposeBag)
+            .disposed(by: disposeBag)
 
         vm.isLoading
-            .drive(self.refresh.rx.refreshing)
-            .addDisposableTo(disposeBag)
+            .drive(self.refresh.rx.isRefreshing)
+            .disposed(by: disposeBag)
 
         vm.err
             .drive(onNext: { (errorType) in
@@ -381,7 +381,7 @@ class ListsTableViewController: UITableViewController, UIGestureRecognizerDelega
                     break
                 }
             }, onCompleted: nil, onDisposed: nil)
-            .addDisposableTo(disposeBag)
+            .disposed(by: disposeBag)
     }
 
     private func bindNewListViewModel(vm: NewListViewModel) {
@@ -392,10 +392,10 @@ class ListsTableViewController: UITableViewController, UIGestureRecognizerDelega
                     self.viewModel.fetch()
                 }
             }, onCompleted: nil, onDisposed: nil)
-            .addDisposableTo(disposeBag)
+            .disposed(by: disposeBag)
         vm.isLoading
-            .drive(self.refresh.rx.refreshing)
-            .addDisposableTo(disposeBag)
+            .drive(self.refresh.rx.isRefreshing)
+            .disposed(by: disposeBag)
 
         vm.err
             .drive(onNext: { (errorType) in
@@ -419,7 +419,7 @@ class ListsTableViewController: UITableViewController, UIGestureRecognizerDelega
                     break
                 }
             }, onCompleted: nil, onDisposed: nil)
-            .addDisposableTo(disposeBag)
+            .disposed(by: disposeBag)
     }
 
     private func bindEditListViewModel(vm: EditListViewModel) {
@@ -430,10 +430,10 @@ class ListsTableViewController: UITableViewController, UIGestureRecognizerDelega
                     self.viewModel.fetch()
                 }
             }, onCompleted: nil, onDisposed: nil)
-            .addDisposableTo(disposeBag)
+            .disposed(by: disposeBag)
         vm.isLoading
-            .drive(self.refresh.rx.refreshing)
-            .addDisposableTo(disposeBag)
+            .drive(self.refresh.rx.isRefreshing)
+            .disposed(by: disposeBag)
 
         vm.err
             .drive(onNext: { (errorType) in
@@ -457,8 +457,7 @@ class ListsTableViewController: UITableViewController, UIGestureRecognizerDelega
                     break
                 }
             }, onCompleted: nil, onDisposed: nil)
-
-            .addDisposableTo(disposeBag)
+            .disposed(by: disposeBag)
     }
 
     private func bindNewTaskViewModel(vm: NewTaskViewModel) {
@@ -469,10 +468,10 @@ class ListsTableViewController: UITableViewController, UIGestureRecognizerDelega
                     self.viewModel.fetch()
                 }
             }, onCompleted: nil, onDisposed: nil)
-            .addDisposableTo(disposeBag)
+            .disposed(by: disposeBag)
         vm.isLoading
-            .drive(self.refresh.rx.refreshing)
-            .addDisposableTo(disposeBag)
+            .drive(self.refresh.rx.isRefreshing)
+            .disposed(by: disposeBag)
 
         vm.err
             .drive(onNext: { (errorType) in
@@ -496,6 +495,6 @@ class ListsTableViewController: UITableViewController, UIGestureRecognizerDelega
                     break
                 }
             }, onCompleted: nil, onDisposed: nil)
-            .addDisposableTo(disposeBag)
+            .disposed(by: disposeBag)
     }
 }

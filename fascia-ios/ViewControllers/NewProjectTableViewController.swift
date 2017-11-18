@@ -137,7 +137,7 @@ class NewProjectTableViewController: UITableViewController {
             .subscribe(onNext: { () in
                 self.dismiss(animated: true, completion: nil)
             }, onError: nil, onCompleted: nil)
-            .addDisposableTo(disposeBag)
+            .disposed(by: disposeBag)
 
         saveButton
             .rx
@@ -159,9 +159,9 @@ class NewProjectTableViewController: UITableViewController {
                             self.dismiss(animated: true, completion: nil)
                         }
                     }, onError: nil, onCompleted: nil, onDisposed: nil)
-                    .addDisposableTo(self.disposeBag)
+                    .disposed(by: self.disposeBag)
             }, onError: nil, onCompleted: nil)
-            .addDisposableTo(disposeBag)
+            .disposed(by: disposeBag)
     }
 
     private func bindRepositoryViewModel() {
@@ -170,7 +170,7 @@ class NewProjectTableViewController: UITableViewController {
             .drive(onNext: { (repositories) in
                 self.repositoryViewModel.repositories = repositories
             }, onCompleted: nil, onDisposed: nil)
-            .addDisposableTo(disposeBag)
+            .disposed(by: disposeBag)
         repositoryViewModel.isLoading
             .drive(onNext: { (loading) in
                 if loading {
@@ -179,21 +179,20 @@ class NewProjectTableViewController: UITableViewController {
                     UIApplication.shared.isNetworkActivityIndicatorVisible = false
                 }
             }, onCompleted: nil, onDisposed: nil)
-
-            .addDisposableTo(disposeBag)
+            .disposed(by: disposeBag)
         repositoryViewModel.err
             .drive(onNext: { (error) in
                 if error != nil {
                     UIApplication.shared.isNetworkActivityIndicatorVisible = false
                 }
             }, onCompleted: nil, onDisposed: nil)
-            .addDisposableTo(disposeBag)
+            .disposed(by: disposeBag)
         repositoryViewModel.selectedRepository.asDriver()
             .drive(onNext: { (repository) in
                 self.viewModel.repository.value = repository
                 self.viewModel.update(title: repository?.name, description: nil, repository: repository)
             }, onCompleted: nil, onDisposed: nil)
-            .addDisposableTo(disposeBag)
+            .disposed(by: disposeBag)
     }
 
 }

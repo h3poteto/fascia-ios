@@ -62,7 +62,7 @@ class EditListViewModel {
                 self.action.value = option?.action
                 self.listOptions = listOptions
             }, onError: nil, onCompleted: nil, onDisposed: nil)
-            .addDisposableTo(disposeBag)
+            .disposed(by: disposeBag)
         listOptionAction.request()
     }
 
@@ -93,10 +93,10 @@ class EditListViewModel {
     func valid() -> Observable<Bool> {
         return editList.asObservable()
             .flatMap({ (list) -> Observable<Bool> in
-                if (list.title?.characters.count)! < 1 {
+                if (list.title?.count)! < 1 {
                     throw EditListValidationError.titleError
                 }
-                if list.color?.characters.count != 6 {
+                if list.color?.count != 6 {
                     throw EditListValidationError.colorError
                 }
                 return Observable.just(true)

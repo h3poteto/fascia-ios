@@ -12,7 +12,7 @@ import RxCocoa
 
 extension UIViewController {
     private func trigger(selector: Selector) -> Observable<Void> {
-        return rx.sentMessage(selector).map { _ in () }.shareReplay(1)
+        return rx.sentMessage(selector).map { _ in () }.share(replay: 1)
     }
 
     var rx_viewWillAppear: Observable<Void> {

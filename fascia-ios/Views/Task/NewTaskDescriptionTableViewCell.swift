@@ -32,6 +32,6 @@ class NewTaskDescriptionTableViewCell: UITableViewCell {
             .subscribe(onNext: { (text) in
                 self.viewModel?.update(title: nil, description: text)
             }, onError: nil, onCompleted: nil, onDisposed: nil)
-            .addDisposableTo(disposeBag)
+            .disposed(by: disposeBag)
     }
 }

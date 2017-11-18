@@ -68,7 +68,7 @@ class NewTaskViewModel {
                 guard let title = task.title else {
                     throw NewTaskValidationError.titleError
                 }
-                if title.characters.count < 1 {
+                if title.count < 1 {
                     throw NewTaskValidationError.titleError
                 }
                 return Observable.just(true)

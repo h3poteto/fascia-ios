@@ -22,8 +22,8 @@ class EditListActionTableViewCell: UITableViewCell {
                     guard let text = text else { return "-" }
                     return text
                 }
-                .bindTo(actionLabel.rx.text)
-                .addDisposableTo(disposeBag)
+                .bind(to: actionLabel.rx.text)
+                .disposed(by: disposeBag)
         }
     }
 

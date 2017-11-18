@@ -19,8 +19,8 @@ class RepositoryTableViewCell: UITableViewCell {
     var viewModel: RepositoryCellViewModel? {
         didSet {
             guard let vModel = self.viewModel else { return }
-            vModel.fullName.bindTo(self.nameLabel.rx.text).addDisposableTo(disposeBag)
-            vModel.openRepository.bindTo(self.privateImage.rx.isHidden).addDisposableTo(disposeBag)
+            vModel.fullName.bind(to: self.nameLabel.rx.text).disposed(by: disposeBag)
+            vModel.openRepository.bind(to: self.privateImage.rx.isHidden).disposed(by: disposeBag)
         }
     }
 

@@ -22,8 +22,8 @@ class EditProjectTitleTableViewCell: UITableViewCell {
                     guard let title = title else { return "" }
                     return title
                 }
-                .bindTo(self.titleText.rx.text)
-                .addDisposableTo(disposeBag)
+                .bind(to: self.titleText.rx.text)
+                .disposed(by: disposeBag)
         }
     }
 
@@ -45,7 +45,7 @@ class EditProjectTitleTableViewCell: UITableViewCell {
             .subscribe(onNext: { (text) in
                 self.viewModel?.update(title: text, description: nil)
             }, onError: nil, onCompleted: nil)
-            .addDisposableTo(disposeBag)
+            .disposed(by: disposeBag)
     }
 
 }

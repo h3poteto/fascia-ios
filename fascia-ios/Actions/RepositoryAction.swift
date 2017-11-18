@@ -25,7 +25,7 @@ class RepositoryAction {
         FasciaAPIService.sharedInstance.call(path: "/github/repositories", method: .get, params: nil)
             .subscribeOn(Scheduler.sharedInstance.backgroundScheduler)
             .observeOn(Scheduler.sharedInstance.mainScheduler)
-            .map({ (response, data) -> [Repository] in
+            .map({ (_, data) -> [Repository] in
                 guard let json = try JSONSerialization.jsonObject(with: data as Data, options: .allowFragments) as? [[String: AnyObject]] else {
                     throw RepositoryError.parserError
                 }
@@ -40,6 +40,6 @@ class RepositoryAction {
                     self.isLoading.value = false
                 }, onDisposed: nil
             )
-            .addDisposableTo(disposeBag)
+            .disposed(by: disposeBag)
     }
 }

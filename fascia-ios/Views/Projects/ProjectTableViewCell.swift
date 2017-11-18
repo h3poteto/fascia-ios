@@ -23,12 +23,12 @@ class ProjectTableViewCell: SESlideTableViewCell {
     var viewModel: ProjectCellViewModel? {
         didSet {
             guard let vModel = self.viewModel else { return }
-            vModel.title.bindTo(self.tilteLabel.rx.text).addDisposableTo(disposeBag)
+            vModel.title.bind(to: self.tilteLabel.rx.text).disposed(by: disposeBag)
             vModel.githubRepository.subscribe(onNext: { (github) in
                 self.githubLabel.isHidden = !github
                 self.fasciaLabel.isHidden = github
             }, onError: nil, onCompleted: nil, onDisposed: nil)
-            .addDisposableTo(disposeBag)
+            .disposed(by: disposeBag)
         }
     }
 

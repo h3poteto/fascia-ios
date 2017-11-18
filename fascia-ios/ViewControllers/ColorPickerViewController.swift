@@ -64,7 +64,7 @@ class ColorPickerViewController: UIViewController {
             .subscribe(onNext: { () in
                 self.navigationController?.popViewController(animated: true)
             }, onError: nil, onCompleted: nil, onDisposed: nil)
-            .addDisposableTo(disposeBag)
+            .disposed(by: disposeBag)
     }
     /*
     // MARK: - Navigation

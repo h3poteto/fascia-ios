@@ -18,7 +18,7 @@ class ListSectionTableViewCell: SESlideTableViewCell {
     var viewModel: ListSectionViewModel? {
         didSet {
             guard let vModel = self.viewModel else { return }
-            vModel.title.bindTo(self.listTitle.rx.text).addDisposableTo(disposeBag)
+            vModel.title.bind(to: self.listTitle.rx.text).disposed(by: disposeBag)
             vModel.isVisible
                 .subscribe(onNext: { (visible) in
                     if visible {
@@ -27,7 +27,7 @@ class ListSectionTableViewCell: SESlideTableViewCell {
                         self.expandImageView.image = UIImage(named: "Contract")
                     }
                 }, onError: nil, onCompleted: nil, onDisposed: nil)
-                .addDisposableTo(disposeBag)
+                .disposed(by: disposeBag)
         }
     }
 

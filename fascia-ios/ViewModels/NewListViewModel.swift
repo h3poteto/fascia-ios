@@ -68,10 +68,10 @@ class NewListViewModel {
     func valid() -> Observable<Bool> {
         return newList.asObservable()
             .flatMap({ (list) -> Observable<Bool> in
-                if (list.title?.characters.count)! < 1 {
+                if (list.title?.count)! < 1 {
                     throw NewListValidationError.titleError
                 }
-                if list.color?.characters.count != 6 {
+                if list.color?.count != 6 {
                     throw NewListValidationError.colorError
                 }
                 return Observable.just(true)

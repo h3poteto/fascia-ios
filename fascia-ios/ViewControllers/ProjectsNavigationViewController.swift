@@ -26,7 +26,7 @@ extension SideMenuable {
             .subscribe(onNext: { () in
                 parentController.present(SideMenuManager.menuLeftNavigationController!, animated: true, completion: nil)
             }, onError: nil, onCompleted: nil, onDisposed: nil)
-            .addDisposableTo(disposeBag)
+            .disposed(by: disposeBag)
     }
 }
 

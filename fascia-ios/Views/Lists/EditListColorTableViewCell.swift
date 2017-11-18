@@ -23,7 +23,7 @@ class EditListColorTableViewCell: UITableViewCell {
                     let color = UIColor(hexString: colorString)
                     self.colorImage.backgroundColor = color
                 }, onError: nil, onCompleted: nil, onDisposed: nil)
-                .addDisposableTo(disposeBag)
+                .disposed(by: disposeBag)
         }
     }
 

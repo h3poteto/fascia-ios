@@ -67,7 +67,7 @@ class NewProjectViewModel {
     func valid() -> Observable<Bool> {
         return newProject.asObservable()
             .flatMap({ (project) -> Observable<Bool> in
-                if (project.title?.characters.count)! < 1 {
+                if (project.title?.count)! < 1 {
                     throw NewProjectValidationError.titleError
                 }
                 return Observable.just(true)

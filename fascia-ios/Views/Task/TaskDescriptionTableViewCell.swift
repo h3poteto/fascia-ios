@@ -24,8 +24,8 @@ class TaskDescriptionTableViewCell: UITableViewCell {
                     guard let description = task?.taskMarkedDescription else { return NSAttributedString(string: "") }
                     return description
                 })
-                .bindTo(descriptionLabel.rx.attributedText)
-                .addDisposableTo(disposeBag)
+                .bind(to: descriptionLabel.rx.attributedText)
+                .disposed(by: disposeBag)
         }
     }
 

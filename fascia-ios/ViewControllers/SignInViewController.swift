@@ -81,7 +81,7 @@ class SignInViewController: UIViewController, UIWebViewDelegate, SideMenuable {
             .subscribe(onNext: { () in
                 self.webView.goBack()
             }, onError: nil, onCompleted: nil)
-            .addDisposableTo(disposeBag)
+            .disposed(by: disposeBag)
 
         forwardButton
             .rx
@@ -89,7 +89,7 @@ class SignInViewController: UIViewController, UIWebViewDelegate, SideMenuable {
             .subscribe(onNext: { () in
                 self.webView.goForward()
             }, onError: nil, onCompleted: nil)
-            .addDisposableTo(disposeBag)
+            .disposed(by: disposeBag)
 
         reloadButton
             .rx
@@ -97,7 +97,7 @@ class SignInViewController: UIViewController, UIWebViewDelegate, SideMenuable {
             .subscribe(onNext: { () in
                 self.webView.reload()
             }, onError: nil, onCompleted: nil)
-            .addDisposableTo(disposeBag)
+            .disposed(by: disposeBag)
 
         shareButton
             .rx
@@ -125,6 +125,6 @@ class SignInViewController: UIViewController, UIWebViewDelegate, SideMenuable {
                 // UIActivityViewControllerを表示
                 self.present(activityVC, animated: true, completion: nil)
             }, onError: nil, onCompleted: nil)
-            .addDisposableTo(disposeBag)
+            .disposed(by: disposeBag)
     }
 }
