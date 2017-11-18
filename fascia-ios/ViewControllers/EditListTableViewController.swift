@@ -129,7 +129,7 @@ class EditListTableViewController: UITableViewController {
     private func listOptionAlert() {
         let alert = UIAlertController(title: "Action", message: nil, preferredStyle: .actionSheet)
         viewModel.listOptions.forEach { (listOption) in
-            let action = UIAlertAction(title: listOption.action, style: .default, handler: { (optionAction) in
+            let action = UIAlertAction(title: listOption.action, style: .default, handler: { (_) in
                 self.viewModel.update(title: nil, color: nil, option: listOption)
             })
             alert.addAction(action)

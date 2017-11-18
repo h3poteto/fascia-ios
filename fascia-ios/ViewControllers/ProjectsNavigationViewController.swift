@@ -24,7 +24,7 @@ extension SideMenuable {
             .rx
             .tap
             .subscribe(onNext: { () in
-                parentController.present(SideMenuManager.menuLeftNavigationController!, animated: true, completion: nil)
+                parentController.present(SideMenuManager.default.menuLeftNavigationController!, animated: true, completion: nil)
             }, onError: nil, onCompleted: nil, onDisposed: nil)
             .disposed(by: disposeBag)
     }
@@ -38,9 +38,9 @@ class ProjectsNavigationViewController: UINavigationController {
         guard let leftNav = UIStoryboard.instantiateViewController(identifier: "UISideMenuNavigationController", storyboardName: "Main") as? UISideMenuNavigationController else {
             return
         }
-        SideMenuManager.menuLeftNavigationController = leftNav
-        SideMenuManager.menuAddPanGestureToPresent(toView: self.navigationBar)
-        SideMenuManager.menuAddScreenEdgePanGesturesToPresent(toView: self.navigationBar)
+        SideMenuManager.default.menuLeftNavigationController = leftNav
+        SideMenuManager.default.menuAddPanGestureToPresent(toView: self.navigationBar)
+        SideMenuManager.default.menuAddScreenEdgePanGesturesToPresent(toView: self.navigationBar)
     }
 
     override func didReceiveMemoryWarning() {

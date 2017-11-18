@@ -14,7 +14,7 @@ enum ListsError: Error {
 }
 
 class Lists: Mappable {
-    var lists: Array<List> = []
+    var lists: [List] = []
     var noneList: List?
 
     required init?(map: Map) {

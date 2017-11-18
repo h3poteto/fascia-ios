@@ -53,8 +53,8 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     }
 
     private func setupSideMenu() {
-        SideMenuManager.menuFadeStatusBar = true
-        SideMenuManager.menuPresentMode = .viewSlideInOut
-        SideMenuManager.menuAnimationBackgroundColor = UIColor(patternImage: UIImage(named: "Background")!)
+        SideMenuManager.default.menuFadeStatusBar = true
+        SideMenuManager.default.menuPresentMode = .viewSlideInOut
+        SideMenuManager.default.menuAnimationBackgroundColor = UIColor(patternImage: UIImage(named: "Background")!)
     }
 }
