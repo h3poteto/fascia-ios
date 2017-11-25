@@ -22,7 +22,7 @@ class EditProjectAction {
         }
         isLoading.value = true
         err.value = nil
-        FasciaAPIService.sharedInstance.call(path: "/projects/\(projectID)", method: .post, params: params)
+        FasciaAPIService.sharedInstance.call(path: "/projects/\(projectID)", method: .patch, params: params)
             .subscribeOn(Scheduler.sharedInstance.backgroundScheduler)
             .observeOn(Scheduler.sharedInstance.mainScheduler)
             .map({ (response, data) throws -> Project in
