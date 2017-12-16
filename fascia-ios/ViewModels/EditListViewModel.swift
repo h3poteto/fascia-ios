@@ -25,6 +25,7 @@ class EditListViewModel {
     final private(set) var title: Variable<String?> = Variable(nil)
     final private(set) var color: Variable<String?> = Variable(nil)
     final private(set) var action: Variable<String?> = Variable(nil)
+    final private(set) var optionID: Variable<Int?> = Variable(nil)
     final private(set) var dataUpdated: Driver<List?> = Driver.never()
     final private(set) var isLoading: Driver<Bool> = Driver.never()
     final private(set) var err: Driver<Error?> = Driver.never()
@@ -59,7 +60,10 @@ class EditListViewModel {
                 let option = ListOption.findAction(listOptions: listOptions, id: id)
                 self.editList.value
                     .action = option?.action
+                self.editList.value
+                    .optionID = option?.id
                 self.action.value = option?.action
+                self.optionID.value = option?.id
                 self.listOptions = listOptions
             }, onError: nil, onCompleted: nil, onDisposed: nil)
             .disposed(by: disposeBag)
@@ -77,7 +81,9 @@ class EditListViewModel {
         }
         if option != nil {
             self.action.value = option?.action
+            self.optionID.value = option?.id
             editList.value.action = option?.action
+            editList.value.optionID = option?.id
         }
     }
 

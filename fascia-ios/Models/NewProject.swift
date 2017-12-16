@@ -25,7 +25,7 @@ class NewProject: Mappable {
     func mapping(map: Map) {
         title               <- map["title"]
         projectDescription  <- map["description"]
-        repositoryID        <- map["repositoryID"]
+        repositoryID        <- map["repository_id"]
         repositoryOwner     <- map["repositoryOwner"]
         repositoryName      <- map["repositoryName"]
     }
