@@ -34,7 +34,7 @@ class FasciaAPIService {
     init() {
         manager = FasciaAPIService.configureManager()
         signInURL = APIHost + "/webviews/sign_in"
-        contactURL = APIHost + "/inquiries/new"
+        contactURL = APIHost + "/webviews/inquiries/new"
     }
 
     func call(path: String, method: HTTPMethod, params: [String: AnyObject]?) -> Observable<(HTTPURLResponse, NSData)> {

@@ -77,8 +77,16 @@
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
+                            <wkWebView contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="muP-3v-VX8">
+                                <rect key="frame" x="0.0" y="20" width="375" height="603"/>
+                                <color key="backgroundColor" red="0.36078431370000003" green="0.38823529410000002" blue="0.4039215686" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                <wkWebViewConfiguration key="configuration">
+                                    <audiovisualMediaTypes key="mediaTypesRequiringUserActionForPlayback" none="YES"/>
+                                    <wkPreferences key="preferences"/>
+                                </wkWebViewConfiguration>
+                            </wkWebView>
                             <toolbar opaque="NO" clearsContextBeforeDrawing="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="zFO-pb-do0">
-                                <rect key="frame" x="0.0" y="623" width="375" height="44"/>
+                                <rect key="frame" x="3" y="623" width="375" height="44"/>
                                 <items>
                                     <barButtonItem title="BackButton" image="Back" id="Zna-H7-cIE"/>
                                     <barButtonItem style="plain" systemItem="flexibleSpace" id="mMA-h8-Ra5"/>
@@ -89,27 +97,23 @@
                                     <barButtonItem systemItem="action" id="FUr-qy-X2e"/>
                                 </items>
                             </toolbar>
-                            <wkWebView contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="muP-3v-VX8">
-                                <rect key="frame" x="0.0" y="20" width="375" height="603"/>
-                                <color key="backgroundColor" red="0.36078431370000003" green="0.38823529410000002" blue="0.4039215686" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                                <wkWebViewConfiguration key="configuration">
-                                    <audiovisualMediaTypes key="mediaTypesRequiringUserActionForPlayback" none="YES"/>
-                                    <wkPreferences key="preferences"/>
-                                </wkWebViewConfiguration>
-                            </wkWebView>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <constraints>
                             <constraint firstItem="muP-3v-VX8" firstAttribute="top" secondItem="TI9-eO-CYj" secondAttribute="bottom" id="2y3-lx-Iuo"/>
-                            <constraint firstItem="zFO-pb-do0" firstAttribute="leading" secondItem="ze9-Br-Ryr" secondAttribute="leading" id="CG2-Qm-NzU"/>
+                            <constraint firstItem="zFO-pb-do0" firstAttribute="leading" secondItem="ze9-Br-Ryr" secondAttribute="leading" constant="3" id="CG2-Qm-NzU"/>
                             <constraint firstItem="muP-3v-VX8" firstAttribute="leading" secondItem="ze9-Br-Ryr" secondAttribute="leading" id="T6b-gN-zmy"/>
                             <constraint firstAttribute="trailing" secondItem="muP-3v-VX8" secondAttribute="trailing" id="cSV-VM-weS"/>
-                            <constraint firstAttribute="trailing" secondItem="zFO-pb-do0" secondAttribute="trailing" id="duU-jr-KQ2"/>
+                            <constraint firstAttribute="trailing" secondItem="zFO-pb-do0" secondAttribute="trailing" constant="-3" id="duU-jr-KQ2"/>
                             <constraint firstItem="zFO-pb-do0" firstAttribute="top" secondItem="muP-3v-VX8" secondAttribute="bottom" id="fFq-qH-HA9"/>
                             <constraint firstItem="UZo-2n-aNH" firstAttribute="top" secondItem="zFO-pb-do0" secondAttribute="bottom" id="xgz-jW-Gqh"/>
                         </constraints>
                     </view>
                     <connections>
+                        <outlet property="backButton" destination="Zna-H7-cIE" id="Osa-RM-bQU"/>
+                        <outlet property="forwardButton" destination="NYM-40-oKk" id="kMD-4v-7uB"/>
+                        <outlet property="reloadButton" destination="EbJ-Nq-CDo" id="aEu-aI-edn"/>
+                        <outlet property="shareButton" destination="FUr-qy-X2e" id="rjh-R4-3Y4"/>
                         <outlet property="webView" destination="muP-3v-VX8" id="xbD-1V-fYR"/>
                     </connections>
                 </viewController>
