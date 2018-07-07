@@ -31,6 +31,8 @@
 		E945E3471CF200DE002D1F01 /* EditProjectAction.swift in Sources */ = {isa = PBXBuildFile; fileRef = E945E3461CF200DE002D1F01 /* EditProjectAction.swift */; };
 		E945E3491CF20328002D1F01 /* EditProject.swift in Sources */ = {isa = PBXBuildFile; fileRef = E945E3481CF20328002D1F01 /* EditProject.swift */; };
 		E945E34B1CF3547B002D1F01 /* EditProjectDescriptionTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = E945E34A1CF3547B002D1F01 /* EditProjectDescriptionTableViewCell.swift */; };
+		E94C848520EFC47C00F5D487 /* ContactViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E94C848420EFC47C00F5D487 /* ContactViewController.swift */; };
+		E94C848720EFC71700F5D487 /* ContactViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = E94C848620EFC71700F5D487 /* ContactViewModel.swift */; };
 		E95104E71CE714F500754A51 /* InitialViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E95104E61CE714F500754A51 /* InitialViewController.swift */; };
 		E9571AD71CD2893E007A819F /* QuartzCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E9571AD61CD2893E007A819F /* QuartzCore.framework */; };
 		E9571ADA1CD332FC007A819F /* ProjectsAction.swift in Sources */ = {isa = PBXBuildFile; fileRef = E9571AD91CD332FC007A819F /* ProjectsAction.swift */; };
@@ -137,6 +139,8 @@
 		E945E3461CF200DE002D1F01 /* EditProjectAction.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = EditProjectAction.swift; path = Actions/EditProjectAction.swift; sourceTree = "<group>"; };
 		E945E3481CF20328002D1F01 /* EditProject.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = EditProject.swift; path = Models/EditProject.swift; sourceTree = "<group>"; };
 		E945E34A1CF3547B002D1F01 /* EditProjectDescriptionTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = EditProjectDescriptionTableViewCell.swift; path = Views/Projects/EditProjectDescriptionTableViewCell.swift; sourceTree = "<group>"; };
+		E94C848420EFC47C00F5D487 /* ContactViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = ContactViewController.swift; path = ViewControllers/ContactViewController.swift; sourceTree = "<group>"; };
+		E94C848620EFC71700F5D487 /* ContactViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = ContactViewModel.swift; path = ViewModels/ContactViewModel.swift; sourceTree = "<group>"; };
 		E95104E61CE714F500754A51 /* InitialViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = InitialViewController.swift; path = ViewControllers/InitialViewController.swift; sourceTree = "<group>"; };
 		E9571AD61CD2893E007A819F /* QuartzCore.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = QuartzCore.framework; path = System/Library/Frameworks/QuartzCore.framework; sourceTree = SDKROOT; };
 		E9571AD91CD332FC007A819F /* ProjectsAction.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = ProjectsAction.swift; path = Actions/ProjectsAction.swift; sourceTree = "<group>"; };
@@ -356,6 +360,7 @@
 				E9FB1D341CE78F3D00604026 /* SideMenuTableViewController.swift */,
 				E9F3974E1CDF92590078957B /* ContextMenuViewController.swift */,
 				E9E4FF031CC7C51700517729 /* SignInViewController.swift */,
+				E94C848420EFC47C00F5D487 /* ContactViewController.swift */,
 				E9EE5CFD1CE85E45003D176B /* ProjectsNavigationViewController.swift */,
 				E9E4FEFF1CC68ED500517729 /* ProjectsTableViewController.swift */,
 				E9571ADB1CD35E86007A819F /* NewProjectTableViewController.swift */,
@@ -379,6 +384,7 @@
 				E9571ADD1CD36781007A819F /* NewProjectViewModel.swift */,
 				E945E3441CF1FEEF002D1F01 /* EditProjectViewModel.swift */,
 				E96CC3CB1CD58F1F007DDB65 /* SignInViewModel.swift */,
+				E94C848620EFC71700F5D487 /* ContactViewModel.swift */,
 				E9CF1D421CD9EE8B00BD5DDE /* RepositoriesViewModel.swift */,
 				E9CF1D4A1CDA31EB00BD5DDE /* RepositoryCellViewModel.swift */,
 				E975D0C21CDDC4F000F587CD /* TaskCellViewModel.swift */,
@@ -642,6 +648,7 @@
 				E93D82AC1E6338CC00A10D79 /* TaskTableViewController.swift in Sources */,
 				E945E3371CEF5247002D1F01 /* NewTaskViewModel.swift in Sources */,
 				E95A8BE01CF8AC3B002382AE /* ListOption.swift in Sources */,
+				E94C848720EFC71700F5D487 /* ContactViewModel.swift in Sources */,
 				E92DCF561CF9993B00D9E348 /* NewListColorTableViewCell.swift in Sources */,
 				E95A8BDA1CF88533002382AE /* EditList.swift in Sources */,
 				E9EE5D021CEA179B003D176B /* NewListTableViewController.swift in Sources */,
@@ -665,6 +672,7 @@
 				E9BE0AC61CDCE87200E2CC13 /* ListsTableViewController.swift in Sources */,
 				E9CF1D4B1CDA31EB00BD5DDE /* RepositoryCellViewModel.swift in Sources */,
 				E945E3451CF1FEEF002D1F01 /* EditProjectViewModel.swift in Sources */,
+				E94C848520EFC47C00F5D487 /* ContactViewController.swift in Sources */,
 				E9EE5CFE1CE85E45003D176B /* ProjectsNavigationViewController.swift in Sources */,
 				E945E33F1CF0CBF7002D1F01 /* ColorPickerViewModel.swift in Sources */,
 				E96CC3CC1CD58F1F007DDB65 /* SignInViewModel.swift in Sources */,

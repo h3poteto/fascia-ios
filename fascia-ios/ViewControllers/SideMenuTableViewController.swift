@@ -73,14 +73,14 @@ class SideMenuTableViewController: UITableViewController {
             if let projects = UIStoryboard.instantiateViewController(identifier: "ProjectsTableViewController", storyboardName: "Projects") as? UITableViewController {
                 show(projects, sender: nil)
             }
-            break
         case (1, 1):
-            break
+            if let contact = UIStoryboard.instantiateViewController(identifier: "ContactViewController", storyboardName: "Main") as? UIViewController {
+                show(contact, sender: true)
+            }
         case (1, 2):
             if let signIn = UIStoryboard.instantiateViewController(identifier: "SignInViewController", storyboardName: "Main") as? UIViewController {
                 show(signIn, sender: true)
             }
-            break
         default:
             break
         }
