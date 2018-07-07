@@ -21,13 +21,14 @@
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <webView contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="XLg-1g-lBZ">
+                            <wkWebView contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Xfo-Zo-InU">
                                 <rect key="frame" x="0.0" y="20" width="375" height="603"/>
-                                <color key="backgroundColor" red="0.28958413004875183" green="0.31462949514389038" blue="0.32950475811958313" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                                <connections>
-                                    <outlet property="delegate" destination="YW8-99-Z7O" id="x0p-ky-Ap0"/>
-                                </connections>
-                            </webView>
+                                <color key="backgroundColor" red="0.36078431370000003" green="0.38823529410000002" blue="0.4039215686" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                <wkWebViewConfiguration key="configuration">
+                                    <audiovisualMediaTypes key="mediaTypesRequiringUserActionForPlayback" none="YES"/>
+                                    <wkPreferences key="preferences"/>
+                                </wkWebViewConfiguration>
+                            </wkWebView>
                             <toolbar opaque="NO" clearsContextBeforeDrawing="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="9kk-nS-gg6">
                                 <rect key="frame" x="0.0" y="623" width="375" height="44"/>
                                 <items>
@@ -44,12 +45,12 @@
                         <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                         <constraints>
                             <constraint firstItem="9kk-nS-gg6" firstAttribute="leading" secondItem="eW8-uK-Lbo" secondAttribute="leading" id="BYk-hN-ac8"/>
+                            <constraint firstAttribute="trailing" secondItem="Xfo-Zo-InU" secondAttribute="trailing" id="C7t-KD-Wsj"/>
                             <constraint firstItem="cwk-G5-LJP" firstAttribute="top" secondItem="9kk-nS-gg6" secondAttribute="bottom" id="Ebx-DG-eL4"/>
-                            <constraint firstItem="XLg-1g-lBZ" firstAttribute="leading" secondItem="eW8-uK-Lbo" secondAttribute="leading" id="KlE-IE-kLG"/>
-                            <constraint firstAttribute="trailing" secondItem="XLg-1g-lBZ" secondAttribute="trailing" id="egS-UT-WVw"/>
-                            <constraint firstItem="XLg-1g-lBZ" firstAttribute="top" secondItem="J1U-8v-GQ9" secondAttribute="bottom" id="emX-6K-6qf"/>
+                            <constraint firstItem="Xfo-Zo-InU" firstAttribute="top" secondItem="J1U-8v-GQ9" secondAttribute="bottom" id="RrZ-yC-fz5"/>
                             <constraint firstAttribute="trailing" secondItem="9kk-nS-gg6" secondAttribute="trailing" id="prd-IP-J1e"/>
-                            <constraint firstItem="9kk-nS-gg6" firstAttribute="top" secondItem="XLg-1g-lBZ" secondAttribute="bottom" id="yCD-M1-psz"/>
+                            <constraint firstItem="Xfo-Zo-InU" firstAttribute="leading" secondItem="eW8-uK-Lbo" secondAttribute="leading" id="rmw-4h-h91"/>
+                            <constraint firstItem="9kk-nS-gg6" firstAttribute="top" secondItem="Xfo-Zo-InU" secondAttribute="bottom" id="ynh-50-dwd"/>
                         </constraints>
                     </view>
                     <extendedEdge key="edgesForExtendedLayout"/>
@@ -58,7 +59,7 @@
                         <outlet property="forwardButton" destination="Nyw-Px-S7J" id="8XO-37-JD6"/>
                         <outlet property="reloadButton" destination="Iu1-Qt-ydZ" id="nFi-d9-a29"/>
                         <outlet property="shareButton" destination="U7H-Ih-eSy" id="uE8-et-Irn"/>
-                        <outlet property="webView" destination="XLg-1g-lBZ" id="l5B-Aa-CLz"/>
+                        <outlet property="webView" destination="Xfo-Zo-InU" id="hF2-nd-yAx"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="5jE-sd-peJ" userLabel="First Responder" sceneMemberID="firstResponder"/>
