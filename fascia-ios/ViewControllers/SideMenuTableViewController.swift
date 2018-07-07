@@ -34,7 +34,7 @@ class SideMenuTableViewController: UITableViewController {
         case 0:
             return 1
         default:
-            return 2
+            return 3
         }
     }
 
@@ -47,6 +47,9 @@ class SideMenuTableViewController: UITableViewController {
             let cell = tableView.dequeueReusableCell(withIdentifier: "SideMenuProjectsCell", for: indexPath)
             return cell
         case (1, 1):
+            let cell = tableView.dequeueReusableCell(withIdentifier: "SideMenuContactCell", for: indexPath)
+            return cell
+        case (1, 2):
             let cell = tableView.dequeueReusableCell(withIdentifier: "SideMenuSignInCell", for: indexPath)
             return cell
         default:
@@ -70,12 +73,14 @@ class SideMenuTableViewController: UITableViewController {
             if let projects = UIStoryboard.instantiateViewController(identifier: "ProjectsTableViewController", storyboardName: "Projects") as? UITableViewController {
                 show(projects, sender: nil)
             }
-            break
         case (1, 1):
+            if let contact = UIStoryboard.instantiateViewController(identifier: "ContactViewController", storyboardName: "Main") as? UIViewController {
+                show(contact, sender: true)
+            }
+        case (1, 2):
             if let signIn = UIStoryboard.instantiateViewController(identifier: "SignInViewController", storyboardName: "Main") as? UIViewController {
                 show(signIn, sender: true)
             }
-            break
         default:
             break
         }
