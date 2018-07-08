@@ -8,12 +8,18 @@
 
 import UIKit
 import SideMenu
+import RxSwift
+import RxCocoa
 
 class SideMenuTableViewController: UITableViewController {
+    private var viewModel = SideMenuViewModel()
+    var disposeBag = DisposeBag()
+    private var hud = HUDManager()
 
     override func viewDidLoad() {
         super.viewDidLoad()
         self.tableView.tableFooterView = UIView(frame: CGRect.zero)
+        bindViewModel()
     }
 
     override func didReceiveMemoryWarning() {
@@ -34,7 +40,7 @@ class SideMenuTableViewController: UITableViewController {
         case 0:
             return 1
         default:
-            return 3
+            return 4
         }
     }
 
@@ -51,6 +57,9 @@ class SideMenuTableViewController: UITableViewController {
             return cell
         case (1, 2):
             let cell = tableView.dequeueReusableCell(withIdentifier: "SideMenuSignInCell", for: indexPath)
+            return cell
+        case(1, 3):
+            let cell = tableView.dequeueReusableCell(withIdentifier: "SideMenuSignOutCell", for: indexPath)
             return cell
         default:
             let cell = tableView.dequeueReusableCell(withIdentifier: "SideMenuSignInCell", for: indexPath)
@@ -81,9 +90,25 @@ class SideMenuTableViewController: UITableViewController {
             if let signIn = UIStoryboard.instantiateViewController(identifier: "SignInViewController", storyboardName: "Main") as? UIViewController {
                 show(signIn, sender: true)
             }
+        case (1, 3):
+            self.viewModel.fetch()
         default:
             break
         }
         return
+    }
+
+    private func bindViewModel() {
+        hud.bind(loadingTarget: viewModel.isLoading.asDriver())
+
+        viewModel.completed
+            .drive(onNext: { (completed) in
+                if completed {
+                    if let signIn = UIStoryboard.instantiateViewController(identifier: "SignInViewController", storyboardName: "Main") as? UIViewController {
+                        self.show(signIn, sender: true)
+                    }
+                }
+            }, onCompleted: nil, onDisposed: nil)
+            .disposed(by: disposeBag)
     }
 }

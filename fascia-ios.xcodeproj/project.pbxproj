@@ -88,6 +88,7 @@
 		E9E4FF041CC7C51700517729 /* SignInViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E9E4FF031CC7C51700517729 /* SignInViewController.swift */; };
 		E9E4FF071CC7DC2E00517729 /* FasciaAPIService.swift in Sources */ = {isa = PBXBuildFile; fileRef = E9E4FF061CC7DC2E00517729 /* FasciaAPIService.swift */; };
 		E9E4FF101CC7E06200517729 /* UIStoryboard+Fascia.swift in Sources */ = {isa = PBXBuildFile; fileRef = E9E4FF0F1CC7E06200517729 /* UIStoryboard+Fascia.swift */; };
+		E9E7A9D120F1B1F700ADAEAB /* SideMenuViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = E9E7A9D020F1B1F700ADAEAB /* SideMenuViewModel.swift */; };
 		E9EA958B1CD4718F008F5535 /* NewProject.swift in Sources */ = {isa = PBXBuildFile; fileRef = E9EA958A1CD4718F008F5535 /* NewProject.swift */; };
 		E9EE5CFE1CE85E45003D176B /* ProjectsNavigationViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E9EE5CFD1CE85E45003D176B /* ProjectsNavigationViewController.swift */; };
 		E9EE5D001CE8D071003D176B /* UIViewController+Rx.swift in Sources */ = {isa = PBXBuildFile; fileRef = E9EE5CFF1CE8D071003D176B /* UIViewController+Rx.swift */; };
@@ -196,6 +197,7 @@
 		E9E4FF031CC7C51700517729 /* SignInViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = SignInViewController.swift; path = ViewControllers/SignInViewController.swift; sourceTree = "<group>"; };
 		E9E4FF061CC7DC2E00517729 /* FasciaAPIService.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = FasciaAPIService.swift; path = Services/FasciaAPIService.swift; sourceTree = "<group>"; };
 		E9E4FF0F1CC7E06200517729 /* UIStoryboard+Fascia.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = "UIStoryboard+Fascia.swift"; path = "Utils/UIStoryboard+Fascia.swift"; sourceTree = "<group>"; };
+		E9E7A9D020F1B1F700ADAEAB /* SideMenuViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = SideMenuViewModel.swift; path = ViewModels/SideMenuViewModel.swift; sourceTree = "<group>"; };
 		E9EA958A1CD4718F008F5535 /* NewProject.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = NewProject.swift; path = Models/NewProject.swift; sourceTree = "<group>"; };
 		E9EE5CFD1CE85E45003D176B /* ProjectsNavigationViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = ProjectsNavigationViewController.swift; path = ViewControllers/ProjectsNavigationViewController.swift; sourceTree = "<group>"; };
 		E9EE5CFF1CE8D071003D176B /* UIViewController+Rx.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = "UIViewController+Rx.swift"; path = "Utils/UIViewController+Rx.swift"; sourceTree = "<group>"; };
@@ -395,6 +397,7 @@
 				E945E3361CEF5247002D1F01 /* NewTaskViewModel.swift */,
 				E945E33E1CF0CBF7002D1F01 /* ColorPickerViewModel.swift */,
 				E93D82AD1E633DFF00A10D79 /* TaskViewModel.swift */,
+				E9E7A9D020F1B1F700ADAEAB /* SideMenuViewModel.swift */,
 			);
 			name = ViewModels;
 			sourceTree = "<group>";
@@ -653,6 +656,7 @@
 				E95A8BDA1CF88533002382AE /* EditList.swift in Sources */,
 				E9EE5D021CEA179B003D176B /* NewListTableViewController.swift in Sources */,
 				E9A32F191E880F4700DAF9CC /* NewTaskTitleTableViewCell.swift in Sources */,
+				E9E7A9D120F1B1F700ADAEAB /* SideMenuViewModel.swift in Sources */,
 				E9A32F171E880F0900DAF9CC /* NewTaskDescriptionTableViewCell.swift in Sources */,
 				E945E3411CF1F83E002D1F01 /* EditProjectTableViewController.swift in Sources */,
 				E945E3391CEF52C1002D1F01 /* NewTask.swift in Sources */,

@@ -67,6 +67,17 @@ class FasciaAPIService {
         UserDefaults.standard.set(cookiesData, forKey: FasciaAPIService.CookieKey)
     }
 
+    func deleteSession(response: HTTPURLResponse) {
+        guard let headers = response.allHeaderFields as? [String:String] else {
+            return
+        }
+        let cookies = HTTPCookie.cookies(withResponseHeaderFields: headers, for: (response.url)!)
+        for cookie in cookies {
+            HTTPCookieStorage.shared.deleteCookie(cookie)
+        }
+        UserDefaults.standard.removeObject(forKey: FasciaAPIService.CookieKey)
+    }
+
     private class func configureManager() -> SessionManager {
         if let cookiesData = UserDefaults.standard.object(forKey: CookieKey) as? NSData {
             if let cookies = NSKeyedUnarchiver.unarchiveObject(with: cookiesData as Data) as? [HTTPCookie] {
