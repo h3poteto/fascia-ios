@@ -25,7 +25,7 @@ class ListsAction {
         FasciaAPIService.sharedInstance.call(path: "/projects/\(projectID)/lists", method: .get, params: nil)
             .subscribeOn(Scheduler.sharedInstance.backgroundScheduler)
             .observeOn(Scheduler.sharedInstance.mainScheduler)
-            .map { (response, data) throws -> Lists in
+            .map { (_, data) throws -> Lists in
                 guard let json = try JSONSerialization.jsonObject(with: data as Data, options: .allowFragments) as? [String: AnyObject] else {
                     throw ListsError.parserError
                 }

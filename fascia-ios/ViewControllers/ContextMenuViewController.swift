@@ -10,9 +10,9 @@ import UIKit
 import RxSwift
 import RxCocoa
 
-protocol ContextMenuDelegate {
-    func itemTap(item: ContextItem, task: Task) -> Void
-    func closeContextMenu() -> Void
+protocol ContextMenuDelegate : class {
+    func itemTap(item: ContextItem, task: Task)
+    func closeContextMenu()
 }
 
 enum CircleMenu {
@@ -47,7 +47,7 @@ class ContextMenuViewController: UIViewController {
     private let itemRadius = CGFloat(30.0)
     private let margin = CGFloat(20.0)
     private let disposeBag = DisposeBag()
-    var delegate: ContextMenuDelegate!
+    weak var delegate: ContextMenuDelegate?
     var selectedTask: Task?
 
     override init(nibName nibNameOrNil: String?, bundle nibBundleOrNil: Bundle?) {
@@ -274,14 +274,14 @@ class ContextMenuViewController: UIViewController {
         guard let task = self.selectedTask else {
             return
         }
-        delegate.itemTap(item: item, task: task)
+        delegate?.itemTap(item: item, task: task)
         end()
     }
 
     func end() {
         self.view.removeFromSuperview()
         self.contextParent?.tableView.isScrollEnabled = true
-        delegate.closeContextMenu()
+        delegate?.closeContextMenu()
     }
 
     @objc func tapped(_ sender: UIGestureRecognizer) {
