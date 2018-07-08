@@ -131,9 +131,13 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" red="0.0" green="0.0" blue="0.0" alpha="0.0" colorSpace="custom" customColorSpace="sRGB"/>
                         <color key="sectionIndexBackgroundColor" red="0.0" green="0.0" blue="0.0" alpha="0.0" colorSpace="custom" customColorSpace="sRGB"/>
+                        <imageView key="tableHeaderView" userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" id="092-ql-t9r">
+                            <rect key="frame" x="0.0" y="0.0" width="375" height="44"/>
+                            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                        </imageView>
                         <prototypes>
                             <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="SideMenuTitleCell" id="4jH-vg-hgV">
-                                <rect key="frame" x="0.0" y="28" width="375" height="44"/>
+                                <rect key="frame" x="0.0" y="72" width="375" height="44"/>
                                 <autoresizingMask key="autoresizingMask"/>
                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="4jH-vg-hgV" id="8Xz-pK-Glt">
                                     <rect key="frame" x="0.0" y="0.0" width="375" height="43.5"/>
@@ -156,7 +160,7 @@
                                 <color key="backgroundColor" red="0.0" green="0.0" blue="0.0" alpha="0.0" colorSpace="custom" customColorSpace="sRGB"/>
                             </tableViewCell>
                             <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="SideMenuProjectsCell" id="bVl-m7-MzL">
-                                <rect key="frame" x="0.0" y="72" width="375" height="44"/>
+                                <rect key="frame" x="0.0" y="116" width="375" height="44"/>
                                 <autoresizingMask key="autoresizingMask"/>
                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="bVl-m7-MzL" id="a2X-49-KV7">
                                     <rect key="frame" x="0.0" y="0.0" width="375" height="43.5"/>
@@ -189,7 +193,7 @@
                                 <color key="backgroundColor" red="0.0" green="0.0" blue="0.0" alpha="0.0" colorSpace="custom" customColorSpace="sRGB"/>
                             </tableViewCell>
                             <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="SideMenuContactCell" id="dAb-nU-MG1">
-                                <rect key="frame" x="0.0" y="116" width="375" height="44"/>
+                                <rect key="frame" x="0.0" y="160" width="375" height="44"/>
                                 <autoresizingMask key="autoresizingMask"/>
                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="dAb-nU-MG1" id="b8a-XY-wIy">
                                     <rect key="frame" x="0.0" y="0.0" width="375" height="43.5"/>
@@ -221,7 +225,7 @@
                                 <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                             </tableViewCell>
                             <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="SideMenuSignInCell" id="NXj-jK-WUS">
-                                <rect key="frame" x="0.0" y="160" width="375" height="44"/>
+                                <rect key="frame" x="0.0" y="204" width="375" height="44"/>
                                 <autoresizingMask key="autoresizingMask"/>
                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="NXj-jK-WUS" id="NUt-uJ-YbG">
                                     <rect key="frame" x="0.0" y="0.0" width="375" height="43.5"/>
@@ -248,6 +252,38 @@
                                         <constraint firstItem="92M-t0-08n" firstAttribute="leading" secondItem="NUt-uJ-YbG" secondAttribute="leadingMargin" constant="8" id="M5L-en-X6M"/>
                                         <constraint firstItem="92M-t0-08n" firstAttribute="centerY" secondItem="NUt-uJ-YbG" secondAttribute="centerY" id="NPo-Hd-1QE"/>
                                         <constraint firstItem="VoB-pr-KLw" firstAttribute="centerY" secondItem="NUt-uJ-YbG" secondAttribute="centerY" id="dB9-hn-wj0"/>
+                                    </constraints>
+                                </tableViewCellContentView>
+                                <color key="backgroundColor" red="0.0" green="0.0" blue="0.0" alpha="0.0" colorSpace="custom" customColorSpace="sRGB"/>
+                            </tableViewCell>
+                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="SideMenuSignOutCell" id="3xn-b7-4bc">
+                                <rect key="frame" x="0.0" y="248" width="375" height="44"/>
+                                <autoresizingMask key="autoresizingMask"/>
+                                <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="3xn-b7-4bc" id="uCC-Hl-KPz">
+                                    <rect key="frame" x="0.0" y="0.0" width="375" height="43.5"/>
+                                    <autoresizingMask key="autoresizingMask"/>
+                                    <subviews>
+                                        <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="Logout" highlightedImage="Logout" translatesAutoresizingMaskIntoConstraints="NO" id="Trq-KM-ovm">
+                                            <rect key="frame" x="24" y="9" width="24" height="24"/>
+                                            <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+                                            <constraints>
+                                                <constraint firstAttribute="width" constant="24" id="CHO-yT-tTB"/>
+                                                <constraint firstAttribute="height" constant="24" id="zfP-pW-VSt"/>
+                                            </constraints>
+                                        </imageView>
+                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="SignOut" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Q4Y-Nk-2tv">
+                                            <rect key="frame" x="60" y="12" width="62" height="21"/>
+                                            <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                            <color key="textColor" red="0.99999600649999998" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                            <nil key="highlightedColor"/>
+                                        </label>
+                                    </subviews>
+                                    <color key="backgroundColor" red="0.0" green="0.0" blue="0.0" alpha="0.0" colorSpace="custom" customColorSpace="sRGB"/>
+                                    <constraints>
+                                        <constraint firstItem="Trq-KM-ovm" firstAttribute="centerY" secondItem="uCC-Hl-KPz" secondAttribute="centerY" id="jcP-FY-LoH"/>
+                                        <constraint firstItem="Q4Y-Nk-2tv" firstAttribute="centerY" secondItem="uCC-Hl-KPz" secondAttribute="centerY" id="kgh-fe-t1O"/>
+                                        <constraint firstItem="Q4Y-Nk-2tv" firstAttribute="leading" secondItem="Trq-KM-ovm" secondAttribute="trailing" constant="12" id="rJH-X3-JGe"/>
+                                        <constraint firstItem="Trq-KM-ovm" firstAttribute="leading" secondItem="uCC-Hl-KPz" secondAttribute="leadingMargin" constant="8" id="zdb-gi-5i9"/>
                                     </constraints>
                                 </tableViewCellContentView>
                                 <color key="backgroundColor" red="0.0" green="0.0" blue="0.0" alpha="0.0" colorSpace="custom" customColorSpace="sRGB"/>
@@ -305,6 +341,7 @@
         <image name="Account" width="25" height="25"/>
         <image name="Back" width="25" height="25"/>
         <image name="Forward" width="25" height="25"/>
+        <image name="Logout" width="25" height="25"/>
         <image name="Phone" width="25" height="25"/>
         <image name="Projects" width="25" height="25"/>
     </resources>
