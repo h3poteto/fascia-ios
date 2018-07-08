@@ -10,6 +10,7 @@ import RxAlamofire
 import Alamofire
 import RxSwift
 import RxCocoa
+import WebKit
 
 enum FasciaAPIError: Error {
     case authenticateError
@@ -76,6 +77,8 @@ class FasciaAPIService {
             HTTPCookieStorage.shared.deleteCookie(cookie)
         }
         UserDefaults.standard.removeObject(forKey: FasciaAPIService.CookieKey)
+        // WebViewで利用しているcookieも削除する必要がある
+        WKWebsiteDataStore.default().removeData(ofTypes: WKWebsiteDataStore.allWebsiteDataTypes(), modifiedSince: Date(timeIntervalSince1970: 0), completionHandler: {})
     }
 
     private class func configureManager() -> SessionManager {

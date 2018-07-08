@@ -74,14 +74,6 @@ class SignInViewController: UIViewController, WKNavigationDelegate, SideMenuable
                 }
             }
 
-            // ログインが完了した段階でWKHTTPCookieを空にしておく
-            // これをやっておかないとログアウト時にWKHTTPCookieStoreの内容を個別に削除する必要がある
-            cookieStore.getAllCookies { (cookies) in
-                for cookie: HTTPCookie in cookies {
-                    cookieStore.delete(cookie, completionHandler: nil)
-                }
-            }
-
             viewModel.update()
             viewModel.isLoading.value = false
             self.dismiss(animated: true, completion: nil)
@@ -90,6 +82,21 @@ class SignInViewController: UIViewController, WKNavigationDelegate, SideMenuable
             return
         }
         decisionHandler(WKNavigationActionPolicy.allow)
+    }
+
+    func webView(_ webView: WKWebView, decidePolicyFor navigationResponse: WKNavigationResponse, decisionHandler: @escaping (WKNavigationResponsePolicy) -> Void) {
+        // WKWebViewはcookieの管理が別になる
+        // ログインをWebViewでやる限り，WKWebView -> Alamofireへとsessionを共有する必要がある
+        // そのためWKHTTPCookieStoreの中身をすべてHTTPCookieStorageに詰め込む
+        // https://qiita.com/ShingoFukuyama/items/c2d33ff3fc36dbdb69a4
+/*        let cookieStore: WKHTTPCookieStore = webView.configuration.websiteDataStore.httpCookieStore
+        cookieStore.getAllCookies { (cookies) in
+            for cookie: HTTPCookie in cookies {
+                HTTPCookieStorage.shared.setCookie(cookie)
+            }
+        }
+*/
+        decisionHandler(WKNavigationResponsePolicy.allow)
     }
 
     private func bindViewModel() {
