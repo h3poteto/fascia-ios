@@ -73,6 +73,19 @@ class SignInViewController: UIViewController, WKNavigationDelegate, SideMenuable
         decisionHandler(WKNavigationActionPolicy.allow)
     }
 
+    func webView(_ webView: WKWebView, decidePolicyFor navigationResponse: WKNavigationResponse, decisionHandler: @escaping (WKNavigationResponsePolicy) -> Void) {
+        // WKWebViewはcookieの管理が別になる
+        // ログインをWebViewでやる限り，WKWebView -> Alamofireへとsessionを共有する必要がある
+        // そのためWKHTTPCookieStoreの中身をすべてHTTPCookieStorageに詰め込む
+        let cookieStore = webView.configuration.websiteDataStore.httpCookieStore
+        cookieStore.getAllCookies { (cookies) in
+            for cookie: HTTPCookie in cookies {
+                HTTPCookieStorage.shared.setCookie(cookie)
+            }
+        }
+        decisionHandler(WKNavigationResponsePolicy.allow)
+    }
+
     private func bindViewModel() {
         hud.bind(loadingTarget: viewModel.isLoading.asDriver())
 
