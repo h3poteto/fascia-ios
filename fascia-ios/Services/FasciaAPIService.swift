@@ -34,7 +34,7 @@ class FasciaAPIService {
 
     init() {
         manager = FasciaAPIService.configureManager()
-        signInURL = APIHost + "/webviews/sign_in"
+        signInURL = APIHost + "/webviews/oauth/sign_in"
         contactURL = APIHost + "/webviews/inquiries/new"
     }
 
