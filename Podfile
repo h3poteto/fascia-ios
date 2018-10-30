@@ -6,7 +6,7 @@ target "fascia-ios" do
   pod 'Alamofire', '~> 4.5'
   pod 'RxSwift', '~> 4.0'
   pod 'RxCocoa', '~> 4.0'
-  pod 'ObjectMapper', '~> 3.1'
+  pod 'ObjectMapper'
   pod 'CSNotificationView'
   pod 'RxAlamofire', '~> 4.0'
   pod 'SVProgressHUD'

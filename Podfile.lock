@@ -9,7 +9,7 @@ PODS:
   - CSNotificationView (0.5.4)
   - Down (0.4.2)
   - Fabric (1.7.2)
-  - ObjectMapper (3.1.0)
+  - ObjectMapper (3.3.0)
   - RxAlamofire (4.0.0):
     - RxAlamofire/Core (= 4.0.0)
   - RxAlamofire/Core (4.0.0):
@@ -30,13 +30,29 @@ DEPENDENCIES:
   - CSNotificationView
   - Down
   - Fabric
-  - ObjectMapper (~> 3.1)
+  - ObjectMapper
   - RxAlamofire (~> 4.0)
   - RxCocoa (~> 4.0)
   - RxSwift (~> 4.0)
   - SESlideTableViewCell
   - SideMenu (~> 3.1)
   - SVProgressHUD
+
+SPEC REPOS:
+  https://github.com/cocoapods/specs.git:
+    - Alamofire
+    - Color-Picker-for-iOS
+    - Crashlytics
+    - CSNotificationView
+    - Down
+    - Fabric
+    - ObjectMapper
+    - RxAlamofire
+    - RxCocoa
+    - RxSwift
+    - SESlideTableViewCell
+    - SideMenu
+    - SVProgressHUD
 
 EXTERNAL SOURCES:
   ChameleonFramework:
@@ -55,7 +71,7 @@ SPEC CHECKSUMS:
   CSNotificationView: 0792f5220163c2befaf1a9716aa3d5a7d6bd4fb1
   Down: 92efba7c95a8efdb84b7114e365db4a37f3df76e
   Fabric: 9cd6a848efcf1b8b07497e0b6a2e7d336353ba15
-  ObjectMapper: 20505058f54e5c3ca69e1d6de9897d152a5369a6
+  ObjectMapper: b612bf8c8e99c4dc0bb6013a51f7c27966ed5da9
   RxAlamofire: 6ea579ac53bf14cb4bc7049a3866e5a769989b1d
   RxCocoa: d62846ca96495d862fa4c59ea7d87e5031d7340e
   RxSwift: fd680d75283beb5e2559486f3c0ff852f0d35334
@@ -63,6 +79,6 @@ SPEC CHECKSUMS:
   SideMenu: 99021e70b3f2eee65b5dd88e4274d09031b1221e
   SVProgressHUD: 59b2d3dabacbd051576d21d32293ca7228dc18b0
 
-PODFILE CHECKSUM: d03f8adcef667bd01b10333a61e6dacc8aec4ecf
+PODFILE CHECKSUM: abfd5235cbf6bc568d056357964c27087acfe1b3
 
-COCOAPODS: 1.2.0.beta.3
+COCOAPODS: 1.6.0.beta.2
