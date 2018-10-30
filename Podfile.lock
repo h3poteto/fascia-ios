@@ -4,23 +4,23 @@ PODS:
   - ChameleonFramework/Swift (2.1.0):
     - ChameleonFramework/Default
   - Color-Picker-for-iOS (2.0.2)
-  - Crashlytics (3.9.3):
-    - Fabric (~> 1.7.2)
+  - Crashlytics (3.11.0):
+    - Fabric (~> 1.8.0)
   - CSNotificationView (0.5.4)
-  - Down (0.4.2)
-  - Fabric (1.7.2)
+  - Down (0.5.2)
+  - Fabric (1.8.0)
   - ObjectMapper (3.3.0)
-  - RxAlamofire (4.0.0):
-    - RxAlamofire/Core (= 4.0.0)
-  - RxAlamofire/Core (4.0.0):
+  - RxAlamofire (4.3.0):
+    - RxAlamofire/Core (= 4.3.0)
+  - RxAlamofire/Core (4.3.0):
     - Alamofire (~> 4.5)
+    - RxSwift (~> 4)
+  - RxCocoa (4.3.1):
     - RxSwift (~> 4.0)
-  - RxCocoa (4.0.0):
-    - RxSwift (~> 4.0)
-  - RxSwift (4.0.0)
+  - RxSwift (4.3.1)
   - SESlideTableViewCell (0.7.1)
-  - SideMenu (3.1.4)
-  - SVProgressHUD (2.2.2)
+  - SideMenu (5.0.2)
+  - SVProgressHUD (2.2.5)
 
 DEPENDENCIES:
   - Alamofire (~> 4.7)
@@ -30,12 +30,12 @@ DEPENDENCIES:
   - CSNotificationView
   - Down
   - Fabric
-  - ObjectMapper
+  - ObjectMapper (~> 3.3)
   - RxAlamofire (~> 4.0)
   - RxCocoa (~> 4.0)
   - RxSwift (~> 4.0)
   - SESlideTableViewCell
-  - SideMenu (~> 3.1)
+  - SideMenu (~> 5.0)
   - SVProgressHUD
 
 SPEC REPOS:
@@ -67,18 +67,18 @@ SPEC CHECKSUMS:
   Alamofire: c7287b6e5d7da964a70935e5db17046b7fde6568
   ChameleonFramework: d21a3cc247abfe5e37609a283a8238b03575cf64
   Color-Picker-for-iOS: 4980589b3e3cfe7198f227dd50be9adb02d8bc0b
-  Crashlytics: dbb07d01876c171c5ccbdf7826410380189e452c
+  Crashlytics: 1448070c1d2731ab71ea7c3faf84ac0f69657287
   CSNotificationView: 0792f5220163c2befaf1a9716aa3d5a7d6bd4fb1
-  Down: 92efba7c95a8efdb84b7114e365db4a37f3df76e
-  Fabric: 9cd6a848efcf1b8b07497e0b6a2e7d336353ba15
+  Down: 587371ad58002b06023d9c602519216862c3acbc
+  Fabric: 4ac1cdfef3004ccd83ce0959b91eda8a6e37df72
   ObjectMapper: b612bf8c8e99c4dc0bb6013a51f7c27966ed5da9
-  RxAlamofire: 6ea579ac53bf14cb4bc7049a3866e5a769989b1d
-  RxCocoa: d62846ca96495d862fa4c59ea7d87e5031d7340e
-  RxSwift: fd680d75283beb5e2559486f3c0ff852f0d35334
+  RxAlamofire: 09624d0f2d48ed8b686e4eb4cf68e28cbd2df556
+  RxCocoa: 78763c7b07d02455598d9fc3c1ad091a28b73635
+  RxSwift: fe0fd770a43acdb7d0a53da411c9b892e69bb6e4
   SESlideTableViewCell: 459c3ce79b760e8bc015dd83ca84196bd70c11ed
-  SideMenu: 99021e70b3f2eee65b5dd88e4274d09031b1221e
-  SVProgressHUD: 59b2d3dabacbd051576d21d32293ca7228dc18b0
+  SideMenu: e5094f0b2e7d9609e100a90ae69025abd994f882
+  SVProgressHUD: 1428aafac632c1f86f62aa4243ec12008d7a51d6
 
-PODFILE CHECKSUM: 0cab9b38949c37041d96eeed0218e9a19c66030e
+PODFILE CHECKSUM: 4d518c18d7144758242a948c44c067a29936a4f6
 
 COCOAPODS: 1.6.0.beta.2
