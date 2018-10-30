@@ -3,7 +3,7 @@ platform :ios, '11.0'
 use_frameworks!
 
 target "fascia-ios" do
-  pod 'Alamofire', '~> 4.5'
+  pod 'Alamofire', '~> 4.7'
   pod 'RxSwift', '~> 4.0'
   pod 'RxCocoa', '~> 4.0'
   pod 'ObjectMapper'

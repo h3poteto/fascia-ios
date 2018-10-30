@@ -1,5 +1,5 @@
 PODS:
-  - Alamofire (4.5.1)
+  - Alamofire (4.7.3)
   - ChameleonFramework/Default (2.1.0)
   - ChameleonFramework/Swift (2.1.0):
     - ChameleonFramework/Default
@@ -23,7 +23,7 @@ PODS:
   - SVProgressHUD (2.2.2)
 
 DEPENDENCIES:
-  - Alamofire (~> 4.5)
+  - Alamofire (~> 4.7)
   - ChameleonFramework/Swift (from `https://github.com/ViccAlexander/Chameleon.git`)
   - Color-Picker-for-iOS (~> 2.0)
   - Crashlytics
@@ -64,7 +64,7 @@ CHECKOUT OPTIONS:
     :git: https://github.com/ViccAlexander/Chameleon.git
 
 SPEC CHECKSUMS:
-  Alamofire: 2d95912bf4c34f164fdfc335872e8c312acaea4a
+  Alamofire: c7287b6e5d7da964a70935e5db17046b7fde6568
   ChameleonFramework: d21a3cc247abfe5e37609a283a8238b03575cf64
   Color-Picker-for-iOS: 4980589b3e3cfe7198f227dd50be9adb02d8bc0b
   Crashlytics: dbb07d01876c171c5ccbdf7826410380189e452c
@@ -79,6 +79,6 @@ SPEC CHECKSUMS:
   SideMenu: 99021e70b3f2eee65b5dd88e4274d09031b1221e
   SVProgressHUD: 59b2d3dabacbd051576d21d32293ca7228dc18b0
 
-PODFILE CHECKSUM: abfd5235cbf6bc568d056357964c27087acfe1b3
+PODFILE CHECKSUM: 0cab9b38949c37041d96eeed0218e9a19c66030e
 
 COCOAPODS: 1.6.0.beta.2
