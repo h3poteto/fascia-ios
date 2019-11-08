@@ -19,7 +19,7 @@ class ProjectsTableViewController: UITableViewController, SideMenuable {
     @IBOutlet private weak var newProjectButton: UIBarButtonItem!
     private var viewModel = ProjectsViewModel()
     var disposeBag = DisposeBag()
-    var openSideMenu: UIBarButtonItem = UIBarButtonItem(image: UIImage(named: "SideMenu"), style: UIBarButtonItemStyle.plain, target: nil, action: nil)
+    var openSideMenu: UIBarButtonItem = UIBarButtonItem(image: UIImage(named: "SideMenu"), style: UIBarButtonItem.Style.plain, target: nil, action: nil)
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -50,9 +50,9 @@ class ProjectsTableViewController: UITableViewController, SideMenuable {
         }
         let project = viewModel.projects[indexPath.row]
         cell.viewModel = ProjectCellViewModel(model: project)
-        let button = UIButton(type: UIButtonType.custom)
-        button.setTitle("Edit", for: UIControlState())
-        button.setTitleColor(UIColor.white, for: UIControlState())
+        let button = UIButton(type: UIButton.ButtonType.custom)
+        button.setTitle("Edit", for: UIControl.State())
+        button.setTitleColor(UIColor.white, for: UIControl.State())
         button
             .rx
             .tap
@@ -71,7 +71,7 @@ class ProjectsTableViewController: UITableViewController, SideMenuable {
             .disposed(by: disposeBag)
 
         cell.removeAllRightButtons()
-        cell.addRightButton(button, buttonWidth: 60.0, backgroundColor: UIColor.flatGray)
+        cell.addRightButton(button, buttonWidth: 60.0, backgroundColor: UIColor.flatGray())
         return cell
     }
 

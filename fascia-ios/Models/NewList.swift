@@ -11,7 +11,7 @@ import ChameleonFramework
 
 class NewList: Mappable {
     var title: String?
-    var color: String? = (UIColor.flatSkyBlue.hexValue() as NSString).substring(from: 1)
+    var color: String? = (UIColor.flatSkyBlue().hexValue() as NSString).substring(from: 1)
 
     required init?(map: Map) {
         mapping(map: map)

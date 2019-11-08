@@ -22,7 +22,7 @@ enum FasciaAPIError: Error {
 class FasciaAPIService {
     static let sharedInstance = FasciaAPIService()
 #if DEBUG
-    let APIHost = "http://fascia.localdomain:9090"
+    let APIHost = "https://fascia.io"
 #else
     let APIHost = "https://fascia.io"
 #endif

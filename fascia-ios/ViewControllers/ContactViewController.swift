@@ -17,7 +17,7 @@ class ContactViewController: UIViewController, WKNavigationDelegate, SideMenuabl
     private let viewModel = ContactViewModel()
     private var hud = HUDManager()
     var disposeBag = DisposeBag()
-    var openSideMenu: UIBarButtonItem = UIBarButtonItem(image: UIImage(named: "SideMenu"), style: UIBarButtonItemStyle.plain, target: nil, action: nil)
+    var openSideMenu: UIBarButtonItem = UIBarButtonItem(image: UIImage(named: "SideMenu"), style: UIBarButtonItem.Style.plain, target: nil, action: nil)
 
     @IBOutlet private weak var webView: WKWebView!
 
@@ -107,11 +107,11 @@ class ContactViewController: UIViewController, WKNavigationDelegate, SideMenuabl
                 let activityVC = UIActivityViewController(activityItems: activityItems, applicationActivities: nil)
 
                 let excludedActivityTypes = [
-                    UIActivityType.postToFacebook,
-                    UIActivityType.postToTwitter,
-                    UIActivityType.message,
-                    UIActivityType.saveToCameraRoll,
-                    UIActivityType.print
+                    UIActivity.ActivityType.postToFacebook,
+                    UIActivity.ActivityType.postToTwitter,
+                    UIActivity.ActivityType.message,
+                    UIActivity.ActivityType.saveToCameraRoll,
+                    UIActivity.ActivityType.print
                 ]
 
                 activityVC.excludedActivityTypes = excludedActivityTypes

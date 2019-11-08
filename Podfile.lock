@@ -1,68 +1,90 @@
 PODS:
-  - Alamofire (4.5.1)
+  - Alamofire (4.9.1)
   - ChameleonFramework/Default (2.1.0)
   - ChameleonFramework/Swift (2.1.0):
     - ChameleonFramework/Default
   - Color-Picker-for-iOS (2.0.2)
-  - Crashlytics (3.9.3):
-    - Fabric (~> 1.7.2)
+  - Crashlytics (3.13.4):
+    - Fabric (~> 1.10.2)
   - CSNotificationView (0.5.4)
-  - Down (0.4.2)
-  - Fabric (1.7.2)
-  - ObjectMapper (3.1.0)
-  - RxAlamofire (4.0.0):
-    - RxAlamofire/Core (= 4.0.0)
-  - RxAlamofire/Core (4.0.0):
-    - Alamofire (~> 4.5)
-    - RxSwift (~> 4.0)
-  - RxCocoa (4.0.0):
-    - RxSwift (~> 4.0)
-  - RxSwift (4.0.0)
-  - SESlideTableViewCell (0.7.1)
-  - SideMenu (3.1.4)
-  - SVProgressHUD (2.2.2)
+  - Down (0.9.0)
+  - Fabric (1.10.2)
+  - ObjectMapper (3.5.1)
+  - RxAlamofire (5.1.0):
+    - RxAlamofire/Core (= 5.1.0)
+  - RxAlamofire/Core (5.1.0):
+    - Alamofire (~> 4.8)
+    - RxSwift (~> 5.0)
+  - RxCocoa (5.0.1):
+    - RxRelay (~> 5)
+    - RxSwift (~> 5)
+  - RxRelay (5.0.1):
+    - RxSwift (~> 5)
+  - RxSwift (5.0.1)
+  - SESlideTableViewCell (0.7.2)
+  - SideMenu (6.4.6)
+  - SVProgressHUD (2.2.5)
 
 DEPENDENCIES:
-  - Alamofire (~> 4.5)
-  - ChameleonFramework/Swift (from `https://github.com/ViccAlexander/Chameleon.git`)
+  - Alamofire (~> 4.9)
+  - ChameleonFramework/Swift (from `https://github.com/wowansm/Chameleon.git`, commit `96d52c36a45847fff60bcff7a58fec1e4bd7390b`)
   - Color-Picker-for-iOS (~> 2.0)
-  - Crashlytics
+  - Crashlytics (~> 3.13.4)
   - CSNotificationView
-  - Down
-  - Fabric
-  - ObjectMapper (~> 3.1)
-  - RxAlamofire (~> 4.0)
-  - RxCocoa (~> 4.0)
-  - RxSwift (~> 4.0)
-  - SESlideTableViewCell
-  - SideMenu (~> 3.1)
-  - SVProgressHUD
+  - Down (~> 0.9.0)
+  - Fabric (~> 1.10.2)
+  - ObjectMapper (~> 3.5)
+  - RxAlamofire (~> 5.0)
+  - RxCocoa (~> 5.0)
+  - RxSwift (~> 5.0)
+  - SESlideTableViewCell (~> 0.7)
+  - SideMenu (~> 6.4)
+  - SVProgressHUD (~> 2.2)
+
+SPEC REPOS:
+  https://github.com/CocoaPods/Specs.git:
+    - Alamofire
+    - Color-Picker-for-iOS
+    - Crashlytics
+    - CSNotificationView
+    - Down
+    - Fabric
+    - ObjectMapper
+    - RxAlamofire
+    - RxCocoa
+    - RxRelay
+    - RxSwift
+    - SESlideTableViewCell
+    - SideMenu
+    - SVProgressHUD
 
 EXTERNAL SOURCES:
   ChameleonFramework:
-    :git: https://github.com/ViccAlexander/Chameleon.git
+    :commit: 96d52c36a45847fff60bcff7a58fec1e4bd7390b
+    :git: https://github.com/wowansm/Chameleon.git
 
 CHECKOUT OPTIONS:
   ChameleonFramework:
-    :commit: 6dd284bde21ea2e7f9fd89bc36f40df16e16369d
-    :git: https://github.com/ViccAlexander/Chameleon.git
+    :commit: 96d52c36a45847fff60bcff7a58fec1e4bd7390b
+    :git: https://github.com/wowansm/Chameleon.git
 
 SPEC CHECKSUMS:
-  Alamofire: 2d95912bf4c34f164fdfc335872e8c312acaea4a
+  Alamofire: 85e8a02c69d6020a0d734f6054870d7ecb75cf18
   ChameleonFramework: d21a3cc247abfe5e37609a283a8238b03575cf64
   Color-Picker-for-iOS: 4980589b3e3cfe7198f227dd50be9adb02d8bc0b
-  Crashlytics: dbb07d01876c171c5ccbdf7826410380189e452c
+  Crashlytics: 2dfd686bcb918dc10ee0e76f7f853fe42c7bd552
   CSNotificationView: 0792f5220163c2befaf1a9716aa3d5a7d6bd4fb1
-  Down: 92efba7c95a8efdb84b7114e365db4a37f3df76e
-  Fabric: 9cd6a848efcf1b8b07497e0b6a2e7d336353ba15
-  ObjectMapper: 20505058f54e5c3ca69e1d6de9897d152a5369a6
-  RxAlamofire: 6ea579ac53bf14cb4bc7049a3866e5a769989b1d
-  RxCocoa: d62846ca96495d862fa4c59ea7d87e5031d7340e
-  RxSwift: fd680d75283beb5e2559486f3c0ff852f0d35334
-  SESlideTableViewCell: 459c3ce79b760e8bc015dd83ca84196bd70c11ed
-  SideMenu: 99021e70b3f2eee65b5dd88e4274d09031b1221e
-  SVProgressHUD: 59b2d3dabacbd051576d21d32293ca7228dc18b0
+  Down: 1cdbca4963b542d0ef34ebb3e10ff48382bdf761
+  Fabric: 706c8b8098fff96c33c0db69cbf81f9c551d0d74
+  ObjectMapper: 70187b8941977c62ccfb423caf6b50be405cabf0
+  RxAlamofire: a2d7621de4c23a0c6e7b476b504acc32838ee341
+  RxCocoa: e741b9749968e8a143e2b787f1dfbff2b63d0a5c
+  RxRelay: 89d54507f4fd4d969e6ec1d4bd7f3673640b4640
+  RxSwift: e2dc62b366a3adf6a0be44ba9f405efd4c94e0c4
+  SESlideTableViewCell: 2ccbb6ff6c8eba821863d60bf4dd67248e39afb7
+  SideMenu: 43910eb6dc994dd59771f8e82573d04a9e776361
+  SVProgressHUD: 1428aafac632c1f86f62aa4243ec12008d7a51d6
 
-PODFILE CHECKSUM: d03f8adcef667bd01b10333a61e6dacc8aec4ecf
+PODFILE CHECKSUM: 8fcefeef9eeec44c6dc8d9fb8f5bc8c65273d1f4
 
-COCOAPODS: 1.2.0.beta.3
+COCOAPODS: 1.8.4

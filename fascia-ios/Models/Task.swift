@@ -47,7 +47,7 @@ class Task: Mappable {
             return nil
         }
         let down = Down(markdownString: str)
-        let attributedString = try? down.toAttributedString(DownOptions.HardBreaks)
+        let attributedString = try? down.toAttributedString(DownOptions.hardBreaks)
         guard let attr = attributedString else {
             return nil
         }

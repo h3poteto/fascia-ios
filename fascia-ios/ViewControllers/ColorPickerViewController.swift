@@ -16,7 +16,7 @@ enum ColorPickerError: Error {
 }
 
 class ColorPickerViewController: UIViewController {
-    private let doneButton = UIBarButtonItem(barButtonSystemItem: UIBarButtonSystemItem.done, target: nil, action: nil)
+    private let doneButton = UIBarButtonItem(barButtonSystemItem: UIBarButtonItem.SystemItem.done, target: nil, action: nil)
     var viewModel: ColorPickerViewModel?
     private let disposeBag = DisposeBag()
 
