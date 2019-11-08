@@ -15,7 +15,7 @@ import ChameleonFramework
 
 class ListsTableViewController: UITableViewController, UIGestureRecognizerDelegate, ContextMenuDelegate {
     @IBOutlet private weak var refresh: UIRefreshControl!
-    private let newListButton = UIBarButtonItem(barButtonSystemItem: UIBarButtonSystemItem.add, target: nil, action: nil)
+    private let newListButton = UIBarButtonItem(barButtonSystemItem: UIBarButtonItem.SystemItem.add, target: nil, action: nil)
     var viewModel: ListsViewModel!
     private let hud = HUDManager()
     private let disposeBag = DisposeBag()
@@ -99,9 +99,9 @@ class ListsTableViewController: UITableViewController, UIGestureRecognizerDelega
             let sectionVM = ListSectionViewModel(model: lists.lists[section - 1])
             bindListSectionViewModel(vm: sectionVM)
             sectionView.viewModel = sectionVM
-            let button = UIButton(type: UIButtonType.custom)
-            button.setTitle("Edit", for: UIControlState())
-            button.setTitleColor(UIColor.white, for: UIControlState())
+            let button = UIButton(type: UIButton.ButtonType.custom)
+            button.setTitle("Edit", for: UIControl.State())
+            button.setTitleColor(UIColor.white, for: UIControl.State())
             button
                 .rx
                 .tap
@@ -213,7 +213,7 @@ class ListsTableViewController: UITableViewController, UIGestureRecognizerDelega
         let indexPath = tableView.indexPathForRow(at: point)
         self.tableView.selectRow(at: indexPath, animated: true, scrollPosition: .none)
 
-        if indexPath != nil && recognizer.state == UIGestureRecognizerState.began {
+        if indexPath != nil && recognizer.state == UIGestureRecognizer.State.began {
             guard let lists = viewModel.lists else {
                 return
             }

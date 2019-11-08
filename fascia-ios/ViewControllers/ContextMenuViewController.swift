@@ -90,8 +90,8 @@ class ContextMenuViewController: UIViewController {
         }
         parentView.view.addSubview(self.view)
         self.view.frame = CGRect.init(x: 0, y: offset, width: parentView.view.frame.size.width, height: parentView.view.frame.size.height)
-        parentView.addChildViewController(self)
-        parentView.didMove(toParentViewController: parentView)
+        parentView.addChild(self)
+        parentView.didMove(toParent: parentView)
         parentView.tableView.isScrollEnabled = false
 
         let touchPoint = recognizer.location(in: self.view)
@@ -151,7 +151,7 @@ class ContextMenuViewController: UIViewController {
         animationGroup.duration = 0.3
         animationGroup.animations = [circleAnimation, opacityAnimation]
         animationGroup.isRemovedOnCompletion = false
-        animationGroup.fillMode = kCAFillModeForwards
+        animationGroup.fillMode = CAMediaTimingFillMode.forwards
         circleLayer.add(animationGroup, forKey: nil)
 
     }
@@ -242,8 +242,8 @@ class ContextMenuViewController: UIViewController {
     // 現状ではタップで遷移させている
     // もしD&Dで実現するならラベルも出せる
     private func displayItem(item: ContextItem, point: CGPoint, startPos: CGPoint) {
-        let circleImageButton = UIButton(type: UIButtonType.custom)
-        circleImageButton.setBackgroundImage(item.image, for: UIControlState())
+        let circleImageButton = UIButton(type: UIButton.ButtonType.custom)
+        circleImageButton.setBackgroundImage(item.image, for: UIControl.State())
         circleImageButton.setBackgroundImage(item.highlightedImage, for: .highlighted)
         circleImageButton.setBackgroundImage(item.highlightedImage, for: .selected)
         circleImageButton.frame = CGRect(x: startPos.x, y: startPos.y, width: itemRadius, height: itemRadius)
@@ -254,7 +254,7 @@ class ContextMenuViewController: UIViewController {
         circleImageButton.clipsToBounds = true
 
         // animation
-        UIView.animate(withDuration: 0.3, delay: 0.0, usingSpringWithDamping: 0.7, initialSpringVelocity: 0.0, options: UIViewAnimationOptions.allowAnimatedContent, animations: {
+        UIView.animate(withDuration: 0.3, delay: 0.0, usingSpringWithDamping: 0.7, initialSpringVelocity: 0.0, options: UIView.AnimationOptions.allowAnimatedContent, animations: {
                 circleImageButton.alpha = 1.0
                 circleImageButton.frame = CGRect(x: point.x - self.itemRadius / 2.0, y: point.y - self.itemRadius / 2.0, width: self.itemRadius, height: self.itemRadius)
             }, completion: nil)

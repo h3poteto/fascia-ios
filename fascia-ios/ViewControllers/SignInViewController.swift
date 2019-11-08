@@ -16,7 +16,7 @@ class SignInViewController: UIViewController, WKNavigationDelegate, SideMenuable
     private let viewModel = SignInViewModel()
     private var hud = HUDManager()
     var disposeBag = DisposeBag()
-    var openSideMenu: UIBarButtonItem = UIBarButtonItem(image: UIImage(named: "SideMenu"), style: UIBarButtonItemStyle.plain, target: nil, action: nil)
+    var openSideMenu: UIBarButtonItem = UIBarButtonItem(image: UIImage(named: "SideMenu"), style: UIBarButtonItem.Style.plain, target: nil, action: nil)
 
     @IBOutlet private weak var webView: WKWebView!
     @IBOutlet private weak var shareButton: UIBarButtonItem!
@@ -137,11 +137,11 @@ class SignInViewController: UIViewController, WKNavigationDelegate, SideMenuable
                 let activityVC = UIActivityViewController(activityItems: activityItems, applicationActivities: nil)
 
                 let excludedActivityTypes = [
-                    UIActivityType.postToFacebook,
-                    UIActivityType.postToTwitter,
-                    UIActivityType.message,
-                    UIActivityType.saveToCameraRoll,
-                    UIActivityType.print
+                    UIActivity.ActivityType.postToFacebook,
+                    UIActivity.ActivityType.postToTwitter,
+                    UIActivity.ActivityType.message,
+                    UIActivity.ActivityType.saveToCameraRoll,
+                    UIActivity.ActivityType.print
                 ]
 
                 activityVC.excludedActivityTypes = excludedActivityTypes

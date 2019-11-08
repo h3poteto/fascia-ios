@@ -517,17 +517,17 @@
 			isa = PBXProject;
 			attributes = {
 				LastSwiftUpdateCheck = 0730;
-				LastUpgradeCheck = 0940;
+				LastUpgradeCheck = 1120;
 				ORGANIZATIONNAME = h3poteto;
 				TargetAttributes = {
 					E9F4C6601CC52C19003DD8DC = {
 						CreatedOnToolsVersion = 7.3;
 						DevelopmentTeam = HB4N6B2YVM;
-						LastSwiftMigration = 0910;
+						LastSwiftMigration = 1120;
 					};
 					E9F4C6741CC52C19003DD8DC = {
 						CreatedOnToolsVersion = 7.3;
-						LastSwiftMigration = 0910;
+						LastSwiftMigration = 1120;
 						TestTargetID = E9F4C6601CC52C19003DD8DC;
 					};
 				};
@@ -537,6 +537,7 @@
 			developmentRegion = English;
 			hasScannedForEncodings = 0;
 			knownRegions = (
+				English,
 				en,
 				Base,
 			);
@@ -763,6 +764,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_LOCALIZABILITY_NONLOCALIZED = YES;
 				CLANG_ANALYZER_NONNULL = YES;
 				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
 				CLANG_CXX_LIBRARY = "libc++";
@@ -825,7 +827,7 @@
 				PROVISIONING_PROFILE = "da972408-8ca1-407c-b667-80ccf6e1fb11";
 				PROVISIONING_PROFILE_SPECIFIER = FasciaAdHoc;
 				SWIFT_SWIFT3_OBJC_INFERENCE = On;
-				SWIFT_VERSION = 4.0;
+				SWIFT_VERSION = 5.0;
 			};
 			name = AdHoc;
 		};
@@ -838,7 +840,7 @@
 				PRODUCT_BUNDLE_IDENTIFIER = "io.github.h3poteto.fascia-iosTests";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_SWIFT3_OBJC_INFERENCE = On;
-				SWIFT_VERSION = 4.0;
+				SWIFT_VERSION = 5.0;
 				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/fascia-ios.app/fascia-ios";
 			};
 			name = AdHoc;
@@ -847,6 +849,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_LOCALIZABILITY_NONLOCALIZED = YES;
 				CLANG_ANALYZER_NONNULL = YES;
 				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
 				CLANG_CXX_LIBRARY = "libc++";
@@ -902,6 +905,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_LOCALIZABILITY_NONLOCALIZED = YES;
 				CLANG_ANALYZER_NONNULL = YES;
 				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
 				CLANG_CXX_LIBRARY = "libc++";
@@ -964,7 +968,7 @@
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE = "";
 				SWIFT_SWIFT3_OBJC_INFERENCE = On;
-				SWIFT_VERSION = 4.0;
+				SWIFT_VERSION = 5.0;
 			};
 			name = Debug;
 		};
@@ -986,7 +990,7 @@
 				PROVISIONING_PROFILE = "9e0a367a-5e89-48de-b63b-0430fd25422e";
 				PROVISIONING_PROFILE_SPECIFIER = FasciaAppStore;
 				SWIFT_SWIFT3_OBJC_INFERENCE = On;
-				SWIFT_VERSION = 4.0;
+				SWIFT_VERSION = 5.0;
 			};
 			name = Release;
 		};
@@ -999,7 +1003,7 @@
 				PRODUCT_BUNDLE_IDENTIFIER = "io.github.h3poteto.fascia-iosTests";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_SWIFT3_OBJC_INFERENCE = On;
-				SWIFT_VERSION = 4.0;
+				SWIFT_VERSION = 5.0;
 				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/fascia-ios.app/fascia-ios";
 			};
 			name = Debug;
@@ -1013,7 +1017,7 @@
 				PRODUCT_BUNDLE_IDENTIFIER = "io.github.h3poteto.fascia-iosTests";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_SWIFT3_OBJC_INFERENCE = On;
-				SWIFT_VERSION = 4.0;
+				SWIFT_VERSION = 5.0;
 				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/fascia-ios.app/fascia-ios";
 			};
 			name = Release;
