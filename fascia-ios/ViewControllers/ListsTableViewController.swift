@@ -119,7 +119,7 @@ class ListsTableViewController: UITableViewController, UIGestureRecognizerDelega
                 .disposed(by: disposeBag)
 
             sectionView.removeAllRightButtons()
-            sectionView.addRightButton(button, buttonWidth: 60.0, backgroundColor: UIColor.flatGray)
+            sectionView.addRightButton(button, buttonWidth: 60.0, backgroundColor: UIColor.flatGray())
             return sectionView
         }
     }

@@ -71,7 +71,7 @@ class ProjectsTableViewController: UITableViewController, SideMenuable {
             .disposed(by: disposeBag)
 
         cell.removeAllRightButtons()
-        cell.addRightButton(button, buttonWidth: 60.0, backgroundColor: UIColor.flatGray)
+        cell.addRightButton(button, buttonWidth: 60.0, backgroundColor: UIColor.flatGray())
         return cell
     }
 

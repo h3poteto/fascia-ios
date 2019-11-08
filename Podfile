@@ -6,11 +6,13 @@ target "fascia-ios" do
   pod 'Alamofire', '~> 4.5'
   pod 'RxSwift', '~> 4.0'
   pod 'RxCocoa', '~> 4.0'
-  pod 'ObjectMapper', '~> 3.1'
+  pod 'ObjectMapper', '~> 3.5'
   pod 'CSNotificationView'
   pod 'RxAlamofire', '~> 4.0'
   pod 'SVProgressHUD'
-  pod 'ChameleonFramework/Swift', :git => 'https://github.com/ViccAlexander/Chameleon.git'
+  # I'm waiting for https://github.com/viccalexander/Chameleon/pull/244
+  # pod 'ChameleonFramework/Swift', :git => 'https://github.com/ViccAlexander/Chameleon.git'
+  pod 'ChameleonFramework/Swift', :git => 'https://github.com/wowansm/Chameleon.git', :commit => "96d52c36a45847fff60bcff7a58fec1e4bd7390b"
   pod 'SideMenu', '~> 3.1'
   pod 'Color-Picker-for-iOS', '~> 2.0'
   pod 'SESlideTableViewCell'

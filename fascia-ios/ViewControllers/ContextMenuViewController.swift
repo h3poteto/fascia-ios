@@ -135,7 +135,7 @@ class ContextMenuViewController: UIViewController {
 
     private func showSelectedCircle(point: CGPoint) {
         let circleLayer = CAShapeLayer()
-        circleLayer.strokeColor = UIColor.flatPowderBlue.cgColor
+        circleLayer.strokeColor = UIColor.flatPowderBlue().cgColor
         circleLayer.fillColor = UIColor(red: 1.0, green: 1.0, blue: 1.0, alpha: 0.0).cgColor
         circleLayer.lineWidth = 2.0
 
