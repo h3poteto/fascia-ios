@@ -13,7 +13,7 @@ target "fascia-ios" do
   # I'm waiting for https://github.com/viccalexander/Chameleon/pull/244
   # pod 'ChameleonFramework/Swift', :git => 'https://github.com/ViccAlexander/Chameleon.git'
   pod 'ChameleonFramework/Swift', :git => 'https://github.com/wowansm/Chameleon.git', :commit => "96d52c36a45847fff60bcff7a58fec1e4bd7390b"
-  pod 'SideMenu', '~> 6.4'
+  pod 'SideMenu', '~> 6.0'
   pod 'Color-Picker-for-iOS', '~> 2.0'
   pod 'SESlideTableViewCell', '~> 0.7'
   pod 'Fabric', '~> 1.10.2'
