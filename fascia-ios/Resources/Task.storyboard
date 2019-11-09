@@ -37,6 +37,7 @@
                                             <nil key="highlightedColor"/>
                                         </label>
                                     </subviews>
+                                    <color key="backgroundColor" systemColor="secondarySystemBackgroundColor" red="0.94901960780000005" green="0.94901960780000005" blue="0.96862745100000003" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                     <constraints>
                                         <constraint firstAttribute="bottom" secondItem="KSV-qt-5z0" secondAttribute="bottom" id="JAw-PJ-4E3"/>
                                         <constraint firstItem="iJa-ni-uZq" firstAttribute="leading" secondItem="Lnu-cZ-q8e" secondAttribute="leadingMargin" constant="8" id="ROT-2I-W1F"/>
@@ -73,6 +74,7 @@
                                             <nil key="highlightedColor"/>
                                         </label>
                                     </subviews>
+                                    <color key="backgroundColor" systemColor="secondarySystemBackgroundColor" red="0.94901960780000005" green="0.94901960780000005" blue="0.96862745100000003" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                     <constraints>
                                         <constraint firstItem="qHT-kz-T4s" firstAttribute="leading" secondItem="YTf-xp-OmR" secondAttribute="leading" id="04n-Tx-4ab"/>
                                         <constraint firstItem="qHT-kz-T4s" firstAttribute="top" secondItem="YTf-xp-OmR" secondAttribute="top" id="3nG-FM-aej"/>
@@ -130,6 +132,7 @@
                                             <textInputTraits key="textInputTraits"/>
                                         </textField>
                                     </subviews>
+                                    <color key="backgroundColor" systemColor="secondarySystemBackgroundColor" red="0.94901960780000005" green="0.94901960780000005" blue="0.96862745100000003" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                     <constraints>
                                         <constraint firstItem="F09-ao-5V2" firstAttribute="leading" secondItem="6vw-0c-B4k" secondAttribute="leading" constant="8" id="Mq5-m7-50r"/>
                                         <constraint firstAttribute="trailing" secondItem="F09-ao-5V2" secondAttribute="trailing" constant="8" id="MuH-Vo-o1I"/>
@@ -150,12 +153,13 @@
                                     <subviews>
                                         <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" textAlignment="natural" translatesAutoresizingMaskIntoConstraints="NO" id="WMY-56-R8q">
                                             <rect key="frame" x="8" y="0.0" width="359" height="44"/>
-                                            <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                            <color key="backgroundColor" systemColor="secondarySystemBackgroundColor" red="0.94901960780000005" green="0.94901960780000005" blue="0.96862745100000003" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                             <color key="textColor" systemColor="labelColor" cocoaTouchSystemColor="darkTextColor"/>
                                             <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                             <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
                                         </textView>
                                     </subviews>
+                                    <color key="backgroundColor" systemColor="secondarySystemBackgroundColor" red="0.94901960780000005" green="0.94901960780000005" blue="0.96862745100000003" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                     <constraints>
                                         <constraint firstItem="WMY-56-R8q" firstAttribute="leading" secondItem="oY9-KU-gXq" secondAttribute="leading" constant="8" id="I6Q-KS-i8T"/>
                                         <constraint firstAttribute="bottom" secondItem="WMY-56-R8q" secondAttribute="bottom" id="Xp0-So-9JV"/>
