@@ -21,7 +21,7 @@ class ListOptionsAction {
         }
         isLoading.value = false
         err.value = nil
-        FasciaAPIService.sharedInstance.call(path: "/list_options", method: .get, params: nil)
+        FasciaAPIService.sharedInstance.call(path: "/api/list_options", method: .get, params: nil)
             .observeOn(Scheduler.sharedInstance.mainScheduler)
             .subscribeOn(Scheduler.sharedInstance.backgroundScheduler)
             .map { (_, data) throws -> [ListOption] in

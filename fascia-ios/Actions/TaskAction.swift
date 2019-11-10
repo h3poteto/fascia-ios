@@ -22,7 +22,7 @@ class TaskAction {
         }
         isLoading.value = true
         err.value = nil
-        FasciaAPIService.sharedInstance.call(path: "/projects/\(projectID)/lists/\(listID)/tasks/\(taskID)", method: .get, params: nil)
+        FasciaAPIService.sharedInstance.call(path: "/api/projects/\(projectID)/lists/\(listID)/tasks/\(taskID)", method: .get, params: nil)
             .subscribeOn(Scheduler.sharedInstance.backgroundScheduler)
             .observeOn(Scheduler.sharedInstance.mainScheduler)
             .map { (response, data) -> Task in

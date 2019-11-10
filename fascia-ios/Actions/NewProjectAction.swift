@@ -22,7 +22,7 @@ class NewProjectAction {
         }
         isLoading.value = true
         err.value = nil
-        FasciaAPIService.sharedInstance.call(path: "/projects", method: .post, params: parameter)
+        FasciaAPIService.sharedInstance.call(path: "/api/projects", method: .post, params: parameter)
             .subscribeOn(Scheduler.sharedInstance.backgroundScheduler)
             .map({ (_, data) throws -> Project in
                 guard let json = try JSONSerialization.jsonObject(with: data as Data, options: .allowFragments) as? [String: AnyObject] else {
