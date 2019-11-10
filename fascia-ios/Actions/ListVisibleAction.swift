@@ -22,7 +22,7 @@ class ListVisibleAction {
         }
         isLoading.value = true
         err.value = nil
-        FasciaAPIService.sharedInstance.call(path: "/projects/\(list.projectID!)/lists/\(list.id!)/hide", method: .patch, params: nil)
+        FasciaAPIService.sharedInstance.call(path: "/api/projects/\(list.projectID!)/lists/\(list.id!)/hide", method: .patch, params: nil)
             .subscribeOn(Scheduler.sharedInstance.backgroundScheduler)
             .observeOn(Scheduler.sharedInstance.mainScheduler)
             .map { (_, data) -> Lists in
@@ -51,7 +51,7 @@ class ListVisibleAction {
         }
         isLoading.value = true
         err.value = nil
-        FasciaAPIService.sharedInstance.call(path: "/projects/\(list.projectID!)/lists/\(list.id!)/display", method: .patch, params: nil)
+        FasciaAPIService.sharedInstance.call(path: "/api/projects/\(list.projectID!)/lists/\(list.id!)/display", method: .patch, params: nil)
             .subscribeOn(Scheduler.sharedInstance.backgroundScheduler)
             .observeOn(Scheduler.sharedInstance.mainScheduler)
             .map { (_, data) -> Lists in

@@ -21,7 +21,7 @@ class ProjectsAction {
         }
         isLoading.value = true
         err.value = nil
-        FasciaAPIService.sharedInstance.call(path: "/projects", method: .get, params: nil)
+        FasciaAPIService.sharedInstance.call(path: "/api/projects", method: .get, params: nil)
             .subscribeOn(Scheduler.sharedInstance.backgroundScheduler)
             .observeOn(Scheduler.sharedInstance.mainScheduler)
             .map({ (_, data) throws -> [Project] in

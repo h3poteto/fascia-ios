@@ -22,7 +22,7 @@ class RepositoryAction {
         }
         isLoading.value = true
         err.value = nil
-        FasciaAPIService.sharedInstance.call(path: "/github/repositories", method: .get, params: nil)
+        FasciaAPIService.sharedInstance.call(path: "/api/github/repositories", method: .get, params: nil)
             .subscribeOn(Scheduler.sharedInstance.backgroundScheduler)
             .observeOn(Scheduler.sharedInstance.mainScheduler)
             .map({ (_, data) -> [Repository] in
