@@ -161,6 +161,7 @@
                                             <textInputTraits key="textInputTraits"/>
                                         </textField>
                                     </subviews>
+                                    <color key="backgroundColor" systemColor="secondarySystemBackgroundColor" red="0.94901960780000005" green="0.94901960780000005" blue="0.96862745100000003" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                     <constraints>
                                         <constraint firstAttribute="trailingMargin" secondItem="EQl-x2-zaD" secondAttribute="trailing" constant="8" id="8Vc-me-PMM"/>
                                         <constraint firstItem="EQl-x2-zaD" firstAttribute="centerY" secondItem="bPl-wt-x2l" secondAttribute="centerY" id="AuC-Hj-aCe"/>
@@ -193,6 +194,7 @@
                                             </userDefinedRuntimeAttributes>
                                         </imageView>
                                     </subviews>
+                                    <color key="backgroundColor" systemColor="secondarySystemBackgroundColor" red="0.94901960780000005" green="0.94901960780000005" blue="0.96862745100000003" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                     <constraints>
                                         <constraint firstItem="ISQ-Sn-tef" firstAttribute="centerY" secondItem="ETu-Mo-svu" secondAttribute="centerY" id="D2F-wb-R7h"/>
                                         <constraint firstAttribute="trailingMargin" secondItem="ISQ-Sn-tef" secondAttribute="trailing" constant="8" id="VU2-V8-3Ru"/>
@@ -216,6 +218,7 @@
                                             <nil key="highlightedColor"/>
                                         </label>
                                     </subviews>
+                                    <color key="backgroundColor" systemColor="secondarySystemBackgroundColor" red="0.94901960780000005" green="0.94901960780000005" blue="0.96862745100000003" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                     <constraints>
                                         <constraint firstAttribute="bottom" secondItem="FeG-rG-Q1w" secondAttribute="bottom" id="Kfn-tA-YtE"/>
                                         <constraint firstItem="FeG-rG-Q1w" firstAttribute="leading" secondItem="3Xa-V4-cZ2" secondAttribute="leading" constant="8" id="QJC-HE-Gna"/>
@@ -288,6 +291,7 @@
                                             <textInputTraits key="textInputTraits"/>
                                         </textField>
                                     </subviews>
+                                    <color key="backgroundColor" systemColor="secondarySystemBackgroundColor" red="0.94901960780000005" green="0.94901960780000005" blue="0.96862745100000003" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                     <constraints>
                                         <constraint firstItem="2jK-NI-3Yv" firstAttribute="leading" secondItem="IIj-LA-kK4" secondAttribute="leading" constant="8" id="AKu-hr-0Q4"/>
                                         <constraint firstItem="2jK-NI-3Yv" firstAttribute="centerY" secondItem="IIj-LA-kK4" secondAttribute="centerY" id="HZP-PZ-rVy"/>
@@ -326,6 +330,7 @@
                                             </variation>
                                         </imageView>
                                     </subviews>
+                                    <color key="backgroundColor" systemColor="secondarySystemBackgroundColor" red="0.94901960780000005" green="0.94901960780000005" blue="0.96862745100000003" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                     <constraints>
                                         <constraint firstItem="o0V-e3-ceJ" firstAttribute="centerY" secondItem="35I-HM-aqj" secondAttribute="centerY" id="OKA-5o-fzg"/>
                                         <constraint firstItem="o0V-e3-ceJ" firstAttribute="leading" secondItem="35I-HM-aqj" secondAttribute="leadingMargin" constant="8" id="OTZ-fJ-vyt"/>
