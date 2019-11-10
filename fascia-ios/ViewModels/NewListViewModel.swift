@@ -17,16 +17,16 @@ enum NewListValidationError: Error {
 
 class NewListViewModel {
     private let action = NewListAction()
-    private(set) var newList: Variable<NewList>
+    private(set) var newList: BehaviorRelay<NewList>
     final private var project: Project!
-    final private(set) var title: Variable<String?> = Variable(nil)
-    final private(set) var color: Variable<String?> = Variable(nil)
+    final private(set) var title: BehaviorRelay<String?> = BehaviorRelay(value: nil)
+    final private(set) var color: BehaviorRelay<String?> = BehaviorRelay(value: nil)
     final private(set) var dataUpdated: Driver<List?> = Driver.never()
     final private(set) var isLoading: Driver<Bool> = Driver.never()
     final private(set) var err: Driver<Error?> = Driver.never()
 
     init(model: NewList, project: Project) {
-        newList = Variable(model)
+        newList = BehaviorRelay(value: model)
         self.project = project
 
         dataUpdated = Driver
@@ -41,17 +41,17 @@ class NewListViewModel {
 
         isLoading = action.isLoading.asDriver()
         err = action.err.asDriver()
-        color.value = newList.value.color
-        title.value = newList.value.title
+        color.accept(newList.value.color)
+        title.accept(newList.value.title)
     }
 
     func update(title: String?, color: String?) {
         if title != nil {
-            self.title.value = title
+            self.title.accept(title)
             newList.value.title = title
         }
         if color != nil {
-            self.color.value = color
+            self.color.accept(color)
             newList.value.color = color
         }
     }

@@ -11,7 +11,7 @@ import RxCocoa
 
 class ListSectionViewModel {
     final private let action = ListVisibleAction()
-    let list: Variable<List>
+    let list: BehaviorRelay<List>
     let title: Observable<String>
     let isVisible: Observable<Bool>
     final private(set) var listsUpdated: Driver<Lists?> = Driver.never()
@@ -19,7 +19,7 @@ class ListSectionViewModel {
     final private(set) var err: Driver<Error?> = Driver.never()
 
     init(model: List) {
-        self.list = Variable(model)
+        self.list = BehaviorRelay(value: model)
         self.title = self.list.asObservable().map({ (list) -> String in
             return list.title!
         })

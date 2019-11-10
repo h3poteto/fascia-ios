@@ -52,11 +52,11 @@ class SignInViewController: UIViewController, WKNavigationDelegate, SideMenuable
     }
 
     func webView(_ webView: WKWebView, didStartProvisionalNavigation navigation: WKNavigation!) {
-        viewModel.isLoading.value = true
+        viewModel.isLoading.accept(true)
     }
 
     func webView(_ webView: WKWebView, didFinish navigation: WKNavigation!) {
-        viewModel.isLoading.value = false
+        viewModel.isLoading.accept(false)
     }
 
     func webView(_ webView: WKWebView, decidePolicyFor navigationAction: WKNavigationAction, decisionHandler: @escaping (WKNavigationActionPolicy) -> Void) {
@@ -75,7 +75,7 @@ class SignInViewController: UIViewController, WKNavigationDelegate, SideMenuable
             }
 
             viewModel.update()
-            viewModel.isLoading.value = false
+            viewModel.isLoading.accept(false)
             self.dismiss(animated: true, completion: nil)
             self.navigationController?.popViewController(animated: true)
             decisionHandler(WKNavigationActionPolicy.cancel)

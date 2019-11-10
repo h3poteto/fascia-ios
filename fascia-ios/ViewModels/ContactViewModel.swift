@@ -10,6 +10,6 @@ import RxSwift
 import RxCocoa
 
 class ContactViewModel {
-    final private(set) var isLoading = Variable(false)
+    final private(set) var isLoading = BehaviorRelay(value: false)
     final let contactURL = FasciaAPIService.sharedInstance.contactURL
 }

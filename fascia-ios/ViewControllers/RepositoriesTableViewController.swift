@@ -47,7 +47,7 @@ class RepositoriesTableViewController: UITableViewController {
     }
 
     override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        viewModel.selectedRepository.value = viewModel.repositories[indexPath.row]
+        viewModel.selectedRepository.accept(viewModel.repositories[indexPath.row])
         self.navigationController?.popViewController(animated: true)
     }
 
