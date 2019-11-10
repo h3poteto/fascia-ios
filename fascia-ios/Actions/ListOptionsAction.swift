@@ -10,17 +10,17 @@ import RxSwift
 import RxCocoa
 
 class ListOptionsAction {
-    final let isLoading = Variable(false)
-    final let listOptions = Variable([ListOption]())
-    final let err: Variable<Error?> = Variable(nil)
+    final let isLoading = BehaviorRelay(value: false)
+    final let listOptions = BehaviorRelay(value: [ListOption]())
+    final let err: BehaviorRelay<Error?> = BehaviorRelay(value: nil)
     private let disposeBag = DisposeBag()
 
     func request() {
         if isLoading.value {
             return
         }
-        isLoading.value = false
-        err.value = nil
+        isLoading.accept(false)
+        err.accept(nil)
         FasciaAPIService.sharedInstance.call(path: "/api/list_options", method: .get, params: nil)
             .observeOn(Scheduler.sharedInstance.mainScheduler)
             .subscribeOn(Scheduler.sharedInstance.backgroundScheduler)
@@ -32,13 +32,13 @@ class ListOptionsAction {
             }
             .subscribe(onNext: { (listOptions) -> Void in
                 print(listOptions)
-                self.listOptions.value = listOptions
-                }, onError: { (errorType) in
-                    self.err.value = errorType
-                    self.isLoading.value = false
-                }, onCompleted: {
-                    self.isLoading.value = false
-                }, onDisposed: nil)
+                self.listOptions.accept(listOptions)
+            }, onError: { (errorType) in
+                self.err.accept(errorType)
+                self.isLoading.accept(false)
+            }, onCompleted: {
+                self.isLoading.accept(false)
+            }, onDisposed: nil)
             .disposed(by: disposeBag)
     }
 }

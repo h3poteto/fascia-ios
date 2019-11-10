@@ -11,17 +11,17 @@ import RxCocoa
 import ObjectMapper
 
 class RepositoryAction {
-    final let isLoading = Variable(false)
-    final var repositories = Variable([Repository]())
-    final let err: Variable<Error?> = Variable(nil)
+    final let isLoading = BehaviorRelay(value: false)
+    final var repositories = BehaviorRelay(value: [Repository]())
+    final let err: BehaviorRelay<Error?> = BehaviorRelay(value: nil)
     private let disposeBag = DisposeBag()
 
     func request() {
         if isLoading.value {
             return
         }
-        isLoading.value = true
-        err.value = nil
+        isLoading.accept(true)
+        err.accept(nil)
         FasciaAPIService.sharedInstance.call(path: "/api/github/repositories", method: .get, params: nil)
             .subscribeOn(Scheduler.sharedInstance.backgroundScheduler)
             .observeOn(Scheduler.sharedInstance.mainScheduler)
@@ -32,14 +32,13 @@ class RepositoryAction {
                 return Repository.buildWithArray(repositories: json)
             })
             .subscribe(onNext: { (repositories) in
-                    print(repositories)
-                    self.repositories.value = repositories
-                }, onError: { (errorType) in
-                    self.err.value = errorType
-                }, onCompleted: {
-                    self.isLoading.value = false
-                }, onDisposed: nil
-            )
+                print(repositories)
+                self.repositories.accept(repositories)
+            }, onError: { (errorType) in
+                self.err.accept(errorType)
+            }, onCompleted: {
+                self.isLoading.accept(false)
+            }, onDisposed: nil)
             .disposed(by: disposeBag)
     }
 }

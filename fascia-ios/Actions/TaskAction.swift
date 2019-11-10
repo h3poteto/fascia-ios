@@ -11,17 +11,17 @@ import RxCocoa
 import ObjectMapper
 
 class TaskAction {
-    final let isLoading = Variable(false)
-    final var task: Variable<Task?> = Variable(nil)
-    final let err: Variable<Error?> = Variable(nil)
+    final let isLoading = BehaviorRelay(value: false)
+    final var task: BehaviorRelay<Task?> = BehaviorRelay(value: nil)
+    final let err: BehaviorRelay<Error?> = BehaviorRelay(value: nil)
     private let disposeBag = DisposeBag()
 
     func request(projectID: Int, listID: Int, taskID: Int) {
         if isLoading.value {
             return
         }
-        isLoading.value = true
-        err.value = nil
+        isLoading.accept(true)
+        err.accept(nil)
         FasciaAPIService.sharedInstance.call(path: "/api/projects/\(projectID)/lists/\(listID)/tasks/\(taskID)", method: .get, params: nil)
             .subscribeOn(Scheduler.sharedInstance.backgroundScheduler)
             .observeOn(Scheduler.sharedInstance.mainScheduler)
@@ -36,14 +36,13 @@ class TaskAction {
                 return task
             }
             .subscribe(onNext: { (task) in
-                self.task.value = task
+                self.task.accept(task)
             }, onError: { (errorType) in
-                self.err.value = errorType
-                self.isLoading.value = false
+                self.err.accept(errorType)
+                self.isLoading.accept(false)
             }, onCompleted: {
-                self.isLoading.value = false
-            }, onDisposed: nil
-        )
+                self.isLoading.accept(false)
+            }, onDisposed: nil)
         .disposed(by: disposeBag)
     }
 }

@@ -11,17 +11,17 @@ import RxCocoa
 import ObjectMapper
 
 class ListVisibleAction {
-    final let isLoading = Variable(false)
-    final var lists: Variable<Lists?> = Variable(nil)
-    final let err: Variable<Error?> = Variable(nil)
+    final let isLoading = BehaviorRelay(value: false)
+    final var lists: BehaviorRelay<Lists?> = BehaviorRelay(value: nil)
+    final let err: BehaviorRelay<Error?> = BehaviorRelay(value: nil)
     private let disposeBag = DisposeBag()
 
     func hide(list: List) {
         if isLoading.value {
             return
         }
-        isLoading.value = true
-        err.value = nil
+        isLoading.accept(true)
+        err.accept(nil)
         FasciaAPIService.sharedInstance.call(path: "/api/projects/\(list.projectID!)/lists/\(list.id!)/hide", method: .patch, params: nil)
             .subscribeOn(Scheduler.sharedInstance.backgroundScheduler)
             .observeOn(Scheduler.sharedInstance.mainScheduler)
@@ -35,13 +35,14 @@ class ListVisibleAction {
                 return lists
             }
             .subscribe(onNext: { (lists) in
-                    self.lists.value = lists
-                }, onError: { (errorType) in
-                    self.err.value = errorType
-                    self.isLoading.value = false
-                }, onCompleted: {
-                    self.isLoading.value = false
-                }, onDisposed: nil)
+                self.lists.accept(lists)
+
+            }, onError: { (errorType) in
+                self.err.accept(errorType)
+                self.isLoading.accept(false)
+            }, onCompleted: {
+                self.isLoading.accept(false)
+            }, onDisposed: nil)
             .disposed(by: disposeBag)
     }
 
@@ -49,8 +50,8 @@ class ListVisibleAction {
         if isLoading.value {
             return
         }
-        isLoading.value = true
-        err.value = nil
+        isLoading.accept(true)
+        err.accept(nil)
         FasciaAPIService.sharedInstance.call(path: "/api/projects/\(list.projectID!)/lists/\(list.id!)/display", method: .patch, params: nil)
             .subscribeOn(Scheduler.sharedInstance.backgroundScheduler)
             .observeOn(Scheduler.sharedInstance.mainScheduler)
@@ -64,14 +65,13 @@ class ListVisibleAction {
                 return lists
             }
             .subscribe(onNext: { (lists) in
-                    self.lists.value = lists
-                }, onError: { (errorType) in
-                    self.err.value = errorType
-                    self.isLoading.value = false
-                }, onCompleted: {
-                    self.isLoading.value = false
-                }, onDisposed: nil
-            )
+                self.lists.accept(lists)
+            }, onError: { (errorType) in
+                self.err.accept(errorType)
+                self.isLoading.accept(false)
+            }, onCompleted: {
+                self.isLoading.accept(false)
+            }, onDisposed: nil)
             .disposed(by: disposeBag)
     }
 }
