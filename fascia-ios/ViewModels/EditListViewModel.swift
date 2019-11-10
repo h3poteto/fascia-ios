@@ -19,13 +19,13 @@ class EditListViewModel {
     private let editListAction = EditListAction()
     private let listOptionAction = ListOptionsAction()
     private let disposeBag = DisposeBag()
-    private(set) var editList: Variable<EditList>
+    private(set) var editList: BehaviorRelay<EditList>
     private var list: List
     var listOptions = [ListOption]()
-    final private(set) var title: Variable<String?> = Variable(nil)
-    final private(set) var color: Variable<String?> = Variable(nil)
-    final private(set) var action: Variable<String?> = Variable(nil)
-    final private(set) var optionID: Variable<Int?> = Variable(nil)
+    final private(set) var title: BehaviorRelay<String?> = BehaviorRelay(value: nil)
+    final private(set) var color: BehaviorRelay<String?> = BehaviorRelay(value: nil)
+    final private(set) var action: BehaviorRelay<String?> = BehaviorRelay(value: nil)
+    final private(set) var optionID: BehaviorRelay<Int?> = BehaviorRelay(value: nil)
     final private(set) var dataUpdated: Driver<List?> = Driver.never()
     final private(set) var isLoading: Driver<Bool> = Driver.never()
     final private(set) var err: Driver<Error?> = Driver.never()
@@ -35,7 +35,7 @@ class EditListViewModel {
         let edit = EditList()
         edit.title = model.title
         edit.color = model.color
-        editList = Variable(edit)
+        editList = BehaviorRelay(value: edit)
 
         dataUpdated = Driver
             .combineLatest(
@@ -49,8 +49,8 @@ class EditListViewModel {
 
         isLoading = editListAction.isLoading.asDriver()
         err = editListAction.err.asDriver()
-        color.value = editList.value.color
-        title.value = editList.value.title
+        color.accept(editList.value.color)
+        title.accept(editList.value.title)
     }
 
     func loadOption() {
@@ -62,8 +62,8 @@ class EditListViewModel {
                     .action = option?.action
                 self.editList.value
                     .optionID = option?.id
-                self.action.value = option?.action
-                self.optionID.value = option?.id
+                self.action.accept(option?.action)
+                self.optionID.accept(option?.id)
                 self.listOptions = listOptions
             }, onError: nil, onCompleted: nil, onDisposed: nil)
             .disposed(by: disposeBag)
@@ -72,16 +72,16 @@ class EditListViewModel {
 
     func update(title: String?, color: String?, option: ListOption?) {
         if title != nil {
-            self.title.value = title
+            self.title.accept(title)
             editList.value.title = title
         }
         if color != nil {
-            self.color.value = color
+            self.color.accept(color)
             editList.value.color = color
         }
         if option != nil {
-            self.action.value = option?.action
-            self.optionID.value = option?.id
+            self.action.accept(option?.action)
+            self.optionID.accept(option?.id)
             editList.value.action = option?.action
             editList.value.optionID = option?.id
         }

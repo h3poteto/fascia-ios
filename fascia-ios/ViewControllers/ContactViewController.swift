@@ -56,11 +56,11 @@ class ContactViewController: UIViewController, WKNavigationDelegate, SideMenuabl
     }
 
     func webView(_ webView: WKWebView, didStartProvisionalNavigation navigation: WKNavigation!) {
-        viewModel.isLoading.value = true
+        viewModel.isLoading.accept(true)
     }
 
     func webView(_ webView: WKWebView, didFinish navigation: WKNavigation!) {
-        viewModel.isLoading.value = false
+        viewModel.isLoading.accept(false)
     }
 
     func webView(_ webView: WKWebView, decidePolicyFor navigationAction: WKNavigationAction, decisionHandler: @escaping (WKNavigationActionPolicy) -> Void) {

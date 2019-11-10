@@ -16,16 +16,16 @@ enum NewTaskValidationError: Error {
 
 class NewTaskViewModel {
     private let action = NewTaskAction()
-    private(set) var newTask: Variable<NewTask>
+    private(set) var newTask: BehaviorRelay<NewTask>
     private var list: List
-    private(set) var title: Variable<String?> = Variable(nil)
-    private(set) var description: Variable<String?> = Variable(nil)
+    private(set) var title: BehaviorRelay<String?> = BehaviorRelay(value: nil)
+    private(set) var description: BehaviorRelay<String?> = BehaviorRelay(value: nil)
     final private(set) var dataUpdated: Driver<Task?> = Driver.never()
     final private(set) var isLoading: Driver<Bool> = Driver.never()
     final private(set) var err: Driver<Error?> = Driver.never()
 
     init(model: NewTask, list: List) {
-        self.newTask = Variable(model)
+        self.newTask = BehaviorRelay(value: model)
         self.list = list
 
         dataUpdated = Driver
@@ -44,11 +44,11 @@ class NewTaskViewModel {
 
     func update(title: String?, description: String?) {
         if title != nil {
-            self.title.value = title
+            self.title.accept(title)
             newTask.value.title = title
         }
         if description != nil {
-            self.description.value = description
+            self.description.accept(description)
             newTask.value.taskDescription = description
         }
     }

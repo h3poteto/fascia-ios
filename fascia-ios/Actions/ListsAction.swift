@@ -11,17 +11,17 @@ import RxCocoa
 import ObjectMapper
 
 class ListsAction {
-    final let isLoading = Variable(false)
-    final var lists: Variable<Lists?> = Variable(nil)
-    final let err: Variable<Error?> = Variable(nil)
+    final let isLoading = BehaviorRelay(value: false)
+    final var lists: BehaviorRelay<Lists?> = BehaviorRelay(value: nil)
+    final let err: BehaviorRelay<Error?> = BehaviorRelay(value: nil)
     private let disposeBag = DisposeBag()
 
     func request(projectID: Int) {
         if isLoading.value {
             return
         }
-        isLoading.value = true
-        err.value = nil
+        isLoading.accept(true)
+        err.accept(nil)
         FasciaAPIService.sharedInstance.call(path: "/api/projects/\(projectID)/lists", method: .get, params: nil)
             .subscribeOn(Scheduler.sharedInstance.backgroundScheduler)
             .observeOn(Scheduler.sharedInstance.mainScheduler)
@@ -35,15 +35,15 @@ class ListsAction {
                 return lists
             }
             .subscribe(onNext: { (lists) in
-                    print(lists.lists)
-                    print(lists.noneList ?? "")
-                    self.lists.value = lists
-                }, onError: { (errorType) in
-                    self.err.value = errorType
-                    self.isLoading.value = false
-                }, onCompleted: {
-                    self.isLoading.value = false
-                }, onDisposed: nil)
+                print(lists.lists)
+                print(lists.noneList ?? "")
+                self.lists.accept(lists)
+            }, onError: { (errorType) in
+                self.err.accept(errorType)
+                self.isLoading.accept(false)
+            }, onCompleted: {
+                self.isLoading.accept(false)
+            }, onDisposed: nil)
             .disposed(by: disposeBag)
     }
 
@@ -51,8 +51,8 @@ class ListsAction {
         if isLoading.value {
             return
         }
-        isLoading.value = true
-        err.value = nil
+        isLoading.accept(true)
+        err.accept(nil)
         let params = [
             "to_list_id": toListID,
             "prev_to_task_id": 0
@@ -70,15 +70,15 @@ class ListsAction {
                 return lists
             }
             .subscribe(onNext: { (lists) in
-                    print(lists.lists)
-                    print(lists.noneList ?? "")
-                    self.lists.value = lists
-                }, onError: { (errorType) in
-                    self.err.value = errorType
-                    self.isLoading.value = false
-                }, onCompleted: {
-                    self.isLoading.value = false
-                }, onDisposed: nil)
+                print(lists.lists)
+                print(lists.noneList ?? "")
+                self.lists.accept(lists)
+            }, onError: { (errorType) in
+                self.err.accept(errorType)
+                self.isLoading.accept(false)
+            }, onCompleted: {
+                self.isLoading.accept(false)
+            }, onDisposed: nil)
             .disposed(by: disposeBag)
     }
 }

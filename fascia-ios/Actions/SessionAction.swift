@@ -12,9 +12,10 @@ import WebKit
 
 class SessionAction {
     private let disposeBag = DisposeBag()
-    final let isLoading = Variable(false)
-    final let err: Variable<Error?> = Variable(nil)
-    final let completed = Variable(false)
+    final let isLoading = BehaviorRelay(value: false)
+    final let err: BehaviorRelay<Error?> = BehaviorRelay(value: nil)
+    final let completed =
+        BehaviorRelay(value: false)
 
     func updateSession() {
         FasciaAPIService.sharedInstance.call(path: "/session", method: .patch, params: nil)
@@ -34,20 +35,20 @@ class SessionAction {
         if isLoading.value {
             return
         }
-        isLoading.value = true
-        err.value = nil
-        completed.value = false
+        isLoading.accept(true)
+        err.accept(nil)
+        completed.accept(false)
         FasciaAPIService.sharedInstance.call(path: "/sign_out", method: .delete, params: nil)
             .subscribeOn(Scheduler.sharedInstance.backgroundScheduler)
             .observeOn(Scheduler.sharedInstance.mainScheduler)
             .subscribe(onNext: { (response, _) in
                 FasciaAPIService.sharedInstance.deleteSession(response: response)
             }, onError: { (errorType) in
-                self.err.value = errorType
-                self.isLoading.value = false
+                self.err.accept(errorType)
+                self.isLoading.accept(false)
             }, onCompleted: {
-                self.isLoading.value = false
-                self.completed.value = true
+                self.isLoading.accept(false)
+                self.completed.accept(true)
             }, onDisposed: nil)
         .disposed(by: self.disposeBag)
     }

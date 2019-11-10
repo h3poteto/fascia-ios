@@ -15,7 +15,7 @@ class RepositoriesViewModel {
     final private(set) var dataUpdated: Driver<[Repository]> = Driver.never()
     final private(set) var isLoading: Driver<Bool> = Driver.never()
     final private(set) var err: Driver<Error?> = Driver.never()
-    var selectedRepository: Variable<Repository?> = Variable(nil)
+    var selectedRepository: BehaviorRelay<Repository?> = BehaviorRelay(value: nil)
 
     init() {
         dataUpdated = Driver

@@ -820,7 +820,7 @@
 				BUNDLE_NAME = Fascia;
 				CODE_SIGN_IDENTITY = "iPhone Distribution: Akira Fukushima (HB4N6B2YVM)";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Distribution: Akira Fukushima (HB4N6B2YVM)";
-				CURRENT_PROJECT_VERSION = 17;
+				CURRENT_PROJECT_VERSION = 18;
 				DEVELOPMENT_TEAM = HB4N6B2YVM;
 				INFOPLIST_FILE = "fascia-ios/Info.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 13.2;
@@ -831,7 +831,7 @@
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE = "da972408-8ca1-407c-b667-80ccf6e1fb11";
 				PROVISIONING_PROFILE_SPECIFIER = FasciaAdHoc;
-				SWIFT_SWIFT3_OBJC_INFERENCE = On;
+				SWIFT_SWIFT3_OBJC_INFERENCE = Default;
 				SWIFT_VERSION = 5.0;
 			};
 			name = AdHoc;
@@ -965,7 +965,7 @@
 				BUNDLE_NAME = FasciaDev;
 				CODE_SIGN_IDENTITY = "";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "";
-				CURRENT_PROJECT_VERSION = 17;
+				CURRENT_PROJECT_VERSION = 18;
 				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
 				INFOPLIST_FILE = "fascia-ios/Info.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 13.2;
@@ -975,7 +975,7 @@
 				PRODUCT_BUNDLE_IDENTIFIER = io.fascia.dev;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE = "";
-				SWIFT_SWIFT3_OBJC_INFERENCE = On;
+				SWIFT_SWIFT3_OBJC_INFERENCE = Default;
 				SWIFT_VERSION = 5.0;
 			};
 			name = Debug;
@@ -989,7 +989,7 @@
 				BUNDLE_NAME = Fascia;
 				CODE_SIGN_IDENTITY = "iPhone Distribution: Akira Fukushima (HB4N6B2YVM)";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Distribution: Akira Fukushima (HB4N6B2YVM)";
-				CURRENT_PROJECT_VERSION = 17;
+				CURRENT_PROJECT_VERSION = 18;
 				DEVELOPMENT_TEAM = HB4N6B2YVM;
 				INFOPLIST_FILE = "fascia-ios/Info.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 13.2;
@@ -1000,7 +1000,7 @@
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE = "9e0a367a-5e89-48de-b63b-0430fd25422e";
 				PROVISIONING_PROFILE_SPECIFIER = FasciaAppStore;
-				SWIFT_SWIFT3_OBJC_INFERENCE = On;
+				SWIFT_SWIFT3_OBJC_INFERENCE = Default;
 				SWIFT_VERSION = 5.0;
 			};
 			name = Release;

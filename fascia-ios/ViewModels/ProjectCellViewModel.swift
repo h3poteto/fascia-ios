@@ -9,12 +9,12 @@ import RxSwift
 import RxCocoa
 
 class ProjectCellViewModel {
-    let model: Variable<Project>
+    let model: BehaviorRelay<Project>
     let title: Observable<String>
     let githubRepository: Observable<Bool>
 
     init(model: Project) {
-        self.model = Variable(model)
+        self.model = BehaviorRelay(value: model)
         self.title = self.model.asObservable().map({ (project) -> String in
             return project.title!
         })

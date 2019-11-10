@@ -189,7 +189,7 @@ class NewProjectTableViewController: UITableViewController {
             .disposed(by: disposeBag)
         repositoryViewModel.selectedRepository.asDriver()
             .drive(onNext: { (repository) in
-                self.viewModel.repository.value = repository
+                self.viewModel.repository.accept(repository)
                 self.viewModel.update(title: repository?.name, description: nil, repository: repository)
             }, onCompleted: nil, onDisposed: nil)
             .disposed(by: disposeBag)

@@ -10,13 +10,13 @@ import RxSwift
 import RxCocoa
 
 class RepositoryCellViewModel {
-    let model: Variable<Repository>
+    let model: BehaviorRelay<Repository>
     let fullName: Observable<String>
     let name: Observable<String>
     let openRepository: Observable<Bool>
 
     init(model: Repository) {
-        self.model = Variable(model)
+        self.model = BehaviorRelay(value: model)
         self.fullName = self.model.asObservable().map({ (repository) -> String in
             return repository.fullName!
         })

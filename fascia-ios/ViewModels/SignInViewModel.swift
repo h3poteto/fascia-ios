@@ -11,7 +11,7 @@ import RxCocoa
 
 class SignInViewModel {
     private final let action = SessionAction()
-    final private(set) var isLoading = Variable(false)
+    final private(set) var isLoading = BehaviorRelay(value: false)
     final let signInURL = FasciaAPIService.sharedInstance.signInURL
 
     func update() {

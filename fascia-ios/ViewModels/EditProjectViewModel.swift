@@ -16,10 +16,10 @@ enum EditProjectValidationError: Error {
 
 class EditProjectViewModel {
     private let action = EditProjectAction()
-    private(set) var editProject: Variable<EditProject>
+    private(set) var editProject: BehaviorRelay<EditProject>
     private var project: Project
-    final private(set) var title: Variable<String?> = Variable(nil)
-    final private(set) var description: Variable<String?> = Variable(nil)
+    final private(set) var title: BehaviorRelay<String?> = BehaviorRelay(value: nil)
+    final private(set) var description: BehaviorRelay<String?> = BehaviorRelay(value: nil)
     final private(set) var dataUpdated: Driver<Project?> = Driver.never()
     final private(set) var isLoading: Driver<Bool> = Driver.never()
     final private(set) var err: Driver<Error?> = Driver.never()
@@ -29,7 +29,7 @@ class EditProjectViewModel {
         let e = EditProject()
         e.title = project.title
         e.projectDescription = project.projectDescription
-        editProject = Variable(e)
+        editProject = BehaviorRelay(value: e)
         dataUpdated = Driver
             .combineLatest(
                 action.project.asDriver(),
@@ -42,17 +42,17 @@ class EditProjectViewModel {
 
         isLoading = action.isLoading.asDriver()
         err = action.err.asDriver()
-        title = Variable(self.project.title)
-        description = Variable(self.project.projectDescription)
+        title = BehaviorRelay(value: self.project.title)
+        description = BehaviorRelay(value: self.project.projectDescription)
     }
 
     func update(title: String?, description: String?) {
         if title != nil {
-            self.title.value = title
+            self.title.accept(title)
             self.editProject.value.title = title
         }
         if description != nil {
-            self.description.value = description
+            self.description.accept(description)
             self.editProject.value.projectDescription = description
         }
     }

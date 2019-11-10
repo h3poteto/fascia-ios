@@ -16,15 +16,15 @@ enum NewProjectValidationError: Error {
 
 class NewProjectViewModel {
     final private let action = NewProjectAction()
-    private(set) var newProject: Variable<NewProject>
-    final private(set) var title: Variable<String?> = Variable(nil)
-    var repository: Variable<Repository?> = Variable(nil)
+    private(set) var newProject: BehaviorRelay<NewProject>
+    final private(set) var title: BehaviorRelay<String?> = BehaviorRelay(value: nil)
+    var repository: BehaviorRelay<Repository?> = BehaviorRelay(value: nil)
     final private(set) var dataUpdated: Driver<Project?> = Driver.never()
     final private(set) var isLoading: Driver<Bool> = Driver.never()
     final private(set) var err: Driver<Error?> = Driver.never()
 
     init(model: NewProject) {
-        self.newProject = Variable(model)
+        self.newProject = BehaviorRelay(value: model)
 
         dataUpdated = Driver
             .combineLatest(
@@ -43,7 +43,7 @@ class NewProjectViewModel {
     func update(title: String?, description: String?, repository: Repository?) {
         if title != nil {
             newProject.value.title = title
-            self.title.value = title
+            self.title.accept(title)
         }
         if description != nil {
             newProject.value.projectDescription = description
